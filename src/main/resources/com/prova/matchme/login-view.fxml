@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:controller="com.prova.matchme.HelloController" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="600.0" scaleShape="false" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="Logo" fitHeight="200.0" fitWidth="200.0" onMouseClicked="#funzioneacaso" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@LogoLogin.png" />
+         </image></ImageView>
+      <Label alignment="TOP_CENTER" contentDisplay="TOP" text="Accedi" textFill="#03b53f">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="46.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="username" text="Username:">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets top="50.0" />
+               </opaqueInsets>
+            </Label>
+            <TextField promptText="username" />
+         </children>
+         <opaqueInsets>
+            <Insets top="60.0" />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="172.0" prefHeight="47.0" prefWidth="600.0">
+         <children>
+            <Label text="Password:">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Label>
+            <PasswordField promptText="Password" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="237.0" prefHeight="47.0" prefWidth="600.0">
+         <children>
+            <Button mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Log In" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="50.0" />
+               </HBox.margin>
+            </Button>
+            <Button layoutX="278.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>
