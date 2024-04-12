@@ -6,14 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class HelloController {
-    @FXML
-    private Label username;
 
-    @FXML
-    protected void funzioneacaso()
-    {
-        username.setText("suca");
-    }
 
 
 }

@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:controller="com.prova.matchme.HelloController" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="600.0" scaleShape="false" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="600.0" scaleShape="false" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.HelloController">
    <children>
-      <ImageView fx:id="Logo" fitHeight="200.0" fitWidth="200.0" onMouseClicked="#funzioneacaso" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Logo" fitHeight="177.0" fitWidth="189.0" onMouseClicked="#funzioneacaso" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@LogoLogin.png" />
          </image></ImageView>
