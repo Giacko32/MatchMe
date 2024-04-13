@@ -55,7 +55,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="10.0" layoutY="237.0" prefHeight="47.0" prefWidth="600.0">
          <children>
-            <Button layoutX="278.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE" onAction="#registrazione">
+            <Button fx:id="registerbutton" layoutX="278.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE" onAction="#registrazione">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
