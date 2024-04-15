@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #03b53f;">
+            <children>
+                <Label layoutX="28.0" layoutY="12.0" text="MatchMe" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="173.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/game-icons--volleyball-ball.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="132.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/fluent-emoji-high-contrast--soccer-ball.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="217.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/mdi--tennis-ball.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+      <ListView layoutX="14.0" layoutY="100.0" prefHeight="285.0" prefWidth="244.0" />
+      <Label layoutX="14.0" layoutY="76.0" text="Partite di cui sei partecipante">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button layoutX="444.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: red;" text="Cancella partecipazione" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>
