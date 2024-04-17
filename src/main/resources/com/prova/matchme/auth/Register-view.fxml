@@ -43,7 +43,7 @@
       </Label>
       <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="6.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/ic--baseline-arrow-back.png" />
+            <Image url="@../images/ic--baseline-arrow-back-green%20(1).png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />

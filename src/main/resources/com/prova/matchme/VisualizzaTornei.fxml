@@ -7,24 +7,24 @@
 
 <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #03b53f;">
+        <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #e31414;">
             <children>
-                <Label layoutX="52.0" layoutY="11.0" text="MatchMe" textFill="WHITE">
+                <Label layoutX="52.0" layoutY="11.0" text="MatchMe Eventi" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
-                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="187.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="254.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/game-icons--volleyball-ball.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="143.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="209.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/fluent-emoji-high-contrast--soccer-ball.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="229.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="300.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/mdi--tennis-ball.png" />
                     </image>
@@ -35,11 +35,11 @@
                     </image></ImageView>
             </children>
         </AnchorPane>
-      <ListView layoutX="14.0" layoutY="100.0" prefHeight="285.0" prefWidth="244.0" />
-      <Label layoutX="14.0" layoutY="76.0" text="Partite ">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
+        <ListView layoutX="41.0" layoutY="106.0" prefHeight="258.0" prefWidth="265.0" />
+        <Label layoutX="41.0" layoutY="79.0" text="Eventi attivi" textFill="#e31414">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
     </children>
 </AnchorPane>

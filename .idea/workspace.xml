@@ -1,27 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="MatchMe:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4af3d7da-bc56-44b9-ace0-9872cfa66ce3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Base.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Iscrizione.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Prenotazione.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Prenotazione2.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Visualizza partite.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/images/campodacalcio.jpeg" afterDir="false" />
+    <list default="true" id="4af3d7da-bc56-44b9-ace0-9872cfa66ce3" name="Changes" comment="Sono stati fatti tanti cambiamenti">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/MatchMe_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/AccettazioneSquadreTorneo.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/AggiungiComponente.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Aggiungigiocatori.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/BaseTornei.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/CreaTorneo.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/DialogAssegnaRisultato.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/InvitaGiocatore.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/IscrizioneSquadraTorneo.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/ModificaTorneo.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/VisualizzaTornei.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/VisualizzaTorneiGestore.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/auth/RecuperaPassword.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/auth/RecuperaPassword1.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/auth/login-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/images/ic--baseline-arrow-back-green (1).png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/ApplicationMatchMe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/ApplicationMatchMe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/MatchMeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/MatchMeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Base.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Iscrizione.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Main-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Register-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Register-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/dialog-registra-ospite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/dialog-registra-ospite.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/fluent-emoji-high-contrast--soccer-ball.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/images/fluent-emoji-high-contrast--soccer-ball.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/game-icons--volleyball-ball.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/images/game-icons--volleyball-ball.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/ic--baseline-account-circle.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/images/ic--baseline-account-circle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/ic--baseline-arrow-back.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/images/ic--baseline-arrow-back.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/mdi--bell-ring.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/images/mdi--bell-ring.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/mdi--tennis-ball.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/images/mdi--tennis-ball.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Prenotazione.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Prenotazione.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Prenotazione2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Prenotazione2.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Register-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/auth/Register-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Visualizza partite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Visualizza partite.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/dialog-registra-ospite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/auth/dialog-registra-ospite.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/images/ic--baseline-arrow-back.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/images/ic--baseline-arrow-back.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/login-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,20 +91,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.ApplicationMatchMe.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ApplicationMatchMe.executor": "Run",
+    "Application.HelloApplication.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/gianv/IdeaProjects/MatchMe/src/main/resources/com/prova/matchme/images",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gianv\IdeaProjects\MatchMe\src\main\resources\com\prova\matchme\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\gianv\IdeaProjects\MatchMe\src\main\resources\com\prova\matchme" />
+      <recent name="C:\Users\gianv\IdeaProjects\MatchMe\src\main\resources\com\prova\matchme\auth" />
       <recent name="C:\Users\giaco\Desktop\Java\MatchMe\src\main\resources\com\prova\matchme" />
     </key>
   </component>
@@ -119,6 +146,19 @@
       <option name="presentableId" value="Default" />
       <updated>1712915206950</updated>
     </task>
+    <task id="LOCAL-00001" summary="Sono stati fatti tanti cambiamenti">
+      <option name="closed" value="true" />
+      <created>1713203153802</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713203153802</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Sono stati fatti tanti cambiamenti" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sono stati fatti tanti cambiamenti" />
   </component>
 </project>
