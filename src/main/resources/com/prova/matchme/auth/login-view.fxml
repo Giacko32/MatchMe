@@ -16,7 +16,7 @@
       <TextField layoutX="273.0" layoutY="160.0" />
       <Label layoutX="198.0" layoutY="210.0" text="Password" />
       <PasswordField layoutX="274.0" layoutY="206.0" />
-       <Button layoutX="212.0" layoutY="255.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
+       <Button fx:id="registerbutton" layoutX="212.0" layoutY="255.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE" onMousePressed="#toRegister">
            <font>
                <Font name="System Bold" size="12.0" />
            </font>
