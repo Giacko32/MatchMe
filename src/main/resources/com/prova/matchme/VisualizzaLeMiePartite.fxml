@@ -13,7 +13,7 @@
                     <image>
                         <Image url="@images/ic--baseline-arrow-back.png" />
                     </image></ImageView>
-                <Label layoutX="57.0" layoutY="16.0" text="VISUALIZZA TUTTI I TORNEI" textFill="WHITE">
+                <Label layoutX="57.0" layoutY="16.0" text="VISUALIZZA LE MIE PARTITE" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.800000190734863" />
                     </font></Label>
@@ -39,18 +39,36 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <ListView layoutX="14.0" layoutY="100.0" prefHeight="285.0" prefWidth="244.0" />
-        <Label layoutX="100.0" layoutY="76.0" text="Torneo attivi">
+        <ListView layoutX="21.0" layoutY="100.0" prefHeight="285.0" prefWidth="244.0" />
+        <Label layoutX="67.0" layoutY="76.0" text="Match a cui risulti iscritto">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <Label disable="true" layoutX="342.0" layoutY="75.0" text="Dettagli Torneo selezionato">
+        <Label disable="true" layoutX="342.0" layoutY="75.0" text="Dettagli Match selezionato">
             <font>
                 <Font name="System Bold" size="12.800000190734863" />
             </font>
         </Label>
         <ListView disable="true" layoutX="323.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-        <Button disable="true" layoutX="334.0" layoutY="308.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" text="ISCRIVI SQUADRA TORNEO" />
+        <Button disable="true" layoutX="309.0" layoutY="312.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text=" AGGIUNGI &#10;GIOCATORE">
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+      <Button disable="true" layoutX="394.0" layoutY="312.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text="    INVITA &#10;GIOCATORE">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <Button disable="true" layoutX="528.0" layoutY="252.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text="    CANCELLA&#10;PRENOTAZIONE" textFill="#ff0101">
+         <font>
+            <Font name="System Bold" size="7.0" />
+         </font>
+      </Button>
+      <Button disable="true" layoutX="477.0" layoutY="312.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text="AGGIUNGI&#10;  OSPITE">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

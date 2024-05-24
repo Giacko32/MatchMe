@@ -9,30 +9,34 @@
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #03b53f;">
             <children>
-                <Label layoutX="52.0" layoutY="11.0" text="MatchMe" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
-                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="187.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/game-icons--volleyball-ball.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="143.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/fluent-emoji-high-contrast--soccer-ball.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="229.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/mdi--tennis-ball.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
                     <image>
                         <Image url="@images/ic--baseline-arrow-back.png" />
                     </image></ImageView>
+                <Label layoutX="57.0" layoutY="16.0" text="AGGIUNGI GIOCATORE" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.800000190734863" />
+                    </font></Label>
+                <ImageView fitHeight="30.0" fitWidth="192.0" layoutX="433.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/base%20copertina%20bw.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="364.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/calcio_gw.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="391.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/padel_GW.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="57.0" fitWidth="20.0" layoutX="337.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/tennis_gw.png" />
+                    </image>
+                </ImageView>
             </children>
         </AnchorPane>
       <ListView layoutX="14.0" layoutY="111.0" prefHeight="233.0" prefWidth="574.0" />
@@ -53,6 +57,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <Label layoutX="60.0" layoutY="75.0" text="Inserisci parametri di ricerca:" />
 
 
     </children>

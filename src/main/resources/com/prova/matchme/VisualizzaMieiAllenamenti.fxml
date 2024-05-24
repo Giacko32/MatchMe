@@ -13,7 +13,7 @@
                     <image>
                         <Image url="@images/ic--baseline-arrow-back.png" />
                     </image></ImageView>
-                <Label layoutX="57.0" layoutY="16.0" text="VISUALIZZA TUTTI I TORNEI" textFill="WHITE">
+                <Label layoutX="57.0" layoutY="16.0" text="I MIEI ALLENAMENTI" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.800000190734863" />
                     </font></Label>
@@ -40,17 +40,17 @@
             </children>
         </AnchorPane>
         <ListView layoutX="14.0" layoutY="100.0" prefHeight="285.0" prefWidth="244.0" />
-        <Label layoutX="100.0" layoutY="76.0" text="Torneo attivi">
+        <Label layoutX="38.0" layoutY="76.0" text="Allenamenti a cui risulti partecipare:">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <Label disable="true" layoutX="342.0" layoutY="75.0" text="Dettagli Torneo selezionato">
+        <Label disable="true" layoutX="323.0" layoutY="75.0" text="Dettagli allenamento selezionato">
             <font>
                 <Font name="System Bold" size="12.800000190734863" />
             </font>
         </Label>
         <ListView disable="true" layoutX="323.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-        <Button disable="true" layoutX="334.0" layoutY="308.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" text="ISCRIVI SQUADRA TORNEO" />
+        <Button disable="true" layoutX="363.0" layoutY="311.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="119.0" text="    CANCELLA&#10;ALLENAMENTO" textFill="RED" />
     </children>
 </AnchorPane>

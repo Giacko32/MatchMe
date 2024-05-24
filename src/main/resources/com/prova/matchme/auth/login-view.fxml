@@ -7,34 +7,43 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.MatchMeController">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="225.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="216.0" fitWidth="227.0" layoutX="192.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../icon.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="198.0" layoutY="164.0" text="Username" />
-      <TextField layoutX="273.0" layoutY="160.0" />
-      <Label layoutX="198.0" layoutY="210.0" text="Password" />
-      <PasswordField layoutX="274.0" layoutY="206.0" />
-       <Button fx:id="registerbutton" layoutX="212.0" layoutY="255.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE" onMousePressed="#toRegister">
+            <Image url="@../images/Senza%20nome%20-%20Copia.png" />
+         </image></ImageView>
+      <Label layoutX="177.0" layoutY="190.0" text="Username" />
+      <TextField layoutX="264.0" layoutY="186.0" />
+      <Label layoutX="179.0" layoutY="233.0" text="Password" />
+      <PasswordField layoutX="264.0" layoutY="229.0" />
+       <Button fx:id="registerbutton" layoutX="182.0" layoutY="285.0" mnemonicParsing="false" onMousePressed="#toRegister" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
            <font>
                <Font name="System Bold" size="12.0" />
            </font>
        </Button>
-      <Button layoutX="339.0" layoutY="255.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Accedi" textFill="WHITE">
+      <Button layoutX="352.0" layoutY="285.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Accedi" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label layoutX="134.0" layoutY="317.0" text="Accedi come ospite" textFill="#03b53f" underline="true">
+      <Label layoutX="236.0" layoutY="335.0" text="Recupera password" textFill="#03b53f" underline="true">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="360.0" layoutY="317.0" text="Recupera password" textFill="#03b53f" underline="true">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
+      <ImageView fitHeight="140.0" fitWidth="128.0" layoutX="33.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/padel.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="95.0" layoutX="49.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/calcio.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="200.0" fitWidth="185.0" layoutX="467.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tennsi.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

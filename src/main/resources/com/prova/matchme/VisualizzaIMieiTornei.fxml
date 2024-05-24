@@ -13,7 +13,7 @@
                     <image>
                         <Image url="@images/ic--baseline-arrow-back.png" />
                     </image></ImageView>
-                <Label layoutX="57.0" layoutY="16.0" text="VISUALIZZA TUTTI I TORNEI" textFill="WHITE">
+                <Label layoutX="57.0" layoutY="16.0" text="VISUALIZZA I MIEI TORNEI" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.800000190734863" />
                     </font></Label>
@@ -40,7 +40,7 @@
             </children>
         </AnchorPane>
         <ListView layoutX="14.0" layoutY="100.0" prefHeight="285.0" prefWidth="244.0" />
-        <Label layoutX="100.0" layoutY="76.0" text="Torneo attivi">
+        <Label layoutX="60.0" layoutY="76.0" text="Tornei in cui risulti iscritto:">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
@@ -51,6 +51,9 @@
             </font>
         </Label>
         <ListView disable="true" layoutX="323.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-        <Button disable="true" layoutX="334.0" layoutY="308.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" text="ISCRIVI SQUADRA TORNEO" />
+        <Button disable="true" layoutX="334.0" layoutY="308.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" text="CANCELLA ISCRIZIONE SQUADRA">
+         <font>
+            <Font size="10.0" />
+         </font></Button>
     </children>
 </AnchorPane>
