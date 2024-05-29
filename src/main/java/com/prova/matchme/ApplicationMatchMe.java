@@ -1,6 +1,7 @@
 package com.prova.matchme;
 
 import com.almasb.fxgl.dsl.FXGL;
+import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,13 +16,10 @@ public class ApplicationMatchMe extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ApplicationMatchMe.class.getResource("auth/login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 600);
         stage.setTitle("MatchMe");
         Image icon = new Image("icon.png");
         stage.getIcons().add(icon);
-        stage.setScene(scene);
-        stage.show();
+        AuthCtrl authCtrl=new AuthCtrl(stage);
     }
 
 

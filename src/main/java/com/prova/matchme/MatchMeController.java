@@ -14,12 +14,13 @@ import java.util.ResourceBundle;
 
 public class MatchMeController{
 
+
     @FXML
     public Button registerbutton;
 
     @FXML
     public void toRegister() {
-        FXMLLoader loader = new FXMLLoader(ApplicationMatchMe.class.getResource("auth/Register-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(ApplicationMatchMe.class.getResource("FXML/Register-view.fxml"));
         Stage stage = (Stage) registerbutton.getScene().getWindow();
         try {
             Scene scene = new Scene(loader.load());

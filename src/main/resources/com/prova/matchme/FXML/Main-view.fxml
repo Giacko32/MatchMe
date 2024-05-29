@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #03b53f;">
+         <children>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="540.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ic--baseline-account-circle.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="401.0" layoutY="15.0" text="Nome Cognome" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="365.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/mdi--bell-ring.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="186.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/base%20copertina%20bw.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="30.0" layoutX="211.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/calcio_gw.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="23.0" layoutX="183.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/tennis_gw.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="59.0" fitWidth="40.0" layoutX="241.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/padel_GW.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Pane layoutX="113.0" layoutY="97.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+         <children>
+            <Label layoutX="19.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="CAMPI LIBERI" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Pane>
+      <Button layoutX="503.0" layoutY="355.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: red;" text="LOGOUT">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Pane layoutX="246.0" layoutY="97.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+         <children>
+            <Label layoutX="19.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="VISUALIZZA PARTITE" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Pane>
+      <Pane layoutX="375.0" layoutY="97.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+         <children>
+            <Label layoutX="30.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="TORNEI" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Pane>
+      <Pane layoutX="113.0" layoutY="199.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+         <children>
+            <Label layoutX="19.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="STORICO PARTITE" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Pane>
+      <Pane layoutX="246.0" layoutY="199.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+         <children>
+            <Label layoutX="37.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="CHAT" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Pane>
+      <Pane layoutX="375.0" layoutY="199.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+         <children>
+            <Label layoutX="10.0" layoutY="12.0" prefHeight="59.0" prefWidth="89.0" text="ALLENAMENTI" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Pane>
+   </children>
+</AnchorPane>
