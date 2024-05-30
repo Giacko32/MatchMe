@@ -8,9 +8,6 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class MatchMeController{
 
@@ -20,7 +17,7 @@ public class MatchMeController{
 
     @FXML
     public void toRegister() {
-        FXMLLoader loader = new FXMLLoader(ApplicationMatchMe.class.getResource("FXML/Register-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("FXML/Register-view.fxml"));
         Stage stage = (Stage) registerbutton.getScene().getWindow();
         try {
             Scene scene = new Scene(loader.load());

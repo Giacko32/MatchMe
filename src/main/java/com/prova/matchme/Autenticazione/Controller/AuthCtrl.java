@@ -1,22 +1,18 @@
 package com.prova.matchme.Autenticazione.Controller;
 
-import com.prova.matchme.ApplicationMatchMe;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import com.prova.matchme.Autenticazione.Interfacce.LoginView;
+import com.prova.matchme.Autenticazione.Interfacce.RecoveryView;
+import com.prova.matchme.Autenticazione.Interfacce.RegisterView;
+import com.prova.matchme.Utils;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class AuthCtrl {
+	Stage s;
     public AuthCtrl(Stage stage){
-		FXMLLoader loader = new FXMLLoader(ApplicationMatchMe.class.getResource("FXML/login-view.fxml"));
-		try {
-			Scene scene = new Scene(loader.load());
-			stage.setScene(scene);
-			stage.show();
-		} catch (IOException exception) {
-			throw new RuntimeException(exception);
-		}
+		s=stage;
+		Utils.cambiaInterfaccia("FXML/login-view.fxml", stage, c -> {
+			return new LoginView(this);
+		});
 	}
 	private String username_inserito;
 
@@ -38,6 +34,18 @@ public class AuthCtrl {
 
 	public void CloseWarningView() {
 
+	}
+
+	public void toRegistra(){
+		Utils.cambiaInterfaccia("FXML/Register-view.fxml", new Stage(), c -> {
+			return new RegisterView(this);
+		});
+	}
+
+	public void toRecovery(){
+		Utils.cambiaInterfaccia("FXML/RecuperaPassword.fxml", s, c -> {
+			return new RecoveryView(this);
+		},500,300);
 	}
 
 	public int ControllaTipo() {

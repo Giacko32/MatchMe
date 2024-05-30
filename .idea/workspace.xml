@@ -10,115 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4af3d7da-bc56-44b9-ace0-9872cfa66ce3" name="Changes" comment="Sono stati fatti tanti cambiamenti">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Controller/AuthCtrl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/AdminView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/AllenaView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/ChangePasswordView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/LoginView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/MainView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/RecoveryView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/RegisterView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneAllenamenti/Controller/CreaAllCtrl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneAllenamenti/Controller/GestioneAllCtrl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneAllenamenti/Interfacce/AllenamentiView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneAllenamenti/Interfacce/CreaAllenamentoView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneAllenamenti/Interfacce/DettagliAllenamentiView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneAllenamenti/Interfacce/DettagliMioAllenamentoView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneAllenamenti/Interfacce/GestioneAllView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneFidelizzazione/FidelizzazioneControl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneMessaggistica/Controller/ChatCtrl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneMessaggistica/Interfacce/ChatDetailView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneMessaggistica/Interfacce/ChatView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneMessaggistica/Interfacce/NewChatView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneNotifiche/Interfacce/AccettazioneView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneNotifiche/Interfacce/DetailPartitaView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneNotifiche/Interfacce/NotifyView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Controller/PartitaCtrl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/AggiungiOspiteView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/BonusView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/DetailsMiaPartitaView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/DetailsTuttePartiteView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/DettagliCampoView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/FreeCampiView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/GiocatoreBonusView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/PartecipazionePartitaView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/PrenotazionePartitaView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/SelectSedeSportView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/SelectTipoPartiteView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/SelezionaSedeSportDataView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/SuggestedPlayerView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Controller/ProfiloCtrl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/CodiceAbbonamentoView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ManageProfileView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ManageProfileViewNonTesserato.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ModifyPasswordView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ModifyView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ProfileView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/StoricoView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Controller/AmministrazioneSedeCtrl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Controller/GestionePartiteSedeCtrl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/AbbonamentoView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/CampiDisponibilisedeView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/CreaPartitaSedeView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/DettagliGiocatoreSconto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/InsertVincoliView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/InvitaGiocatoriView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/RinviaPartitaView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/SearchNonTesseratoView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/SearchTesseratoView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/SelectDataView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/VerificaScontoView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/VisualizzaDettagliPartitaSedeView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Controller/AmministrazioneTorneiCtrl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Controller/TorneiCtrl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/CreaNuovoTorneoView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/IscrizioneSquadraView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/ModificaTorneoView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/SearchUserView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/SquadreInAttesaView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/VisualizzaDettagliMioTorneo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/VisualizzaDettagliTorneoSedeView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/VisualizzaDettagliTuttiITornei.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/shared/ChoiceView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/shared/ConfirmView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/shared/DBMSView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/shared/TimeView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/shared/WarningView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/ApplicationMatchMe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/ApplicationMatchMe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/ApplicationMatchMe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Controller/AuthCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Controller/AuthCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/RecoveryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/RecoveryView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/RegisterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/RegisterView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/MatchMeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/MatchMeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/AccettazioneSquadreTorneo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/AccettazioneSquadreTorneo.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/AggiungiComponente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/AggiungiComponente.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Aggiungigiocatori.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Aggiungigiocatori.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Allenamenti.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Allenamenti.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Base.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Base.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/BaseTornei.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/BaseTornei.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/CreaTorneo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/CreaTorneo.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/DialogAggiungiOspite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/DialogAggiungiOspite.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/DialogAllert.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/DialogAllert.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/DialogAssegnaRisultato.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/DialogAssegnaRisultato.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/DialogConferma.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/DialogConferma.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/DialogCriteriInsufficenti.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/DialogCriteriInsufficenti.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/DialogUtenteImpegnato.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/DialogUtenteImpegnato.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/InvitaGiocatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/InvitaGiocatore.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/IscrizioneSquadraTorneo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/IscrizioneSquadraTorneo.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Main-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/ModificaTorneo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/ModificaTorneo.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Prenotazione.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Prenotazione.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Prenotazione2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Prenotazione2.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/SelezioneAllenamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/SelezioneAllenamento.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/SelezioneTornei.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/SelezioneTornei.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/SelezioneVisualizzaPartite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/SelezioneVisualizzaPartite.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/Visualizza partite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Visualizza partite.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/VisualizzaIMieiTornei.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/VisualizzaIMieiTornei.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/VisualizzaLeMiePartite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/VisualizzaLeMiePartite.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/VisualizzaMieiAllenamenti.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/VisualizzaMieiAllenamenti.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/VisualizzaTornei.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/VisualizzaTornei.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/VisualizzaTorneiGestore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/VisualizzaTorneiGestore.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/auth/RecuperaPassword.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/RecuperaPassword.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/auth/RecuperaPassword1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/RecuperaPassword1.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/auth/Register-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Register-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/auth/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/login-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Register-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Register-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/login-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/images/Senza nome - Copia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/images/copia.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,16 +79,17 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.ApplicationMatchMe.executor": "Run",
     "Application.HelloApplication.executor": "Run",
+    "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/gianv/IdeaProjects/MatchMe/src/main/resources/com/prova/matchme/images",
+    "last_opened_file_path": "C:/Users/gianv/Desktop/PharmaGCode-main",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -197,10 +102,13 @@
       <recent name="C:\Users\gianv\IdeaProjects\MatchMe\src\main\resources\com\prova\matchme\auth" />
       <recent name="C:\Users\giaco\Desktop\Java\MatchMe\src\main\resources\com\prova\matchme" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.prova.matchme" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration name="ApplicationMatchMe" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.prova.matchme.ApplicationMatchMe" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.prova.matchme.Main" />
       <module name="MatchMe" />
       <extension name="coverage">
         <pattern>
@@ -214,7 +122,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ApplicationMatchMe" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -235,12 +143,30 @@
       <option name="project" value="LOCAL" />
       <updated>1713203153802</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Sono stati fatti tanti cambiamenti">
+      <option name="closed" value="true" />
+      <created>1717003931355</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717003931355</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Sono stati fatti tanti cambiamenti" />
     <option name="LAST_COMMIT_MESSAGE" value="Sono stati fatti tanti cambiamenti" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalAccessException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
