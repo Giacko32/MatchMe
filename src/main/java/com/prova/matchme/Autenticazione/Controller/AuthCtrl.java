@@ -1,9 +1,12 @@
 package com.prova.matchme.Autenticazione.Controller;
 
 import com.prova.matchme.Autenticazione.Interfacce.LoginView;
+import com.prova.matchme.Autenticazione.Interfacce.MainView;
 import com.prova.matchme.Autenticazione.Interfacce.RecoveryView;
 import com.prova.matchme.Autenticazione.Interfacce.RegisterView;
+import com.prova.matchme.CustomStage;
 import com.prova.matchme.Utils;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class AuthCtrl {
@@ -41,11 +44,22 @@ public class AuthCtrl {
 			return new RegisterView(this);
 		});
 	}
+	public void toLogin(){
+		Utils.cambiaInterfaccia("FXML/login-view.fxml", s, c -> {
+			return new LoginView(this);
+		});
+	}
 
 	public void toRecovery(){
-		Utils.cambiaInterfaccia("FXML/RecuperaPassword.fxml", s, c -> {
+		Utils.cambiaInterfaccia("FXML/RecuperaPassword.fxml", new CustomStage("Recupero password"), c -> {
 			return new RecoveryView(this);
-		},500,300);
+		},450,200);
+	}
+
+	public void toMain(){
+		Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
+			return new MainView(this);
+		});
 	}
 
 	public int ControllaTipo() {

@@ -12,7 +12,7 @@
             <children>
                 <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="540.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/ic--baseline-account-circle.png" />
+                        <Image url="@../images/ic--baseline-account-circle.png" />
                     </image>
                 </ImageView>
                 <Label layoutX="401.0" layoutY="12.0" text="Nome Cognome" textFill="WHITE">
@@ -22,22 +22,22 @@
                 </Label>
                 <ImageView fitHeight="30.0" fitWidth="186.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/base%20copertina%20bw.png" />
+                        <Image url="@../images/base%20copertina%20bw.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="40.0" fitWidth="30.0" layoutX="211.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/calcio_acw.png" />
+                        <Image url="@../images/calcio_acw.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="50.0" fitWidth="23.0" layoutX="183.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/tennis_acw.png" />
+                        <Image url="@../images/tennis_acw.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="59.0" fitWidth="40.0" layoutX="241.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/padel_acW.png" />
+                        <Image url="@../images/padel_acW.png" />
                     </image>
                 </ImageView>
                 <Label layoutX="401.0" layoutY="32.0" text="GESTORE" textFill="WHITE">
@@ -47,7 +47,7 @@
                 </Label>
             </children>
         </AnchorPane>
-        <Pane layoutX="89.0" layoutY="97.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+        <Pane layoutX="89.0" layoutY="97.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="6.0" layoutY="12.0" prefHeight="59.0" prefWidth="97.0" text="AGGIUNGI ABBONAMENTO" textAlignment="CENTER" wrapText="true">
                     <font>
@@ -64,7 +64,7 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Button>
-        <Pane layoutX="246.0" layoutY="97.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+        <Pane layoutX="246.0" layoutY="97.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="19.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="TORNEI DELLA SEDE" textAlignment="CENTER" wrapText="true">
                     <font>
@@ -76,7 +76,7 @@
                 <Cursor fx:constant="OPEN_HAND" />
             </cursor>
         </Pane>
-        <Pane layoutX="395.0" layoutY="97.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+        <Pane layoutX="395.0" layoutY="97.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="19.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="VERIFICA CODICE SCONTO" textAlignment="CENTER" wrapText="true">
                     <font>
@@ -88,7 +88,7 @@
                 <Cursor fx:constant="OPEN_HAND" />
             </cursor>
         </Pane>
-        <Pane layoutX="89.0" layoutY="199.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+        <Pane layoutX="89.0" layoutY="199.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="29.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="CREA&#10;PARTITA" textAlignment="CENTER" wrapText="true">
                     <font>
@@ -100,7 +100,7 @@
                 <Cursor fx:constant="OPEN_HAND" />
             </cursor>
         </Pane>
-        <Pane layoutX="246.0" layoutY="199.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+        <Pane layoutX="246.0" layoutY="199.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="18.0" layoutY="13.0" prefHeight="59.0" prefWidth="71.0" text="VISUALIZZA PARTITE SEDE" textAlignment="CENTER" wrapText="true">
                     <font>
@@ -112,7 +112,7 @@
                 <Cursor fx:constant="OPEN_HAND" />
             </cursor>
         </Pane>
-        <Pane layoutX="395.0" layoutY="199.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+        <Pane layoutX="395.0" layoutY="199.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622 #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="13.0" layoutY="12.0" prefHeight="59.0" prefWidth="82.0" text="ABILITA&#10;ALLENATORE" textAlignment="CENTER" wrapText="true">
                     <font>

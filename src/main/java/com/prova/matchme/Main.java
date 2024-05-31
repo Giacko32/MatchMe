@@ -2,6 +2,7 @@ package com.prova.matchme;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,6 +17,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         mainStage = stage;
+        mainStage.getIcons().add(new Image(getClass().getResourceAsStream("/icon.png")));
+
         stage.setTitle("MatchMe");
         stage.setOnCloseRequest(c -> {
             System.exit(0);

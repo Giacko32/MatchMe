@@ -155,7 +155,7 @@ public class Utils {
     public static Object cambiaInterfaccia(String interfaccia, Stage stage, Callback c) {
         FXMLLoader loader = creaLoader(interfaccia);
         loader.setControllerFactory(c);
-        creaInterfaccia(loader, 600, 600, stage);
+        creaInterfaccia(loader, 750, 500, stage);
         return loader.getController();
     }
 

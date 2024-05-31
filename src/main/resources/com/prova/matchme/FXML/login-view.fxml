@@ -1,49 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.Autenticazione.Interfacce.LoginView">
+<AnchorPane fx:id="Ancorpane" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.Autenticazione.Interfacce.LoginView">
    <children>
-      <ImageView fitHeight="216.0" fitWidth="227.0" layoutX="192.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="255.0" fitWidth="273.0" layoutX="253.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/copia.png" />
-         </image></ImageView>
-      <Label layoutX="177.0" layoutY="190.0" text="Username" />
-      <TextField layoutX="264.0" layoutY="186.0" />
-      <Label layoutX="179.0" layoutY="233.0" text="Password" />
-      <PasswordField layoutX="264.0" layoutY="229.0" />
-       <Button fx:id="registerbutton" layoutX="182.0" layoutY="285.0" mnemonicParsing="false" onMousePressed="#ClickRegistrati" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
+         </image>
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor></ImageView>
+      <Label layoutX="252.0" layoutY="247.0" text="Username" />
+      <TextField layoutX="339.0" layoutY="243.0" />
+      <Label layoutX="254.0" layoutY="290.0" text="Password" />
+      <PasswordField layoutX="339.0" layoutY="286.0" />
+       <Button fx:id="registerbutton" layoutX="257.0" layoutY="342.0" mnemonicParsing="false" onMousePressed="#ClickRegistrati" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
            <font>
                <Font name="System Bold" size="12.0" />
            </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
        </Button>
-      <Button layoutX="352.0" layoutY="285.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Accedi" textFill="WHITE">
+      <Button layoutX="427.0" layoutY="342.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Accedi" textFill="WHITE" onMouseClicked="#ClickAccedi">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <Label layoutX="236.0" layoutY="335.0" text="Recupera password" textFill="#03b53f" underline="true">
+      <Label layoutX="311.0" layoutY="392.0" onMouseClicked="#ClickRecovery" text="Recupera password" textFill="#03b53f" underline="true">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
-      <ImageView fitHeight="140.0" fitWidth="128.0" layoutX="33.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/padel.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="95.0" layoutX="49.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/calcio.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="200.0" fitWidth="185.0" layoutX="467.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/tennsi.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>
