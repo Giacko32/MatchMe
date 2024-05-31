@@ -10,6 +10,7 @@ module com.prova.matchme {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
 
     opens com.prova.matchme to javafx.fxml;
     opens com.prova.matchme.Autenticazione.Interfacce to javafx.fxml;

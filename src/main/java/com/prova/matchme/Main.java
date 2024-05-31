@@ -18,12 +18,12 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         mainStage = stage;
         mainStage.getIcons().add(new Image(getClass().getResourceAsStream("/icon.png")));
-
         stage.setTitle("MatchMe");
         stage.setOnCloseRequest(c -> {
             System.exit(0);
         });
         new AuthCtrl(stage);
+        DBMSView.connectDBMS();
     }
 
 

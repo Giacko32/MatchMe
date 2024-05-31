@@ -30,7 +30,7 @@ public class DBMSView {
     }
 
 
-    public static void connectFarmacia() {
+    public static void connectDBMS() {
         try {
             if (connDBMS == null) {
                 //Main.log.debug("Connettendo con Farmacia...");
@@ -41,6 +41,7 @@ public class DBMSView {
                 }
                 DBMSView.connDBMS = DriverManager.getConnection(buildConnectionUrl("matchmeDB"));
                 //Main.log.info("Connesso con Farmacia");
+                System.out.println("IDDU E'");
             }
         } catch (java.sql.SQLException e) {
             erroreComunicazioneDBMS(e);
