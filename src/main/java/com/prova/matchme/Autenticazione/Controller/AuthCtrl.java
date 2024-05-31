@@ -5,6 +5,8 @@ import com.prova.matchme.Autenticazione.Interfacce.MainView;
 import com.prova.matchme.Autenticazione.Interfacce.RecoveryView;
 import com.prova.matchme.Autenticazione.Interfacce.RegisterView;
 import com.prova.matchme.CustomStage;
+import com.prova.matchme.DBMSView;
+import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.Utils;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -56,10 +58,15 @@ public class AuthCtrl {
 		},450,200);
 	}
 
-	public void toMain(){
-		Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
-			return new MainView(this);
-		});
+	public void controllaCredenziali(String username,String password){
+		Utente u=DBMSView.queryControllaCredenziali(username,password);
+		if(u==null){}else{
+			System.out.println(u);
+			Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
+				return new MainView(this);
+			});
+		}
+
 	}
 
 	public int ControllaTipo() {

@@ -16,9 +16,9 @@
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor></ImageView>
       <Label layoutX="252.0" layoutY="247.0" text="Username" />
-      <TextField layoutX="339.0" layoutY="243.0" />
+      <TextField fx:id="usernamefield" layoutX="339.0" layoutY="243.0" />
       <Label layoutX="254.0" layoutY="290.0" text="Password" />
-      <PasswordField layoutX="339.0" layoutY="286.0" />
+      <PasswordField fx:id="passwordfield" layoutX="339.0" layoutY="286.0" />
        <Button fx:id="registerbutton" layoutX="257.0" layoutY="342.0" mnemonicParsing="false" onMousePressed="#ClickRegistrati" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
            <font>
                <Font name="System Bold" size="12.0" />

@@ -1,7 +1,11 @@
 package com.prova.matchme;
 
+import com.prova.matchme.Entity.Utente;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class DBMSView {
 
@@ -33,19 +37,34 @@ public class DBMSView {
     public static void connectDBMS() {
         try {
             if (connDBMS == null) {
-                //Main.log.debug("Connettendo con Farmacia...");
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
                 DBMSView.connDBMS = DriverManager.getConnection(buildConnectionUrl("matchmeDB"));
-                //Main.log.info("Connesso con Farmacia");
                 System.out.println("IDDU E'");
             }
         } catch (java.sql.SQLException e) {
             erroreComunicazioneDBMS(e);
 
         }
+    }
+
+
+
+    public static Utente queryControllaCredenziali(String username, String password) {
+        var query = "SELECT u.* FROM utente u WHERE username = ? and password = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            var r = stmt.executeQuery();
+            if (r.next()) {
+                return Utente.createFromDB(r);
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
     }
 }

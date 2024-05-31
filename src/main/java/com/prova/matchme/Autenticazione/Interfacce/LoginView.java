@@ -2,12 +2,16 @@ package com.prova.matchme.Autenticazione.Interfacce;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
 public class LoginView {
 
 	public AnchorPane Ancorpane;
+	public TextField usernamefield;
+	public PasswordField passwordfield;
 
 	public LoginView(AuthCtrl authCtrl){
 		this.authctrl=authCtrl;
@@ -16,7 +20,7 @@ public class LoginView {
 	private final AuthCtrl authctrl;
 	@FXML
 	public void ClickAccedi() {
-		this.authctrl.toMain();
+		this.authctrl.controllaCredenziali(usernamefield.getText().trim(),passwordfield.getText().trim());
 	}
 
 	@FXML
@@ -48,12 +52,5 @@ public class LoginView {
 		Ancorpane.setBackground(new Background(bgImage));
 	}
 
-	public void inserisciCredenziali() {
-
-	}
-
-	public void ShowBnd() {
-
-	}
 
 }
