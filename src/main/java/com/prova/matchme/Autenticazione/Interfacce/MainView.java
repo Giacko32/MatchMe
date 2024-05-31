@@ -39,9 +39,9 @@ public class MainView {
 	public void clickChat() {
 
 	}
-
+    @FXML
 	public void ClickLogout() {
-
+		this.authCtrl.toLogin();
 	}
 
 	public void ClickProfile() {

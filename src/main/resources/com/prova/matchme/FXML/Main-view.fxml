@@ -59,7 +59,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Pane>
-      <Button layoutX="619.0" layoutY="415.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: red;" text="LOGOUT">
+      <Button layoutX="619.0" layoutY="415.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: red;" text="LOGOUT" onMouseClicked="#ClickLogout">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
