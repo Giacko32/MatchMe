@@ -7,13 +7,13 @@
 
 <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #03b53f;">
+        <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #FF9622;">
             <children>
                 <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
                     <image>
                         <Image url="@images/ic--baseline-arrow-back.png" />
                     </image></ImageView>
-                <Label layoutX="57.0" layoutY="16.0" text="VISUALIZZA I MIEI TORNEI" textFill="WHITE">
+                <Label layoutX="57.0" layoutY="16.0" text="GESTIONE PROFILO" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.800000190734863" />
                     </font></Label>
@@ -24,36 +24,55 @@
                 </ImageView>
                 <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="364.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/calcio_gw.png" />
+                        <Image url="@images/calcio_acw.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="391.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/padel_GW.png" />
+                        <Image url="@images/padel_acW.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="57.0" fitWidth="20.0" layoutX="337.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/tennis_gw.png" />
+                        <Image url="@images/tennis_acw.png" />
                     </image>
                 </ImageView>
             </children>
         </AnchorPane>
-        <ListView layoutX="14.0" layoutY="86.0" prefHeight="300.0" prefWidth="288.0" />
-        <Label layoutX="76.0" layoutY="66.0" text="Tornei in cui risulti iscritto:">
+        <Label layoutX="235.0" layoutY="106.0" text="*NOME &amp; COGNOME UTENTE*">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label disable="true" layoutX="362.0" layoutY="76.0" text="Dettagli Torneo selezionato">
+        <Label layoutX="51.0" layoutY="166.0" text="\@usernameutente">
             <font>
                 <Font name="System Bold" size="12.800000190734863" />
             </font>
         </Label>
-        <ListView disable="true" layoutX="323.0" layoutY="100.0" prefHeight="200.0" prefWidth="246.0" />
-        <Button disable="true" layoutX="356.0" layoutY="308.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" text="CANCELLA ISCRIZIONE SQUADRA">
-         <font>
-            <Font size="10.0" />
-         </font></Button>
+        <Button layoutX="325.0" layoutY="191.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text="MODIFICA&#10;CREDENZIALI" textAlignment="CENTER">
+            <font>
+                <Font name="System Bold" size="8.0" />
+            </font></Button>
+        <Button layoutX="235.0" layoutY="191.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text="VISUALIZZA&#10;ACCOUNT" textAlignment="CENTER">
+            <font>
+                <Font name="System Bold" size="8.0" />
+            </font>
+        </Button>
+        <ImageView fitHeight="96.0" fitWidth="110.0" layoutX="58.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/5997002.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="235.0" layoutY="153.0" text="Sedi gestite:">
+            <font>
+                <Font name="System Bold" size="12.800000190734863" />
+            </font>
+        </Label>
+        <TextField layoutX="325.0" layoutY="149.0" prefHeight="27.0" prefWidth="166.0" promptText="info sede " />
+        <Button layoutX="414.0" layoutY="191.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text="MODIFICA&#10;PASSWORD" textAlignment="CENTER">
+            <font>
+                <Font name="System Bold" size="8.0" />
+            </font>
+        </Button>
     </children>
 </AnchorPane>

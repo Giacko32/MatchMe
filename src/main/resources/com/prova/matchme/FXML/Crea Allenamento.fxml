@@ -13,7 +13,7 @@
                     <image>
                         <Image url="@images/ic--baseline-arrow-back.png" />
                     </image></ImageView>
-                <Label layoutX="57.0" layoutY="16.0" text="VISUALIZZA I MIEI TORNEI" textFill="WHITE">
+                <Label layoutX="57.0" layoutY="16.0" text="CREA ALLENAMENTI" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.800000190734863" />
                     </font></Label>
@@ -39,21 +39,26 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <ListView layoutX="14.0" layoutY="86.0" prefHeight="300.0" prefWidth="288.0" />
-        <Label layoutX="76.0" layoutY="66.0" text="Tornei in cui risulti iscritto:">
+        <Label layoutX="41.0" layoutY="53.0" prefHeight="66.0" prefWidth="161.0" text="Seleziona la data desiderata:" wrapText="true" />
+        <Spinner layoutX="277.0" layoutY="119.0" prefHeight="27.0" prefWidth="152.0" />
+        <Label layoutX="41.0" layoutY="123.0" text="Seleziona tipologia di campo desiderata:" />
+        <Label layoutX="41.0" layoutY="164.0" text="Seleziona numero massimo di partecipanti:" />
+        <Button layoutX="429.0" layoutY="158.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #03b53f;" text="VERIFICA" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
-            </font>
-        </Label>
-        <Label disable="true" layoutX="362.0" layoutY="76.0" text="Dettagli Torneo selezionato">
-            <font>
-                <Font name="System Bold" size="12.800000190734863" />
-            </font>
-        </Label>
-        <ListView disable="true" layoutX="323.0" layoutY="100.0" prefHeight="200.0" prefWidth="246.0" />
-        <Button disable="true" layoutX="356.0" layoutY="308.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" text="CANCELLA ISCRIZIONE SQUADRA">
+            </font></Button>
+        <ChoiceBox layoutX="303.0" layoutY="160.0" prefHeight="26.0" prefWidth="73.0" />
+        <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/ic--baseline-arrow-back.png" />
+            </image></ImageView>
+      <DatePicker layoutX="210.0" layoutY="72.0" />
+      <Label disable="true" layoutX="44.0" layoutY="220.0" text="Il campo è disponibile nelle seguenti fasce orarie:" />
+      <ChoiceBox disable="true" layoutX="353.0" layoutY="216.0" prefHeight="27.0" prefWidth="152.0" />
+      <Button disable="true" layoutX="373.0" layoutY="258.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="111.0" style="-fx-background-color: #03b53f;" text="CREA&#10;ALLENAMENTO" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font size="10.0" />
-         </font></Button>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

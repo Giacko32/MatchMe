@@ -6,16 +6,16 @@
 
 <AnchorPane prefHeight="170.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.MatchMeController">
     <children>
-        <Label layoutX="47.0" layoutY="27.0" text="Quali tornei vuoi visualizzare?" textFill="#03b53f">
+        <Label layoutX="31.0" layoutY="27.0" prefHeight="27.0" prefWidth="319.0" text="Cosa desideri fare con l'invito ricevuto?" textFill="#03b53f">
             <font>
-                <Font name="System Bold" size="18.0" />
+                <Font name="System Bold" size="16.0" />
             </font></Label>
-        <Button layoutX="47.0" layoutY="64.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: #03b53f;" text=" I MIEI &#10;TORNEI" textFill="WHITE">
+        <Button layoutX="51.0" layoutY="64.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: #03b53f;" text="ACCETTA&#10;INVITO" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button layoutX="214.0" layoutY="64.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: #03b53f;" text="TUTTI I &#10;TORNEI" textFill="WHITE">
+        <Button layoutX="214.0" layoutY="64.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: #ff0505;" text="RIFIUTA&#10;INVITO" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>

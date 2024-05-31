@@ -6,16 +6,16 @@
 
 <AnchorPane prefHeight="170.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.MatchMeController">
    <children>
-      <Label layoutX="55.0" layoutY="27.0" text="Seleziona squadra vincitrice:" textFill="#03b53f">
+      <Label layoutX="55.0" layoutY="27.0" text="Seleziona squadra vincitrice:">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <Button layoutX="47.0" layoutY="64.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: #03b53f;" text="SQUADRA&#10;       A" textFill="WHITE">
+      <Button layoutX="47.0" layoutY="64.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: #FF9622;" text="SQUADRA&#10;       A" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="218.0" layoutY="64.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: #03b53f;" text="SQUADRA&#10;       B" textFill="WHITE">
+      <Button layoutX="218.0" layoutY="64.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: #FF9622;" text="SQUADRA&#10;       B" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

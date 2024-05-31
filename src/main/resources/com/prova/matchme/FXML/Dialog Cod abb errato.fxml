@@ -7,14 +7,14 @@
 
 <AnchorPane prefHeight="170.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.MatchMeController">
     <children>
-        <Label layoutX="160.0" layoutY="43.0" text="Hai già un impegno&#10;nel medesimo orario&#10;dell'evento" textFill="#ff0505">
+        <Label layoutX="131.0" layoutY="43.0" text="CODICE ABBONAMENTO&#10;INSERITO ERRATO/NON&#10;VALIDO." textFill="#ff0505">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font></Label>
-        <ImageView fitHeight="109.0" fitWidth="103.0" layoutX="37.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="109.0" fitWidth="103.0" layoutX="21.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@images/segnale-di-avvertenza-pericolo-icona-di-attenzione-triangolo-rosso-rischio-di-errore-spam-2m69p1x.png" />
             </image></ImageView>
-      <Button layoutX="285.0" layoutY="125.0" mnemonicParsing="false" text="OK" />
+      <Button layoutX="284.0" layoutY="115.0" mnemonicParsing="false" text="OK" />
     </children>
 </AnchorPane>

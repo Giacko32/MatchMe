@@ -11,7 +11,7 @@
             <children>
                 <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
                     <image>
-                        <Image url="@../images/ic--baseline-arrow-back.png" />
+                        <Image url="@images/ic--baseline-arrow-back.png" />
                     </image></ImageView>
                 <Label layoutX="57.0" layoutY="16.0" text="PRENOTA CAMPO" textFill="WHITE">
                     <font>
@@ -24,17 +24,17 @@
                 </ImageView>
                 <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="364.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/calcio_gw.png" />
+                        <Image url="@images/calcio_gw.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="391.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/padel_GW.png" />
+                        <Image url="@images/padel_GW.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="57.0" fitWidth="20.0" layoutX="337.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/tennis_gw.png" />
+                        <Image url="@images/tennis_gw.png" />
                     </image>
                 </ImageView>
             </children>
@@ -54,7 +54,7 @@
       <Spinner layoutX="263.0" layoutY="188.0" prefHeight="26.0" prefWidth="74.0" />
         <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../images/ic--baseline-arrow-back.png" />
+                <Image url="@images/ic--baseline-arrow-back.png" />
             </image></ImageView>
       <CheckBox layoutX="211.0" layoutY="77.0" mnemonicParsing="false" text="Pubblica" />
       <CheckBox layoutX="298.0" layoutY="77.0" mnemonicParsing="false" text="Privata" />

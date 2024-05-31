@@ -15,7 +15,7 @@
       <TextField layoutX="264.0" layoutY="186.0" />
       <Label layoutX="179.0" layoutY="233.0" text="Password" />
       <PasswordField layoutX="264.0" layoutY="229.0" />
-       <Button fx:id="registerbutton" layoutX="182.0" layoutY="285.0" onMouseClicked="#ClickRegistrati" mnemonicParsing="false"  prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
+       <Button fx:id="registerbutton" layoutX="182.0" layoutY="285.0" mnemonicParsing="false" onMousePressed="#ClickRegistrati" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
            <font>
                <Font name="System Bold" size="12.0" />
            </font>
@@ -25,7 +25,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label layoutX="236.0" layoutY="335.0" text="Recupera password" onMouseClicked="#ClickRecovery" textFill="#03b53f" underline="true">
+      <Label layoutX="236.0" layoutY="335.0" text="Recupera password" textFill="#03b53f" underline="true">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

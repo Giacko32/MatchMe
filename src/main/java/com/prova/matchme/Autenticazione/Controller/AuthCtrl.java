@@ -37,7 +37,7 @@ public class AuthCtrl {
 	}
 
 	public void toRegistra(){
-		Utils.cambiaInterfaccia("FXML/Register-view.fxml", new Stage(), c -> {
+		Utils.cambiaInterfaccia("FXML/Register-view.fxml", s, c -> {
 			return new RegisterView(this);
 		});
 	}

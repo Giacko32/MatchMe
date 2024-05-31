@@ -13,7 +13,7 @@
                     <image>
                         <Image url="@images/ic--baseline-arrow-back.png" />
                     </image></ImageView>
-                <Label layoutX="57.0" layoutY="16.0" text="VISUALIZZA I MIEI TORNEI" textFill="WHITE">
+                <Label layoutX="57.0" layoutY="16.0" text="NOTIFICHE" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.800000190734863" />
                     </font></Label>
@@ -39,21 +39,12 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <ListView layoutX="14.0" layoutY="86.0" prefHeight="300.0" prefWidth="288.0" />
-        <Label layoutX="76.0" layoutY="66.0" text="Tornei in cui risulti iscritto:">
+        <ListView layoutX="21.0" layoutY="84.0" prefHeight="263.0" prefWidth="556.0" />
+        <Label layoutX="32.0" layoutY="61.0" text="Notifiche ricevute:">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <Label disable="true" layoutX="362.0" layoutY="76.0" text="Dettagli Torneo selezionato">
-            <font>
-                <Font name="System Bold" size="12.800000190734863" />
-            </font>
-        </Label>
-        <ListView disable="true" layoutX="323.0" layoutY="100.0" prefHeight="200.0" prefWidth="246.0" />
-        <Button disable="true" layoutX="356.0" layoutY="308.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" text="CANCELLA ISCRIZIONE SQUADRA">
-         <font>
-            <Font size="10.0" />
-         </font></Button>
+      <Button layoutX="232.0" layoutY="358.0" mnemonicParsing="false" text="CANCELLA NOTIFICA" />
     </children>
 </AnchorPane>
