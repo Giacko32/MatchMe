@@ -13,23 +13,23 @@
       <Label layoutX="260.0" layoutY="295.0" text="Mail:" />
       <Label layoutX="256.0" layoutY="117.0" text="Nome:" />
       <Label layoutX="246.0" layoutY="155.0" text="Cognome:" />
-      <TextField layoutX="320.0" layoutY="113.0" promptText="nome">
+      <TextField fx:id="nomefield" layoutX="320.0" layoutY="113.0" promptText="nome">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
-      <TextField layoutX="320.0" layoutY="151.0" promptText="cognome">
+      <TextField fx:id="cognomefield" layoutX="320.0" layoutY="151.0" promptText="cognome">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
-      <TextField layoutX="320.0" layoutY="254.0" promptText="username">
+      <TextField fx:id="usernamefield" layoutX="320.0" layoutY="254.0" promptText="username">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
-      <TextField layoutX="320.0" layoutY="291.0" promptText="mail">
+      <TextField fx:id="mailfield" layoutX="320.0" layoutY="291.0" promptText="mail">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
-      <Button layoutX="343.0" layoutY="374.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
+      <Button onMouseClicked="#ClickRegistra" layoutX="343.0" layoutY="374.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -53,7 +53,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <DatePicker layoutX="320.0" layoutY="189.0" prefHeight="27.0" prefWidth="158.0">
+      <DatePicker fx:id="datanascita" layoutX="320.0" layoutY="189.0" prefHeight="27.0" prefWidth="158.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></DatePicker>
@@ -69,7 +69,7 @@
             <Image url="@../images/base%20copertina%20vs.png" />
          </image>
       </ImageView>
-      <TextField layoutX="319.0" layoutY="328.0" prefHeight="27.0" prefWidth="158.0" promptText="password">
+      <TextField fx:id="passwordfield" layoutX="319.0" layoutY="328.0" prefHeight="27.0" prefWidth="158.0" promptText="password">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
@@ -77,14 +77,14 @@
 
 
       <!-- Associate RadioButtons with the ToggleGroup -->
-      <RadioButton layoutX="407.0" layoutY="224.0" mnemonicParsing="false" text="DONNA">
+      <RadioButton fx:id="donnaButton" layoutX="407.0" layoutY="224.0" mnemonicParsing="false" text="DONNA">
          <toggleGroup>
             <ToggleGroup fx:id="genderToggleGroup" />
          </toggleGroup>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></RadioButton>
-      <RadioButton layoutX="322.0" layoutY="224.0" mnemonicParsing="false" text="UOMO" toggleGroup="$genderToggleGroup">
+      <RadioButton fx:id="uomoButton" layoutX="322.0" layoutY="224.0" mnemonicParsing="false" text="UOMO" toggleGroup="$genderToggleGroup">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></RadioButton>
