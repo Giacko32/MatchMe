@@ -10,6 +10,8 @@ import com.prova.matchme.Utils;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+
 public class AuthCtrl {
     Stage s;
 
@@ -96,8 +98,8 @@ public class AuthCtrl {
         return 0;
     }
 
-    public void SendDati() {
-
+    public void SendDati(String nome, String cognome, String email, String username, LocalDate datanascita, String password, String tipo, char sesso, float livello) {
+        System.out.println(DBMSView.queryDBMSCheckUsernameandMail(username, email));
     }
 
     public boolean ControllaUsername() {

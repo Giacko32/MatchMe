@@ -28,6 +28,7 @@ public class Main extends Application {
         Utils.cambiaInterfaccia("FXML/login-view.fxml", mainStage, c -> {
             return new LoginView(mainStage);
         });
+
         DBMSView.connectDBMS();
     }
 

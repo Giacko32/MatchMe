@@ -14,12 +14,12 @@
       <Label layoutX="256.0" layoutY="97.0" text="Nome:" />
       <Label layoutX="246.0" layoutY="130.0" text="Cognome:" />
       <Label layoutX="248.0" layoutY="337.0" text="Telefono:" />
-      <TextField layoutX="320.0" layoutY="93.0" promptText="nome" />
-      <TextField layoutX="320.0" layoutY="126.0" promptText="cognome" />
-      <TextField layoutX="320.0" layoutY="238.0" promptText="username" />
-      <TextField layoutX="320.0" layoutY="269.0" promptText="mail" />
+      <TextField fx:id="nomefield" layoutX="320.0" layoutY="93.0" promptText="nome" />
+      <TextField fx:id="cognomefield" layoutX="320.0" layoutY="126.0" promptText="cognome" />
+      <TextField fx:id="usernamefield" layoutX="320.0" layoutY="238.0" promptText="username" />
+      <TextField fx:id="mailfield" layoutX="320.0" layoutY="269.0" promptText="mail" />
       <TextField layoutX="320.0" layoutY="333.0" promptText="telefono" />
-      <Button layoutX="506.0" layoutY="419.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
+      <Button onMousePressed="#ClickRegistra" layoutX="506.0" layoutY="419.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -43,7 +43,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <DatePicker layoutX="320.0" layoutY="160.0" prefHeight="27.0" prefWidth="158.0">
+      <DatePicker fx:id="datanascita" layoutX="320.0" layoutY="160.0" prefHeight="27.0" prefWidth="158.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></DatePicker>
@@ -61,19 +61,18 @@
       </ImageView>
       <TextField layoutX="319.0" layoutY="365.0" prefHeight="27.0" prefWidth="158.0" promptText="indirizzo di residenza" />
       <Label layoutX="251.0" layoutY="369.0" text="Indirizzo:" />
-      <TextField layoutX="319.0" layoutY="301.0" prefHeight="27.0" prefWidth="158.0" promptText="password" />
+      <TextField fx:id="passwordfield" layoutX="319.0" layoutY="301.0" prefHeight="27.0" prefWidth="158.0" promptText="password" />
 
 
 
-      <!-- Associate RadioButtons with the ToggleGroup -->
-      <RadioButton layoutX="407.0" layoutY="201.0" mnemonicParsing="false" text="DONNA">
+      <RadioButton fx:id="donnaButton" layoutX="407.0" layoutY="201.0" mnemonicParsing="false" text="DONNA">
          <toggleGroup>
             <ToggleGroup fx:id="genderToggleGroup" />
          </toggleGroup>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></RadioButton>
-      <RadioButton layoutX="322.0" layoutY="201.0" mnemonicParsing="false" text="UOMO" toggleGroup="$genderToggleGroup">
+      <RadioButton fx:id="uomoButton" layoutX="322.0" layoutY="201.0" mnemonicParsing="false" text="UOMO" toggleGroup="$genderToggleGroup">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></RadioButton>
