@@ -11,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AuthCtrl {
     Stage s;
@@ -34,7 +36,14 @@ public class AuthCtrl {
 
     private String codice_inserito;
 
-    public boolean ControllaFormatoDati() {
+    public boolean ControllaFormatoDati(String nome, String cognome, String email, String username, LocalDate datanascita, String password, char sesso) {
+        Pattern noNumber = Pattern.compile("^[A-Za-z]*$");
+        if(nome.equals("") || cognome.equals("") || email.equals("") || username.equals("") || datanascita == null || )
+        if(noNumber.matcher(nome).find() && noNumber.matcher(cognome).find()){
+
+        } else {
+            Utils.creaPannelloErrore("Formato del nome\n o del cognome errato");
+        }
         return false;
     }
 
@@ -99,7 +108,11 @@ public class AuthCtrl {
     }
 
     public void SendDati(String nome, String cognome, String email, String username, LocalDate datanascita, String password, String tipo, char sesso, float livello) {
-        System.out.println(DBMSView.queryDBMSCheckUsernameandMail(username, email));
+        if(!DBMSView.queryDBMSCheckUsernameandMail(username, email)){
+            Utils.creaPannelloErrore("Username o mail già\n registrate");
+        } else {
+            this.ControllaFormatoDati(nome,cognome,email, username, datanascita, password, sesso);
+        }
     }
 
     public boolean ControllaUsername() {

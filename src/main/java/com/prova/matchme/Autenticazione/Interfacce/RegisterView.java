@@ -64,7 +64,7 @@ public class RegisterView {
 
     @FXML
     public void ClickRegistra() {
-        char sesso;
+        char sesso = 'V';
         if (uomoButton.isSelected()) {
             sesso = 'M';
         } else {

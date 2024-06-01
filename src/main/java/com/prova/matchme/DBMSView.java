@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -68,7 +68,7 @@ public class DBMSView {
     }
 
     public static boolean queryDBMSCheckUsernameandMail(String username, String mail) {
-        var query = "SELECT * FROM utente WHERE username = ? and email = ?";
+        var query = "SELECT * FROM utente WHERE username = ? or email = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, username);
             stmt.setString(2, mail);
