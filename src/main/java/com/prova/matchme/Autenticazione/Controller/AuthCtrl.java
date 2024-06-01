@@ -59,34 +59,37 @@ public class AuthCtrl {
     }
 
     public void controllaCredenziali(String username, String password) {
-        if (username.equals("root") && password.equals("123")) {
-            Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
-                return new MainView(this);
-            });
+        if (username.isBlank() || password.isBlank()) {
+            Utils.creaPannelloErrore("Campi lasciati vuoti");
         } else {
-            if (Main.sistema == 0) {
-                Utente u = DBMSView.queryControllaCredenziali(username, password);
-                if (u == null) {
-                    Utils.creaPannelloErrore("Credenziali errate");
-                } else {
-                    System.out.println(u);
-                    Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
-                        return new MainView(this);
-                    });
-                }
-            }else if(Main.sistema==1){
-                Gestore g = DBMSView.queryControllaCredenzialiGest(username, password);
-                if (g == null) {
-                    Utils.creaPannelloErrore("Credenziali errate");
-                } else {
-                    System.out.println(g);
-                    Utils.cambiaInterfaccia("FXML/Admin-view.fxml", s, c -> {
-                        return new AdminView(this);
-                    });
+            if (username.equals("root") && password.equals("123")) {
+                Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
+                    return new MainView(this);
+                });
+            } else {
+                if (Main.sistema == 0) {
+                    Utente u = DBMSView.queryControllaCredenziali(username, password);
+                    if (u == null) {
+                        Utils.creaPannelloErrore("Credenziali errate");
+                    } else {
+                        System.out.println(u);
+                        Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
+                            return new MainView(this);
+                        });
+                    }
+                } else if (Main.sistema == 1) {
+                    Gestore g = DBMSView.queryControllaCredenzialiGest(username, password);
+                    if (g == null) {
+                        Utils.creaPannelloErrore("Credenziali errate");
+                    } else {
+                        System.out.println(g);
+                        Utils.cambiaInterfaccia("FXML/Admin-view.fxml", s, c -> {
+                            return new AdminView(this);
+                        });
+                    }
                 }
             }
         }
-
     }
 
     public int ControllaTipo() {
