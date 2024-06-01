@@ -1,64 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #FF9622;">
+        <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
                 <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
                     <image>
-                        <Image url="@images/ic--baseline-arrow-back.png" />
-                    </image></ImageView>
+                        <Image url="@../images/ic--baseline-arrow-back.png" />
+                    </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ImageView>
                 <Label layoutX="57.0" layoutY="16.0" text="DETTAGLI NUOVO ABBONAMENTO" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.800000190734863" />
                     </font></Label>
-                <ImageView fitHeight="30.0" fitWidth="192.0" layoutX="433.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="30.0" fitWidth="192.0" layoutX="598.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/base%20copertina%20bw.png" />
+                        <Image url="@../images/basecopertinabw.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="364.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="529.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/calcio_acw.png" />
+                        <Image url="@../images/calcio_acw.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="391.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="556.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/padel_acW.png" />
+                        <Image url="@../images/padel_acW.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="57.0" fitWidth="20.0" layoutX="337.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="57.0" fitWidth="20.0" layoutX="502.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/tennis_acw.png" />
+                        <Image url="@../images/tennis_acw.png" />
                     </image>
                 </ImageView>
             </children>
         </AnchorPane>
-        <Label layoutX="238.0" layoutY="74.0" text="Nome:">
+        <Label layoutX="230.0" layoutY="98.0" text="Nome:">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="235.0" layoutY="136.0" text="\@usernameutente:">
+        <Label layoutX="227.0" layoutY="181.0" text="\@usernameutente:">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="237.0" layoutY="197.0" text="Data di nascita:">
+        <Label layoutX="229.0" layoutY="259.0" text="Data di nascita:">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <TextField layoutX="344.0" layoutY="194.0" prefHeight="27.0" prefWidth="210.0" promptText="DATA DI NASCITA DELL'UTENTE" />
-        <Button layoutX="420.0" layoutY="313.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" style="-fx-background-color: #FF9622;" text="OK" textAlignment="CENTER" textFill="WHITE">
+        <TextField editable="false" layoutX="336.0" layoutY="256.0" prefHeight="27.0" prefWidth="232.0" promptText="DATA DI NASCITA DELL'UTENTE" />
+        <Button layoutX="363.0" layoutY="402.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" style="-fx-background-color: #FF9622;" text="OK" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </Button>
       <ImageView fitHeight="121.0" fitWidth="133.0" layoutX="85.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -69,31 +76,37 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="237.0" layoutY="239.0" text="Data inizio abbonamento:">
+      <Label layoutX="228.0" layoutY="300.0" text="Data inizio abbonamento:">
          <font>
             <Font name="System Bold" size="12.800000190734863" />
          </font>
       </Label>
-      <DatePicker layoutX="397.0" layoutY="236.0" prefHeight="27.0" prefWidth="178.0" />
-      <Label layoutX="238.0" layoutY="167.0" text="email dell'utente">
+      <DatePicker layoutX="389.0" layoutY="297.0" prefHeight="27.0" prefWidth="178.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></DatePicker>
+      <Label layoutX="230.0" layoutY="220.0" text="email dell'utente">
          <font>
             <Font name="System Bold" size="12.800000190734863" />
          </font>
       </Label>
-      <Label layoutX="237.0" layoutY="275.0" text="Data fine abbonamento:">
+      <Label layoutX="229.0" layoutY="340.0" text="Data fine abbonamento:">
          <font>
             <Font name="System Bold" size="12.800000190734863" />
          </font>
       </Label>
-      <Label layoutX="238.0" layoutY="104.0" text="Cognome:">
+      <Label layoutX="230.0" layoutY="138.0" text="Cognome:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <DatePicker layoutX="397.0" layoutY="273.0" prefHeight="27.0" prefWidth="178.0" />
-      <TextField layoutX="348.0" layoutY="163.0" prefHeight="27.0" prefWidth="204.0" promptText="EMAIL DELL'UTENTE" />
-      <TextField layoutX="363.0" layoutY="132.0" prefHeight="27.0" prefWidth="189.0" promptText="USERNAME DELL'UTENTE" />
-      <TextField layoutX="322.0" layoutY="101.0" prefHeight="27.0" prefWidth="189.0" promptText="COGNOME DELL'UTENTE" />
-      <TextField layoutX="322.0" layoutY="69.0" prefHeight="27.0" prefWidth="189.0" promptText="NOME DELL'UTENTE" />
+      <DatePicker layoutX="389.0" layoutY="338.0" prefHeight="27.0" prefWidth="178.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></DatePicker>
+      <TextField editable="false" layoutX="340.0" layoutY="216.0" prefHeight="27.0" prefWidth="225.0" promptText="EMAIL DELL'UTENTE" />
+      <TextField editable="false" layoutX="355.0" layoutY="177.0" prefHeight="27.0" prefWidth="210.0" promptText="USERNAME DELL'UTENTE" />
+      <TextField editable="false" layoutX="314.0" layoutY="135.0" prefHeight="27.0" prefWidth="252.0" promptText="COGNOME DELL'UTENTE" />
+      <TextField editable="false" layoutX="314.0" layoutY="93.0" prefHeight="27.0" prefWidth="252.0" promptText="NOME DELL'UTENTE" />
     </children>
 </AnchorPane>

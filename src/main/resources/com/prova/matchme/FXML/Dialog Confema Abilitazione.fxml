@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -13,6 +14,9 @@
         <Button layoutX="207.0" layoutY="102.0" mnemonicParsing="false" text="CONFERMA">
             <font>
                 <Font name="System Bold" size="12.800000190734863" />
-            </font></Button>
+            </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
     </children>
 </AnchorPane>

@@ -1,80 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #FF9622;">
+        <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
                 <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
                     <image>
-                        <Image url="@images/ic--baseline-arrow-back.png" />
-                    </image></ImageView>
+                        <Image url="@../images/ic--baseline-arrow-back.png" />
+                    </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ImageView>
                 <Label layoutX="57.0" layoutY="16.0" text="VISUALIZZA PARTITE SEDE" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.800000190734863" />
                     </font></Label>
-                <ImageView fitHeight="30.0" fitWidth="192.0" layoutX="433.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="30.0" fitWidth="192.0" layoutX="598.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/base%20copertina%20bw.png" />
+                        <Image url="@../images/basecopertinabw.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="364.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="529.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/calcio_acw.png" />
+                        <Image url="@../images/calcio_acw.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="391.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="556.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/padel_acW.png" />
+                        <Image url="@../images/padel_acW.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="57.0" fitWidth="20.0" layoutX="337.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="57.0" fitWidth="20.0" layoutX="502.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/tennis_acw.png" />
+                        <Image url="@../images/tennis_acw.png" />
                     </image>
                 </ImageView>
             </children>
         </AnchorPane>
-        <ListView disable="true" layoutX="21.0" layoutY="128.0" prefHeight="258.0" prefWidth="275.0" />
+        <ListView disable="true" layoutX="21.0" layoutY="128.0" prefHeight="347.0" prefWidth="411.0" />
         <Label disable="true" layoutX="22.0" layoutY="106.0" text="Prenotazioni nella tua sede:">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label disable="true" layoutX="361.0" layoutY="106.0" text="Dettagli prenotazione selezionata">
+        <Label disable="true" layoutX="482.0" layoutY="94.0" text="Dettagli prenotazione selezionata">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <ListView disable="true" layoutX="333.0" layoutY="128.0" prefHeight="200.0" prefWidth="247.0" />
-        <Button disable="true" layoutX="333.0" layoutY="339.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="75.0" text="RINVIA&#10;PARTITA" textAlignment="CENTER">
-            <font>
-                <Font size="10.0" />
-            </font></Button>
-        <Button disable="true" layoutX="419.0" layoutY="339.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="75.0" text="INVITA&#10;GIOCATORE" textAlignment="CENTER">
+        <ListView disable="true" layoutX="447.0" layoutY="117.0" prefHeight="304.0" prefWidth="290.0" />
+        <Button disable="true" layoutX="469.0" layoutY="428.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="75.0" text="RINVIA&#10;PARTITA" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
             </font>
-        </Button>
-        <Button disable="true" layoutX="504.0" layoutY="339.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="75.0" text="ASSEGNA&#10;RISULTATO" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+        <Button disable="true" layoutX="555.0" layoutY="428.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="75.0" text="INVITA&#10;GIOCATORE" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
             </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </Button>
-      <Label layoutX="23.0" layoutY="72.0" text="Seleziona una data:">
+        <Button disable="true" layoutX="640.0" layoutY="428.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="75.0" text="ASSEGNA&#10;RISULTATO" textAlignment="CENTER">
+            <font>
+                <Font size="10.0" />
+            </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+        </Button>
+      <Label layoutX="36.0" layoutY="72.0" text="Seleziona una data:">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <DatePicker layoutX="138.0" layoutY="67.0" prefHeight="27.0" prefWidth="178.0" />
-      <Button layoutX="329.0" layoutY="72.0" mnemonicParsing="false" text="Vedi Partite">
+      <DatePicker layoutX="178.0" layoutY="68.0" prefHeight="27.0" prefWidth="178.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></DatePicker>
+      <Button layoutX="369.0" layoutY="69.0" mnemonicParsing="false" text="Vedi Partite">
          <font>
-            <Font size="10.0" />
+            <Font size="12.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
     </children>
 </AnchorPane>

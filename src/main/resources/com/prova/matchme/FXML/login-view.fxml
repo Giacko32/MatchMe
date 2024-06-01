@@ -16,9 +16,15 @@
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor></ImageView>
       <Label layoutX="252.0" layoutY="247.0" text="Username" />
-      <TextField fx:id="usernamefield" layoutX="339.0" layoutY="243.0" />
+      <TextField fx:id="usernamefield" layoutX="339.0" layoutY="243.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
       <Label layoutX="254.0" layoutY="290.0" text="Password" />
-      <PasswordField fx:id="passwordfield" layoutX="339.0" layoutY="286.0" />
+      <PasswordField fx:id="passwordfield" layoutX="339.0" layoutY="286.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></PasswordField>
        <Button fx:id="registerbutton" layoutX="257.0" layoutY="342.0" mnemonicParsing="false" onMousePressed="#ClickRegistrati" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
            <font>
                <Font name="System Bold" size="12.0" />
@@ -27,7 +33,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
        </Button>
-      <Button layoutX="427.0" layoutY="342.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Accedi" textFill="WHITE" onMouseClicked="#ClickAccedi">
+      <Button layoutX="427.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#ClickAccedi" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #03b53f;" text="Accedi" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

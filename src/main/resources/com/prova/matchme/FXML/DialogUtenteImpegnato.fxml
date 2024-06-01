@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -13,8 +14,11 @@
             </font></Label>
         <ImageView fitHeight="109.0" fitWidth="103.0" layoutX="37.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@images/segnale-di-avvertenza-pericolo-icona-di-attenzione-triangolo-rosso-rischio-di-errore-spam-2m69p1x.png" />
+                <Image url="@../images/segnale-di-avvertenza-pericolo-icona-di-attenzione-triangolo-rosso-rischio-di-errore-spam-2m69p1x.png" />
             </image></ImageView>
-      <Button layoutX="285.0" layoutY="125.0" mnemonicParsing="false" text="OK" />
+      <Button layoutX="285.0" layoutY="125.0" mnemonicParsing="false" text="OK">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
     </children>
 </AnchorPane>

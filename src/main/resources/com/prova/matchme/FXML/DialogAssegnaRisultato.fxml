@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -14,11 +15,17 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Button layoutX="218.0" layoutY="64.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: #FF9622;" text="SQUADRA&#10;       B" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </AnchorPane>

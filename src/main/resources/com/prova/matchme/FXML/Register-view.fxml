@@ -6,20 +6,30 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.Autenticazione.Interfacce.RegisterView">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #C9FFDC;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.Autenticazione.Interfacce.RegisterView">
    <children>
-      <Label layoutX="244.0" layoutY="242.0" text="Username:" />
-      <Label layoutX="246.0" layoutY="304.0" text="Password:" />
-      <Label layoutX="260.0" layoutY="273.0" text="Mail:" />
-      <Label layoutX="256.0" layoutY="97.0" text="Nome:" />
-      <Label layoutX="246.0" layoutY="130.0" text="Cognome:" />
-      <Label layoutX="248.0" layoutY="337.0" text="Telefono:" />
-      <TextField fx:id="nomefield" layoutX="320.0" layoutY="93.0" promptText="nome" />
-      <TextField fx:id="cognomefield" layoutX="320.0" layoutY="126.0" promptText="cognome" />
-      <TextField fx:id="usernamefield" layoutX="320.0" layoutY="238.0" promptText="username" />
-      <TextField fx:id="mailfield" layoutX="320.0" layoutY="269.0" promptText="mail" />
-      <TextField layoutX="320.0" layoutY="333.0" promptText="telefono" />
-      <Button onMousePressed="#ClickRegistra" layoutX="506.0" layoutY="419.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
+      <Label layoutX="244.0" layoutY="258.0" text="Username:" />
+      <Label layoutX="246.0" layoutY="331.0" text="Password:" />
+      <Label layoutX="260.0" layoutY="295.0" text="Mail:" />
+      <Label layoutX="256.0" layoutY="117.0" text="Nome:" />
+      <Label layoutX="246.0" layoutY="155.0" text="Cognome:" />
+      <TextField layoutX="320.0" layoutY="113.0" promptText="nome">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <TextField layoutX="320.0" layoutY="151.0" promptText="cognome">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <TextField layoutX="320.0" layoutY="254.0" promptText="username">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <TextField layoutX="320.0" layoutY="291.0" promptText="mail">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <Button layoutX="343.0" layoutY="374.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Registrati" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -43,36 +53,38 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <DatePicker fx:id="datanascita" layoutX="320.0" layoutY="160.0" prefHeight="27.0" prefWidth="158.0">
+      <DatePicker layoutX="320.0" layoutY="189.0" prefHeight="27.0" prefWidth="158.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></DatePicker>
-      <Label layoutX="232.0" layoutY="164.0" text="Data di nascita:" />
-      <Label layoutX="259.0" layoutY="201.0" text="Sesso:" />
-      <Label layoutX="247.0" layoutY="47.0" text="Benvenuti in" textFill="#03b53f">
+      <Label layoutX="232.0" layoutY="193.0" text="Data di nascita:" />
+      <Label layoutX="259.0" layoutY="224.0" text="Sesso:" />
+      <Label layoutX="219.0" layoutY="51.0" text="Benvenuti in" textFill="#03b53f">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <ImageView fitHeight="30.0" fitWidth="168.0" layoutX="354.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="114.0" fitWidth="196.0" layoutX="356.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/base%20copertina%20vs.png" />
          </image>
       </ImageView>
-      <TextField layoutX="319.0" layoutY="365.0" prefHeight="27.0" prefWidth="158.0" promptText="indirizzo di residenza" />
-      <Label layoutX="251.0" layoutY="369.0" text="Indirizzo:" />
-      <TextField fx:id="passwordfield" layoutX="319.0" layoutY="301.0" prefHeight="27.0" prefWidth="158.0" promptText="password" />
+      <TextField layoutX="319.0" layoutY="328.0" prefHeight="27.0" prefWidth="158.0" promptText="password">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
 
 
 
-      <RadioButton fx:id="donnaButton" layoutX="407.0" layoutY="201.0" mnemonicParsing="false" text="DONNA">
+      <!-- Associate RadioButtons with the ToggleGroup -->
+      <RadioButton layoutX="407.0" layoutY="224.0" mnemonicParsing="false" text="DONNA">
          <toggleGroup>
             <ToggleGroup fx:id="genderToggleGroup" />
          </toggleGroup>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></RadioButton>
-      <RadioButton fx:id="uomoButton" layoutX="322.0" layoutY="201.0" mnemonicParsing="false" text="UOMO" toggleGroup="$genderToggleGroup">
+      <RadioButton layoutX="322.0" layoutY="224.0" mnemonicParsing="false" text="UOMO" toggleGroup="$genderToggleGroup">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></RadioButton>

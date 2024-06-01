@@ -1,113 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #03b53f;">
+        <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
                 <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
                     <image>
-                        <Image url="@images/ic--baseline-arrow-back.png" />
-                    </image></ImageView>
+                        <Image url="@../images/ic--baseline-arrow-back.png" />
+                    </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ImageView>
                 <Label layoutX="57.0" layoutY="16.0" text="VISUALIZZA ACCOUNT" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.800000190734863" />
                     </font></Label>
-                <ImageView fitHeight="30.0" fitWidth="192.0" layoutX="433.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="30.0" fitWidth="192.0" layoutX="598.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/base%20copertina%20bw.png" />
+                        <Image url="@../images/basecopertinabw.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="364.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="529.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/calcio_gw.png" />
+                        <Image url="@../images/calcio_gw.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="391.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="556.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/padel_GW.png" />
+                        <Image url="@../images/padel_GW.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="57.0" fitWidth="20.0" layoutX="337.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="57.0" fitWidth="20.0" layoutX="502.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/tennis_gw.png" />
+                        <Image url="@../images/tennis_gw.png" />
                     </image>
                 </ImageView>
             </children>
         </AnchorPane>
-        <Label layoutX="183.0" layoutY="88.0" text="Nome:">
+        <Label layoutX="300.0" layoutY="113.0" text="Nome:">
             <font>
-                <Font name="System Bold" size="14.0" />
+                <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="183.0" layoutY="121.0" text="Cognome:">
+        <Label layoutX="300.0" layoutY="163.0" text="Cognome:">
             <font>
-                <Font name="System Bold" size="14.0" />
+                <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <ImageView fitHeight="93.0" fitWidth="85.0" layoutX="45.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="169.0" fitWidth="198.0" layoutX="55.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@images/5997002.png" />
+                <Image url="@../images/5997002.png" />
             </image>
         </ImageView>
-        <Label layoutX="185.0" layoutY="156.0" text="Email:">
+        <Label layoutX="302.0" layoutY="214.0" text="Email:">
             <font>
-                <Font name="System Bold" size="14.0" />
+                <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <TextField layoutX="263.0" layoutY="84.0" prefHeight="27.0" prefWidth="124.0" promptText="Nome Utente" />
-        <Button layoutX="430.0" layoutY="292.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text="SALVA&#10;MODIFICHE" textAlignment="CENTER">
+        <TextField layoutX="387.0" layoutY="111.0" prefHeight="27.0" prefWidth="162.0" promptText="Nome Utente" />
+        <Button layoutX="420.0" layoutY="278.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="95.0" text="SALVA&#10;MODIFICHE" textAlignment="CENTER">
             <font>
-                <Font name="System Bold" size="8.0" />
+                <Font name="System Bold" size="12.0" />
             </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </Button>
-        <TextField layoutX="263.0" layoutY="117.0" prefHeight="27.0" prefWidth="124.0" promptText="Cognome Utente" />
-        <TextField layoutX="263.0" layoutY="152.0" prefHeight="27.0" prefWidth="124.0" promptText="Email Utente" />
-        <Label layoutX="185.0" layoutY="190.0" text="Indirizzo:">
-            <font>
-                <Font name="System Bold" size="14.0" />
-            </font>
-        </Label>
-        <TextField layoutX="263.0" layoutY="186.0" prefHeight="27.0" prefWidth="124.0" promptText="Indirizzo Utente" />
-        <Label layoutX="185.0" layoutY="223.0" text="Cellulare:">
-            <font>
-                <Font name="System Bold" size="14.0" />
-            </font>
-        </Label>
-        <TextField layoutX="263.0" layoutY="219.0" prefHeight="27.0" prefWidth="124.0" promptText="Contatto Utente" />
-      <Label layoutX="27.0" layoutY="156.0" text="\@usernameutente">
+        <TextField layoutX="387.0" layoutY="161.0" prefHeight="27.0" prefWidth="162.0" promptText="Cognome Utente" />
+        <TextField layoutX="387.0" layoutY="212.0" prefHeight="27.0" prefWidth="161.0" promptText="Email Utente" />
+      <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="554.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/edit_modify_icon-icons.com_72390.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="554.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/edit_modify_icon-icons.com_72390.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="554.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/edit_modify_icon-icons.com_72390.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <TextField editable="false" layoutX="59.0" layoutY="240.0" prefHeight="27.0" prefWidth="161.0" promptText="\@usernameutente">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font size="14.0" />
          </font>
-      </Label>
-      <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="403.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/edit_modify_icon-icons.com_72390.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="403.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/edit_modify_icon-icons.com_72390.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="403.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/edit_modify_icon-icons.com_72390.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="403.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/edit_modify_icon-icons.com_72390.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="403.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/edit_modify_icon-icons.com_72390.png" />
-         </image>
-      </ImageView>
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor>
+      </TextField>
     </children>
 </AnchorPane>

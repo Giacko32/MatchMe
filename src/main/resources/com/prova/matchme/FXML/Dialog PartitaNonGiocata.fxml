@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -13,9 +14,12 @@
             </font></Label>
         <ImageView fitHeight="82.0" fitWidth="63.0" layoutX="30.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@images/segnale-di-avvertenza-pericolo-icona-di-attenzione-triangolo-rosso-rischio-di-errore-spam-2m69p1x.png" />
+                <Image url="@../images/segnale-di-avvertenza-pericolo-icona-di-attenzione-triangolo-rosso-rischio-di-errore-spam-2m69p1x.png" />
             </image></ImageView>
-        <Button layoutX="263.0" layoutY="124.0" mnemonicParsing="false" text="OK" />
+        <Button layoutX="263.0" layoutY="124.0" mnemonicParsing="false" text="OK">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Label layoutX="33.0" layoutY="72.0" prefHeight="82.0" prefWidth="312.0" text="La partita selezionata non è stata&#10;ancora disputata.">
          <font>
             <Font name="System Bold" size="18.0" />

@@ -1,63 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <AnchorPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #03b53f;">
+        <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
                 <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
                     <image>
-                        <Image url="@images/ic--baseline-arrow-back.png" />
-                    </image></ImageView>
+                        <Image url="@../images/ic--baseline-arrow-back.png" />
+                    </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ImageView>
                 <Label layoutX="57.0" layoutY="16.0" text="NOTIFICA DI RICHIESTA ACCETTAZIONE" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.800000190734863" />
                     </font></Label>
-                <ImageView fitHeight="30.0" fitWidth="192.0" layoutX="433.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="30.0" fitWidth="192.0" layoutX="598.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/base%20copertina%20bw.png" />
+                        <Image url="@../images/basecopertinabw.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="364.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="529.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/calcio_gw.png" />
+                        <Image url="@../images/calcio_gw.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="391.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="556.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/padel_GW.png" />
+                        <Image url="@../images/padel_GW.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="57.0" fitWidth="20.0" layoutX="337.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="57.0" fitWidth="20.0" layoutX="502.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/tennis_gw.png" />
+                        <Image url="@../images/tennis_gw.png" />
                     </image>
                 </ImageView>
             </children>
         </AnchorPane>
-        <Label layoutX="27.0" layoutY="73.0" text="Componenti del Match che hanno già accettato l'utente:">
+        <Label layoutX="27.0" layoutY="71.0" text="Componenti del Match che hanno già accettato l'utente:">
          <font>
-            <Font name="System Bold" size="10.0" />
+            <Font name="System Bold" size="12.0" />
          </font></Label>
-        <ListView layoutX="27.0" layoutY="92.0" prefHeight="266.0" prefWidth="266.0" />
-        <Label disable="true" layoutX="339.0" layoutY="71.0" text="DETTAGLI UTENTE RICHIEDENTE">
+        <ListView layoutX="27.0" layoutY="92.0" prefHeight="380.0" prefWidth="417.0" />
+        <Label disable="true" layoutX="495.0" layoutY="71.0" text="DETTAGLI UTENTE RICHIEDENTE">
          <font>
             <Font name="System Bold" size="12.800000190734863" />
          </font></Label>
-        <ListView disable="true" layoutX="327.0" layoutY="94.0" prefHeight="164.0" prefWidth="222.0" />
-        <Button disable="true" layoutX="380.0" layoutY="270.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Accetta iscrizione" textFill="WHITE">
+        <ListView disable="true" layoutX="464.0" layoutY="95.0" prefHeight="305.0" prefWidth="258.0" />
+        <Button disable="true" layoutX="535.0" layoutY="410.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Accetta iscrizione" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </Button>
-      <Button disable="true" layoutX="380.0" layoutY="305.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: #e31414;" text="Rifiuta iscrizione" textFill="WHITE">
+      <Button disable="true" layoutX="535.0" layoutY="445.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: #e31414;" text="Rifiuta iscrizione" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
     </children>
 </AnchorPane>
