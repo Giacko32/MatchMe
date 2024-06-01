@@ -1,12 +1,11 @@
 package com.prova.matchme.Autenticazione.Controller;
 
-import com.prova.matchme.Autenticazione.Interfacce.LoginView;
-import com.prova.matchme.Autenticazione.Interfacce.MainView;
-import com.prova.matchme.Autenticazione.Interfacce.RecoveryView;
-import com.prova.matchme.Autenticazione.Interfacce.RegisterView;
+import com.prova.matchme.Autenticazione.Interfacce.*;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
+import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.Main;
 import com.prova.matchme.Utils;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -65,13 +64,24 @@ public class AuthCtrl {
                 return new MainView(this);
             });
         } else {
-            Utente u = DBMSView.queryControllaCredenziali(username, password);
-            if (u == null) {
-            } else {
-                System.out.println(u);
-                Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
-                    return new MainView(this);
-                });
+            if (Main.sistema == 0) {
+                Utente u = DBMSView.queryControllaCredenziali(username, password);
+                if (u == null) {
+                } else {
+                    System.out.println(u);
+                    Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
+                        return new MainView(this);
+                    });
+                }
+            }else if(Main.sistema==1){
+                Gestore g = DBMSView.queryControllaCredenzialiGest(username, password);
+                if (g == null) {
+                } else {
+                    System.out.println(g);
+                    Utils.cambiaInterfaccia("FXML/Admin-view.fxml", s, c -> {
+                        return new AdminView(this);
+                    });
+                }
             }
         }
 

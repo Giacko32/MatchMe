@@ -40,7 +40,7 @@ public class Utente {
                 row.getString("email"),
                 row.getString("username"),
                 row.getString("tipo"),
-                row.getString("password"),
+                row.getString("passwordUtente"),
                 row.getFloat("livello"),
                 row.getInt("eta"),
                 row.getString("sesso"));

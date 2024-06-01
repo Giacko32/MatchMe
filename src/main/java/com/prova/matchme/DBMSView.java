@@ -1,5 +1,6 @@
 package com.prova.matchme;
 
+import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Utente;
 
 import java.sql.Connection;
@@ -53,8 +54,10 @@ public class DBMSView {
 
 
 
+
+
     public static Utente queryControllaCredenziali(String username, String password) {
-        var query = "SELECT u.* FROM utente u WHERE username = ? and password = ?";
+        var query = "SELECT u.* FROM utente u WHERE username = ? and passwordUtente = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, username);
             stmt.setString(2, password);
@@ -67,4 +70,21 @@ public class DBMSView {
         }
         return null;
     }
+
+    public static Gestore queryControllaCredenzialiGest(String username, String password) {
+        var query = "SELECT g.* FROM gestore g WHERE username = ? and passwordGestore = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            var r = stmt.executeQuery();
+            if (r.next()) {
+                return Gestore.createFromDB(r);
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+
 }
