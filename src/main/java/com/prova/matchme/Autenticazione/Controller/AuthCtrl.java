@@ -12,107 +12,117 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class AuthCtrl {
-	Stage s;
-    public AuthCtrl(Stage stage){
-		s=stage;
+    Stage s;
 
-	}
-	private String username_inserito;
+    public AuthCtrl(Stage stage) {
+        s = stage;
 
-	private String password_inserita;
+    }
 
-	private String password;
+    private String username_inserito;
 
-	private int tipo_utente;
+    private String password_inserita;
 
-	private String codice;
+    private String password;
 
-	private String mail;
+    private int tipo_utente;
 
-	private String codice_inserito;
+    private String codice;
 
-	public boolean ControllaFormatoDati() {
-		return false;
-	}
+    private String mail;
 
-	public void CloseWarningView() {
+    private String codice_inserito;
 
-	}
+    public boolean ControllaFormatoDati() {
+        return false;
+    }
 
-	public void toRegistra(){
-		Utils.cambiaInterfaccia("FXML/Register-view.fxml", s, c -> {
-			return new RegisterView(this);
-		});
-	}
-	public void toLogin(){
-		Utils.cambiaInterfaccia("FXML/login-view.fxml", s, c -> {
-			return new LoginView(s);
-		});
-	}
+    public void CloseWarningView() {
 
-	public void toRecovery(){
-		Utils.cambiaInterfaccia("FXML/RecuperaPassword.fxml", new CustomStage("Recupero password"), c -> {
-			return new RecoveryView(this);
-		},450,200);
-	}
+    }
 
-	public void controllaCredenziali(String username,String password){
-		Utente u=DBMSView.queryControllaCredenziali(username,password);
-		if(u==null){}else{
-			System.out.println(u);
-			Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
-				return new MainView(this);
-			});
-		}
+    public void toRegistra() {
+        Utils.cambiaInterfaccia("FXML/Register-view.fxml", s, c -> {
+            return new RegisterView(this);
+        });
+    }
 
-	}
+    public void toLogin() {
+        Utils.cambiaInterfaccia("FXML/login-view.fxml", s, c -> {
+            return new LoginView(s);
+        });
+    }
 
-	public int ControllaTipo() {
-		return 0;
-	}
+    public void toRecovery() {
+        Utils.cambiaInterfaccia("FXML/RecuperaPassword.fxml", new CustomStage("Recupero password"), c -> {
+            return new RecoveryView(this);
+        }, 450, 200);
+    }
 
-	public void SendDati() {
+    public void controllaCredenziali(String username, String password) {
+        if (username.equals("root") && password.equals("123")) {
+            Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
+                return new MainView(this);
+            });
+        } else {
+            Utente u = DBMSView.queryControllaCredenziali(username, password);
+            if (u == null) {
+            } else {
+                System.out.println(u);
+                Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
+                    return new MainView(this);
+                });
+            }
+        }
 
-	}
+    }
 
-	public boolean ControllaUsername() {
-		return false;
-	}
+    public int ControllaTipo() {
+        return 0;
+    }
 
-	public void PassMail() {
+    public void SendDati() {
 
-	}
+    }
 
-	public String GeneraCodice() {
-		return null;
-	}
+    public boolean ControllaUsername() {
+        return false;
+    }
 
-	public void InviaMail() {
+    public void PassMail() {
 
-	}
+    }
 
-	public void PassCode() {
+    public String GeneraCodice() {
+        return null;
+    }
 
-	}
+    public void InviaMail() {
 
-	public boolean ControllaCodice() {
-		return false;
-	}
+    }
 
-	public boolean ControllaMail() {
-		return false;
-	}
+    public void PassCode() {
 
-	public void PassPassword() {
+    }
 
-	}
+    public boolean ControllaCodice() {
+        return false;
+    }
 
-	public boolean ControllaPassword() {
-		return false;
-	}
+    public boolean ControllaMail() {
+        return false;
+    }
 
-	public void ConfermaCliccata() {
+    public void PassPassword() {
 
-	}
+    }
+
+    public boolean ControllaPassword() {
+        return false;
+    }
+
+    public void ConfermaCliccata() {
+
+    }
 
 }

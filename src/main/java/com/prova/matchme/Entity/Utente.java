@@ -15,7 +15,7 @@ public class Utente {
     private float livello;
     private int eta;
 
-    public Utente(int id, String nome, String cognome, String email, String username, String tipo, String password, float livello, int eta) {
+    public Utente(int id, String nome, String cognome, String email, String username, String tipo, String password, float livello, int eta,String sesso) {
         this.id=id;
         this.cognome=cognome;
         this.password=password;
@@ -25,6 +25,7 @@ public class Utente {
         this.email=email;
         this.nome=nome;
         this.livello=livello;
+        this.sesso=sesso;
     }
 
     public String toString(){
@@ -41,7 +42,8 @@ public class Utente {
                 row.getString("tipo"),
                 row.getString("password"),
                 row.getFloat("livello"),
-                row.getInt("eta"));
+                row.getInt("eta"),
+                row.getString("sesso"));
 
 
     }
