@@ -1,6 +1,7 @@
 package com.prova.matchme;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
+import com.prova.matchme.Autenticazione.Interfacce.LoginView;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -22,7 +23,9 @@ public class Main extends Application {
         stage.setOnCloseRequest(c -> {
             System.exit(0);
         });
-        new AuthCtrl(stage);
+        Utils.cambiaInterfaccia("FXML/login-view.fxml", mainStage, c -> {
+            return new LoginView(mainStage);
+        });
         DBMSView.connectDBMS();
     }
 

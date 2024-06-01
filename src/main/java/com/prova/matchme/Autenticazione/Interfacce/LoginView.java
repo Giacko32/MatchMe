@@ -6,6 +6,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 public class LoginView {
 
@@ -13,8 +14,8 @@ public class LoginView {
 	public TextField usernamefield;
 	public PasswordField passwordfield;
 
-	public LoginView(AuthCtrl authCtrl){
-		this.authctrl=authCtrl;
+	public LoginView(Stage s){
+		this.authctrl=new AuthCtrl(s);
 	}
 
 	private final AuthCtrl authctrl;

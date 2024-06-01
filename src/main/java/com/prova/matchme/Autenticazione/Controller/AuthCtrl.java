@@ -15,9 +15,7 @@ public class AuthCtrl {
 	Stage s;
     public AuthCtrl(Stage stage){
 		s=stage;
-		Utils.cambiaInterfaccia("FXML/login-view.fxml", stage, c -> {
-			return new LoginView(this);
-		});
+
 	}
 	private String username_inserito;
 
@@ -48,7 +46,7 @@ public class AuthCtrl {
 	}
 	public void toLogin(){
 		Utils.cambiaInterfaccia("FXML/login-view.fxml", s, c -> {
-			return new LoginView(this);
+			return new LoginView(s);
 		});
 	}
 
