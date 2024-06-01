@@ -15,6 +15,6 @@
          <image>
             <Image url="@../images/segnale-di-avvertenza-pericolo-icona-di-attenzione-triangolo-rosso-rischio-di-errore-spam-2m69p1x.png" />
          </image></ImageView>
-      <Button layoutX="281.0" layoutY="129.0" mnemonicParsing="false" text="OK" />
+      <Button layoutX="281.0" layoutY="129.0" mnemonicParsing="false" text="OK" onMouseClicked="#ClickOk" />
     </children>
 </AnchorPane>

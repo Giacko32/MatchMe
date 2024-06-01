@@ -79,7 +79,7 @@ public class Utils {
         }
         FXMLLoader loader = creaLoader("FXML/DialogAllert.fxml");
         loader.setControllerFactory(c -> {
-            return new WarningView(messaggio);
+            return new WarningView(messaggio,stage);
         });
         creaInterfaccia(loader, 350, 170, stage);
     }
