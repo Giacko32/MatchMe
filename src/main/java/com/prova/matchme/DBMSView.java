@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class DBMSView {
 
@@ -95,6 +96,26 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         return null;
+    }
+
+    public static boolean registraUtente(String nome, String cognome, String email, String username, int eta, String password, String tipo, char sesso, float livello) {
+        String query = "INSERT INTO utente(nome, cognome, email, username, eta, passwordUtente, tipo, sesso, livello) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, nome);
+            stmt.setString(2, cognome);
+            stmt.setString(3, email);
+            stmt.setString(4, username);
+            stmt.setInt(5, eta);
+            stmt.setString(6, password);
+            stmt.setString(7, tipo);
+            stmt.setString(8, Character.toString(sesso));
+            stmt.setFloat(9, livello);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+            return false;
+        }
+        return true;
     }
 
 

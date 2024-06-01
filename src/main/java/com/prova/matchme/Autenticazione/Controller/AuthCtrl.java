@@ -1,5 +1,6 @@
 package com.prova.matchme.Autenticazione.Controller;
 
+import com.mysql.cj.log.Log;
 import com.prova.matchme.Autenticazione.Interfacce.*;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
@@ -11,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,15 +38,31 @@ public class AuthCtrl {
 
     private String codice_inserito;
 
-    public boolean ControllaFormatoDati(String nome, String cognome, String email, String username, LocalDate datanascita, String password, char sesso) {
+    public String ControllaFormatoDati(String nome, String cognome, String email, String username, LocalDate datanascita, String password, char sesso) {
         Pattern noNumber = Pattern.compile("^[A-Za-z]*$");
-        if(nome.equals("") || cognome.equals("") || email.equals("") || username.equals("") || datanascita == null || )
-        if(noNumber.matcher(nome).find() && noNumber.matcher(cognome).find()){
-
+        Pattern mail = Pattern.compile("^[a-z0-9.]+@[a-z]+[.][a-z]+$");
+        Pattern passlenght = Pattern.compile("^.{8,}$");
+        if (nome.equals("") || cognome.equals("") || email.equals("") || username.equals("") || datanascita == null || password.equals("") || sesso == 'V') {
+            return "Ci sono campi vuoti";
         } else {
-            Utils.creaPannelloErrore("Formato del nome\n o del cognome errato");
+            if (noNumber.matcher(nome).find() && noNumber.matcher(cognome).find()) {
+                if (mail.matcher(email).find()) {
+                    if (datanascita.isBefore(LocalDate.now())) {
+                        if (passlenght.matcher(password).find()) {
+                            return "true";
+                        } else {
+                            return "La password deve essere\n lunga almeno 8 caratteri";
+                        }
+                    } else {
+                        return "Data di nascita errata";
+                    }
+                } else {
+                    return "Formato della mail errato";
+                }
+            } else {
+                return "Formato del nome\n o del cognome errato";
+            }
         }
-        return false;
     }
 
     public void CloseWarningView() {
@@ -108,10 +126,18 @@ public class AuthCtrl {
     }
 
     public void SendDati(String nome, String cognome, String email, String username, LocalDate datanascita, String password, String tipo, char sesso, float livello) {
-        if(!DBMSView.queryDBMSCheckUsernameandMail(username, email)){
+        if (!DBMSView.queryDBMSCheckUsernameandMail(username, email)) {
             Utils.creaPannelloErrore("Username o mail già\n registrate");
         } else {
-            this.ControllaFormatoDati(nome,cognome,email, username, datanascita, password, sesso);
+            String esito = this.ControllaFormatoDati(nome, cognome, email, username, datanascita, password, sesso);
+            if (esito.equals("true")) {
+                int eta = Period.between(datanascita, LocalDate.now()).getYears();
+                if(DBMSView.registraUtente(nome, cognome, email, username, eta, password, tipo, sesso, livello)){
+                    this.toLogin();
+                }
+            } else {
+                Utils.creaPannelloErrore(esito);
+            }
         }
     }
 

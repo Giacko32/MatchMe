@@ -67,7 +67,7 @@ public class RegisterView {
         char sesso = 'V';
         if (uomoButton.isSelected()) {
             sesso = 'M';
-        } else {
+        } else if (donnaButton.isSelected()){
             sesso = 'F';
         }
         authCtrl.SendDati(nomefield.getText().trim(), cognomefield.getText().trim(), mailfield.getText().trim(), usernamefield.getText().trim(), datanascita.getValue(), passwordfield.getText().trim(), "nt", sesso, 0.0F);
