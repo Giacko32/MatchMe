@@ -57,7 +57,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        risolviSistema(args);
+        //risolviSistema(args);
+        sistema=0;
         launch();
     }
 }

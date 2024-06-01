@@ -67,6 +67,7 @@ public class AuthCtrl {
             if (Main.sistema == 0) {
                 Utente u = DBMSView.queryControllaCredenziali(username, password);
                 if (u == null) {
+                    Utils.creaPannelloErrore("Credenziali errate");
                 } else {
                     System.out.println(u);
                     Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
@@ -76,6 +77,7 @@ public class AuthCtrl {
             }else if(Main.sistema==1){
                 Gestore g = DBMSView.queryControllaCredenzialiGest(username, password);
                 if (g == null) {
+                    Utils.creaPannelloErrore("Credenziali errate");
                 } else {
                     System.out.println(g);
                     Utils.cambiaInterfaccia("FXML/Admin-view.fxml", s, c -> {

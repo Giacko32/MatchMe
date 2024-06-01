@@ -2,6 +2,7 @@ package com.prova.matchme;
 
 
 
+import com.prova.matchme.shared.WarningView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -39,18 +40,6 @@ public class Utils {
         }
         return null;
     };
-    public static String hash(String pwd) {
-        byte[] encoded;
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            encoded = md.digest(pwd.getBytes(StandardCharsets.UTF_8));
-            return new String(encoded);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return pwd;
-    }
-
     public static FXMLLoader creaLoader(String path) {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource(path));
         return loader;
@@ -73,13 +62,13 @@ public class Utils {
             e.printStackTrace();
         }
     }
-/*
+
     public static void creaPannelloErrore(String messaggio) {
         creaPannelloErrore(messaggio, null);
     }
 
     public static void creaPannelloErrore(String messaggio, Stage daDistruggere) {
-        Stage stage = new Stage();
+        Stage stage = new CustomStage("ATTENZIONE");
         stage.setResizable(false);
         if (Main.mainStage != null) {
             try {
@@ -88,13 +77,13 @@ public class Utils {
             } catch (Exception e) {
             }
         }
-        FXMLLoader loader = creaLoader("Pannelli/ErroreGenericoPopup.fxml");
+        FXMLLoader loader = creaLoader("FXML/DialogAllert.fxml");
         loader.setControllerFactory(c -> {
-            return new PannelloErrore(messaggio, daDistruggere);
+            return new WarningView(messaggio);
         });
-        creaInterfaccia(loader, 600, 400, stage);
+        creaInterfaccia(loader, 350, 170, stage);
     }
-
+/*
     public static void creaPannelloAvvisoScadenza(EventHandler<ActionEvent> onConfirm, EventHandler<ActionEvent> onExit) {
         Stage stage = new Stage();
         stage.setResizable(false);

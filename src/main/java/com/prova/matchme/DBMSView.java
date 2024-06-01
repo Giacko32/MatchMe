@@ -52,10 +52,6 @@ public class DBMSView {
         }
     }
 
-
-
-
-
     public static Utente queryControllaCredenziali(String username, String password) {
         var query = "SELECT u.* FROM utente u WHERE username = ? and passwordUtente = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
