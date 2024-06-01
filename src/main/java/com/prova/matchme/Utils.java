@@ -81,7 +81,7 @@ public class Utils {
         loader.setControllerFactory(c -> {
             return new WarningView(messaggio,stage);
         });
-        creaInterfaccia(loader, 350, 170, stage);
+        creaInterfaccia(loader, 400, 170, stage);
     }
 /*
     public static void creaPannelloAvvisoScadenza(EventHandler<ActionEvent> onConfirm, EventHandler<ActionEvent> onExit) {
