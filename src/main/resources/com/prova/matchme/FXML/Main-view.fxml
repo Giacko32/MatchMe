@@ -18,7 +18,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label layoutX="557.0" layoutY="15.0" text="Nome Cognome" textFill="WHITE">
+            <Label fx:id="nome" layoutX="557.0" layoutY="15.0" text="Nome Cognome" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

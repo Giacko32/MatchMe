@@ -22,15 +22,19 @@ public class Gestore {
         this.username=username;
     }
 
+    public String toString(){
+        return this.nome + " " + this.cognome;
+    }
+
     public static Gestore createFromDB(ResultSet row) throws SQLException {
         return new Gestore(
-                row.getInt("id"),
-                row.getInt("sede"),
-                row.getString("nome"),
-                row.getString("cognome"),
-                row.getString("email"),
+                row.getInt("Id_gestore"),
+                row.getInt("Ref_sede"),
+                row.getString("Nome"),
+                row.getString("Cognome"),
+                row.getString("Email"),
                 row.getString("passwordGestore"),
-                row.getString("username"));
+                row.getString("Username"));
 
     }
 

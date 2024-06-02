@@ -1,8 +1,10 @@
 package com.prova.matchme.Autenticazione.Interfacce;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
+import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.Main;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
@@ -11,12 +13,17 @@ public class MainView {
 
 
 	private AuthCtrl authCtrl;
+	private Utente u;
 
-	public MainView(AuthCtrl authCtrl){
+	public MainView(AuthCtrl authCtrl,Utente u){
 		this.authCtrl=authCtrl;
+		this.u=u;
 	}
 	@FXML
 	private AnchorPane Ancorpane;
+
+	@FXML
+	private Label nome;
 
 	@FXML
 	public void initialize() {
@@ -34,6 +41,9 @@ public class MainView {
 
 		// Set the background to the AnchorPane
 		Ancorpane.setBackground(new Background(bgImage));
+
+		nome.setText(u.toString());
+
 	}
 
 	public void clickChat() {

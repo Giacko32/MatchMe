@@ -17,7 +17,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -84,7 +84,7 @@ public class DBMSView {
     }
 
     public static Gestore queryControllaCredenzialiGest(String username, String password) {
-        var query = "SELECT g.* FROM gestore g WHERE username = ? and passwordGestore = ?";
+        var query = "SELECT g.* FROM gestore g WHERE Username = ? and passwordGestore = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, username);
             stmt.setString(2, password);
@@ -116,6 +116,33 @@ public class DBMSView {
             return false;
         }
         return true;
+    }
+
+
+    public static boolean queryDBMSCheckMail( String mail) {
+        var query = "SELECT * FROM utente WHERE email = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, mail);
+            var r = stmt.executeQuery();
+            if (r.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return false;
+    }
+
+    public static void queryDBMSChangePassword(String mail,String password) {
+        var query = "UPDATE utente SET password=? WHERE email = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, password);
+            stmt.setString(2, mail);
+            var r = stmt.executeQuery();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
     }
 
 

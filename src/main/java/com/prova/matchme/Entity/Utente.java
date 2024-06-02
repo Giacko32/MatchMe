@@ -29,7 +29,11 @@ public class Utente {
     }
 
     public String toString(){
-        return this.id + " " + this.nome;
+        return this.nome + " " + this.cognome;
+    }
+
+    public String getTipo(){
+        return this.tipo;
     }
 
     public static Utente createFromDB(ResultSet row) throws SQLException {

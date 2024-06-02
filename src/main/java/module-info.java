@@ -12,6 +12,7 @@ module com.prova.matchme {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires mysql.connector.j;
+    requires jakarta.mail;
 
     opens com.prova.matchme to javafx.fxml;
     opens com.prova.matchme.Autenticazione.Interfacce to javafx.fxml;

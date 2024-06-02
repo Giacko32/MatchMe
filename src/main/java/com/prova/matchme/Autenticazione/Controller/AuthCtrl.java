@@ -1,13 +1,9 @@
 package com.prova.matchme.Autenticazione.Controller;
 
-import com.mysql.cj.log.Log;
+import com.prova.matchme.*;
 import com.prova.matchme.Autenticazione.Interfacce.*;
-import com.prova.matchme.CustomStage;
-import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Utente;
-import com.prova.matchme.Main;
-import com.prova.matchme.Utils;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -18,6 +14,7 @@ import java.util.regex.Pattern;
 
 public class AuthCtrl {
     Stage s;
+    private String codice;
 
     public AuthCtrl(Stage stage) {
         s = stage;
@@ -32,9 +29,7 @@ public class AuthCtrl {
 
     private int tipo_utente;
 
-    private String codice;
-
-    private String mail;
+    private String email_inserita;
 
     private String codice_inserito;
 
@@ -65,10 +60,6 @@ public class AuthCtrl {
         }
     }
 
-    public void CloseWarningView() {
-
-    }
-
     public void toRegistra() {
         Utils.cambiaInterfaccia("FXML/Register-view.fxml", s, c -> {
             return new RegisterView(this);
@@ -82,8 +73,9 @@ public class AuthCtrl {
     }
 
     public void toRecovery() {
-        Utils.cambiaInterfaccia("FXML/RecuperaPassword.fxml", new CustomStage("Recupero password"), c -> {
-            return new RecoveryView(this);
+        CustomStage s=new CustomStage("Recupero password");
+        Utils.cambiaInterfaccia("FXML/RecuperaPassword.fxml",s , c -> {
+            return new RecoveryView(this,s);
         }, 450, 200);
     }
 
@@ -93,17 +85,22 @@ public class AuthCtrl {
         } else {
             if (username.equals("root") && password.equals("123")) {
                 Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
-                    return new MainView(this);
+                    return new MainView(this,null);
                 });
             } else {
                 if (Main.sistema == 0) {
                     Utente u = DBMSView.queryControllaCredenziali(username, password);
                     if (u == null) {
                         Utils.creaPannelloErrore("Credenziali errate");
-                    } else {
+                    } else if(!(u.getTipo().equals("al"))) {
                         System.out.println(u);
                         Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
-                            return new MainView(this);
+                            return new MainView(this,u);
+                        });
+                    }else {
+                        System.out.println(u);
+                        Utils.cambiaInterfaccia("FXML/Allena-view.fxml", s, c -> {
+                            return new AllenaView(this,u);
                         });
                     }
                 } else if (Main.sistema == 1) {
@@ -113,7 +110,7 @@ public class AuthCtrl {
                     } else {
                         System.out.println(g);
                         Utils.cambiaInterfaccia("FXML/Admin-view.fxml", s, c -> {
-                            return new AdminView(this);
+                            return new AdminView(this,g);
                         });
                     }
                 }
@@ -141,40 +138,59 @@ public class AuthCtrl {
         }
     }
 
-    public boolean ControllaUsername() {
-        return false;
-    }
-
-    public void PassMail() {
-
+    public boolean passMail(String email) {
+        Pattern mail = Pattern.compile("^[a-z0-9.]+@[a-z]+[.][a-z]+$");
+        if(mail.matcher(email).find()){
+            if(DBMSView.queryDBMSCheckMail(email)){
+                email_inserita=email;
+                this.codice=GeneraCodice();
+                System.out.println(codice);
+                InviaMail(email);
+                return true;
+            }else{
+                Utils.creaPannelloErrore("Email inserita non associata \n ad un account");
+                return false;
+            }
+        }else{
+            Utils.creaPannelloErrore("Email inserita non valida");
+            return false;
+        }
     }
 
     public String GeneraCodice() {
-        return null;
+        return String.valueOf((int)(Math.random()*1000000));
     }
 
-    public void InviaMail() {
-
+    public void InviaMail(String email) {
+       // EmailSender.sendEmail(email,codice);
     }
 
-    public void PassCode() {
-
+    public boolean passcode(String codice) {
+        if(!codice.equals(this.codice)){
+            Utils.creaPannelloErrore("Il codice inserito non è\ncorretto");
+            return false;
+        }else{
+            CustomStage s=new CustomStage("Recupera Credenziali");
+            Utils.cambiaInterfaccia("FXML/RecuperaPassword1.fxml", s, c -> {
+                return new RecoveryView(this,s);
+            },450,200);
+            return false;
+        }
     }
 
-    public boolean ControllaCodice() {
-        return false;
+    public void passPassword(String password,String conferma) {
+        if(ControllaPassword(password,conferma)){
+            DBMSView.queryDBMSChangePassword(email_inserita,password);
+            this.toLogin();
+        }
     }
 
-    public boolean ControllaMail() {
-        return false;
-    }
-
-    public void PassPassword() {
-
-    }
-
-    public boolean ControllaPassword() {
-        return false;
+    public boolean ControllaPassword(String password,String conferma) {
+        if(password.equals(conferma)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public void ConfermaCliccata() {

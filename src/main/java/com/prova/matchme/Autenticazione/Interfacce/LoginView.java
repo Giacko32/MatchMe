@@ -1,7 +1,9 @@
 package com.prova.matchme.Autenticazione.Interfacce;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
+import com.prova.matchme.Main;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -32,7 +34,8 @@ public class LoginView {
 	public void ClickRecovery() {
 		this.authctrl.toRecovery();
 	}
-
+	@FXML
+	private Button registerbutton;
 
 
 	@FXML
@@ -51,6 +54,10 @@ public class LoginView {
 
 		// Set the background to the AnchorPane
 		Ancorpane.setBackground(new Background(bgImage));
+
+		if(Main.sistema==1){
+			registerbutton.setVisible(false);
+		}
 	}
 
 

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="Ancorpane" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.Autenticazione.Interfacce.AllenaView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
@@ -18,7 +18,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </ImageView>
-                <Label layoutX="561.0" layoutY="12.0" text="Nome Cognome" textFill="WHITE">
+                <Label fx:id="nome" layoutX="561.0" layoutY="12.0" text="Nome Cognome" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -70,7 +70,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Pane>
-        <Button layoutX="623.0" layoutY="430.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: red;" text="LOGOUT">
+        <Button onMouseClicked="#ClickLogout" layoutX="623.0" layoutY="430.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: red;" text="LOGOUT">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
