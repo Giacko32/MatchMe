@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneProfilo.Interfacce.ModifyView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView onMouseClicked="#back" fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" >
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -63,9 +63,9 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <TextField layoutX="345.0" layoutY="86.0" prefHeight="27.0" prefWidth="178.0" promptText="Nome Utente" />
-        <TextField layoutX="345.0" layoutY="131.0" prefHeight="27.0" prefWidth="178.0" promptText="Cognome Utente" />
-        <TextField layoutX="345.0" layoutY="175.0" prefHeight="27.0" prefWidth="178.0" promptText="Email Utente" />
+        <TextField fx:id="nomeGestore" layoutX="345.0" layoutY="86.0" prefHeight="27.0" prefWidth="178.0" promptText="Nome Utente" />
+        <TextField fx:id="cognomeGestore" layoutX="345.0" layoutY="131.0" prefHeight="27.0" prefWidth="178.0" promptText="Cognome Utente" />
+        <TextField fx:id="emailGestore" layoutX="345.0" layoutY="175.0" prefHeight="27.0" prefWidth="178.0" promptText="Email Utente" />
       <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="535.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/edit_modify_icon-icons.com_72390.png" />
@@ -89,7 +89,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-        <Button layoutX="535.0" layoutY="281.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="98.0" text="SALVA&#10;MODIFICHE" textAlignment="CENTER">
+        <Button onMouseClicked="#ClickModify" layoutX="535.0" layoutY="281.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="98.0" text="SALVA&#10;MODIFICHE" textAlignment="CENTER">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
@@ -97,7 +97,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-      <TextField editable="false" layoutX="27.0" layoutY="235.0" prefHeight="27.0" prefWidth="178.0" promptText="username">
+      <TextField fx:id="usernameGestore" editable="false" layoutX="27.0" layoutY="235.0" prefHeight="27.0" prefWidth="178.0" promptText="username">
          <font>
             <Font size="14.0" />
          </font>

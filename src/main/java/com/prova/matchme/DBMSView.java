@@ -17,14 +17,14 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
 
     private static void erroreComunicazioneDBMS(Exception e) {
         //Main.log.error("Errore durante comunicazione con DBMS", e);
-        Utils.creaPannelloErrore("C'è stato un problema durante la comunicazione con la base di dati, riprova");
+        Utils.creaPannelloErrore("C'è stato un problema \ndurante la comunicazione \ncon la base di dati, riprova");
 
     }
 
@@ -45,7 +45,7 @@ public class DBMSView {
                     e.printStackTrace();
                 }
                 DBMSView.connDBMS = DriverManager.getConnection(buildConnectionUrl("matchmeDB"));
-                System.out.println("IDDU E'");
+                System.out.println("Connessione effettuata");
             }
         } catch (java.sql.SQLException e) {
             erroreComunicazioneDBMS(e);
@@ -94,6 +94,7 @@ public class DBMSView {
         }
         return true;
     }
+
     public static Utente queryControllaCredenzialiUtente(String username, String password) {
         var query = "SELECT u.* FROM utente u WHERE username = ? and passwordUtente = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
@@ -169,6 +170,58 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
 
+    }
+
+    public static void queryDBMSUpdateData(Utente u, Gestore g) {
+        if (u != null) {
+            var query = "UPDATE utente SET username=?,nome=?,cognome=?,email=? WHERE id=?";
+            try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+                stmt.setString(1, u.getUsername());
+                stmt.setString(2, u.getNome());
+                stmt.setString(3, u.getCognome());
+                stmt.setString(4, u.getEmail());
+                stmt.setString(5, String.valueOf(u.getId()));
+                var r = stmt.executeUpdate();
+            } catch (SQLException e) {
+                erroreComunicazioneDBMS(e);
+            }
+        }
+        if (g != null) {
+            var query = "UPDATE gestore SET Username=?,Nome=?,Cognome=?,Email=? WHERE Id_Gestore=?";
+            try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+                stmt.setString(1, g.getUsername());
+                stmt.setString(2, g.getNome());
+                stmt.setString(3, g.getCognome());
+                stmt.setString(4, g.getEmail());
+                stmt.setString(5, String.valueOf(g.getId()));
+                var r = stmt.executeUpdate();
+            } catch (SQLException e) {
+                erroreComunicazioneDBMS(e);
+            }
+        }
+    }
+
+    public static void queryDBMSUpdatePassword(Utente u, Gestore g,String password) {
+        if (u != null) {
+            var query = "UPDATE utente SET passwordUtente=? WHERE id=?";
+            try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+                stmt.setString(1, password);
+                stmt.setString(2, String.valueOf(u.getId()));
+                var r = stmt.executeUpdate();
+            } catch (SQLException e) {
+                erroreComunicazioneDBMS(e);
+            }
+        }
+        if (g != null) {
+            var query = "UPDATE gestore SET passwordGestore=? WHERE Id_Gestore=?";
+            try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+                stmt.setString(1, password);
+                stmt.setString(2, String.valueOf(g.getId()));
+                var r = stmt.executeUpdate();
+            } catch (SQLException e) {
+                erroreComunicazioneDBMS(e);
+            }
+        }
     }
 
 

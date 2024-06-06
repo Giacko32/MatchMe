@@ -7,7 +7,9 @@ import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class ManageProfileView {
 
@@ -15,20 +17,20 @@ public class ManageProfileView {
     private ProfiloCtrl profiloCtrl;
     private Utente u;
     private Gestore g;
-
-    public ManageProfileView(ProfiloCtrl profiloCtrl, Utente u) {
+    private Stage s;
+    public ManageProfileView(ProfiloCtrl profiloCtrl, Utente u, Stage s) {
         this.profiloCtrl = profiloCtrl;
         this.u = u;
+        this.s=s;
     }
 
-    public ManageProfileView(ProfiloCtrl profiloCtrl, Gestore g) {
+    public ManageProfileView(ProfiloCtrl profiloCtrl, Gestore g,Stage s) {
         this.profiloCtrl = profiloCtrl;
         this.g = g;
+        this.s=s;
     }
 
     @FXML
-    private TextField nome;
-    public TextField username;
     public Button tastoabb;
     public AnchorPane AnchorProfilo;
 
@@ -41,24 +43,27 @@ public class ManageProfileView {
         }
         if(g != null){
             AnchorProfilo.setStyle("-fx-background-color:#E89A3F;");
-            tastoabb.setVisible(false);
         }
     }
 
+    @FXML
     public void ClickVisualizzaAccount() {
-
+        this.profiloCtrl.VisualizzaAccount();
+        s.close();
     }
-
+    @FXML
     public void ClickModifyAccount() {
-
+        this.profiloCtrl.ModificaDati();
+        s.close();
     }
-
+    @FXML
     public void ClickModifyPassword() {
-
+        this.profiloCtrl.ModificaPassword();
+        s.close();
     }
-
-    public void ShowBnd() {
-
+    @FXML
+    public void back() {
+        this.profiloCtrl.toMain();
+        s.close();
     }
-
 }

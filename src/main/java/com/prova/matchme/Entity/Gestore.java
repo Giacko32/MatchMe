@@ -22,8 +22,38 @@ public class Gestore {
         this.username=username;
     }
 
+    public void setdati(String nome,String cognome,String email,String username){
+        this.username=username;
+        this.nome=nome;
+        this.cognome=cognome;
+        this.email=email;
+    }
+
+    public int getId(){
+        return this.id;
+    }
+    public String getPassword(){
+        return this.password;
+    }
+    public void setPassword(String password){
+        this.password=password;
+    }
+
     public String toString(){
         return this.nome + " " + this.cognome;
+    }
+
+    public String getNome(){
+        return this.nome;
+    }
+    public String getCognome(){
+        return this.cognome;
+    }
+    public String getUsername(){
+        return this.username;
+    }
+    public String getEmail(){
+        return this.email;
     }
 
     public static Gestore createFromDB(ResultSet row) throws SQLException {
