@@ -2,6 +2,7 @@ package com.prova.matchme.GestioneProfilo.Controller;
 
 
 import com.prova.matchme.Autenticazione.Interfacce.RegisterView;
+import com.prova.matchme.CustomStage;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestioneProfilo.Interfacce.ManageProfileView;
@@ -19,13 +20,13 @@ public class ProfiloCtrl {
         this.u = u;
         this.g = g;
         if (u != null) {
-            Utils.cambiaInterfaccia("FXML/Gestione Profilo.fxml", s, c -> {
+            Utils.cambiaInterfaccia("FXML/Gestione Profilo.fxml", new CustomStage("Gestione Profilo"), c -> {
                 return new ManageProfileView(this,u);
-            });
+            }, 400, 300);
         }else if(g!=null){
-            Utils.cambiaInterfaccia("FXML/GestioneProfiloGestore.fxml", s, c -> {
+            Utils.cambiaInterfaccia("FXML/Gestione Profilo.fxml", new CustomStage("Gestione Profilo"), c -> {
                 return new ManageProfileView(this,g);
-            });
+            }, 400, 250);
         }
     }
 

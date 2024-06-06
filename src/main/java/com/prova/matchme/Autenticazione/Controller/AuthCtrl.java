@@ -5,12 +5,10 @@ import com.prova.matchme.Autenticazione.Interfacce.*;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.shared.ConfirmView;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AuthCtrl {

@@ -18,6 +18,7 @@ module com.prova.matchme {
     opens com.prova.matchme.Autenticazione.Interfacce to javafx.fxml;
     opens com.prova.matchme.shared to javafx.fxml;
     opens com.prova.matchme.GestioneProfilo.Interfacce to javafx.fxml;
+    opens com.prova.matchme.GestionePartita.Interfacce to javafx.fxml;
 
 
     exports com.prova.matchme;

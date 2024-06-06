@@ -7,6 +7,7 @@ import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class ManageProfileView {
 
@@ -29,6 +30,7 @@ public class ManageProfileView {
     private TextField nome;
     public TextField username;
     public Button tastoabb;
+    public AnchorPane AnchorProfilo;
 
     @FXML
     public void initialize() {
@@ -36,6 +38,10 @@ public class ManageProfileView {
             if (u.getTipo().equals("nt")) {
                 tastoabb.setDisable(false);
             }
+        }
+        if(g != null){
+            AnchorProfilo.setStyle("-fx-background-color:#E89A3F;");
+            tastoabb.setVisible(false);
         }
     }
 

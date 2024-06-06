@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
@@ -43,56 +43,59 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <Label layoutX="232.0" layoutY="98.0" text="Nome:">
+        <Label layoutX="231.0" layoutY="112.0" text="Nome:">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="231.0" layoutY="146.0" text="Cognome:">
+        <Label layoutX="230.0" layoutY="177.0" text="Cognome:">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <ImageView fitHeight="172.0" fitWidth="146.0" layoutX="34.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../images/5997002.png" />
-            </image>
-        </ImageView>
-        <Label layoutX="234.0" layoutY="193.0" text="Email:">
+        <Label layoutX="231.0" layoutY="312.0" text="Email:">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <TextField layoutX="333.0" layoutY="98.0" prefHeight="27.0" prefWidth="165.0" promptText="Nome Utente">
-         <cursor>
-            <Cursor fx:constant="NONE" />
-         </cursor></TextField>
-        <TextField layoutX="333.0" layoutY="147.0" prefHeight="27.0" prefWidth="166.0" promptText="Cognome Utente">
-         <cursor>
-            <Cursor fx:constant="NONE" />
-         </cursor></TextField>
-        <TextField layoutX="333.0" layoutY="192.0" prefHeight="27.0" prefWidth="166.0" promptText="Email Utente">
-         <cursor>
-            <Cursor fx:constant="NONE" />
-         </cursor></TextField>
-        <Label layoutX="38.0" layoutY="217.0" text="\@usernamegestore">
+        <TextField fx:id="nomeGestore" editable="false" layoutX="311.0" layoutY="111.0" prefHeight="27.0" prefWidth="207.0" promptText="Nome Utente">
+            <font>
+                <Font size="13.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="NONE" />
+            </cursor></TextField>
+        <TextField fx:id="cognomeGestore" editable="false" layoutX="313.0" layoutY="176.0" prefHeight="27.0" prefWidth="207.0" promptText="Cognome Utente">
+            <font>
+                <Font size="13.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="NONE" />
+            </cursor></TextField>
+        <TextField fx:id="emailGestore" editable="false" layoutX="312.0" layoutY="311.0" prefHeight="27.0" prefWidth="207.0" promptText="Email Utente">
+            <font>
+                <Font size="13.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="NONE" />
+            </cursor></TextField>
+        <Label layoutX="230.0" layoutY="244.0" text="Username:">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-      <Label layoutX="231.0" layoutY="240.0" text="Sedi Gestite:">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <TextField layoutX="333.0" layoutY="242.0" prefHeight="27.0" prefWidth="166.0" promptText="info sede">
-         <cursor>
-            <Cursor fx:constant="NONE" />
-         </cursor></TextField>
-      <TextField layoutX="49.0" layoutY="242.0" prefHeight="27.0" prefWidth="123.0" promptText="username">
-         <cursor>
-            <Cursor fx:constant="NONE" />
-         </cursor>
-      </TextField>
+        <TextField fx:id="usernameGestore" editable="false" layoutX="313.0" layoutY="243.0" prefHeight="27.0" prefWidth="207.0" promptText="username">
+            <font>
+                <Font size="13.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="NONE" />
+            </cursor>
+        </TextField>
+        <Label layoutX="232.0" layoutY="383.0" text="Stato: Gestore">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
     </children>
 </AnchorPane>

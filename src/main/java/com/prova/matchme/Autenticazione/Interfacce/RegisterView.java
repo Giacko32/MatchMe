@@ -61,7 +61,6 @@ public class RegisterView {
         this.authCtrl.toLogin();
     }
 
-
     @FXML
     public void ClickRegistra() {
         char sesso = 'V';
