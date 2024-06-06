@@ -4,6 +4,7 @@ import com.prova.matchme.*;
 import com.prova.matchme.Autenticazione.Interfacce.*;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.shared.ConfirmView;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -18,20 +19,10 @@ public class AuthCtrl {
 
     public AuthCtrl(Stage stage) {
         s = stage;
-
     }
-
-    private String username_inserito;
-
-    private String password_inserita;
-
-    private String password;
-
-    private int tipo_utente;
 
     private String email_inserita;
 
-    private String codice_inserito;
 
     public String ControllaFormatoDati(String nome, String cognome, String email, String username, LocalDate datanascita, String password, char sesso) {
         Pattern noNumber = Pattern.compile("^[A-Za-z]*$");
@@ -73,9 +64,9 @@ public class AuthCtrl {
     }
 
     public void toRecovery() {
-        CustomStage s=new CustomStage("Recupero password");
-        Utils.cambiaInterfaccia("FXML/RecuperaPassword.fxml",s , c -> {
-            return new RecoveryView(this,s);
+        CustomStage s = new CustomStage("Recupero password");
+        Utils.cambiaInterfaccia("FXML/RecuperaPassword.fxml", s, c -> {
+            return new RecoveryView(this, s);
         }, 450, 200);
     }
 
@@ -85,41 +76,30 @@ public class AuthCtrl {
         } else {
             if (username.equals("root") && password.equals("123")) {
                 Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
-                    return new MainView(this,null);
+                    return new MainView(this, null,s);
                 });
             } else {
-                if (Main.sistema == 0) {
-                    Utente u = DBMSView.queryControllaCredenziali(username, password);
-                    if (u == null) {
-                        Utils.creaPannelloErrore("Credenziali errate");
-                    } else if(!(u.getTipo().equals("al"))) {
-                        System.out.println(u);
+                String ritorno = DBMSView.queryControllaCredenziali(username, password);
+                if (ritorno.equals("ut")) {
+                    Utente u = DBMSView.queryControllaCredenzialiUtente(username, password);
+                    if(u.getTipo().equals("al")){
+                    Utils.cambiaInterfaccia("FXML/Allena-view.fxml", s, c -> {
+                        return new AllenaView(this, u,s);
+                    });}else{
                         Utils.cambiaInterfaccia("FXML/Main-view.fxml", s, c -> {
-                            return new MainView(this,u);
-                        });
-                    }else {
-                        System.out.println(u);
-                        Utils.cambiaInterfaccia("FXML/Allena-view.fxml", s, c -> {
-                            return new AllenaView(this,u);
+                            return new MainView(this, u,s);
                         });
                     }
-                } else if (Main.sistema == 1) {
-                    Gestore g = DBMSView.queryControllaCredenzialiGest(username, password);
-                    if (g == null) {
-                        Utils.creaPannelloErrore("Credenziali errate");
-                    } else {
-                        System.out.println(g);
-                        Utils.cambiaInterfaccia("FXML/Admin-view.fxml", s, c -> {
-                            return new AdminView(this,g);
-                        });
-                    }
+                }else if(ritorno.equals("g")){
+                    Gestore g=DBMSView.queryControllaCredenzialiGest(username,password);
+                    Utils.cambiaInterfaccia("FXML/Admin-view.fxml", s, c -> {
+                        return new AdminView(this, g,s);
+                    });
+                }else{
+                    Utils.creaPannelloErrore("Le credenziali inserite\n sono errate");
                 }
             }
         }
-    }
-
-    public int ControllaTipo() {
-        return 0;
     }
 
     public void SendDati(String nome, String cognome, String email, String username, LocalDate datanascita, String password, String tipo, char sesso, float livello) {
@@ -129,7 +109,7 @@ public class AuthCtrl {
             String esito = this.ControllaFormatoDati(nome, cognome, email, username, datanascita, password, sesso);
             if (esito.equals("true")) {
                 int eta = Period.between(datanascita, LocalDate.now()).getYears();
-                if(DBMSView.registraUtente(nome, cognome, email, username, eta, password, tipo, sesso, livello)){
+                if (DBMSView.registraUtente(nome, cognome, email, username, eta, password, tipo, sesso, livello)) {
                     this.toLogin();
                 }
             } else {
@@ -140,61 +120,67 @@ public class AuthCtrl {
 
     public boolean passMail(String email) {
         Pattern mail = Pattern.compile("^[a-z0-9.]+@[a-z]+[.][a-z]+$");
-        if(mail.matcher(email).find()){
-            if(DBMSView.queryDBMSCheckMail(email)){
-                email_inserita=email;
-                this.codice=GeneraCodice();
-                System.out.println(codice);
+        if (mail.matcher(email).find()) {
+            if (DBMSView.queryDBMSCheckMail(email)) {
+                email_inserita = email;
+                this.codice = GeneraCodice();
                 InviaMail(email);
                 return true;
-            }else{
+            } else {
                 Utils.creaPannelloErrore("Email inserita non associata \n ad un account");
                 return false;
             }
-        }else{
+        } else {
             Utils.creaPannelloErrore("Email inserita non valida");
             return false;
         }
     }
 
     public String GeneraCodice() {
-        return String.valueOf((int)(Math.random()*1000000));
+        return String.valueOf((int) (Math.random() * 1000000));
     }
 
     public void InviaMail(String email) {
-       // EmailSender.sendEmail(email,codice);
+        EmailSender.sendEmail(email,codice);
     }
 
     public boolean passcode(String codice) {
-        if(!codice.equals(this.codice)){
+        if (!codice.equals(this.codice)) {
             Utils.creaPannelloErrore("Il codice inserito non è\ncorretto");
             return false;
-        }else{
-            CustomStage s=new CustomStage("Recupera Credenziali");
+        } else {
+            CustomStage s = new CustomStage("Recupera Credenziali");
             Utils.cambiaInterfaccia("FXML/RecuperaPassword1.fxml", s, c -> {
-                return new RecoveryView(this,s);
-            },450,200);
+                return new ChangePasswordView(this, s);
+            }, 450, 200);
             return false;
         }
     }
 
-    public void passPassword(String password,String conferma) {
-        if(ControllaPassword(password,conferma)){
-            DBMSView.queryDBMSChangePassword(email_inserita,password);
-            this.toLogin();
+    public void passPassword(String password, String conferma, Stage s) {
+        if (ControllaPassword(password, conferma)) {
+            DBMSView.queryDBMSChangePassword(email_inserita, password);
+        } else {
+            Utils.creaPannelloErrore("Le due password non\ncoincidono");
         }
+        s.close();
     }
 
-    public boolean ControllaPassword(String password,String conferma) {
-        if(password.equals(conferma)){
+    public boolean ControllaPassword(String password, String conferma) {
+        if (password.equals(conferma)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public void ConfermaCliccata() {
-
+    public void toConfirm(){
+        CustomStage s=new CustomStage("ATTENZIONE");
+        Utils.cambiaInterfaccia("FXML/DialogConferma.fxml", s, c -> {
+            return new ConfirmView(this, s);
+        }, 350, 200);
     }
+
+
 
 }

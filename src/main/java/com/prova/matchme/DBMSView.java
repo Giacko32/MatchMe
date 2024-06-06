@@ -24,8 +24,8 @@ public class DBMSView {
 
     private static void erroreComunicazioneDBMS(Exception e) {
         //Main.log.error("Errore durante comunicazione con DBMS", e);
-        //Utils.creaPannelloErrore("C'è stato un problema durante la comunicazione con la base di dati, riprova");
-        e.printStackTrace();
+        Utils.creaPannelloErrore("C'è stato un problema durante la comunicazione con la base di dati, riprova");
+
     }
 
     /**
@@ -53,19 +53,31 @@ public class DBMSView {
         }
     }
 
-    public static Utente queryControllaCredenziali(String username, String password) {
+    public static String queryControllaCredenziali(String username, String password) {
         var query = "SELECT u.* FROM utente u WHERE username = ? and passwordUtente = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, username);
             stmt.setString(2, password);
             var r = stmt.executeQuery();
             if (r.next()) {
-                return Utente.createFromDB(r);
+                return "ut";
             }
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
-        return null;
+        var query2 = "SELECT g.* FROM gestore g WHERE Username = ? and passwordGestore = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query2)) {
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            var r = stmt.executeQuery();
+            if (r.next()) {
+                return "g";
+            }
+
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return "Errore";
     }
 
     public static boolean queryDBMSCheckUsernameandMail(String username, String mail) {
@@ -81,6 +93,20 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         return true;
+    }
+    public static Utente queryControllaCredenzialiUtente(String username, String password) {
+        var query = "SELECT u.* FROM utente u WHERE username = ? and passwordUtente = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            var r = stmt.executeQuery();
+            if (r.next()) {
+                return Utente.createFromDB(r);
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
     }
 
     public static Gestore queryControllaCredenzialiGest(String username, String password) {
@@ -119,7 +145,7 @@ public class DBMSView {
     }
 
 
-    public static boolean queryDBMSCheckMail( String mail) {
+    public static boolean queryDBMSCheckMail(String mail) {
         var query = "SELECT * FROM utente WHERE email = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, mail);
@@ -133,12 +159,12 @@ public class DBMSView {
         return false;
     }
 
-    public static void queryDBMSChangePassword(String mail,String password) {
-        var query = "UPDATE utente SET password=? WHERE email = ?";
+    public static void queryDBMSChangePassword(String mail, String password) {
+        var query = "UPDATE utente SET passwordUtente=? WHERE email = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, password);
             stmt.setString(2, mail);
-            var r = stmt.executeQuery();
+            var r = stmt.executeUpdate();
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }

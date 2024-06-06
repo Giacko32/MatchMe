@@ -2,6 +2,7 @@ package com.prova.matchme;
 
 
 
+import com.prova.matchme.shared.ConfirmView;
 import com.prova.matchme.shared.WarningView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -120,19 +121,7 @@ public class Utils {
      *
      * @param messaggio il messaggio da mostrare
      */
-/*    public static void creaPannelloConferma(String messaggio) {
-        creaPannelloConferma(messaggio, null);
-    }
 
-    public static void creaPannelloConferma(String messaggio, Stage daDistruggere) {
-        Stage stage = new Stage();
-        FXMLLoader loader = creaLoader("Pannelli/ConfermaPopup.fxml");
-        loader.setControllerFactory(c -> {
-            return new PannelloConferma(messaggio, daDistruggere);
-        });
-        creaInterfaccia(loader, 600, 400, stage);
-    }
-*/
     /**
      * Cambia l'interfaccia sullo stage passato come paramentro (eventualmente creato)
      *

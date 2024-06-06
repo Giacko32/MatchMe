@@ -10,23 +10,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4af3d7da-bc56-44b9-ace0-9872cfa66ce3" name="Changes" comment="Sono stati fatti tanti cambiamenti">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/EmailSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Controller/AuthCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Controller/AuthCtrl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/AdminView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/AllenaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/AllenaView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/ChangePasswordView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/ChangePasswordView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/LoginView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/MainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/RecoveryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/RecoveryView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/Gestore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/Gestore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/Utente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Controller/ProfiloCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Controller/ProfiloCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ManageProfileView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ManageProfileView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/shared/ConfirmView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/shared/ConfirmView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Main-view Gestore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Admin-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Main-view-allenatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Allena-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Admin-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Admin-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/DialogConferma.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/DialogConferma.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Gestione Profilo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Gestione Profilo.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Gestione ProfiloGestore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/GestioneProfiloGestore.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Main-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/RecuperaPassword.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/RecuperaPassword.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/RecuperaPassword1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/RecuperaPassword1.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,12 +58,12 @@
     &quot;assignee&quot;: &quot;Gianvito12&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Giacko32/MatchMe.git",
-    "accountId": "ad14c87f-7561-42bd-a4a0-4748c6b2114d"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Giacko32/MatchMe.git&quot;,
+    &quot;accountId&quot;: &quot;ad14c87f-7561-42bd-a4a0-4748c6b2114d&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -236,7 +238,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717233363078</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Sono stati fatti tanti cambiamenti">
+      <option name="closed" value="true" />
+      <created>1717345448560</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1717345448560</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -261,6 +271,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.IllegalAccessException" package="java.lang" />
           <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalStateException" package="java.lang" />
+          <option name="timeStamp" value="2" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>

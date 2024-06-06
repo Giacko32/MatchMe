@@ -2,22 +2,26 @@ package com.prova.matchme.Autenticazione.Interfacce;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Entity.Gestore;
+import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 public class AdminView {
 
 	private AuthCtrl authCtrl;
 	private Gestore g;
-	public AdminView(AuthCtrl authCtrl, Gestore g){
+	private Stage s;
+	public AdminView(AuthCtrl authCtrl, Gestore g,Stage s){
 		this.authCtrl=authCtrl;
 		this.g=g;
+		this.s=s;
 	}
 	@FXML
 	public void ClickLogout() {
-		this.authCtrl.toLogin();
+		this.authCtrl.toConfirm();
 	}
 
 
@@ -47,10 +51,10 @@ public class AdminView {
 
 	}
 
-	public void clickLogout() {
-
+	@FXML
+	public void ClickProfile() {
+		new ProfiloCtrl(this.s,null,g);
 	}
-
 	public void clickVerificaSconto() {
 
 	}

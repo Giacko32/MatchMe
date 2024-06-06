@@ -2,11 +2,13 @@ package com.prova.matchme.Autenticazione.Interfacce;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import com.prova.matchme.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 public class MainView {
 
@@ -14,10 +16,12 @@ public class MainView {
 
 	private AuthCtrl authCtrl;
 	private Utente u;
+	private Stage s;
 
-	public MainView(AuthCtrl authCtrl,Utente u){
+	public MainView(AuthCtrl authCtrl,Utente u,Stage s){
 		this.authCtrl=authCtrl;
 		this.u=u;
+		this.s=s;
 	}
 	@FXML
 	private AnchorPane Ancorpane;
@@ -51,11 +55,12 @@ public class MainView {
 	}
     @FXML
 	public void ClickLogout() {
-		this.authCtrl.toLogin();
+		this.authCtrl.toConfirm();
 	}
 
+	@FXML
 	public void ClickProfile() {
-
+		new ProfiloCtrl(this.s,this.u,null);
 	}
 
 	public void ClickStorico() {

@@ -31,35 +31,7 @@ public class Main extends Application {
 
         DBMSView.connectDBMS();
     }
-
-    public static void risolviSistema(String args[]){
-        try {
-            if (args.length >= 1) {
-                sistema = Integer.parseInt(args[0]);
-                switch (sistema){
-                    case 0:{
-                        System.out.println("Il sistema è di tipo utente");
-                        break;
-                    }
-                    case 1:{
-                        System.out.println("Il sistema è di tipo gestore");
-                        break;
-                    }
-                    default:{
-                        throw new NumberOutOfRange("Numero sconosciuto");
-                    }
-                }
-            }
-        } catch (NumberFormatException e) {
-            System.err.println(e.getMessage());
-            exit(1);
-        }
-
-    }
-
     public static void main(String[] args) {
-        //risolviSistema(args);
-        sistema=0;
         launch();
     }
 }

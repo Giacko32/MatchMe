@@ -1,54 +1,80 @@
 package com.prova.matchme.GestioneProfilo.Controller;
 
 
+import com.prova.matchme.Autenticazione.Interfacce.RegisterView;
+import com.prova.matchme.Entity.Gestore;
+import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.GestioneProfilo.Interfacce.ManageProfileView;
+import com.prova.matchme.Utils;
+import javafx.stage.Stage;
+
 public class ProfiloCtrl {
 
-	public void VisualizzaAccount() {
+    private Gestore g;
+    private Stage s;
+    private Utente u;
 
-	}
+    public ProfiloCtrl(Stage s, Utente u, Gestore g) {
+        this.s = s;
+        this.u = u;
+        this.g = g;
+        if (u != null) {
+            Utils.cambiaInterfaccia("FXML/Gestione Profilo.fxml", s, c -> {
+                return new ManageProfileView(this,u);
+            });
+        }else if(g!=null){
+            Utils.cambiaInterfaccia("FXML/GestioneProfiloGestore.fxml", s, c -> {
+                return new ManageProfileView(this,g);
+            });
+        }
+    }
 
-	public void ModificaDati() {
+    public void VisualizzaAccount() {
 
-	}
+    }
 
-	public Object PassData() {
-		return null;
-	}
+    public void ModificaDati() {
 
-	public void ModificaPassword() {
+    }
 
-	}
+    public Object PassData() {
+        return null;
+    }
 
-	public boolean ControllaPassword() {
-		return false;
-	}
+    public void ModificaPassword() {
 
-	public void PassPassword() {
+    }
 
-	}
+    public boolean ControllaPassword() {
+        return false;
+    }
 
-	public boolean ControllaFormatoPassword() {
-		return false;
-	}
+    public void PassPassword() {
 
-	public void CloseWarningView() {
+    }
 
-	}
+    public boolean ControllaFormatoPassword() {
+        return false;
+    }
 
-	public void Passcode() {
+    public void CloseWarningView() {
 
-	}
+    }
 
-	public boolean CheckId() {
-		return false;
-	}
+    public void Passcode() {
 
-	public void CloseConfirmeView() {
+    }
 
-	}
+    public boolean CheckId() {
+        return false;
+    }
 
-	public void AttivaAbbonamento() {
+    public void CloseConfirmeView() {
 
-	}
+    }
+
+    public void AttivaAbbonamento() {
+
+    }
 
 }

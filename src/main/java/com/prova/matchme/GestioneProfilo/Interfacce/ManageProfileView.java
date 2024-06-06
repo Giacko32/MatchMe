@@ -1,23 +1,58 @@
 package com.prova.matchme.GestioneProfilo.Interfacce;
 
 
+import com.prova.matchme.Entity.Gestore;
+import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class ManageProfileView {
 
-	public void ClickVisualizzaAccount() {
 
-	}
+    private ProfiloCtrl profiloCtrl;
+    private Utente u;
+    private Gestore g;
 
-	public void ClickModifyAccount() {
+    public ManageProfileView(ProfiloCtrl profiloCtrl, Utente u) {
+        this.profiloCtrl = profiloCtrl;
+        this.u = u;
+    }
 
-	}
+    public ManageProfileView(ProfiloCtrl profiloCtrl, Gestore g) {
+        this.profiloCtrl = profiloCtrl;
+        this.g = g;
+    }
 
-	public void ClickModifyPassword() {
+    @FXML
+    private TextField nome;
+    public TextField username;
+    public Button tastoabb;
 
-	}
+    @FXML
+    public void initialize() {
+        if (u != null) {
+            if (u.getTipo().equals("nt")) {
+                tastoabb.setDisable(false);
+            }
+        }
+    }
 
-	public void ShowBnd() {
+    public void ClickVisualizzaAccount() {
 
-	}
+    }
+
+    public void ClickModifyAccount() {
+
+    }
+
+    public void ClickModifyPassword() {
+
+    }
+
+    public void ShowBnd() {
+
+    }
 
 }

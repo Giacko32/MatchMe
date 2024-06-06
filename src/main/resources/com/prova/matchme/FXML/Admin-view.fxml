@@ -10,7 +10,7 @@
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
-                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="701.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="701.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#ClickProfile">
                     <image>
                         <Image url="@../images/ic--baseline-account-circle.png" />
                     </image>

@@ -32,6 +32,14 @@ public class Utente {
         return this.nome + " " + this.cognome;
     }
 
+    public String getEmail(){
+        return this.email;
+    }
+    public Float getLivello(){
+        return this.livello;
+    }
+
+
     public String getTipo(){
         return this.tipo;
     }
