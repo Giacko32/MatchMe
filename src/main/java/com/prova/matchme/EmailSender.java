@@ -24,7 +24,7 @@ public class EmailSender {
             // Crea un'autenticazione per il server SMTP
             Authenticator auth = new Authenticator() {
                 public PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("noreplydreamteammanager@gmail.com", "samj ztsu thvf hygo");
+                    return new PasswordAuthentication("nonrisponderematchme@gmail.com", "kagi xufi xlsk zdgl");
                 }
             };
 
@@ -33,12 +33,12 @@ public class EmailSender {
 
             // Crea un nuovo messaggio email
             Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress("noreplydreamteammanager@gmail.com"));
+            msg.setFrom(new InternetAddress("nonrisponderematchme@gmail.com"));
             InternetAddress[] toAddresses = {new InternetAddress(toAddress)};
             msg.setRecipients(Message.RecipientType.TO, toAddresses);
-            msg.setSubject("noreplydreamteammanager@gmail.com");
+            msg.setSubject("nonrisponderematchme@gmail.com");
             msg.setSentDate(new java.util.Date());
-            msg.setText(message);
+            msg.setText("Ciao, abbiamo notato che hai smarrito la tua password\necco il tuo codice temporaneo: "+message);
             // Invia il messaggio email
             Transport.send(msg);
         } catch (MessagingException e) {

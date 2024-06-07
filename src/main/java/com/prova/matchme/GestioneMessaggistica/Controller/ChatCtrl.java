@@ -62,7 +62,6 @@ public class ChatCtrl {
         ArrayList<Utente> listautenti=DBMSView.querySearchUser(nome,cognome);
         controllernew.updateLista(listautenti);
     }
-
     public void createNewChat(Utente utente) {
         if(utente!=null){
             DBMSView.queryCreatenewChat(u.getId(),utente.getId());
@@ -75,7 +74,6 @@ public class ChatCtrl {
             Utils.creaPannelloErrore("Non è stato selezionato nessun utente");
         }
     }
-
     public void InviaMessaggio(String messaggio) {
         DBMSView.queryNewMessage(new Messaggio(u.getId(),messaggio),selectedchat.getId());
         controller.ShowNewMessage(new Messaggio(u.getId(),messaggio),selectedchat);
