@@ -19,7 +19,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-       <Button layoutX="249.0" layoutY="164.0" mnemonicParsing="false" text="Cerca">
+       <Button onMouseClicked="#ClickCerca" layoutX="249.0" layoutY="164.0" mnemonicParsing="false" text="Cerca">
            <font>
                <Font name="System Bold" size="12.800000190734863" />
            </font>
