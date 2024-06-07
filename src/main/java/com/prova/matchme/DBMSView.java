@@ -14,7 +14,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -299,6 +299,71 @@ public class DBMSView {
         }
         return null;
     }
+    public static ArrayList<Chat> queryGetChat(int id){
+        String query = "SELECT c.id, " +
+                "CASE WHEN c.ref_Utente1 = ? THEN u2.id ELSE u1.id END AS altro_id, " +
+                "CASE WHEN c.ref_Utente1 = ? THEN u2.nome ELSE u1.nome END AS nome, " +
+                "CASE WHEN c.ref_Utente1 = ? THEN u2.cognome ELSE u1.cognome END AS cognome " +
+                "FROM chat c " +
+                "JOIN utente u1 ON c.ref_Utente1 = u1.id " +
+                "JOIN utente u2 ON c.ref_Utente2 = u2.id " +
+                "WHERE c.ref_Utente1 = ? OR c.ref_Utente2 = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, String.valueOf(id));
+            stmt.setString(2, String.valueOf(id));
+            stmt.setString(3, String.valueOf(id));
+            stmt.setString(4, String.valueOf(id));
+            stmt.setString(5, String.valueOf(id));
+            var r = stmt.executeQuery();
+            ArrayList<Chat> listaChat = new ArrayList<>();
+            while (r.next()) {
+                Chat c=new Chat(r.getInt("id"),r.getInt("altro_id"),r.getString("nome")+" "+r.getString("cognome"));
+                listaChat.add(c);
+            }
+            return listaChat;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+    public static ArrayList<Messaggio> getdetailChat(Chat chat){
+        String query="SELECT * FROM messaggi WHERE ref_Chat=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, String.valueOf(chat.getId()));
+            var r = stmt.executeQuery();
+            ArrayList<Messaggio> listamessaggi = new ArrayList<>();
+            while (r.next()) {
+                Messaggio m=new Messaggio(r.getInt("ref_Utente"),r.getString("messaggio"));
+                listamessaggi.add(m);
+            }
+            return listamessaggi;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+
+
+    }
+
+    public static ArrayList<Utente> querySearchUser(String nome,String cognome){
+        String query = "SELECT id, nome, cognome FROM utente WHERE nome LIKE ? AND cognome LIKE ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, "%" + nome + "%");
+            stmt.setString(2, "%" + cognome + "%");
+            var r = stmt.executeQuery();
+            ArrayList<Utente> listaUtenti = new ArrayList<>();
+            while (r.next()) {
+                Utente u=new Utente(r.getInt("id"),r.getString("nome"),r.getString("cognome"));
+                listaUtenti.add(u);
+            }
+            return listaUtenti;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+    
 
 
 }

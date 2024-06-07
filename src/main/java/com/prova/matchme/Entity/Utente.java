@@ -28,6 +28,12 @@ public class Utente {
         this.sesso=sesso;
     }
 
+    public Utente(int id,String nome,String cognome){
+        this.id=id;
+        this.nome=nome;
+        this.cognome=cognome;
+    }
+
     public String toString(){
         return this.nome + " " + this.cognome;
     }

@@ -10,7 +10,7 @@
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" >
+                <ImageView onMouseClicked="#back" fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" >
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -43,14 +43,14 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <ListView layoutX="21.0" layoutY="84.0" prefHeight="401.0" prefWidth="370.0" />
+        <ListView fx:id="listachat" layoutX="21.0" layoutY="84.0" prefHeight="401.0" prefWidth="370.0" />
         <Label layoutX="24.0" layoutY="59.0" text="Chat attive">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-      <ListView disable="true" layoutX="410.0" layoutY="65.0" prefHeight="348.0" prefWidth="324.0" />
-      <TextArea disable="true" layoutX="406.0" layoutY="424.0" prefHeight="64.0" prefWidth="324.0" promptText="Testo inserito da madare nella chat selezionata">
+      <ListView fx:id="listamessaggi" disable="true" layoutX="410.0" layoutY="65.0" prefHeight="348.0" prefWidth="324.0" />
+      <TextArea fx:id="newmex" disable="true" layoutX="406.0" layoutY="424.0" prefHeight="64.0" prefWidth="324.0" promptText="Testo inserito da madare nella chat selezionata">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextArea>
@@ -59,7 +59,7 @@
             <Image url="@../images/8732804.png" />
          </image>
       </ImageView>
-      <Button layoutX="292.0" layoutY="59.0" mnemonicParsing="false" text="+Crea Nuova Chat">
+      <Button onMouseClicked="#clickNewChat" layoutX="292.0" layoutY="59.0" mnemonicParsing="false" text="+Crea Nuova Chat">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>
