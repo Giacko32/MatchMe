@@ -41,6 +41,8 @@ public class ProfiloCtrl {
     }
 
     public ProfiloCtrl(Stage s,Utente u){
+        this.u=u;
+        this.s=s;
         ArrayList<PartitaStorico> lista=DBMSView.queryPartiteGiocate(u.getId());
         Utils.cambiaInterfaccia("FXML/Visualizza Partite Giocate.fxml", s, c -> {
             return new StoricoView(this, s,lista);

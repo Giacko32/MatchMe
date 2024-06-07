@@ -2,6 +2,7 @@ package com.prova.matchme.Autenticazione.Interfacce;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.GestioneMessaggistica.Controller.ChatCtrl;
 import com.prova.matchme.GestionePartita.Controller.PartitaCtrl;
 import com.prova.matchme.GestionePartita.Interfacce.DetailsTuttePartiteView;
 import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
@@ -52,9 +53,9 @@ public class MainView {
         nome.setText(u.toString());
 
     }
-
+    @FXML
     public void clickChat() {
-
+        new ChatCtrl(s,u);
     }
 
     @FXML

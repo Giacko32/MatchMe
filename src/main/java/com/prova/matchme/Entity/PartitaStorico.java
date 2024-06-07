@@ -13,16 +13,23 @@ public class PartitaStorico {
     private String sport;
     private String nomeCampo;
 
-    public PartitaStorico(int idpartita,int refpartita,LocalDate data, int idcampo,String risultato,String sport,String nomeCampo){
-        this.data=data;
-        this.idcampo=idcampo;
-        this.idpartita=idpartita;
-        this.refpartita=refpartita;
-        this.risultato=risultato;
-        this.nomeCampo=nomeCampo;
-        this.sport=sport;
+    public PartitaStorico(int idpartita, int refpartita, LocalDate data, int idcampo, String risultato, String sport, String nomeCampo) {
+        this.data = data;
+        this.idcampo = idcampo;
+        this.idpartita = idpartita;
+        this.refpartita = refpartita;
+        this.risultato = risultato;
+        this.nomeCampo = nomeCampo;
+        this.sport = sport;
     }
 
+    public String toString() {
+        return "";
+    }
+
+    public String torna(){
+        return "Id partita:" + this.idpartita  + " Data:" + this.data + " Id Campo:" + this.idcampo + " Squadra vincitrice: " + this.risultato + " Sport:" + this.sport + " Nome del Campo:" + this.nomeCampo;
+    }
 
     public static PartitaStorico createfromdb(ResultSet row) throws SQLException {
         return new PartitaStorico(

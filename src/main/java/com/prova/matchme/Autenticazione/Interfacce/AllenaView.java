@@ -49,7 +49,10 @@ public class AllenaView {
 	public void ClickLogout() {
 		this.authCtrl.toConfirm();
 	}
-
+	@FXML
+	public void ClickStorico() {
+		new ProfiloCtrl(this.s,this.u);
+	}
 
 	public void ClickProfile() {
 		new ProfiloCtrl(this.s,u,null);
