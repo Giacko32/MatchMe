@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestionePartita.Interfacce.PrenotazionePartitaView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image></ImageView>
@@ -44,42 +44,30 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Spinner layoutX="279.0" layoutY="145.0" prefHeight="26.0" prefWidth="85.0">
+      <Spinner fx:id="fromAge" layoutX="347.0" layoutY="250.0" prefHeight="26.0" prefWidth="74.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Spinner>
-      <Label layoutX="167.0" layoutY="149.0" text="Seleziona livello">
+      <Label layoutX="222.0" layoutY="253.0" prefHeight="20.0" prefWidth="132.0" text="Seleziona età      da">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Spinner layoutX="293.0" layoutY="211.0" prefHeight="26.0" prefWidth="74.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Spinner>
-      <Label layoutX="168.0" layoutY="214.0" prefHeight="20.0" prefWidth="132.0" text="Seleziona età      da">
+      <Label layoutX="313.0" layoutY="145.0" text="Seleziona sesso">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="388.0" layoutY="149.0" text="Seleziona sesso">
+      <Label layoutX="435.0" layoutY="253.0" text="a">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="381.0" layoutY="214.0" text="a">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Button layoutX="516.0" layoutY="273.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Crea partita" textFill="WHITE">
+      <Button onMouseClicked="#ClickCreaPartita" layoutX="511.0" layoutY="322.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Crea partita" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ChoiceBox layoutX="491.0" layoutY="144.0" prefHeight="26.0" prefWidth="73.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></ChoiceBox>
-      <Spinner layoutX="401.0" layoutY="211.0" prefHeight="26.0" prefWidth="74.0">
+      <Spinner fx:id="toAge" layoutX="455.0" layoutY="250.0" prefHeight="26.0" prefWidth="74.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Spinner>
@@ -90,19 +78,48 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ImageView>
-      <CheckBox layoutX="439.0" layoutY="92.0" mnemonicParsing="false" text="Pubblica">
+      <Spinner fx:id="fromLivello" layoutX="347.0" layoutY="195.0" prefHeight="26.0" prefWidth="74.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Spinner>
+      <Label layoutX="222.0" layoutY="198.0" prefHeight="20.0" prefWidth="132.0" text="Seleziona livello  da">
          <font>
             <Font size="14.0" />
          </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></CheckBox>
-      <CheckBox layoutX="526.0" layoutY="92.0" mnemonicParsing="false" text="Privata">
+      </Label>
+      <Label layoutX="435.0" layoutY="198.0" text="a">
          <font>
             <Font size="14.0" />
          </font>
+      </Label>
+      <Spinner fx:id="toLivello" layoutX="455.0" layoutY="195.0" prefHeight="26.0" prefWidth="74.0">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></CheckBox>
+         </cursor>
+      </Spinner>
+        <RadioButton fx:id="pubblicaButton" layoutX="539.0" layoutY="92.0" mnemonicParsing="false" text="Pubblica">
+            <toggleGroup>
+                <ToggleGroup fx:id="ToggleGroup" />
+            </toggleGroup>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></RadioButton>
+        <RadioButton fx:id="privataButton" layoutX="454.0" layoutY="92.0" mnemonicParsing="false" text="Private" toggleGroup="$ToggleGroup">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></RadioButton>
+
+        <RadioButton fx:id="donnaButton" layoutX="506.0" layoutY="146.0" mnemonicParsing="false" text="Donne">
+            <toggleGroup>
+                <ToggleGroup fx:id="genderToggleGroup" />
+            </toggleGroup>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></RadioButton>
+        <RadioButton fx:id="uomoButton" layoutX="421.0" layoutY="146.0" mnemonicParsing="false" text="Uomini" toggleGroup="$genderToggleGroup">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></RadioButton>
     </children>
 </AnchorPane>

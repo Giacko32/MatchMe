@@ -4,10 +4,10 @@ package com.prova.matchme.GestionePartita.Interfacce;
 import com.prova.matchme.Entity.Campo;
 import com.prova.matchme.Entity.Sede;
 import com.prova.matchme.GestionePartita.Controller.PartitaCtrl;
-import jakarta.mail.Part;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -18,6 +18,7 @@ public class DettagliCampoView {
 	private ArrayList<Campo> listaLiberi;
 	private PartitaCtrl partitaCtrl;
 	private Campo selectedCampo;
+	private Sede selectedSede;
 
 	@FXML
 	private ListView<Campo> listaCampiLiberi;
@@ -29,6 +30,10 @@ public class DettagliCampoView {
 	private TextField nomeSede;
 	@FXML
 	private TextField indirizzoSede;
+	@FXML
+	private TextField dataOra;
+	@FXML
+	private Button buttonIscriviti;
 
 
 
@@ -43,11 +48,12 @@ public class DettagliCampoView {
 		listaCampiLiberi.setItems(listaCampi);
 		listaCampiLiberi.getSelectionModel().selectedItemProperty().addListener((observable, oldvalue, newvalue) -> {
 			selectedCampo = newvalue;
+			this.selectCampoOra();
 		});
 	}
 
 	public void ClickPrenota() {
-
+		partitaCtrl.prenotaPartita(selectedCampo, selectedSede);
 	}
 
 	@FXML
@@ -56,7 +62,18 @@ public class DettagliCampoView {
 	}
 
 	public void showDetails(Sede sede){
-
+		selectedSede = sede;
+		nomeCampo.setDisable(false);
+		sportCampo.setDisable(false);
+		nomeSede.setDisable(false);
+		indirizzoSede.setDisable(false);
+		dataOra.setDisable(false);
+		nomeCampo.setText(selectedCampo.getNomecampo());
+		sportCampo.setText(selectedCampo.getSport());
+		nomeSede.setText(sede.getNome_sede());
+		indirizzoSede.setText(sede.getIndirizzo());
+		dataOra.setText(selectedCampo.getOrarioString());
+		buttonIscriviti.setDisable(false);
 	}
 
 

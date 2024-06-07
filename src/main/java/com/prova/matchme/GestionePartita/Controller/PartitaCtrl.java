@@ -1,6 +1,7 @@
 package com.prova.matchme.GestionePartita.Controller;
 
 
+import com.mysql.cj.util.Util;
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Autenticazione.Interfacce.AdminView;
 import com.prova.matchme.Autenticazione.Interfacce.AllenaView;
@@ -8,21 +9,25 @@ import com.prova.matchme.Autenticazione.Interfacce.MainView;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Campo;
+import com.prova.matchme.Entity.Partita;
 import com.prova.matchme.Entity.Sede;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestionePartita.Interfacce.DetailsTuttePartiteView;
 import com.prova.matchme.GestionePartita.Interfacce.DettagliCampoView;
+import com.prova.matchme.GestionePartita.Interfacce.PrenotazionePartitaView;
 import com.prova.matchme.GestionePartita.Interfacce.SelezionaSedeSportDataView;
 import com.prova.matchme.Utils;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class PartitaCtrl {
 
     private Utente u;
     private Stage s;
     private DettagliCampoView boundary;
+    private LocalDateTime selectedDataOra;
 
     public PartitaCtrl(Utente u, Stage s) {
         this.u = u;
@@ -33,8 +38,9 @@ public class PartitaCtrl {
         }, 330, 220);
     }
 
-    public void passPartita() {
-
+    public void passPartita(Partita partita) {
+        DBMSView.queryCreaPartita(partita, u);
+        this.toMain();
     }
 
     public void passGiocatoreBonus(int id_player, int bonusValue) {
@@ -49,10 +55,10 @@ public class PartitaCtrl {
         return null;
     }
 
-    public void passSedeSportData(Sede sede, String sport, LocalDate data, Stage stage) {
+    public void passSedeSportData(Sede sede, String sport, LocalDateTime data, Stage stage) {
         stage.close();
         Utils.cambiaInterfaccia("FXML/VisualizzaCampiLiberi.fxml", s, c -> {
-            boundary = new DettagliCampoView(DBMSView.queryGetCampiLiberi(sede, sport, data), this);
+            boundary = new DettagliCampoView(DBMSView.queryGetCampiLiberi(sede, sport, data.toLocalDate()), this);
             return boundary;
         });
     }
@@ -133,7 +139,13 @@ public class PartitaCtrl {
 
     }
 
-    public void PartecipaClicked() {
+    public void prenotaPartita(Campo campo, Sede sede){
+        Utils.cambiaInterfaccia("FXML/Prenotazione2.fxml", s, c -> {
+            return new PrenotazionePartitaView(u, this, campo, sede, s);
+        });
+    }
+
+    public void PartecipaClicked(Campo campo, Sede sede) {
 
     }
 

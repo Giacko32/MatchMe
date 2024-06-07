@@ -4,6 +4,7 @@ import com.prova.matchme.Entity.*;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class DBMSView {
@@ -14,7 +15,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -290,7 +291,7 @@ public class DBMSView {
             var r = stmt.executeQuery();
             ArrayList<Campo> listaCampi = new ArrayList<Campo>();
             while (r.next()) {
-                listaCampi.add(new Campo(r.getInt("id"), r.getInt("ref_Sede"), r.getString("nome"), r.getString("sport"), r.getTime("orario")));
+                listaCampi.add(new Campo(r.getInt("id"), r.getInt("ref_Sede"), r.getString("nome"), r.getString("sport"), LocalDateTime.of(data, r.getTime("orario").toLocalTime())));
                 System.out.println(listaCampi.getLast().toString());
             }
             return listaCampi;
@@ -401,6 +402,43 @@ public class DBMSView {
             stmt.setString(1, String.valueOf(m.getIdmittente()));
             stmt.setString(2, String.valueOf(idchat));
             stmt.setString(3, m.getMessaggio());
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
+
+    public static void queryCreaPartita(Partita partita, Utente utente) {
+        String query = "INSERT INTO partita(ref_Campo,dataOra,tipo,vincoli) values(?,?,?,?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, partita.getRef_campo());
+            stmt.setTimestamp(2, Timestamp.valueOf(partita.getDataOra()));
+            stmt.setString(3, partita.getTipo());
+            stmt.setString(4, partita.getVincoli());
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+        String queryGetID = "SELECT id FROM partita WHERE ref_Campo = ? AND dataOra = ?";
+        int idNewPartita = 0;
+        try (PreparedStatement stmt = connDBMS.prepareStatement(queryGetID)) {
+            stmt.setInt(1, partita.getRef_campo());
+            stmt.setTimestamp(2, Timestamp.valueOf(partita.getDataOra()));
+            var r = stmt.executeQuery();
+            if(r.next()){
+                idNewPartita = r.getInt(1);
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+        String queryInsertCreatore = "INSERT INTO partecipa(ref_Utente,ref_Partita,n_squadra,n_giocatori_allenamento) values(?,?,?,?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(queryInsertCreatore)) {
+            stmt.setInt(1, utente.getId());
+            stmt.setInt(2, idNewPartita);
+            stmt.setInt(3, 1);
+            stmt.setInt(4, 0);
             var r = stmt.executeUpdate();
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);

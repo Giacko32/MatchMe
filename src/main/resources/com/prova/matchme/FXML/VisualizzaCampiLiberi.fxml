@@ -54,7 +54,7 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Button disable="true" layoutX="505.0" layoutY="445.0" mnemonicParsing="false" text="ISCRIVITI AL MATCH">
+        <Button onMouseClicked="#ClickPrenota" fx:id="buttonIscriviti" disable="true" layoutX="507.0" layoutY="355.0" mnemonicParsing="false" text="ISCRIVITI AL MATCH">
             <font>
                 <Font name="System Bold" size="12.800000190734863" />
             </font>
@@ -85,5 +85,11 @@
       <TextField fx:id="sportCampo" disable="true" editable="false" layoutX="560.0" layoutY="188.0" />
       <TextField fx:id="nomeSede" disable="true" editable="false" layoutX="560.0" layoutY="228.0" />
       <TextField fx:id="indirizzoSede" disable="true" editable="false" layoutX="560.0" layoutY="268.0" />
+      <Label layoutX="433.0" layoutY="314.0" text="Data e ora:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="dataOra" disable="true" editable="false" layoutX="560.0" layoutY="311.0" />
     </children>
 </AnchorPane>
