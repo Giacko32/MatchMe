@@ -54,41 +54,29 @@ public class ChatView {
 	}
 
 	@FXML
-	public ListView<String> listamessaggi;
+	public ListView<Messaggio> listamessaggi;
 	public TextArea newmex;
     @FXML
 	public void clickNewChat() {
 		this.chatCtrl.startCreateNewChat();
 	}
     @FXML
-	public void showChat(ArrayList<Messaggio> listamex,Chat chat) {
+	public void showChat(ArrayList<Messaggio> listamex) {
 		this.listamex=listamex;
 		listamessaggi.setDisable(false);
 		newmex.setDisable(false);
 		manda.setDisable(false);
-		ObservableList<String> items = FXCollections.observableArrayList();
-		for(int i=0;i<listamex.size();i++){
-			if(chat.getId_other()==listamex.get(i).getIdmittente()){
-				items.add("Messaggio: "+listamex.get(i).getMessaggio()+"\n"+"Mittente: "+chat);
-			}else{
-				items.add("Messaggio: "+listamex.get(i).getMessaggio()+"\n"+"Mittente: "+u.toString());
-			}
-		}
+		ObservableList<Messaggio> items = FXCollections.observableArrayList(listamex);
+		listamessaggi.setCellFactory(param->new MessageListCell(u.getId()));
 		listamessaggi.setItems(items);
 	}
 
 	@FXML
-	public void ShowNewMessage(Messaggio m,Chat chat){
+	public void ShowNewMessage(Messaggio m){
 		newmex.setText("");
 		this.listamex.add(m);
-		ObservableList<String> items = FXCollections.observableArrayList();
-		for(int i=0;i<this.listamex.size();i++){
-			if(chat.getId_other()==listamex.get(i).getIdmittente()){
-				items.add("Messaggio: "+listamex.get(i).getMessaggio()+"\n"+"Mittente: "+chat);
-			}else{
-				items.add("Messaggio: "+listamex.get(i).getMessaggio()+"\n"+"Mittente: "+u.toString());
-			}
-		}
+		ObservableList<Messaggio> items = FXCollections.observableArrayList(listamex);
+		listamessaggi.setCellFactory(param->new MessageListCell(u.getId()));
 		listamessaggi.setItems(items);
 	}
 

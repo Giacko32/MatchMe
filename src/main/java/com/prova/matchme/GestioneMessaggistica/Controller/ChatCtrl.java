@@ -47,7 +47,7 @@ public class ChatCtrl {
     public void setSelectedChat(Chat chat) {
         selectedchat=chat;
         ArrayList<Messaggio> listam = DBMSView.getdetailChat(chat);
-        controller.showChat(listam, chat);
+        controller.showChat(listam);
     }
 
     public void startCreateNewChat() {
@@ -59,7 +59,7 @@ public class ChatCtrl {
     }
 
     public void searchUser(String nome, String cognome) {
-        ArrayList<Utente> listautenti=DBMSView.querySearchUser(nome,cognome);
+        ArrayList<Utente> listautenti=DBMSView.querySearchUser(nome,cognome,u.getId());
         controllernew.updateLista(listautenti);
     }
     public void createNewChat(Utente utente) {
@@ -71,12 +71,12 @@ public class ChatCtrl {
                 return controller;
             });
         }else{
-            Utils.creaPannelloErrore("Non è stato selezionato nessun utente");
+            Utils.creaPannelloErrore("Non è stato selezionato\n nessun utente");
         }
     }
     public void InviaMessaggio(String messaggio) {
         DBMSView.queryNewMessage(new Messaggio(u.getId(),messaggio),selectedchat.getId());
-        controller.ShowNewMessage(new Messaggio(u.getId(),messaggio),selectedchat);
+        controller.ShowNewMessage(new Messaggio(u.getId(),messaggio));
     }
 
 }

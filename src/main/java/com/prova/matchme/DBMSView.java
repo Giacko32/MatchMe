@@ -347,11 +347,14 @@ public class DBMSView {
 
     }
 
-    public static ArrayList<Utente> querySearchUser(String nome, String cognome) {
-        String query = "SELECT id, nome, cognome FROM utente WHERE nome LIKE ? AND cognome LIKE ?";
+    public static ArrayList<Utente> querySearchUser(String nome, String cognome,int idutente) {
+        String query = "SELECT id, nome, cognome FROM utente u WHERE nome LIKE ? AND cognome LIKE ? AND u.id != ? AND u.id NOT IN (SELECT c.ref_Utente1 FROM chat c WHERE c.ref_Utente2 = ? UNION SELECT c.ref_Utente2 FROM chat c WHERE c.ref_Utente1 = ?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, "%" + nome + "%");
             stmt.setString(2, "%" + cognome + "%");
+            stmt.setString(3, String.valueOf(idutente));
+            stmt.setString(4, String.valueOf(idutente));
+            stmt.setString(5, String.valueOf(idutente));
             var r = stmt.executeQuery();
             ArrayList<Utente> listaUtenti = new ArrayList<>();
             while (r.next()) {
