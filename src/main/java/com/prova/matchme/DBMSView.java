@@ -2,6 +2,7 @@ package com.prova.matchme;
 
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.PartitaStorico;
+import com.prova.matchme.Entity.Sede;
 import com.prova.matchme.Entity.Utente;
 
 import java.sql.Connection;
@@ -19,7 +20,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -254,13 +255,13 @@ public class DBMSView {
 
     }
 
-    public static ArrayList<String> queryGetSedi() {
-        var query = "SELECT Nome_Sede, Indirizzo FROM sede";
+    public static ArrayList<Sede> queryGetSedi() {
+        var query = "SELECT Id_Sede, Nome_Sede, Indirizzo FROM sede";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             var r = stmt.executeQuery();
-            ArrayList<String> listaSedi = new ArrayList<String>();
+            ArrayList<Sede> listaSedi = new ArrayList<Sede>();
             while (r.next()) {
-                listaSedi.add(r.getString("Nome_Sede") + " " + r.getString("Indirizzo"));
+                listaSedi.add(new Sede(r.getInt(1), r.getString(2), r.getString(3)));
             }
             return listaSedi;
         } catch (SQLException e) {
@@ -276,7 +277,7 @@ public class DBMSView {
             var r = stmt.executeQuery();
             ArrayList<PartitaStorico> listaPartite = new ArrayList<>();
             while (r.next()) {
-                PartitaStorico p=PartitaStorico.createfromdb(r);
+                PartitaStorico p = PartitaStorico.createfromdb(r);
                 listaPartite.add(p);
             }
             return listaPartite;
