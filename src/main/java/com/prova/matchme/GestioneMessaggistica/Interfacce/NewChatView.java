@@ -44,7 +44,8 @@ public class NewChatView {
 
     @FXML
 	public void clickCreaChat() {
-
+		Utente selectedItem = listautenti.getSelectionModel().getSelectedItem();
+		this.chatCtrl.createNewChat(selectedItem);
 	}
 
 }

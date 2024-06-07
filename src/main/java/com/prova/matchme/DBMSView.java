@@ -363,6 +363,17 @@ public class DBMSView {
         }
         return null;
     }
+
+    public static void queryCreatenewChat(int idutente1,int idutente2){
+        String query="INSERT INTO chat(ref_Utente1,ref_Utente2) values(?,?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, String.valueOf(idutente1));
+            stmt.setString(2, String.valueOf(idutente2));
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
     
 
 

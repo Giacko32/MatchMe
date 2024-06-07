@@ -26,7 +26,6 @@ public class ChatCtrl {
     public ChatCtrl(Stage s, Utente u) {
         this.s = s;
         this.u = u;
-
         ArrayList<Chat> lista = DBMSView.queryGetChat(u.getId());
         Utils.cambiaInterfaccia("FXML/Chat.fxml", s, c -> {
             controller = new ChatView(s, u, this, lista);
@@ -60,13 +59,20 @@ public class ChatCtrl {
 
     public void searchUser(String nome, String cognome) {
         ArrayList<Utente> listautenti=DBMSView.querySearchUser(nome,cognome);
-        System.out.println(listautenti);
         controllernew.updateLista(listautenti);
-
     }
 
-    public void createNewChat(String userid, String nomeuser, String cognomeuser) {
-
+    public void createNewChat(Utente utente) {
+        if(utente!=null){
+            DBMSView.queryCreatenewChat(u.getId(),utente.getId());
+            ArrayList<Chat> lista = DBMSView.queryGetChat(u.getId());
+            Utils.cambiaInterfaccia("FXML/Chat.fxml", s, c -> {
+                controller = new ChatView(s, u, this, lista);
+                return controller;
+            });
+        }else{
+            Utils.creaPannelloErrore("Non è stato selezionato\nnessun utente");
+        }
     }
 
     public void InviaMessaggio() {
