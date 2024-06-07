@@ -1,14 +1,8 @@
 package com.prova.matchme;
 
-import com.prova.matchme.Entity.Gestore;
-import com.prova.matchme.Entity.PartitaStorico;
-import com.prova.matchme.Entity.Sede;
-import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.Entity.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -281,6 +275,25 @@ public class DBMSView {
                 listaPartite.add(p);
             }
             return listaPartite;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+    public static ArrayList<Campo> queryGetCampiLiberi(Sede sede, String sport, LocalDate data){
+        var query = "SELECT * FROM campo cp, orari o WHERE cp.ref_Sede = ? and cp.sport = ? and orario not in (SELECT TIME(p.dataOra) as orario FROM partita p, campo c WHERE DATE(p.dataOra) = ? and p.ref_Campo = c.id and c.id = cp.id) ORDER BY cp.id";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, sede.getId_sede());
+            stmt.setString(2, sport);
+            stmt.setDate(3, Date.valueOf(data));
+            var r = stmt.executeQuery();
+            ArrayList<Campo> listaCampi = new ArrayList<Campo>();
+            while (r.next()) {
+                listaCampi.add(new Campo(r.getInt("id"), r.getInt("ref_Sede"), r.getString("nome"), r.getString("sport"), r.getTime("orario")));
+                System.out.println(listaCampi.getLast().toString());
+            }
+            return listaCampi;
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }

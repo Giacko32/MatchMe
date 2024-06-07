@@ -11,6 +11,10 @@ public class Sede {
         this.indirizzo = ind;
     }
 
+    public int getId_sede(){
+        return this.id_sede;
+    }
+
     public String toString(){
         return this.nome_sede + " in " + this.indirizzo;
     }
