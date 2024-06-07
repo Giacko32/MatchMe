@@ -40,7 +40,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="tastoabb" disable="true" layoutX="103.0" layoutY="233.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="193.0" text="ATTIVA ABBONAMENTO" textAlignment="CENTER">
+      <Button fx:id="tastoabb" disable="true" layoutX="103.0" layoutY="233.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="193.0" text="ATTIVA ABBONAMENTO" textAlignment="CENTER" onMouseClicked="#ClickAttivaAbbonamento">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

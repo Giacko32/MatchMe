@@ -12,22 +12,16 @@
     <list default="true" id="4af3d7da-bc56-44b9-ace0-9872cfa66ce3" name="Changes" comment="Sono stati fatti tanti cambiamenti">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/Gestore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/Gestore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/Utente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Controller/ProfiloCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Controller/ProfiloCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/CodiceAbbonamentoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/CodiceAbbonamentoView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ManageProfileView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ManageProfileView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ManageProfileViewNonTesserato.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ModifyPasswordView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ModifyPasswordView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ModifyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ModifyView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ProfileView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneProfilo/Interfacce/ProfileView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Dialog Modifica Password.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Dialog Modifica Password.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/shared/ConfirmView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/shared/ConfirmView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Dialog Attiva Abbonamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Dialog Attiva Abbonamento.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Dialog Cod abb errato.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Dialog Cod abb errato.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Dialog Vecchia Pwd Errata.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Dialog cod abb corretto.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Dialog cod abb corretto.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Gestione Profilo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Gestione Profilo.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/GestioneProfiloGestore.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Modifica Credenziali Gestore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Modifica Credenziali Gestore.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Modifica Credenziali.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Modifica Credenziali.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/RecuperaPassword1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/RecuperaPassword1.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Visualizza Account.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Visualizza Account.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Visualizza AccountGestore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Visualizza AccountGestore.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,7 +238,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717345448560</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Sono stati fatti tanti cambiamenti">
+      <option name="closed" value="true" />
+      <created>1717714567035</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1717714567035</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

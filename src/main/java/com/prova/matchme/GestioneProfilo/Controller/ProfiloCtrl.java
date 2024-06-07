@@ -9,11 +9,9 @@ import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Utente;
-import com.prova.matchme.GestioneProfilo.Interfacce.ManageProfileView;
-import com.prova.matchme.GestioneProfilo.Interfacce.ModifyPasswordView;
-import com.prova.matchme.GestioneProfilo.Interfacce.ModifyView;
-import com.prova.matchme.GestioneProfilo.Interfacce.ProfileView;
+import com.prova.matchme.GestioneProfilo.Interfacce.*;
 import com.prova.matchme.Utils;
+import com.prova.matchme.shared.ConfirmView;
 import javafx.stage.Stage;
 
 import java.util.regex.Pattern;
@@ -162,20 +160,41 @@ public class ProfiloCtrl {
         return false;
     }
 
-    public void Passcode() {
-
+    public void Passcode(String codice) {
+        int id=DBMSView.queryGetIdCode(codice);
+        if(CheckId(id)){
+            DBMSView.querySetAbbonamento(u.getId());
+            u.setTipo("t");
+            CustomStage s=new CustomStage("SUCCESSO");
+            Utils.cambiaInterfaccia("FXML/Dialog cod abb corretto.fxml", s, c -> {
+                return new ConfirmView(this,s);
+            }, 400, 300);
+        }else{
+            Utils.cambiaInterfaccia("FXML/Dialog cod abb errato.fxml", s, c -> {
+                return new ConfirmView(this,s);
+            }, 400, 300);
+        }
     }
 
-    public boolean CheckId() {
+    public boolean CheckId(int id) {
+        if(id==u.getId()){
+            return true;
+        }
         return false;
     }
 
     public void CloseConfirmeView() {
-
+        CustomStage s=new CustomStage("Gestione Profilo");
+        Utils.cambiaInterfaccia("FXML/Gestione Profilo.fxml",s , c -> {
+            return new ManageProfileView(this, u, s);
+        }, 400, 300);
     }
 
     public void AttivaAbbonamento() {
-
+        CustomStage stage=new CustomStage("Inserisci il tuo codice");
+        Utils.cambiaInterfaccia("FXML/Dialog Attiva Abbonamento.fxml", stage, c -> {
+            return new CodiceAbbonamentoView(this,stage);
+        }, 400, 300);
     }
 
 }

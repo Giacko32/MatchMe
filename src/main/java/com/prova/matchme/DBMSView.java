@@ -201,7 +201,7 @@ public class DBMSView {
         }
     }
 
-    public static void queryDBMSUpdatePassword(Utente u, Gestore g,String password) {
+    public static void queryDBMSUpdatePassword(Utente u, Gestore g, String password) {
         if (u != null) {
             var query = "UPDATE utente SET passwordUtente=? WHERE id=?";
             try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
@@ -222,6 +222,33 @@ public class DBMSView {
                 erroreComunicazioneDBMS(e);
             }
         }
+    }
+
+
+    public static int queryGetIdCode(String codice) {
+        var query = "SELECT ref_Tesserato FROM abbonamento WHERE id= ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, codice);
+            var r = stmt.executeQuery();
+            if (r.next()) {
+                return r.getInt("ref_Tesserato");
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return 0;
+    }
+
+    public static void querySetAbbonamento(int id) {
+        var query = "UPDATE utente SET tipo=? WHERE id=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, "t");
+            stmt.setString(2, String.valueOf(id));
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
     }
 
 

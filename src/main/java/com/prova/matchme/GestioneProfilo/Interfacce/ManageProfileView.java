@@ -61,6 +61,12 @@ public class ManageProfileView {
         this.profiloCtrl.ModificaPassword();
         s.close();
     }
+
+    @FXML
+    public void ClickAttivaAbbonamento(){
+       this.profiloCtrl.AttivaAbbonamento();
+       s.close();
+    }
     @FXML
     public void back() {
         this.profiloCtrl.toMain();

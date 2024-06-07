@@ -47,6 +47,9 @@ public class Utente {
     public void setPassword(String password){
         this.password=password;
     }
+    public void setTipo(String tipo){
+        this.tipo=tipo;
+    }
     public String getEmail(){
         return this.email;
     }
