@@ -10,7 +10,7 @@
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
-                <ImageView onMouseClicked="#back" fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -49,12 +49,11 @@
                 <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <Label disable="true" layoutX="488.0" layoutY="79.0" text="Dettagli campo selezionato">
+        <Label layoutX="488.0" layoutY="79.0" text="Dettagli campo selezionato">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <ListView disable="true" layoutX="418.0" layoutY="104.0" prefHeight="322.0" prefWidth="317.0" />
         <Button disable="true" layoutX="505.0" layoutY="445.0" mnemonicParsing="false" text="ISCRIVITI AL MATCH">
             <font>
                 <Font name="System Bold" size="12.800000190734863" />
@@ -62,5 +61,29 @@
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>
+      <Label layoutX="434.0" layoutY="150.0" text="Nome del campo:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="433.0" layoutY="191.0" text="Sport:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="433.0" layoutY="231.0" text="Nome della sede:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="433.0" layoutY="271.0" text="Indirizzo:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nomeCampo" disable="true" editable="false" layoutX="560.0" layoutY="147.0" />
+      <TextField fx:id="sportCampo" disable="true" editable="false" layoutX="560.0" layoutY="188.0" />
+      <TextField fx:id="nomeSede" disable="true" editable="false" layoutX="560.0" layoutY="228.0" />
+      <TextField fx:id="indirizzoSede" disable="true" editable="false" layoutX="560.0" layoutY="268.0" />
     </children>
 </AnchorPane>

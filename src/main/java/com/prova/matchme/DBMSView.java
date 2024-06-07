@@ -44,7 +44,7 @@ public class DBMSView {
                 DBMSView.connDBMS = DriverManager.getConnection(buildConnectionUrl("matchmeDB"));
                 System.out.println("Connessione effettuata");
             }
-        } catch (java.sql.SQLException e) {
+        } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
 
         }
@@ -281,7 +281,7 @@ public class DBMSView {
         return null;
     }
 
-    public static ArrayList<Campo> queryGetCampiLiberi(Sede sede, String sport, LocalDate data){
+    public static ArrayList<Campo> queryGetCampiLiberi(Sede sede, String sport, LocalDate data) {
         var query = "SELECT * FROM campo cp, orari o WHERE cp.ref_Sede = ? and cp.sport = ? and orario not in (SELECT TIME(p.dataOra) as orario FROM partita p, campo c WHERE DATE(p.dataOra) = ? and p.ref_Campo = c.id and c.id = cp.id) ORDER BY cp.id";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, sede.getId_sede());
@@ -299,7 +299,8 @@ public class DBMSView {
         }
         return null;
     }
-    public static ArrayList<Chat> queryGetChat(int id){
+
+    public static ArrayList<Chat> queryGetChat(int id) {
         String query = "SELECT c.id, " +
                 "CASE WHEN c.ref_Utente1 = ? THEN u2.id ELSE u1.id END AS altro_id, " +
                 "CASE WHEN c.ref_Utente1 = ? THEN u2.nome ELSE u1.nome END AS nome, " +
@@ -317,7 +318,7 @@ public class DBMSView {
             var r = stmt.executeQuery();
             ArrayList<Chat> listaChat = new ArrayList<>();
             while (r.next()) {
-                Chat c=new Chat(r.getInt("id"),r.getInt("altro_id"),r.getString("nome")+" "+r.getString("cognome"));
+                Chat c = new Chat(r.getInt("id"), r.getInt("altro_id"), r.getString("nome") + " " + r.getString("cognome"));
                 listaChat.add(c);
             }
             return listaChat;
@@ -327,14 +328,14 @@ public class DBMSView {
         return null;
     }
 
-    public static ArrayList<Messaggio> getdetailChat(Chat chat){
-        String query="SELECT * FROM messaggi WHERE ref_Chat=?";
+    public static ArrayList<Messaggio> getdetailChat(Chat chat) {
+        String query = "SELECT * FROM messaggi WHERE ref_Chat=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, String.valueOf(chat.getId()));
             var r = stmt.executeQuery();
             ArrayList<Messaggio> listamessaggi = new ArrayList<>();
             while (r.next()) {
-                Messaggio m=new Messaggio(r.getInt("ref_Utente"),r.getString("messaggio"));
+                Messaggio m = new Messaggio(r.getInt("ref_Utente"), r.getString("messaggio"));
                 listamessaggi.add(m);
             }
             return listamessaggi;
@@ -346,7 +347,7 @@ public class DBMSView {
 
     }
 
-    public static ArrayList<Utente> querySearchUser(String nome,String cognome){
+    public static ArrayList<Utente> querySearchUser(String nome, String cognome) {
         String query = "SELECT id, nome, cognome FROM utente WHERE nome LIKE ? AND cognome LIKE ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, "%" + nome + "%");
@@ -354,7 +355,7 @@ public class DBMSView {
             var r = stmt.executeQuery();
             ArrayList<Utente> listaUtenti = new ArrayList<>();
             while (r.next()) {
-                Utente u=new Utente(r.getInt("id"),r.getString("nome"),r.getString("cognome"));
+                Utente u = new Utente(r.getInt("id"), r.getString("nome"), r.getString("cognome"));
                 listaUtenti.add(u);
             }
             return listaUtenti;
@@ -364,8 +365,8 @@ public class DBMSView {
         return null;
     }
 
-    public static void queryCreatenewChat(int idutente1,int idutente2){
-        String query="INSERT INTO chat(ref_Utente1,ref_Utente2) values(?,?)";
+    public static void queryCreatenewChat(int idutente1, int idutente2) {
+        String query = "INSERT INTO chat(ref_Utente1,ref_Utente2) values(?,?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, String.valueOf(idutente1));
             stmt.setString(2, String.valueOf(idutente2));
@@ -374,7 +375,22 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
     }
-    
+
+    public static Sede queryGetDetailsCampo(Campo campo) {
+        String query = "SELECT Id_Sede, Indirizzo, Nome_Sede FROM sede, campo WHERE Id_Sede = ref_Sede and id = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, campo.getId_campo());
+            var r = stmt.executeQuery();
+            Sede sede = null;
+            if (r.next()) {
+                sede = new Sede(r.getInt(1), r.getString(3), r.getString(2));
+            }
+            return sede;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
 
 
 }

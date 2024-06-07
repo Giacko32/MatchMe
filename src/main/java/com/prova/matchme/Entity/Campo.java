@@ -18,6 +18,10 @@ public class Campo {
         this.orario = ora;
     }
 
+    public int getId_campo(){
+        return this.id_campo;
+    }
+
     public String toString(){
         return this.nomecampo + " di " + this.sport + " alle ore " + this.orario;
     }

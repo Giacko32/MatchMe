@@ -7,6 +7,7 @@ import com.prova.matchme.Autenticazione.Interfacce.AllenaView;
 import com.prova.matchme.Autenticazione.Interfacce.MainView;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
+import com.prova.matchme.Entity.Campo;
 import com.prova.matchme.Entity.Sede;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestionePartita.Interfacce.DetailsTuttePartiteView;
@@ -21,6 +22,7 @@ public class PartitaCtrl {
 
     private Utente u;
     private Stage s;
+    private DettagliCampoView boundary;
 
     public PartitaCtrl(Utente u, Stage s) {
         this.u = u;
@@ -50,7 +52,8 @@ public class PartitaCtrl {
     public void passSedeSportData(Sede sede, String sport, LocalDate data, Stage stage) {
         stage.close();
         Utils.cambiaInterfaccia("FXML/VisualizzaCampiLiberi.fxml", s, c -> {
-            return new DettagliCampoView(DBMSView.queryGetCampiLiberi(sede, sport, data), this);
+            boundary = new DettagliCampoView(DBMSView.queryGetCampiLiberi(sede, sport, data), this);
+            return boundary;
         });
     }
 
@@ -106,8 +109,8 @@ public class PartitaCtrl {
         return false;
     }
 
-    public void SelectedCampo() {
-
+    public void SelectedCampo(Campo campo) {
+        boundary.showDetails(DBMSView.queryGetDetailsCampo(campo));
     }
 
     public void SelectedPartita() {
