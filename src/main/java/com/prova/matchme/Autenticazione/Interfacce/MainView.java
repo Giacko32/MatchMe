@@ -70,7 +70,7 @@ public class MainView {
 
     @FXML
     public void ClickStorico() {
-        new ProfiloCtrl(this.s,this.u);
+        new ProfiloCtrl(this.s, this.u);
     }
 
     public void ClickNotifiche() {
@@ -78,10 +78,10 @@ public class MainView {
     }
 
     public void ClickVisualizzaCampiLiberi() {
-        new PartitaCtrl(u);
+        new PartitaCtrl(u, s);
     }
 
-	@FXML
+    @FXML
     public void ClickVisualizzaPartite() {
         Utils.cambiaInterfaccia("FXML/Visualizza partite.fxml", s, c -> {
             return new DetailsTuttePartiteView();

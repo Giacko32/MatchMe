@@ -13,6 +13,7 @@ module com.prova.matchme {
     requires java.sql;
     requires mysql.connector.j;
     requires jakarta.mail;
+    requires com.fasterxml.jackson.annotation;
 
     opens com.prova.matchme to javafx.fxml;
     opens com.prova.matchme.Autenticazione.Interfacce to javafx.fxml;
