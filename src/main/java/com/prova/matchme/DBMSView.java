@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class DBMSView {
 
@@ -17,7 +18,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -245,10 +246,26 @@ public class DBMSView {
             stmt.setString(1, "t");
             stmt.setString(2, String.valueOf(id));
             var r = stmt.executeUpdate();
+
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
 
+    }
+
+    public static ArrayList<String> queryGetSedi(){
+        var query = "SELECT Nome_Sede, Indirizzo FROM sede";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            var r = stmt.executeQuery();
+            ArrayList<String> listaSedi = new ArrayList<String>();
+            while(r.next()){
+                listaSedi.add(r.getString("Nome_Sede") + " " + r.getString("Indirizzo"));
+            }
+            return listaSedi;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return  null;
     }
 
 

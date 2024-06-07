@@ -76,7 +76,7 @@ public class MainView {
     }
 
     public void ClickVisualizzaCampiLiberi() {
-
+        new PartitaCtrl(u);
     }
 
 	@FXML

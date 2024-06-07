@@ -1,7 +1,23 @@
 package com.prova.matchme.GestionePartita.Controller;
 
 
+import com.prova.matchme.CustomStage;
+import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.GestionePartita.Interfacce.DetailsTuttePartiteView;
+import com.prova.matchme.GestionePartita.Interfacce.SelezionaSedeSportDataView;
+import com.prova.matchme.Utils;
+import javafx.stage.Stage;
+
 public class PartitaCtrl {
+
+	Utente u;
+
+	public PartitaCtrl(Utente u){
+		this.u = u;
+		Utils.cambiaInterfaccia("FXML/DialogSelezionaSedeSportData.fxml", new CustomStage("Seleziona sede, sport e data"), c ->{
+			return new SelezionaSedeSportDataView();
+		}, 330, 220);
+	}
 
 	public void passPartita() {
 

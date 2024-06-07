@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestionePartita.Interfacce.DetailsTuttePartiteView">
+    <children>
+        <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
+            <children>
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/ic--baseline-arrow-back.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor></ImageView>
+                <Label layoutX="57.0" layoutY="16.0" text="VISUALIZZA CAMPI LIBERI" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.800000190734863" />
+                    </font></Label>
+                <ImageView fitHeight="30.0" fitWidth="192.0" layoutX="598.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/basecopertinabw.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="529.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/calcio_gw.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="556.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/padel_GW.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="57.0" fitWidth="20.0" layoutX="502.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/tennis_gw.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <ListView fx:id="listaCampiLiberi" layoutX="14.0" layoutY="86.0" prefHeight="387.0" prefWidth="388.0" />
+        <Label layoutX="162.0" layoutY="63.0" text="Campi Liberi">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label disable="true" layoutX="488.0" layoutY="79.0" text="Dettagli campo selezionato">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <ListView disable="true" layoutX="418.0" layoutY="104.0" prefHeight="322.0" prefWidth="317.0" />
+        <Button disable="true" layoutX="505.0" layoutY="445.0" mnemonicParsing="false" text="ISCRIVITI AL MATCH">
+            <font>
+                <Font name="System Bold" size="12.800000190734863" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Button>
+    </children>
+</AnchorPane>
