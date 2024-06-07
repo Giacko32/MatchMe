@@ -2,6 +2,7 @@ package com.prova.matchme.Autenticazione.Interfacce;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.GestioneMessaggistica.Controller.ChatCtrl;
 import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -52,6 +53,11 @@ public class AllenaView {
 	@FXML
 	public void ClickStorico() {
 		new ProfiloCtrl(this.s,this.u);
+	}
+
+	@FXML
+	public void clickChat() {
+		new ChatCtrl(s,u);
 	}
 
 	public void ClickProfile() {

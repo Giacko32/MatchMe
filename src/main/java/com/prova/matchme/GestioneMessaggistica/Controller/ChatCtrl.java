@@ -4,7 +4,6 @@ package com.prova.matchme.GestioneMessaggistica.Controller;
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Autenticazione.Interfacce.AllenaView;
 import com.prova.matchme.Autenticazione.Interfacce.MainView;
-import com.prova.matchme.Autenticazione.Interfacce.RegisterView;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Chat;
 import com.prova.matchme.Entity.Messaggio;
@@ -22,6 +21,7 @@ public class ChatCtrl {
     private Utente u;
     private ChatView controller;
     private NewChatView controllernew;
+    private Chat selectedchat;
 
     public ChatCtrl(Stage s, Utente u) {
         this.s = s;
@@ -45,6 +45,7 @@ public class ChatCtrl {
     }
 
     public void setSelectedChat(Chat chat) {
+        selectedchat=chat;
         ArrayList<Messaggio> listam = DBMSView.getdetailChat(chat);
         controller.showChat(listam, chat);
     }
@@ -71,12 +72,13 @@ public class ChatCtrl {
                 return controller;
             });
         }else{
-            Utils.creaPannelloErrore("Non è stato selezionato\nnessun utente");
+            Utils.creaPannelloErrore("Non è stato selezionato nessun utente");
         }
     }
 
-    public void InviaMessaggio() {
-
+    public void InviaMessaggio(String messaggio) {
+        DBMSView.queryNewMessage(new Messaggio(u.getId(),messaggio),selectedchat.getId());
+        controller.ShowNewMessage(new Messaggio(u.getId(),messaggio),selectedchat);
     }
 
 }

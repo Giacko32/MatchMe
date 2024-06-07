@@ -20,7 +20,7 @@ public class DBMSView {
 
 
     private static void erroreComunicazioneDBMS(Exception e) {
-        //Main.log.error("Errore durante comunicazione con DBMS", e);
+        e.printStackTrace();
         Utils.creaPannelloErrore("C'è stato un problema \ndurante la comunicazione \ncon la base di dati, riprova");
 
     }
@@ -390,6 +390,18 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         return null;
+    }
+
+    public static void queryNewMessage(Messaggio m, int idchat) {
+        String query = "INSERT INTO messaggi(ref_Utente,ref_Chat,messaggio) values(?,?,?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, String.valueOf(m.getIdmittente()));
+            stmt.setString(2, String.valueOf(idchat));
+            stmt.setString(3, m.getMessaggio());
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
     }
 
 

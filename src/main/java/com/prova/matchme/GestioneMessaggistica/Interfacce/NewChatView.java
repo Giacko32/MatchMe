@@ -39,7 +39,9 @@ public class NewChatView {
 	public void updateLista(ArrayList<Utente> listautent) {
 		ObservableList<Utente> items = FXCollections.observableArrayList(listautent);
 		listautenti.setItems(items);
-		crea.setDisable(false);
+		listautenti.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			crea.setDisable(false);
+		});
 	}
 
     @FXML

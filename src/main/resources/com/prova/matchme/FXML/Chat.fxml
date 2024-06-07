@@ -10,7 +10,7 @@
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
-                <ImageView onMouseClicked="#back" fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" >
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -50,16 +50,19 @@
             </font>
         </Label>
       <ListView fx:id="listamessaggi" disable="true" layoutX="410.0" layoutY="65.0" prefHeight="348.0" prefWidth="324.0" />
-      <TextArea fx:id="newmex" disable="true" layoutX="406.0" layoutY="424.0" prefHeight="64.0" prefWidth="324.0" promptText="Testo inserito da madare nella chat selezionata">
+      <TextArea fx:id="newmex" disable="true" layoutX="406.0" layoutY="424.0" prefHeight="64.0" prefWidth="279.0" promptText="Testo inserito da madare nella chat selezionata">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextArea>
-      <ImageView disable="true" fitHeight="50.0" fitWidth="36.0" layoutX="551.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="manda" disable="true" fitHeight="50.0" fitWidth="36.0" layoutX="698.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#ClickInvia">
          <image>
             <Image url="@../images/8732804.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
-      <Button onMouseClicked="#clickNewChat" layoutX="292.0" layoutY="59.0" mnemonicParsing="false" text="+Crea Nuova Chat">
+      <Button layoutX="292.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#clickNewChat" text="+Crea Nuova Chat">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>

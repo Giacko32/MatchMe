@@ -114,7 +114,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Pane>
-        <Pane layoutX="253.0" layoutY="260.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+        <Pane onMouseClicked="#clickChat" layoutX="253.0" layoutY="260.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="37.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="CHAT" textAlignment="CENTER" wrapText="true">
                     <font>

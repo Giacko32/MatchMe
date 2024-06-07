@@ -13,6 +13,7 @@ public class Chat {
         this.idchat=idchat;
     }
 
+
     public int getId(){
         return this.idchat;
     }
