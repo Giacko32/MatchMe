@@ -1,6 +1,7 @@
 package com.prova.matchme;
 
 import com.prova.matchme.Entity.Gestore;
+import com.prova.matchme.Entity.PartitaStorico;
 import com.prova.matchme.Entity.Utente;
 
 import java.sql.Connection;
@@ -18,7 +19,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -253,19 +254,36 @@ public class DBMSView {
 
     }
 
-    public static ArrayList<String> queryGetSedi(){
+    public static ArrayList<String> queryGetSedi() {
         var query = "SELECT Nome_Sede, Indirizzo FROM sede";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             var r = stmt.executeQuery();
             ArrayList<String> listaSedi = new ArrayList<String>();
-            while(r.next()){
+            while (r.next()) {
                 listaSedi.add(r.getString("Nome_Sede") + " " + r.getString("Indirizzo"));
             }
             return listaSedi;
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
-        return  null;
+        return null;
+    }
+
+    public static ArrayList<PartitaStorico> queryPartiteGiocate(int id) {
+        var query = "SELECT pg.id_PartitaStorico, pg.id_partita_origine, pg.risultato, pg.data, c.id, c.nome, c.sport FROM partitestorico AS pg JOIN partecipa ON pg.id_PartitaStorico = partecipa.ref_Partita JOIN partita AS p ON pg.id_partita_origine = p.id JOIN campo AS c ON p.ref_Campo = c.id WHERE partecipa.ref_Utente = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, String.valueOf(id));
+            var r = stmt.executeQuery();
+            ArrayList<PartitaStorico> listaPartite = new ArrayList<>();
+            while (r.next()) {
+                PartitaStorico p=PartitaStorico.createfromdb(r);
+                listaPartite.add(p);
+            }
+            return listaPartite;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
     }
 
 

@@ -67,8 +67,9 @@ public class MainView {
         new ProfiloCtrl(this.s, this.u, null);
     }
 
+    @FXML
     public void ClickStorico() {
-
+        new ProfiloCtrl(this.s,this.u);
     }
 
     public void ClickNotifiche() {

@@ -8,12 +8,14 @@ import com.prova.matchme.Autenticazione.Interfacce.MainView;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Gestore;
+import com.prova.matchme.Entity.PartitaStorico;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestioneProfilo.Interfacce.*;
 import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class ProfiloCtrl {
@@ -36,6 +38,13 @@ public class ProfiloCtrl {
                 return new ManageProfileView(this, g, stage);
             }, 400, 250);
         }
+    }
+
+    public ProfiloCtrl(Stage s,Utente u){
+        ArrayList<PartitaStorico> lista=DBMSView.queryPartiteGiocate(u.getId());
+        Utils.cambiaInterfaccia("FXML/Visualizza Partite Giocate.fxml", s, c -> {
+            return new StoricoView(this, s,lista);
+        });
     }
 
     public void toMain() {

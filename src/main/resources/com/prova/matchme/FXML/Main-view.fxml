@@ -97,7 +97,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Pane>
-      <Pane layoutX="190.0" layoutY="242.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10; -fx-background-color: #ffffff;">
+      <Pane onMouseClicked="#ClickStorico" layoutX="190.0" layoutY="242.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10; -fx-background-color: #ffffff;">
          <children>
             <Label layoutX="19.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="VISUALIZZA PARTITE GIOCATE" textAlignment="CENTER" wrapText="true">
                <font>
