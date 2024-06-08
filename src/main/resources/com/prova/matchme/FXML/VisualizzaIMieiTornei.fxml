@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneTornei.Interfacce.VisualizzaDettagliMioTorneo">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
@@ -43,7 +43,7 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <ListView layoutX="14.0" layoutY="86.0" prefHeight="393.0" prefWidth="388.0" />
+        <ListView fx:id="ListaMieTornei" layoutX="14.0" layoutY="86.0" prefHeight="393.0" prefWidth="388.0" />
         <Label layoutX="15.0" layoutY="64.0" text="Tornei in cui risulti iscritto:">
             <font>
                 <Font name="System Bold" size="14.0" />

@@ -15,7 +15,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Gioele2002!";
 
     private static Connection connDBMS = null;
 
@@ -602,6 +602,23 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
 
+    }
+
+    public static ArrayList<Torneo> queryGetImieiTornei(Utente utente) {
+        String query = "SELECT id, ref_Sede, sport, n_Squadre, n_giocatori_squadra,vincoli FROM Iscrizione, Torneo WHERE Iscrizione.ref_Torneo = Torneo.id AND Iscrizione.ref_Utente = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, utente.getId());
+            var r = stmt.executeQuery();
+            ArrayList<Torneo> torneiUtente = new ArrayList<Torneo>();
+            while (r.next()) {
+                torneiUtente.add(new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6)));
+            }
+            return torneiUtente;
+
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
     }
 
 

@@ -22,6 +22,7 @@ module com.prova.matchme {
     opens com.prova.matchme.GestionePartita.Interfacce to javafx.fxml;
     opens com.prova.matchme.GestioneMessaggistica.Interfacce to javafx.fxml;
     opens com.prova.matchme.GestioneNotifiche.Interfacce to javafx.fxml;
+    opens com.prova.matchme.GestioneTornei.Interfacce to javafx.fxml;
 
 
     exports com.prova.matchme;

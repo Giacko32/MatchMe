@@ -7,6 +7,7 @@ import com.prova.matchme.GestioneNotifiche.Controller.NotifyCtrl;
 import com.prova.matchme.GestionePartita.Controller.PartitaCtrl;
 import com.prova.matchme.GestionePartita.Interfacce.DetailsTuttePartiteView;
 import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
+import com.prova.matchme.GestioneTornei.Controller.TorneiCtrl;
 import com.prova.matchme.Main;
 import com.prova.matchme.Utils;
 import javafx.fxml.FXML;
@@ -88,7 +89,7 @@ public class MainView {
     }
 
     public void ClickTornei() {
-
+        new TorneiCtrl(this.u, this.s);
     }
 
     public void ClickAllenamenti() {
