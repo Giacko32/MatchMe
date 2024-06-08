@@ -55,8 +55,10 @@ public class PartitaCtrl {
         return null;
     }
 
-    public void passSedeSportData(Sede sede, String sport, LocalDateTime data, Stage stage) {
-        stage.close();
+    public void passSedeSportData(Sede sede, String sport, LocalDateTime data, Stage stage,int ste) {
+        if(ste!=1) {
+            stage.close();
+        }
         Utils.cambiaInterfaccia("FXML/VisualizzaCampiLiberi.fxml", s, c -> {
             boundary = new DettagliCampoView(DBMSView.queryGetCampiLiberi(sede, sport, data.toLocalDate()), this);
             return boundary;

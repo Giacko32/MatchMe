@@ -54,7 +54,7 @@ public class SelezionaSedeSportDataView {
         if (sedeSelected == null || sportSelected == null || selezionaData.getValue() == null) {
             Utils.creaPannelloErrore("Ci sono dei campi vuoti");
         } else {
-            partitaCtrl.passSedeSportData(sedeSelected, sportSelected, selezionaData.getValue().atTime(0, 0), stage);
+            partitaCtrl.passSedeSportData(sedeSelected, sportSelected, selezionaData.getValue().atTime(0, 0), stage,0);
         }
     }
 

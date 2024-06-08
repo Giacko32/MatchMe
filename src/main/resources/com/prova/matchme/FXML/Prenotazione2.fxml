@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestionePartita.Interfacce.PrenotazionePartitaView">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestionePartita.Interfacce.PrenotazionePartitaView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMousePressed="#goBack" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image></ImageView>
@@ -60,7 +60,7 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Button onMouseClicked="#ClickCreaPartita" layoutX="511.0" layoutY="322.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Crea partita" textFill="WHITE">
+      <Button layoutX="511.0" layoutY="322.0" mnemonicParsing="false" onMouseClicked="#ClickCreaPartita" style="-fx-background-color: #03b53f;" text="Crea partita" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -71,7 +71,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Spinner>
-        <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/ic--baseline-arrow-back.png" />
             </image>

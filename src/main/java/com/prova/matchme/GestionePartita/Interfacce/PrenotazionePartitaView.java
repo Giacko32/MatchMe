@@ -90,7 +90,7 @@ public class PrenotazionePartitaView {
 
     @FXML
     public void goBack() {
-        partitaCtrl.passSedeSportData(selectedSede, selectedCampo.getSport(), selectedCampo.getOrario(), new Stage());
+        partitaCtrl.passSedeSportData(selectedSede, selectedCampo.getSport(), selectedCampo.getOrario(), stage,1);
     }
 
 }
