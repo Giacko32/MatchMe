@@ -36,6 +36,6 @@ public class Partita {
     }
 
     public String toString(){
-        return this.vincoli;
+        return "partita in data " + dataOra.toLocalDate().toString() + " alle ore " + dataOra.toLocalTime().toString();
     }
 }

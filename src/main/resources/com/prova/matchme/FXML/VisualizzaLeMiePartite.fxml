@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestionePartita.Interfacce.DetailsMiaPartitaView">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestionePartita.Interfacce.DetailsMiaPartitaView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
@@ -54,7 +54,6 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <ListView disable="true" layoutX="417.0" layoutY="105.0" prefHeight="320.0" prefWidth="318.0" />
         <Button disable="true" layoutX="417.0" layoutY="439.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text=" AGGIUNGI &#10;GIOCATORE">
          <font>
             <Font size="10.0" />

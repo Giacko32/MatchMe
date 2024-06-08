@@ -35,8 +35,9 @@ public class PartitaCtrl {
         }, 330, 220);
     }
 
-    public PartitaCtrl(Utente u) {
+    public PartitaCtrl(Utente u, Stage stage, boolean Partite) {
         this.u = u;
+        this.s =stage;
         Stage stageDialog = new CustomStage("Seleziona partite");
         Utils.cambiaInterfaccia("FXML/SelezioneVisualizzaPartite.fxml", stageDialog, c -> {
             return new SelectTipoPartiteView(this, stageDialog);
@@ -70,8 +71,8 @@ public class PartitaCtrl {
         });
     }
 
-    public void passTipoPartita(boolean Mie, Stage s) {
-        s.close();
+    public void passTipoPartita(boolean Mie, Stage st) {
+        st.close();
         if (Mie) {
             Utils.cambiaInterfaccia("FXML/VisualizzaLeMiePartite.fxml", s, c -> {
                 return new DetailsMiaPartitaView(DBMSView.queryGetPartiteUtente(u));

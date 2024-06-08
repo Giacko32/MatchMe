@@ -84,7 +84,7 @@ public class MainView {
 
     @FXML
     public void ClickVisualizzaPartite() {
-        new PartitaCtrl(u);
+        new PartitaCtrl(u, s, true);
     }
 
     public void ClickTornei() {
