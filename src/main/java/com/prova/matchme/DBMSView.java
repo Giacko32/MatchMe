@@ -463,5 +463,48 @@ public class DBMSView {
         return null;
     }
 
+    public static Partita queryGetDetailsPartita(int idPartita){
+        String query="SELECT * FROM partita WHERE id=? ";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, idPartita);
+            var r = stmt.executeQuery();
+            if(r.next()){
+                return new Partita(r.getInt("id"),r.getInt("ref_Campo"),r.getDate("dataOra").toLocalDate().atStartOfDay(),r.getString("tipo"),r.getString("vincoli"));
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+    public static int querygetNpartecipanti(int idPartita){
+        String query="SELECT COUNT(ref_Utente) AS numero_partecipanti FROM partecipa WHERE ref_Partita=? GROUP BY ref_Partita; ";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, idPartita);
+            var r = stmt.executeQuery();
+            if(r.next()){
+                return r.getInt("numero_partecipanti");
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return 0;
+    }
+
+    public static boolean queryGiocatoreOccupato(int idutente,LocalDateTime dataora){
+        String query="SELECT p.id FROM partita p JOIN partecipa pt ON p.id = pt.ref_Partita WHERE pt.ref_Utente = ? AND p.dataOra = ? LIMIT 1";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, idutente);
+            stmt.setDate(2, Date.valueOf(dataora.toLocalDate()));
+            var r = stmt.executeQuery();
+            if(r.next()){
+                return false;
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return true;
+    }
+
 
 }
