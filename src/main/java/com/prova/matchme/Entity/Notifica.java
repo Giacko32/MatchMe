@@ -17,6 +17,10 @@ public class Notifica {
         return this.messaggio;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public int getTipo(){
         return this.tipo;
     }

@@ -49,7 +49,7 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-      <Button layoutX="307.0" layoutY="458.0" mnemonicParsing="false" text="CANCELLA NOTIFICA">
+      <Button fx:id="cancella" disable="true" onMouseClicked="#clickDelete" layoutX="307.0" layoutY="458.0" mnemonicParsing="false" text="CANCELLA NOTIFICA">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

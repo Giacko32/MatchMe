@@ -9,6 +9,10 @@ public class UtentePart extends Utente{
         super(id, nome, cognome, email, username, tipo, password, livello, eta, sesso);
         this.squadra=squadra;
     }
+    public UtentePart(Utente u,int squadra){
+        super(u.getId(), u.getNome(), u.getCognome(), u.getEmail(), u.getUsername(),u.getTipo(), u.getPassword(), u.getLivello(),1,"");
+        this.squadra=squadra;
+    }
 
     public int getSquadra() {
         return squadra;

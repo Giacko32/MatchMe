@@ -5,10 +5,8 @@ import com.prova.matchme.Autenticazione.Interfacce.AllenaView;
 import com.prova.matchme.Autenticazione.Interfacce.MainView;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
-import com.prova.matchme.Entity.Notifica;
-import com.prova.matchme.Entity.Partita;
-import com.prova.matchme.Entity.Utente;
-import com.prova.matchme.Entity.UtentePart;
+import com.prova.matchme.Entity.*;
+import com.prova.matchme.GestioneNotifiche.Interfacce.AccettazioneView;
 import com.prova.matchme.GestioneNotifiche.Interfacce.DetailPartitaView;
 import com.prova.matchme.GestioneNotifiche.Interfacce.NotifyView;
 import com.prova.matchme.Utils;
@@ -26,6 +24,10 @@ public class NotifyCtrl {
     private int numpartsport;
     private NotifyView controller;
     private Notifica selectednotifica;
+    private Partita partitaselected;
+    private ArrayList<UtentePart> listapart;
+    private int idutentedaacc;
+    private Accettazione accettazione;
 
     public NotifyCtrl(Stage s,Utente u){
         this.u=u;
@@ -42,7 +44,7 @@ public class NotifyCtrl {
         String[] parole=n.toString().split(" ");
         idPartita= Integer.parseInt(parole[parole.length-1]);
         switch (parole[parole.length-2]){
-            case "calcio":{
+            case "5":{
                 numpartsport=10;
                 break;
             }
@@ -50,7 +52,7 @@ public class NotifyCtrl {
                 numpartsport=2;
                 break;
             }
-            case "padeld", "tennisd":{
+            case "doppio" :{
                 numpartsport=4;
                 break;
             }
@@ -64,24 +66,34 @@ public class NotifyCtrl {
 
     public void inviaEsito(boolean esito){
         if(esito){
-            CustomStage s=new CustomStage("Attenzione");
-            Partita p=DBMSView.queryGetDetailsPartita(idPartita);
-            ArrayList<UtentePart> listautenti =DBMSView.querygetpartecipanti(idPartita);
-            if(DBMSView.queryGiocatoreOccupato(u.getId(),p.getDataOra())){
-                if(listautenti.size()<numpartsport){
-                    Utils.cambiaInterfaccia("FXML/Accetta Invito.fxml",this.s,c->{
-                       return new DetailPartitaView(s,this,listautenti,numpartsport);
+            CustomStage s;
+            partitaselected=DBMSView.queryGetDetailsPartita(idPartita);
+            listapart =DBMSView.querygetpartecipanti(idPartita);
+            if(DBMSView.queryGiocatoreOccupato(u.getId(),partitaselected.getDataOra())){
+                if(listapart.size()<numpartsport){
+                    s=new CustomStage("Scegli la squadra");
+                    Utils.cambiaInterfaccia("FXML/Accetta Invito.fxml",s,c->{
+                       return new DetailPartitaView(s,this,listapart,numpartsport);
                     });
                 }else{
+                    s=new CustomStage("Attenzione");
                     Utils.cambiaInterfaccia("FXML/Dialog Num Max.fxml",s,c->{
                         return new WarningView(s);
                     },350,150);
+                    DBMSView.eliminaNotifica(selectednotifica);
+                    controller.rimuoviNotificaCancellata(selectednotifica);
                 }
             }else{
+                s=new CustomStage("Attenzione");
                 Utils.cambiaInterfaccia("FXML/DialogUtenteImpegnato.fxml",s,c->{
                     return new WarningView(s);
                 },350,150);
+                DBMSView.eliminaNotifica(selectednotifica);
+                controller.rimuoviNotificaCancellata(selectednotifica);
             }
+
+        }else{
+            DBMSView.eliminaNotifica(selectednotifica);
             controller.rimuoviNotificaCancellata(selectednotifica);
         }
     }
@@ -97,4 +109,88 @@ public class NotifyCtrl {
             });
         }
     }
+
+    public void squadraselected(int squadra){
+        DBMSView.queryAddGiocatore(idPartita,u.getId(),squadra);
+        String notifica="L'utente invitato alla partita con id: "+idPartita +" ha accettato\nvai a controllare che squadra ha scelto";
+        DBMSView.sendNotify(notifica,listapart);
+        DBMSView.eliminaNotifica(selectednotifica);
+        controller.rimuoviNotificaCancellata(selectednotifica);
+    }
+
+
+    public void cancellaNotifica(Notifica n){
+        DBMSView.eliminaNotifica(n);
+        controller.rimuoviNotificaCancellata(n);
+    }
+
+    public void rispostaAccettazione(Notifica n){
+        selectednotifica=n;
+        String[] parole=n.toString().split(" ");
+        idPartita= Integer.parseInt(parole[parole.length-1]);
+        switch (parole[parole.length-2]){
+            case "5":{
+                numpartsport=10;
+                break;
+            }
+            case "padel", "tennis":{
+                numpartsport=2;
+                break;
+            }
+            case "doppio" :{
+                numpartsport=4;
+                break;
+            }
+        }
+        idutentedaacc=Integer.parseInt(parole[3]);
+        accettazione=DBMSView.queryGetDettagliPartecipantePartita(idPartita,idutentedaacc);
+        listapart=DBMSView.querygetpartecipanti(idPartita);
+        CustomStage s;
+        if(listapart.size()<numpartsport){
+            s=new CustomStage("Scegli");
+            Utils.cambiaInterfaccia("FXML/Accettazione-Rifiuto Componente.fxml", s, c -> {
+                return new AccettazioneView(s,DBMSView.querygetDettagliUtente(idutentedaacc),this);
+            });
+        }else{
+            s=new CustomStage("Attenzione");
+            Utils.cambiaInterfaccia("FXML/Dialog Num Max.fxml",s,c->{
+                return new WarningView(s);
+            },350,150);
+            DBMSView.eliminaNotifica(selectednotifica);
+            controller.rimuoviNotificaCancellata(selectednotifica);
+        }
+    }
+
+    public void passAccetta(){
+        DBMSView.setAccettazione(accettazione);
+        if(accettazione.getN_accettazioni()-1==0){
+            DBMSView.queryAddGiocatore(idPartita,idutentedaacc,scegliSquadra());
+            String notifica="L'utente con id: "+idutentedaacc+" è stato accettato nella partita: "+idPartita+" vai a\n controllare le squadre";
+            listapart.add(new UtentePart(DBMSView.querygetDettagliUtente(idutentedaacc),1));
+            DBMSView.sendNotify(notifica,listapart);
+        }
+        DBMSView.eliminaNotifica(selectednotifica);
+        controller.rimuoviNotificaCancellata(selectednotifica);
+    }
+
+    public void passRifiuta(){
+        DBMSView.eliminaNotifica(selectednotifica);
+        controller.rimuoviNotificaCancellata(selectednotifica);
+    }
+    public int scegliSquadra(){
+        int squadraA=0,squadraB=0;
+        for(int i=0;i<listapart.size();i++){
+            if(listapart.get(i).getSquadra()==0){
+                squadraA++;
+            }else{
+                squadraB++;
+            }
+        }
+        if(squadraA>squadraB){
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
 }

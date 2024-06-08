@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneNotifiche.Interfacce.AccettazioneView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" >
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -43,17 +43,11 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <Label layoutX="27.0" layoutY="71.0" text="Componenti del Match che hanno già accettato l'utente:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
-        <ListView layoutX="27.0" layoutY="92.0" prefHeight="380.0" prefWidth="417.0" />
-        <Label disable="true" layoutX="495.0" layoutY="71.0" text="DETTAGLI UTENTE RICHIEDENTE">
+        <Label layoutX="277.0" layoutY="70.0" text="DETTAGLI UTENTE RICHIEDENTE">
          <font>
             <Font name="System Bold" size="12.800000190734863" />
          </font></Label>
-        <ListView disable="true" layoutX="464.0" layoutY="95.0" prefHeight="305.0" prefWidth="258.0" />
-        <Button disable="true" layoutX="535.0" layoutY="410.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Accetta iscrizione" textFill="WHITE">
+        <Button onMouseClicked="#ClickAccetta" layoutX="317.0" layoutY="409.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Accetta iscrizione" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
@@ -61,7 +55,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-      <Button disable="true" layoutX="535.0" layoutY="445.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: #e31414;" text="Rifiuta iscrizione" textFill="WHITE">
+      <Button onMouseClicked="#ClickRifiuta" layoutX="317.0" layoutY="444.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: #e31414;" text="Rifiuta iscrizione" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -69,5 +63,24 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label fx:id="id" layoutX="341.0" layoutY="132.0" text="Label">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="cognome" layoutX="341.0" layoutY="250.0" text="Label">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="livello" layoutX="341.0" layoutY="314.0" text="Label">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="nome" layoutX="341.0" layoutY="191.0" text="Label">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

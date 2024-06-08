@@ -7,6 +7,7 @@ import com.prova.matchme.GestioneNotifiche.Controller.NotifyCtrl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
@@ -28,6 +29,7 @@ public class NotifyView {
 
     @FXML
     public ListView<Notifica> lista;
+    public Button cancella;
 
     @FXML
     public void initialize() {
@@ -36,15 +38,20 @@ public class NotifyView {
         lista.setItems(items);
         lista.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
+                cancella.setDisable(false);
                 if (newValue.getTipo() == 0) {
                     this.notifyCtrl.rispostaInvito(newValue);
+                }
+                if(newValue.getTipo()== 2){
+                    this.notifyCtrl.rispostaAccettazione(newValue);
                 }
             }
         });
     }
 
+    @FXML
     public void clickDelete() {
-
+        notifyCtrl.cancellaNotifica(lista.getSelectionModel().getSelectedItem());
     }
 
     @FXML

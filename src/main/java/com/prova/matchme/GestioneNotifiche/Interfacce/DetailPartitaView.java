@@ -60,6 +60,18 @@ public class DetailPartitaView {
 		this.notifyCtrl.toMain();
 	}
 
+	@FXML
+	public void selectA(){
+		this.notifyCtrl.squadraselected(0);
+		s.close();
+	}
+
+	@FXML
+	public void selectB(){
+		this.notifyCtrl.squadraselected(1);
+		s.close();
+	}
+
 
 
 
