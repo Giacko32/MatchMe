@@ -15,7 +15,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -504,6 +504,23 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         return true;
+    }
+
+    public static ArrayList<Partita> queryGetPartiteUtente(Utente utente){
+        String query="SELECT id, ref_Campo, dataOra, tipo, vincoli FROM partita pt, partecipa pa WHERE pt.id = pa.ref_Partita AND pa.ref_Utente = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, utente.getId());
+            var r = stmt.executeQuery();
+            ArrayList<Partita> partiteUtente = new ArrayList<Partita>();
+            while(r.next()){
+                partiteUtente.add(new Partita(r.getInt(1), r.getInt(2), r.getTimestamp(3).toLocalDateTime(), r.getString(4), r.getString(5)));
+            }
+            return partiteUtente;
+
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
     }
 
 

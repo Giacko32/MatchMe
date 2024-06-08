@@ -3,6 +3,7 @@ package com.prova.matchme.Autenticazione.Interfacce;
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestioneMessaggistica.Controller.ChatCtrl;
+import com.prova.matchme.GestionePartita.Controller.PartitaCtrl;
 import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -63,9 +64,14 @@ public class AllenaView {
 	public void ClickProfile() {
 		new ProfiloCtrl(this.s,u,null);
 	}
+
 	public void ClickAssegnaBonus() {
 
 	}
+	public void ClickVisualizzaCampiLiberi() {
+		new PartitaCtrl(u, s);
+	}
+
 
 	public void ClickCreaAllenamento() {
 

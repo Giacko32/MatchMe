@@ -84,9 +84,7 @@ public class MainView {
 
     @FXML
     public void ClickVisualizzaPartite() {
-        Utils.cambiaInterfaccia("FXML/Visualizza partite.fxml", s, c -> {
-            return new DetailsTuttePartiteView();
-        });
+        new PartitaCtrl(u);
     }
 
     public void ClickTornei() {
@@ -96,5 +94,6 @@ public class MainView {
     public void ClickAllenamenti() {
 
     }
+
 
 }

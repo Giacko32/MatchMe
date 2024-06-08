@@ -60,7 +60,7 @@ public class NotifyCtrl {
                 if(npart<numpartsport){
 
                 }else{
-                    Utils.cambiaInterfaccia()
+                    //Utils.cambiaInterfaccia();
                 }
             }
 

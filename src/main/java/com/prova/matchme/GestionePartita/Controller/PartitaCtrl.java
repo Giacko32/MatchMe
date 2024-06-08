@@ -12,10 +12,7 @@ import com.prova.matchme.Entity.Campo;
 import com.prova.matchme.Entity.Partita;
 import com.prova.matchme.Entity.Sede;
 import com.prova.matchme.Entity.Utente;
-import com.prova.matchme.GestionePartita.Interfacce.DetailsTuttePartiteView;
-import com.prova.matchme.GestionePartita.Interfacce.DettagliCampoView;
-import com.prova.matchme.GestionePartita.Interfacce.PrenotazionePartitaView;
-import com.prova.matchme.GestionePartita.Interfacce.SelezionaSedeSportDataView;
+import com.prova.matchme.GestionePartita.Interfacce.*;
 import com.prova.matchme.Utils;
 import javafx.stage.Stage;
 
@@ -38,6 +35,14 @@ public class PartitaCtrl {
         }, 330, 220);
     }
 
+    public PartitaCtrl(Utente u) {
+        this.u = u;
+        Stage stageDialog = new CustomStage("Seleziona partite");
+        Utils.cambiaInterfaccia("FXML/SelezioneVisualizzaPartite.fxml", stageDialog, c -> {
+            return new SelectTipoPartiteView(this, stageDialog);
+        }, 350, 170);
+    }
+
     public void passPartita(Partita partita) {
         DBMSView.queryCreaPartita(partita, u);
         this.toMain();
@@ -55,8 +60,8 @@ public class PartitaCtrl {
         return null;
     }
 
-    public void passSedeSportData(Sede sede, String sport, LocalDateTime data, Stage stage,int ste) {
-        if(ste!=1) {
+    public void passSedeSportData(Sede sede, String sport, LocalDateTime data, Stage stage, int ste) {
+        if (ste != 1) {
             stage.close();
         }
         Utils.cambiaInterfaccia("FXML/VisualizzaCampiLiberi.fxml", s, c -> {
@@ -65,8 +70,15 @@ public class PartitaCtrl {
         });
     }
 
-    public void passTipoPartita() {
-
+    public void passTipoPartita(boolean Mie, Stage s) {
+        s.close();
+        if (Mie) {
+            Utils.cambiaInterfaccia("FXML/VisualizzaLeMiePartite.fxml", s, c -> {
+                return new DetailsMiaPartitaView(DBMSView.queryGetPartiteUtente(u));
+            });
+        } else {
+            Utils.cambiaInterfaccia("FXML/Visualizza partite.fxml", s, c -> new DetailsTuttePartiteView());
+        }
     }
 
     public Object getTime() {
@@ -141,7 +153,7 @@ public class PartitaCtrl {
 
     }
 
-    public void prenotaPartita(Campo campo, Sede sede){
+    public void prenotaPartita(Campo campo, Sede sede) {
         Utils.cambiaInterfaccia("FXML/Prenotazione2.fxml", s, c -> {
             return new PrenotazionePartitaView(u, this, campo, sede, s);
         });

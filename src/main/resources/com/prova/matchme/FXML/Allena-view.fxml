@@ -58,7 +58,7 @@
             </Label>
             </children>
         </AnchorPane>
-        <Pane layoutX="114.0" layoutY="158.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+        <Pane onMouseClicked="#ClickVisualizzaCampiLiberi" layoutX="114.0" layoutY="158.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="19.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="CAMPI LIBERI" textAlignment="CENTER" wrapText="true">
                     <font>
