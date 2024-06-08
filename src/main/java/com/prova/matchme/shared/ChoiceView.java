@@ -19,12 +19,14 @@ public class ChoiceView {
     @FXML
 	public void clickAccetta() {
 		this.notifyCtrl.inviaEsito(true);
+		s.close();
 
 	}
 
     @FXML
 	public void clickRifiuta() {
 		this.notifyCtrl.inviaEsito(false);
+		s.close();
 	}
 
 	public void SelectSquadra() {

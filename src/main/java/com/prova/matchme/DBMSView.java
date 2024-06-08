@@ -15,7 +15,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -477,18 +477,20 @@ public class DBMSView {
         return null;
     }
 
-    public static int querygetNpartecipanti(int idPartita){
-        String query="SELECT COUNT(ref_Utente) AS numero_partecipanti FROM partecipa WHERE ref_Partita=? GROUP BY ref_Partita; ";
+    public static ArrayList<UtentePart> querygetpartecipanti(int idPartita){
+        String query="SELECT u.*, pt.n_squadra FROM utente u JOIN partecipa pt ON u.id = pt.ref_Utente WHERE pt.ref_Partita = ? ";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, idPartita);
             var r = stmt.executeQuery();
+            ArrayList<UtentePart> listautenti=new ArrayList<>();
             if(r.next()){
-                return r.getInt("numero_partecipanti");
+                listautenti.add(UtentePart.createFromDB(r));
             }
+            return listautenti;
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
-        return 0;
+        return null;
     }
 
     public static boolean queryGiocatoreOccupato(int idutente,LocalDateTime dataora){
@@ -522,6 +524,8 @@ public class DBMSView {
         }
         return null;
     }
+
+
 
 
 }

@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneNotifiche.Interfacce.DetailPartitaView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView onMouseClicked="#back" fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" >
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -43,8 +43,8 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <ListView layoutX="19.0" layoutY="66.0" prefHeight="358.0" prefWidth="337.0" />
-        <Button layoutX="112.0" layoutY="439.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #03b53f;" text="Unisciti a squadra 1" textFill="WHITE">
+        <ListView fx:id="SquadraA" layoutX="19.0" layoutY="66.0" prefHeight="358.0" prefWidth="337.0" disable="true"/>
+        <Button fx:id="buttonA" layoutX="112.0" layoutY="439.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #03b53f;" text="Unisciti a squadra 1" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
@@ -52,7 +52,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-        <Button layoutX="487.0" layoutY="439.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #03b53f;" text="Unisciti a squadra 2" textFill="WHITE">
+        <Button fx:id="buttonB" layoutX="487.0" layoutY="439.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #03b53f;" text="Unisciti a squadra 2" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
@@ -60,7 +60,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-      <ListView layoutX="394.0" layoutY="66.0" prefHeight="358.0" prefWidth="337.0" />
+      <ListView fx:id="SquadraB" layoutX="394.0" layoutY="66.0" prefHeight="358.0" prefWidth="337.0" disable="true" />
 
 
     </children>
