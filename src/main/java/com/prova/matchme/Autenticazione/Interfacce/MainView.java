@@ -75,8 +75,7 @@ public class MainView {
     }
     @FXML
     public void ClickNotifiche() {
-        new NotifyCtrl();
-
+        new NotifyCtrl(s,u);
     }
 
     public void ClickVisualizzaCampiLiberi() {

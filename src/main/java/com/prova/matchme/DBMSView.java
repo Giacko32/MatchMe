@@ -446,4 +446,22 @@ public class DBMSView {
     }
 
 
+    public static ArrayList<Notifica> queryGetNotifiche(int idutente){
+        String query="SELECT * FROM notifica WHERE ref_Utente=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, idutente);
+            var r = stmt.executeQuery();
+            ArrayList<Notifica> listanotifiche=new ArrayList<>();
+            if(r.next()){
+               Notifica n=new Notifica(r.getInt("id"),r.getInt("ref_Utente"),r.getString("messaggio"),r.getInt("tipo"));
+               listanotifiche.add(n);
+            }
+            return listanotifiche;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+
 }

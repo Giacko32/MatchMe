@@ -23,7 +23,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="521.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView onMouseClicked="#ClickNotifiche" fitHeight="30.0" fitWidth="30.0" layoutX="521.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/mdi--bell-ring.png" />
                </image>
