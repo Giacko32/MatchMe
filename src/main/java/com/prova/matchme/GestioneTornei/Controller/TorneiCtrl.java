@@ -29,7 +29,7 @@ public class TorneiCtrl {
 	public void TuttiItornei(Stage st) {
 		st.close();
 		Utils.cambiaInterfaccia("FXML/VisualizzaTornei.fxml", stage, c -> {
-			return new VisualizzaDettagliTuttiITornei();
+			return new VisualizzaDettagliTuttiITornei(DBMSView.queryGetTuttITornei());
 		});
 	}
 

@@ -621,5 +621,21 @@ public class DBMSView {
         return null;
     }
 
+    public static ArrayList<Torneo> queryGetTuttITornei() {
+        String query = "SELECT id, ref_Sede, sport, n_Squadre, n_giocatori_squadra,vincoli FROM Torneo";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            var r = stmt.executeQuery();
+            ArrayList<Torneo> tuttiTorneiUtente = new ArrayList<Torneo>();
+            while (r.next()) {
+                tuttiTorneiUtente.add(new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6)));
+            }
+            return tuttiTorneiUtente;
+
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
 
 }
