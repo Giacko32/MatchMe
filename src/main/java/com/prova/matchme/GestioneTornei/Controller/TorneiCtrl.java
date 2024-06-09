@@ -1,6 +1,9 @@
 package com.prova.matchme.GestioneTornei.Controller;
 
 
+import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
+import com.prova.matchme.Autenticazione.Interfacce.AllenaView;
+import com.prova.matchme.Autenticazione.Interfacce.MainView;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Utente;
@@ -29,14 +32,14 @@ public class TorneiCtrl {
 	public void TuttiItornei(Stage st) {
 		st.close();
 		Utils.cambiaInterfaccia("FXML/VisualizzaTornei.fxml", stage, c -> {
-			return new VisualizzaDettagliTuttiITornei(DBMSView.queryGetTuttITornei());
+			return new VisualizzaDettagliTuttiITornei(DBMSView.queryGetTuttITornei(),this);
 		});
 	}
 
 	public void MieiTornei(Stage st) {
 		st.close();
 		Utils.cambiaInterfaccia("FXML/VisualizzaIMieiTornei.fxml", stage, c -> {
-			return new VisualizzaDettagliMioTorneo(DBMSView.queryGetImieiTornei(utente));
+			return new VisualizzaDettagliMioTorneo(DBMSView.queryGetImieiTornei(utente),this);
 		});
 	}
 
@@ -86,6 +89,20 @@ public class TorneiCtrl {
 
 	public void CheckNumeroSquadre() {
 
+	}
+
+	public void toMain() {
+		if (utente != null) {
+			if (utente.getTipo().equals("al")) {
+				Utils.cambiaInterfaccia("FXML/Allena-view.fxml", stage, c -> {
+					return new AllenaView(new AuthCtrl(stage), utente, stage);
+				});
+			} else {
+				Utils.cambiaInterfaccia("FXML/Main-view.fxml", stage, c -> {
+					return new MainView(new AuthCtrl(stage), utente, stage);
+				});
+			}
+		}
 	}
 
 }

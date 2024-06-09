@@ -1,6 +1,7 @@
 package com.prova.matchme.GestioneTornei.Interfacce;
 
 import com.prova.matchme.Entity.Torneo;
+import com.prova.matchme.GestioneTornei.Controller.TorneiCtrl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,9 +14,12 @@ public class VisualizzaDettagliMioTorneo {
 	private ArrayList<Torneo> listaTornei;
 	@FXML
 	private ListView<Torneo> ListaMieTornei;
+	private TorneiCtrl controller;
 
-	public VisualizzaDettagliMioTorneo(ArrayList<Torneo> lista){
+	public VisualizzaDettagliMioTorneo(ArrayList<Torneo> lista, TorneiCtrl controller){
+
 		this.listaTornei = lista;
+		this.controller = controller;
 	}
 
 	@FXML
@@ -28,6 +32,11 @@ public class VisualizzaDettagliMioTorneo {
 	}
 	public void ClickCancellaSquadra() {
 
+	}
+
+	@FXML
+	public void back() {
+		this.controller.toMain();
 	}
 
 }
