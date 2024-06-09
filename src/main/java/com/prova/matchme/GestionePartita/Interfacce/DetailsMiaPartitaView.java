@@ -3,6 +3,7 @@ package com.prova.matchme.GestionePartita.Interfacce;
 
 import com.prova.matchme.Entity.Campo;
 import com.prova.matchme.Entity.Partita;
+import com.prova.matchme.GestionePartita.Controller.PartitaCtrl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,9 +17,12 @@ public class DetailsMiaPartitaView {
 	private ArrayList<Partita> listaPartite;
 	@FXML
 	private ListView<Partita> ListaMiePartite;
+	private PartitaCtrl controller;
 
-	public DetailsMiaPartitaView(ArrayList<Partita> lista){
+	public DetailsMiaPartitaView(ArrayList<Partita> lista, PartitaCtrl controller){
+
 		this.listaPartite = lista;
+		this.controller = controller;
 	}
 
 	@FXML
@@ -48,6 +52,11 @@ public class DetailsMiaPartitaView {
 
 	public void ShowBnd() {
 
+	}
+
+	@FXML
+	public void back() {
+		this.controller.toMain();
 	}
 
 }

@@ -75,10 +75,10 @@ public class PartitaCtrl {
         st.close();
         if (Mie) {
             Utils.cambiaInterfaccia("FXML/VisualizzaLeMiePartite.fxml", s, c -> {
-                return new DetailsMiaPartitaView(DBMSView.queryGetPartiteUtente(u));
+                return new DetailsMiaPartitaView(DBMSView.queryGetPartiteUtente(u),this);
             });
         } else {
-            Utils.cambiaInterfaccia("FXML/Visualizza partite.fxml", s, c -> new DetailsTuttePartiteView());
+            Utils.cambiaInterfaccia("FXML/Visualizza partite.fxml", s, c -> new DetailsTuttePartiteView(this));
         }
     }
 
