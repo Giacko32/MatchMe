@@ -47,7 +47,7 @@
                 </Label>
             </children>
         </AnchorPane>
-        <Pane layoutX="168.0" layoutY="157.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
+        <Pane onMouseClicked="#clickAggiungiAbbonamento" layoutX="168.0" layoutY="157.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="6.0" layoutY="12.0" prefHeight="59.0" prefWidth="97.0" text="AGGIUNGI ABBONAMENTO" textAlignment="CENTER" wrapText="true">
                     <font>

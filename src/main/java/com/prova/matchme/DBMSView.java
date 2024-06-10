@@ -673,6 +673,52 @@ public class DBMSView {
         }
         return null;
     }
+    public static ArrayList<Utente> queryGetUtenti(String parametri){
+        String query="SELECT id,nome,cognome FROM utente WHERE (nome LIKE ? or cognome LIKE ?) AND (tipo<>?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1,"%"+parametri+"%");
+            stmt.setString(2,"%"+parametri+"%");
+            stmt.setString(3,"al");
+            var r = stmt.executeQuery();
+            ArrayList<Utente> listautenti = new ArrayList<>();
+            while (r.next()) {
+                listautenti.add(new Utente(r.getInt("id"),r.getString("nome"),r.getString("cognome")));
+            }
+            return listautenti;
+
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+
+    }
+    public static void queryAttivaAllenatore(int id){
+        String query="UPDATE utente SET tipo=? WHERE id=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1,"al" );
+            stmt.setInt(2, id);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
+    public static  ArrayList<Utente> querySearchNonTesserati(String parametri){
+        String query="SELECT id,nome,cognome FROM utente WHERE tipo=? AND (nome LIKE ? or cognome LIKE ?)" ;
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1,"nt");
+            stmt.setString(2,"%"+parametri+"%");
+            stmt.setString(3,"%"+parametri+"%");
+            var r = stmt.executeQuery();
+            ArrayList<Utente> listanontesserati=new ArrayList<>();
+            while(r.next()){
+                listanontesserati.add(new Utente(r.getInt("id"),r.getString("nome"),r.getString("cognome")));
+            }
+            return listanontesserati;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
 
 
 }
