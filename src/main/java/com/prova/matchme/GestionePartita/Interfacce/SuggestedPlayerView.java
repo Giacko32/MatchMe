@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class SuggestedPlayerView {
     private Button buttonS1;
     @FXML
     private Button buttonS2;
+    @FXML
+    private TextField search;
 
     @FXML
     public void initialize() {
@@ -73,11 +76,15 @@ public class SuggestedPlayerView {
     }
 
     public void ClickCerca() {
-
+        partitaCtrl.passRicercaGiocatore(search.getText(), this, selectedPartita);
     }
 
-    public void mostraLista() {
-
+    public void mostraLista(ArrayList<Utente> listaCercati) {
+        ObservableList<Utente> lista = FXCollections.observableArrayList(listaCercati);
+        ListaUtenti.setItems(lista);
+        ListaUtenti.getSelectionModel().selectedItemProperty().addListener((observable, oldvalue, newvalue) -> {
+            selectedUtente = newvalue;
+        });
     }
 
     public void ClickInvita() {

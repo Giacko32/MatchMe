@@ -77,7 +77,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="AggiungiOspiteButton" disable="true" layoutX="567.0" layoutY="439.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text="AGGIUNGI&#10;  OSPITE">
+      <Button fx:id="AggiungiOspiteButton" onMouseClicked="#ClickAggiungiOspite" disable="true" layoutX="567.0" layoutY="439.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text="AGGIUNGI&#10;  OSPITE">
          <font>
             <Font size="10.0" />
          </font>

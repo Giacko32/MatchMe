@@ -669,8 +669,6 @@ public class DBMSView {
     }
 
 
-
-
     public static PartitaDetails queryGetCampoSedePartita(Partita partita) {
         String query = "SELECT s.Id_Sede, s.Indirizzo, s.Nome_Sede, c.id, c.nome, c.sport FROM partita p, campo c, sede s WHERE p.ref_Campo = c.id AND c.ref_Sede = s.Id_Sede AND p.id = ?";
         PartitaDetails partitaDetails = new PartitaDetails();
@@ -793,21 +791,23 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
     }
-    public static Utente queryGetGiocatoreSconto(String codice){
-        String query="SELECT u.id,u.nome,u.cognome,s.quantita FROM sconto s,utente u WHERE s.codice=? AND s.ref_Tesserato=u.id";
+
+    public static Utente queryGetGiocatoreSconto(String codice) {
+        String query = "SELECT u.id,u.nome,u.cognome,s.quantita FROM sconto s,utente u WHERE s.codice=? AND s.ref_Tesserato=u.id";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, codice);
             var r = stmt.executeQuery();
             while (r.next()) {
-                return new Utente(r.getInt("id"),r.getString("nome"),r.getString("cognome"),r.getInt("quantita"));
+                return new Utente(r.getInt("id"), r.getString("nome"), r.getString("cognome"), r.getInt("quantita"));
             }
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
         return null;
     }
-    public static void queryScontoApplicato(int id){
-        String query="DELETE FROM sconto WHERE ref_Tesserato=?";
+
+    public static void queryScontoApplicato(int id) {
+        String query = "DELETE FROM sconto WHERE ref_Tesserato=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, id);
             var r = stmt.executeUpdate();
@@ -816,6 +816,21 @@ public class DBMSView {
         }
     }
 
-
+    public static ArrayList<Utente> queryGetListaGiocatori(String textSearched) {
+        String query = "SELECT id, nome, cognome FROM utente WHERE nome LIKE ? OR cognome LIKE ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, "%" + textSearched + "%");
+            stmt.setString(2, "%" + textSearched + "%");
+            var r = stmt.executeQuery();
+            ArrayList<Utente> lista = new ArrayList<>();
+            while (r.next()) {
+                lista.add(new Utente(r.getInt(1), r.getString(2), r.getString(3)));
+            }
+            return lista;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
 
 }

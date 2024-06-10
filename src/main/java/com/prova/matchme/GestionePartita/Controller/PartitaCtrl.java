@@ -123,8 +123,11 @@ public class PartitaCtrl {
         }
     }
 
-    public void passRicercaGiocatore() {
-
+    public void passRicercaGiocatore(String textSearched, SuggestedPlayerView bnd, PartitaDetails partdet) {
+        ArrayList<Utente> trovati = DBMSView.queryGetListaGiocatori(textSearched);
+        trovati.removeAll(partdet.squadra1);
+        trovati.removeAll(partdet.squadra2);
+        bnd.mostraLista(trovati);
     }
 
     public void passInvito() {
@@ -205,8 +208,15 @@ public class PartitaCtrl {
 
     }
 
-    public void AggiungiOspiteClicked() {
-
+    public void AggiungiOspiteClicked(PartitaDetails partitaDetails) {
+        if (!checkNumeroGiocatori(partitaDetails)) {
+            Utils.creaPannelloErrore("La partita è piena");
+        } else {
+            CustomStage stg = new CustomStage("Inserisci ospite");
+            Utils.cambiaInterfaccia("FXML/DialogAggiungiOspite.fxml", stg, c -> {
+                return new AggiungiOspiteView();
+            }, 350, 170);
+        }
     }
 
     public void CancelClicked() {

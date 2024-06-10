@@ -95,7 +95,7 @@ public class DetailsMiaPartitaView {
 	}
 
 	public void ClickAggiungiOspite() {
-
+		partitaCtrl.AggiungiOspiteClicked(selectedPartitaDetails);
 	}
 
 	public void ClickCancellaPrenotazione() {

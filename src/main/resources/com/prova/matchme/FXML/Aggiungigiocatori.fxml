@@ -10,13 +10,13 @@
             fx:controller="com.prova.matchme.GestionePartita.Interfacce.SuggestedPlayerView">
     <children>
         <ListView fx:id="ListaUtenti" layoutX="50.0" layoutY="62.0" prefHeight="200.0" prefWidth="400.0"/>
-        <TextField layoutX="210.0" layoutY="23.0" promptText="Nome,cognome o livello">
+        <TextField fx:id="search" layoutX="210.0" layoutY="23.0" promptText="Nome, cognome">
             <cursor>
                 <Cursor fx:constant="TEXT"/>
             </cursor>
         </TextField>
         <Label layoutX="127.0" layoutY="74.0"/>
-        <Button layoutX="372.0" layoutY="21.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0"
+        <Button onMouseClicked="#ClickCerca" layoutX="372.0" layoutY="21.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0"
                 style="-fx-background-color: #03b53f;" text="Cerca" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0"/>
