@@ -6,7 +6,9 @@ import com.prova.matchme.GestioneTornei.Controller.TorneiCtrl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
 
@@ -17,6 +19,15 @@ public class VisualizzaDettagliTuttiITornei {
 	@FXML
 	private ListView<Torneo> ListaTuttiTornei;
 	private TorneiCtrl controller;
+
+	@FXML
+	private TextField sport;
+	@FXML
+	private TextField maxSquadre;
+	@FXML
+	private TextField maxGiocatoriSquadre;
+	@FXML
+	private Button buttonIscriviSquadra;
 
 	public VisualizzaDettagliTuttiITornei(ArrayList<Torneo> lista, TorneiCtrl controller){
 
@@ -30,10 +41,24 @@ public class VisualizzaDettagliTuttiITornei {
 		ListaTuttiTornei.setItems(torneolist);
 		ListaTuttiTornei.getSelectionModel().selectedItemProperty().addListener((observable, oldvalue, newvalue) -> {
 			selectedTorneo = newvalue;
+			this.SelectTorneo();
 		});
 	}
 	public void ClickIscriviSquadra() {
 
+	}
+	public void SelectTorneo(){
+		controller.TorneoSelezionatoTutti(selectedTorneo);
+	}
+
+	public void showDetails(Torneo torneo){
+		sport.setDisable(false);
+		maxSquadre.setDisable(false);
+		maxGiocatoriSquadre.setDisable(false);
+		sport.setText(torneo.getSport());
+		maxSquadre.setText(String.valueOf(torneo.getN_Squadre()));
+		maxGiocatoriSquadre.setText(String.valueOf(torneo.getN_Giocatori_squadra()));
+		buttonIscriviSquadra.setDisable(false);
 	}
 
 	@FXML

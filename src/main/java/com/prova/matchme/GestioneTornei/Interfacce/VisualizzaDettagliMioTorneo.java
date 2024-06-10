@@ -49,7 +49,7 @@ public class VisualizzaDettagliMioTorneo {
 	}
 
 	public void SelectTorneo(){
-		controller.TorneoSelezionato(selectedTorneo);
+		controller.TorneoSelezionatoMio(selectedTorneo);
 	}
 
 	public void showDetails(Torneo torneo){

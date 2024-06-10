@@ -18,7 +18,8 @@ public class TorneiCtrl {
 
 	private Utente utente;
 	private Stage stage;
-	private VisualizzaDettagliMioTorneo boundary;
+	private VisualizzaDettagliMioTorneo boundaryMio;
+	private VisualizzaDettagliTuttiITornei boundaryTutti;
 
 	public TorneiCtrl(Utente utente, Stage stage) {
 		this.utente = utente;
@@ -32,22 +33,27 @@ public class TorneiCtrl {
 	public void TuttiItornei(Stage st) {
 		st.close();
 		Utils.cambiaInterfaccia("FXML/VisualizzaTornei.fxml", stage, c -> {
-			return new VisualizzaDettagliTuttiITornei(DBMSView.queryGetTuttITornei(),this);
+			boundaryTutti = new VisualizzaDettagliTuttiITornei(DBMSView.queryGetTuttITornei(),this);
+			return boundaryTutti;
 		});
 	}
 
 	public void MieiTornei(Stage st) {
 		st.close();
 		Utils.cambiaInterfaccia("FXML/VisualizzaIMieiTornei.fxml", stage, c -> {
-			boundary =  new VisualizzaDettagliMioTorneo(DBMSView.queryGetImieiTornei(utente),this);
-			return boundary;
+			boundaryMio =  new VisualizzaDettagliMioTorneo(DBMSView.queryGetImieiTornei(utente),this);
+			return boundaryMio;
 		});
 
 	}
 
-	public void TorneoSelezionato(Torneo torneo) {
+	public void TorneoSelezionatoMio(Torneo torneo) {
 
-		boundary.showDetails(DBMSView.queryGetTorneo(torneo));
+		boundaryMio.showDetails(DBMSView.queryGetTorneo(torneo));
+	}
+	public void TorneoSelezionatoTutti(Torneo torneo) {
+
+		boundaryTutti.showDetails(DBMSView.queryGetTorneo(torneo));
 	}
 
 	public void IscriviSelezionato() {
