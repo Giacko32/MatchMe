@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneSede.Interfacce.SearchNonTesseratoView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView onMouseClicked="#back" fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -43,13 +43,13 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <ListView layoutX="17.0" layoutY="107.0" prefHeight="329.0" prefWidth="715.0" />
-        <TextField layoutX="396.0" layoutY="71.0" promptText="Nome,Cognome">
+        <ListView fx:id="listanontesserati" layoutX="17.0" layoutY="107.0" prefHeight="329.0" prefWidth="715.0" />
+        <TextField fx:id="parametri" layoutX="396.0" layoutY="71.0" promptText="Nome,Cognome">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
         <Label layoutX="127.0" layoutY="74.0" />
-        <Button layoutX="570.0" layoutY="68.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #FF9622;" text="CERCA" textFill="WHITE">
+        <Button onMouseClicked="#ClickCerca" layoutX="570.0" layoutY="68.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #FF9622;" text="CERCA" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
@@ -57,7 +57,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-        <Button layoutX="304.0" layoutY="451.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="158.0" style="-fx-background-color: #FF9622;" text="Aggiungi Abbonamento" textFill="WHITE">
+        <Button fx:id="aggiungi" disable="true" onMouseClicked="#ClickAggiungiAbbonamento" layoutX="304.0" layoutY="451.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="158.0" style="-fx-background-color: #FF9622;" text="Aggiungi Abbonamento" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>

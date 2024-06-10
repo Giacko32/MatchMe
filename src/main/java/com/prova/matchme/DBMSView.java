@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gioele2002!";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -645,29 +645,72 @@ public class DBMSView {
             var r = stmt.executeQuery();
             if (r.next()) {
                 Torneo torneoRisultato = new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6));
-
                 return torneoRisultato;
             }
-
-
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
         return null;
     }
 
-    public static ArrayList<Object> queryGetCampoSedePartita(Partita partita) {
+    public static PartitaDetails queryGetCampoSedePartita(Partita partita) {
         String query = "SELECT s.Id_Sede, s.Indirizzo, s.Nome_Sede, c.id, c.nome, c.sport FROM partita p, campo c, sede s WHERE p.ref_Campo = c.id AND c.ref_Sede = s.Id_Sede AND p.id = ?";
+        PartitaDetails partitaDetails =  new PartitaDetails();
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, partita.getId());
             var r = stmt.executeQuery();
-            ArrayList<Object> toreturn = new ArrayList<Object>();
             if (r.next()) {
-                toreturn.add(new Sede(r.getInt(1), r.getString(3), r.getString(2)));
-                toreturn.add(new Campo(r.getInt(4), r.getInt(1), r.getString(5), r.getString(6), partita.getDataOra()));
+                partitaDetails.setSede(new Sede(r.getInt(1), r.getString(3), r.getString(2)));
+                partitaDetails.setCampo(new Campo(r.getInt(4), r.getInt(1), r.getString(5), r.getString(6), partita.getDataOra()));
+                partitaDetails.setPartita(partita);
             }
-            return toreturn;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
 
+    public static ArrayList<Utente> queryGetUtenti(String parametri){
+        String query="SELECT id,nome,cognome FROM utente WHERE (nome LIKE ? or cognome LIKE ?) AND (tipo<>?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1,"%"+parametri+"%");
+            stmt.setString(2,"%"+parametri+"%");
+            stmt.setString(3,"al");
+            var r = stmt.executeQuery();
+            ArrayList<Utente> listautenti = new ArrayList<>();
+            while (r.next()) {
+                listautenti.add(new Utente(r.getInt("id"),r.getString("nome"),r.getString("cognome")));
+            }
+            return listautenti;
+
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+
+    }
+    public static void queryAttivaAllenatore(int id){
+        String query="UPDATE utente SET tipo=? WHERE id=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1,"al" );
+            stmt.setInt(2, id);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
+    public static  ArrayList<Utente> querySearchNonTesserati(String parametri){
+        String query="SELECT id,nome,cognome FROM utente WHERE tipo=? AND (nome LIKE ? or cognome LIKE ?)" ;
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1,"nt");
+            stmt.setString(2,"%"+parametri+"%");
+            stmt.setString(3,"%"+parametri+"%");
+            var r = stmt.executeQuery();
+            ArrayList<Utente> listanontesserati=new ArrayList<>();
+            while(r.next()){
+                listanontesserati.add(new Utente(r.getInt("id"),r.getString("nome"),r.getString("cognome")));
+            }
+            return listanontesserati;
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }

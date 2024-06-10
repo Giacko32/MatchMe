@@ -7,6 +7,8 @@ import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.GestioneSede.Interfacce.AbbonamentoView;
+import com.prova.matchme.GestioneSede.Interfacce.SearchNonTesseratoView;
 import com.prova.matchme.GestioneSede.Interfacce.SearchUtentiView;
 import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
@@ -20,16 +22,30 @@ public class AmministrazioneSedeCtrl {
 	private Gestore g;
 	private SearchUtentiView controllersuv;
 	private Utente utenteselected;
+	private SearchNonTesseratoView controllersntv;
 
 	public AmministrazioneSedeCtrl(Stage s,Gestore g){
 		this.s=s;
 		this.g=g;
 	}
 
+	public void toAdmin(){
+		Utils.cambiaInterfaccia("FXML/Admin-view.fxml", s, c -> {
+			return new AdminView(new AuthCtrl(s), g,s);
+		});
+	}
+
 	public void toabilita(){
 		Utils.cambiaInterfaccia("FXML/AbilitaAllenatore.fxml",s,c->{
 			controllersuv=new SearchUtentiView(this);
 			return controllersuv;
+		});
+	}
+
+	public void tocreateabb(){
+		Utils.cambiaInterfaccia("FXML/Aggiungi Abbonamento.fxml",s,c->{
+			controllersntv=new SearchNonTesseratoView(this);
+			return controllersntv;
 		});
 	}
 
@@ -45,36 +61,41 @@ public class AmministrazioneSedeCtrl {
 
 	}
 
-	public void closeWarningView() {
-
-	}
-
 	public void passSearchField(String parametri) {
 		if(!parametri.equals("")){
-			//ArrayList<Utente> listautenti=DBMSView.queryGetUtenti(parametri);
-			//controllersuv.mostraListaTesserati(listautenti);
+			ArrayList<Utente> listautenti=DBMSView.queryGetUtenti(parametri);
+			controllersuv.mostraListaTesserati(listautenti);
 		}
+	}
 
+	public void passSearchParameter(String parametri) {
+		if(!parametri.equals("")){
+			ArrayList<Utente> listanontesserati=DBMSView.querySearchNonTesserati(parametri);
+			controllersntv.mostraListaNonTesserati(listanontesserati);
+		}
 	}
 
 	public void passNewAllenatore(Utente u) {
 		if(u!=null){
 			utenteselected=u;
 			CustomStage s=new CustomStage("ATTENZIONE");
-			Utils.cambiaInterfaccia("FXML/Dialog Conferma Abilitazione.fxml", s, c -> {
+			Utils.cambiaInterfaccia("FXML/DialogConfermaAbilitazione.fxml", s, c -> {
 				return new ConfirmView(this, s);
-			}, 350, 200);
+			}, 350, 160);
 		}
 	}
 
 	public void confirmAbilitazione() {
-		//DBMSView.queryAttivaAllenatore(utenteselected.getId());
-		Utils.cambiaInterfaccia("FXML/Admin-view.fxml", s, c -> {
-			return new AdminView(new AuthCtrl(s), g,s);
-		});
+		DBMSView.queryAttivaAllenatore(utenteselected.getId());
+		this.toAdmin();
 	}
 
-	public void PassNonTesserato() {
+	public void PassNonTesserato(Utente u) {
+		utenteselected=u;
+		Utils.cambiaInterfaccia("FXML/Conferma Nuovo Abbonamento.fxml", s, c -> {
+			return new AbbonamentoView(this,u);
+		});
+
 
 	}
 

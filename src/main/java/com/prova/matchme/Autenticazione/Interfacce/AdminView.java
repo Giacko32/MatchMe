@@ -64,8 +64,10 @@ public class AdminView {
 		AmministrazioneSedeCtrl a=new AmministrazioneSedeCtrl(s,g);
 		a.toabilita();
 	}
-
+    @FXML
 	public void clickAggiungiAbbonamento() {
+		AmministrazioneSedeCtrl a=new AmministrazioneSedeCtrl(s,g);
+		a.tocreateabb();
 
 	}
 

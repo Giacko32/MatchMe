@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneSede.Interfacce.AbbonamentoView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -48,17 +48,6 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="227.0" layoutY="181.0" text="\@usernameutente:">
-            <font>
-                <Font name="System Bold" size="14.0" />
-            </font>
-        </Label>
-        <Label layoutX="229.0" layoutY="259.0" text="Data di nascita:">
-            <font>
-                <Font name="System Bold" size="14.0" />
-            </font>
-        </Label>
-        <TextField editable="false" layoutX="336.0" layoutY="256.0" prefHeight="27.0" prefWidth="232.0" promptText="DATA DI NASCITA DELL'UTENTE" />
         <Button layoutX="363.0" layoutY="402.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" style="-fx-background-color: #FF9622;" text="OK" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="14.0" />
@@ -69,7 +58,7 @@
         </Button>
       <ImageView fitHeight="121.0" fitWidth="133.0" layoutX="85.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/5997002.png" />
+            <Image url="@../images/5997002.png" />
          </image></ImageView>
       <Label layoutX="13.0" layoutY="60.0" text="Dettagli dell'utente selezionato:">
          <font>
@@ -81,32 +70,31 @@
             <Font name="System Bold" size="12.800000190734863" />
          </font>
       </Label>
-      <DatePicker layoutX="389.0" layoutY="297.0" prefHeight="27.0" prefWidth="178.0">
+      <DatePicker fx:id="inizio" layoutX="389.0" layoutY="297.0" prefHeight="27.0" prefWidth="178.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></DatePicker>
-      <Label layoutX="230.0" layoutY="220.0" text="email dell'utente">
-         <font>
-            <Font name="System Bold" size="12.800000190734863" />
-         </font>
-      </Label>
       <Label layoutX="229.0" layoutY="340.0" text="Data fine abbonamento:">
          <font>
             <Font name="System Bold" size="12.800000190734863" />
          </font>
       </Label>
-      <Label layoutX="230.0" layoutY="138.0" text="Cognome:">
+      <Label layoutX="229.0" layoutY="171.0" text="Cognome:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <DatePicker layoutX="389.0" layoutY="338.0" prefHeight="27.0" prefWidth="178.0">
+      <DatePicker fx:id="fine" layoutX="389.0" layoutY="338.0" prefHeight="27.0" prefWidth="178.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></DatePicker>
-      <TextField editable="false" layoutX="340.0" layoutY="216.0" prefHeight="27.0" prefWidth="225.0" promptText="EMAIL DELL'UTENTE" />
-      <TextField editable="false" layoutX="355.0" layoutY="177.0" prefHeight="27.0" prefWidth="210.0" promptText="USERNAME DELL'UTENTE" />
-      <TextField editable="false" layoutX="314.0" layoutY="135.0" prefHeight="27.0" prefWidth="252.0" promptText="COGNOME DELL'UTENTE" />
-      <TextField editable="false" layoutX="314.0" layoutY="93.0" prefHeight="27.0" prefWidth="252.0" promptText="NOME DELL'UTENTE" />
+      <TextField fx:id="cognome" editable="false" layoutX="313.0" layoutY="168.0" prefHeight="27.0" prefWidth="252.0" promptText="COGNOME DELL'UTENTE" />
+      <TextField fx:id="nome" editable="false" layoutX="314.0" layoutY="93.0" prefHeight="27.0" prefWidth="252.0" promptText="NOME DELL'UTENTE" />
+      <Label layoutX="229.0" layoutY="239.0" text="ID:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField editable="false" layoutX="313.0" layoutY="236.0" prefHeight="27.0" prefWidth="252.0" promptText="ID DELL'UTENTE" />
     </children>
 </AnchorPane>
