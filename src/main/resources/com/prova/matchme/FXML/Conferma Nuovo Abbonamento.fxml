@@ -10,7 +10,7 @@
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -48,14 +48,6 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Button layoutX="363.0" layoutY="402.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" style="-fx-background-color: #FF9622;" text="OK" textAlignment="CENTER" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="14.0" />
-            </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-        </Button>
       <ImageView fitHeight="121.0" fitWidth="133.0" layoutX="85.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/5997002.png" />
@@ -65,29 +57,11 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="228.0" layoutY="300.0" text="Data inizio abbonamento:">
-         <font>
-            <Font name="System Bold" size="12.800000190734863" />
-         </font>
-      </Label>
-      <DatePicker fx:id="inizio" layoutX="389.0" layoutY="297.0" prefHeight="27.0" prefWidth="178.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></DatePicker>
-      <Label layoutX="229.0" layoutY="340.0" text="Data fine abbonamento:">
-         <font>
-            <Font name="System Bold" size="12.800000190734863" />
-         </font>
-      </Label>
       <Label layoutX="229.0" layoutY="171.0" text="Cognome:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <DatePicker fx:id="fine" layoutX="389.0" layoutY="338.0" prefHeight="27.0" prefWidth="178.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></DatePicker>
       <TextField fx:id="cognome" editable="false" layoutX="313.0" layoutY="168.0" prefHeight="27.0" prefWidth="252.0" promptText="COGNOME DELL'UTENTE" />
       <TextField fx:id="nome" editable="false" layoutX="314.0" layoutY="93.0" prefHeight="27.0" prefWidth="252.0" promptText="NOME DELL'UTENTE" />
       <Label layoutX="229.0" layoutY="239.0" text="ID:">
@@ -95,6 +69,30 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField editable="false" layoutX="313.0" layoutY="236.0" prefHeight="27.0" prefWidth="252.0" promptText="ID DELL'UTENTE" />
+      <TextField fx:id="id" editable="false" layoutX="313.0" layoutY="236.0" prefHeight="27.0" prefWidth="252.0" promptText="ID DELL'UTENTE" />
+      <Button onMouseClicked="#click1" layoutX="233.0" layoutY="321.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="81.0" style="-fx-background-color: #FF9622;" text="30 giorni" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button onMouseClicked="#click3" layoutX="357.0" layoutY="321.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="81.0" style="-fx-background-color: #FF9622;" text="3 mesi" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button onMouseClicked="#click6" layoutX="483.0" layoutY="321.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="81.0" style="-fx-background-color: #FF9622;" text="6 mesi" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
     </children>
 </AnchorPane>

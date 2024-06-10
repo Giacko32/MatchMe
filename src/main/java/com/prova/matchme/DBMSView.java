@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -728,7 +728,7 @@ public class DBMSView {
     }
 
     public static ArrayList<Utente> querySearchNonTesserati(String parametri) {
-        String query = "SELECT id,nome,cognome FROM utente WHERE tipo=? AND (nome LIKE ? or cognome LIKE ?)";
+        String query = "SELECT id,nome,cognome,email FROM utente WHERE tipo=? AND (nome LIKE ? or cognome LIKE ?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, "nt");
             stmt.setString(2, "%" + parametri + "%");
@@ -736,7 +736,8 @@ public class DBMSView {
             var r = stmt.executeQuery();
             ArrayList<Utente> listanontesserati = new ArrayList<>();
             while (r.next()) {
-                listanontesserati.add(new Utente(r.getInt("id"), r.getString("nome"), r.getString("cognome")));
+                System.out.println(new Utente(r.getInt("id"), r.getString("nome"), r.getString("cognome")));
+                listanontesserati.add(new Utente(r.getInt("id"), r.getString("nome"), r.getString("cognome"),r.getString("email")));
             }
             return listanontesserati;
         } catch (SQLException e) {
@@ -745,5 +746,16 @@ public class DBMSView {
         return null;
     }
 
+    public static void querySetAbbonamento(String codice,LocalDate data,int idutente){
+        String query="INSERT INTO abbonamento(codice,data_Scadenza,ref_Tesserato) values(?,?,?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, codice);
+            stmt.setDate(2, Date.valueOf(data));
+            stmt.setInt(3, idutente);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
 
 }

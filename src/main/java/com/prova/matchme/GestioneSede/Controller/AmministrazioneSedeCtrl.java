@@ -5,6 +5,7 @@ import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Autenticazione.Interfacce.AdminView;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
+import com.prova.matchme.EmailSender;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestioneSede.Interfacce.AbbonamentoView;
@@ -14,6 +15,9 @@ import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class AmministrazioneSedeCtrl {
@@ -22,7 +26,10 @@ public class AmministrazioneSedeCtrl {
 	private Gestore g;
 	private SearchUtentiView controllersuv;
 	private Utente utenteselected;
+	private StringBuilder codice;
 	private SearchNonTesseratoView controllersntv;
+	private String datascadenza;
+	private LocalDate date;
 
 	public AmministrazioneSedeCtrl(Stage s,Gestore g){
 		this.s=s;
@@ -98,21 +105,32 @@ public class AmministrazioneSedeCtrl {
 
 
 	}
-
-	public void PassDurata() {
-
+	public void PassDurata(int durata) {
+		GeneraCodice();
+		CalcolaDataFine(durata);
+		InviaMail();
+		DBMSView.querySetAbbonamento(codice.toString(),date, utenteselected.getId());
+		toAdmin();
 	}
 
-	public String GeneraCodice() {
-		return null;
+	public void GeneraCodice() {
+		codice=new StringBuilder();
+		char[] lettere= "abcdefghijkmlmnopqrstuvwxyz1234567890".toCharArray();
+		for(int i=0;i<7;i++){
+			codice.append(lettere[((int)(Math.random()*lettere.length))]);
+		}
 	}
 
-	public void CalcolaDataFine() {
-
+	public void CalcolaDataFine(int durata) {
+		LocalDate today = LocalDate.now();
+		int mesiDaSommare = durata;
+		date = today.plusMonths(mesiDaSommare);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		datascadenza = date.format(formatter);
 	}
 
 	public void InviaMail() {
-
+		EmailSender.sendNewAbbonamento(codice.toString(),utenteselected.getEmail(),datascadenza);
 	}
 
 	public boolean checkTime() {
