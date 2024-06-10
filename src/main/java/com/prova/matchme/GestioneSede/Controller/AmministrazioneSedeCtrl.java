@@ -8,15 +8,13 @@ import com.prova.matchme.DBMSView;
 import com.prova.matchme.EmailSender;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Utente;
-import com.prova.matchme.GestioneSede.Interfacce.AbbonamentoView;
-import com.prova.matchme.GestioneSede.Interfacce.SearchNonTesseratoView;
-import com.prova.matchme.GestioneSede.Interfacce.SearchUtentiView;
+import com.prova.matchme.GestioneSede.Interfacce.*;
 import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
+import com.prova.matchme.shared.WarningView;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -55,17 +53,40 @@ public class AmministrazioneSedeCtrl {
 			return controllersntv;
 		});
 	}
-
-	public void passCodice() {
-
+	public void toverificaSconto(){
+		CustomStage s=new CustomStage("VERIFICA SCONTO");
+		Utils.cambiaInterfaccia("FXML/Verifica Codice Sconto.fxml",s,c->{
+			return new VerificaScontoView(this,s);
+		},380,170);
 	}
 
-	public boolean checkGiocatoreSconto() {
-		return false;
+	public void passCodice(String codice) {
+       if(!codice.isEmpty()){
+		   utenteselected=DBMSView.queryGetGiocatoreSconto(codice);
+		   if(checkGiocatoreSconto(utenteselected)){
+			   CustomStage s=new CustomStage("DETTAGLI");
+			   Utils.cambiaInterfaccia("FXML/DialogDettagliSconto.fxml",s,c->{
+				   return new DettagliGiocatoreSconto(s,this,utenteselected);
+			   },385,400);
+		   }else{
+			   CustomStage s=new CustomStage("ATTENZIONE");
+			   Utils.cambiaInterfaccia("FXML/DialogScontoErrato.fxml",s,c->{
+				   return new WarningView(s);
+			   },350,200);
+			   toAdmin();
+		   }
+	   }
 	}
-
+	public boolean checkGiocatoreSconto(Utente u) {
+		if(u==null){
+			return false;
+		}else {
+			return true;
+		}
+	}
 	public void passSconto() {
-
+		DBMSView.queryScontoApplicato(utenteselected.getId());
+		toAdmin();
 	}
 
 	public void passSearchField(String parametri) {

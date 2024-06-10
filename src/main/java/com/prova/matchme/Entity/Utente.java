@@ -40,6 +40,13 @@ public class Utente {
         this.email=email;
     }
 
+    public Utente(int id,String nome,String cognome,int eta){
+        this.id=id;
+        this.nome=nome;
+        this.cognome=cognome;
+        this.eta=eta;
+    }
+
     public Utente(String username) {
         this.username = username;
     }

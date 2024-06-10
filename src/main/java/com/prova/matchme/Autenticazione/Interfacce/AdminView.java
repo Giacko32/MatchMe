@@ -56,8 +56,10 @@ public class AdminView {
 	public void ClickProfile() {
 		new ProfiloCtrl(this.s,null,g);
 	}
+	@FXML
 	public void clickVerificaSconto() {
-
+		AmministrazioneSedeCtrl a=new AmministrazioneSedeCtrl(s,g);
+		a.toverificaSconto();
 	}
     @FXML
 	public void clickAbilitaAllenatore() {
@@ -70,7 +72,7 @@ public class AdminView {
 		a.tocreateabb();
 
 	}
-
+	@FXML
 	public void ClickVisualizzaPartiteSede() {
 
 	}

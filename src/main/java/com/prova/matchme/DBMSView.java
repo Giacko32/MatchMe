@@ -773,5 +773,29 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
     }
+    public static Utente queryGetGiocatoreSconto(String codice){
+        String query="SELECT u.id,u.nome,u.cognome,s.quantita FROM sconto s,utente u WHERE s.codice=? AND s.ref_Tesserato=u.id";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, codice);
+            var r = stmt.executeQuery();
+            while (r.next()) {
+                return new Utente(r.getInt("id"),r.getString("nome"),r.getString("cognome"),r.getInt("quantita"));
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+    public static void queryScontoApplicato(int id){
+        String query="DELETE FROM sconto WHERE ref_Tesserato=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
+
+
 
 }
