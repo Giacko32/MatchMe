@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneSede.Interfacce.DettagliGiocatoreSconto" style="-fx-background-color:#E89A3F;">
+   <children>
+      <Label  layoutX="82.0" layoutY="80.0" text="Nome:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nome" editable="false" layoutX="163.0" layoutY="80.0" />
+      <Label  layoutX="69.0" layoutY="129.0" text="Cognome:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="cognome" editable="false" layoutX="163.0" layoutY="129.0" />
+      <Label layoutX="96.0" layoutY="187.0" text="ID:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="id" editable="false" layoutX="163.0" layoutY="187.0" />
+      <Label fx:id="sconto" layoutX="79.0" layoutY="260.0" text="Sconto:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+       <Button onMouseClicked="#clickApplicaSconto" layoutX="238.0" layoutY="251.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="77.0" style="-fx-background-color: #FF9622;" text="Applica" textAlignment="CENTER" textFill="WHITE">
+           <font>
+               <Font name="System Bold" size="14.0" />
+           </font>
+           <cursor>
+               <Cursor fx:constant="HAND" />
+           </cursor>
+       </Button>
+   </children>
+</AnchorPane>

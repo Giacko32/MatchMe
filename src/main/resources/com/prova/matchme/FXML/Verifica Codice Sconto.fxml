@@ -2,54 +2,17 @@
 
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="173.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneSede.Interfacce.VerificaScontoView">
     <children>
-        <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
-            <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
-                    <image>
-                        <Image url="@../images/ic--baseline-arrow-back.png" />
-                    </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></ImageView>
-                <Label layoutX="57.0" layoutY="16.0" text="VERIFICA CODICE SCONTO" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="12.800000190734863" />
-                    </font></Label>
-                <ImageView fitHeight="30.0" fitWidth="192.0" layoutX="598.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../images/basecopertinabw.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="529.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../images/calcio_acw.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="556.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../images/padel_acW.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="57.0" fitWidth="20.0" layoutX="502.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../images/tennis_acw.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </AnchorPane>
-        <ListView layoutX="14.0" layoutY="111.0" prefHeight="310.0" prefWidth="718.0" />
-        <TextField layoutX="296.0" layoutY="70.0" promptText="CODICE SCONTO">
+        <TextField fx:id="codice" layoutX="192.0" layoutY="73.0" promptText="CODICE SCONTO">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
         <Label layoutX="127.0" layoutY="74.0" />
-        <Button layoutX="474.0" layoutY="67.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #FF9622;" text="Verifica" textFill="WHITE">
+        <Button layoutX="156.0" layoutY="119.0" mnemonicParsing="false" onMouseClicked="#ClickVerifica" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #FF9622;" text="Verifica" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
@@ -57,15 +20,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-        <Button layoutX="297.0" layoutY="445.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF9622;" text="Applica Sconto" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="12.0" />
-            </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-        </Button>
-        <Label layoutX="144.0" layoutY="73.0" text="Inserisci codice sconto:">
+        <Label layoutX="36.0" layoutY="76.0" text="Inserisci codice sconto:">
          <font>
             <Font size="14.0" />
          </font></Label>

@@ -40,8 +40,6 @@ public class SearchNonTesseratoView {
 		listanontesserati.setItems(items);
 		aggiungi.setDisable(false);
 	}
-
-
 	@FXML
 	public void ClickAggiungiAbbonamento() {
 		this.amministrazioneSedeCtrl.PassNonTesserato(listanontesserati.getSelectionModel().getSelectedItem());

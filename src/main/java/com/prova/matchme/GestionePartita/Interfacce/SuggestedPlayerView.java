@@ -4,9 +4,12 @@ package com.prova.matchme.GestionePartita.Interfacce;
 
 public class SuggestedPlayerView {
 
+
+
 	public void selectSuggestedUser() {
 
 	}
+
 
 	public void selectSquadra() {
 

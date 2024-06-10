@@ -179,11 +179,12 @@ public class ProfiloCtrl {
             CustomStage s=new CustomStage("SUCCESSO");
             Utils.cambiaInterfaccia("FXML/Dialog cod abb corretto.fxml", s, c -> {
                 return new ConfirmView(this,s);
-            }, 400, 300);
+            }, 400, 180);
         }else{
+            CustomStage s=new CustomStage("ATTENZIONE");
             Utils.cambiaInterfaccia("FXML/Dialog cod abb errato.fxml", s, c -> {
                 return new ConfirmView(this,s);
-            }, 400, 300);
+            }, 400, 180);
         }
     }
 
@@ -205,7 +206,7 @@ public class ProfiloCtrl {
         CustomStage stage=new CustomStage("Inserisci il tuo codice");
         Utils.cambiaInterfaccia("FXML/Dialog Attiva Abbonamento.fxml", stage, c -> {
             return new CodiceAbbonamentoView(this,stage);
-        }, 400, 300);
+        }, 400, 200);
     }
 
 }

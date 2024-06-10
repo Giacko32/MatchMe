@@ -5,15 +5,17 @@ import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Autenticazione.Interfacce.AdminView;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
+import com.prova.matchme.EmailSender;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Utente;
-import com.prova.matchme.GestioneSede.Interfacce.AbbonamentoView;
-import com.prova.matchme.GestioneSede.Interfacce.SearchNonTesseratoView;
-import com.prova.matchme.GestioneSede.Interfacce.SearchUtentiView;
+import com.prova.matchme.GestioneSede.Interfacce.*;
 import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
+import com.prova.matchme.shared.WarningView;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class AmministrazioneSedeCtrl {
@@ -22,7 +24,10 @@ public class AmministrazioneSedeCtrl {
 	private Gestore g;
 	private SearchUtentiView controllersuv;
 	private Utente utenteselected;
+	private StringBuilder codice;
 	private SearchNonTesseratoView controllersntv;
+	private String datascadenza;
+	private LocalDate date;
 
 	public AmministrazioneSedeCtrl(Stage s,Gestore g){
 		this.s=s;
@@ -48,17 +53,40 @@ public class AmministrazioneSedeCtrl {
 			return controllersntv;
 		});
 	}
-
-	public void passCodice() {
-
+	public void toverificaSconto(){
+		CustomStage s=new CustomStage("VERIFICA SCONTO");
+		Utils.cambiaInterfaccia("FXML/Verifica Codice Sconto.fxml",s,c->{
+			return new VerificaScontoView(this,s);
+		},380,170);
 	}
 
-	public boolean checkGiocatoreSconto() {
-		return false;
+	public void passCodice(String codice) {
+       if(!codice.isEmpty()){
+		   utenteselected=DBMSView.queryGetGiocatoreSconto(codice);
+		   if(checkGiocatoreSconto(utenteselected)){
+			   CustomStage s=new CustomStage("DETTAGLI");
+			   Utils.cambiaInterfaccia("FXML/DialogDettagliSconto.fxml",s,c->{
+				   return new DettagliGiocatoreSconto(s,this,utenteselected);
+			   },385,400);
+		   }else{
+			   CustomStage s=new CustomStage("ATTENZIONE");
+			   Utils.cambiaInterfaccia("FXML/DialogScontoErrato.fxml",s,c->{
+				   return new WarningView(s);
+			   },350,200);
+			   toAdmin();
+		   }
+	   }
 	}
-
+	public boolean checkGiocatoreSconto(Utente u) {
+		if(u==null){
+			return false;
+		}else {
+			return true;
+		}
+	}
 	public void passSconto() {
-
+		DBMSView.queryScontoApplicato(utenteselected.getId());
+		toAdmin();
 	}
 
 	public void passSearchField(String parametri) {
@@ -98,21 +126,32 @@ public class AmministrazioneSedeCtrl {
 
 
 	}
-
-	public void PassDurata() {
-
+	public void PassDurata(int durata) {
+		GeneraCodice();
+		CalcolaDataFine(durata);
+		InviaMail();
+		DBMSView.querySetAbbonamento(codice.toString(),date, utenteselected.getId());
+		toAdmin();
 	}
 
-	public String GeneraCodice() {
-		return null;
+	public void GeneraCodice() {
+		codice=new StringBuilder();
+		char[] lettere= "abcdefghijkmlmnopqrstuvwxyz1234567890".toCharArray();
+		for(int i=0;i<7;i++){
+			codice.append(lettere[((int)(Math.random()*lettere.length))]);
+		}
 	}
 
-	public void CalcolaDataFine() {
-
+	public void CalcolaDataFine(int durata) {
+		LocalDate today = LocalDate.now();
+		int mesiDaSommare = durata;
+		date = today.plusMonths(mesiDaSommare);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		datascadenza = date.format(formatter);
 	}
 
 	public void InviaMail() {
-
+		EmailSender.sendNewAbbonamento(codice.toString(),utenteselected.getEmail(),datascadenza);
 	}
 
 	public boolean checkTime() {

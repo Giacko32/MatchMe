@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -225,7 +225,7 @@ public class DBMSView {
 
 
     public static int queryGetIdCode(String codice) {
-        var query = "SELECT ref_Tesserato FROM abbonamento WHERE id= ?";
+        var query = "SELECT ref_Tesserato FROM abbonamento WHERE codice= ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, codice);
             var r = stmt.executeQuery();
@@ -686,26 +686,26 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
 
-        String getSquadra1 = "SELECT username FROM utente, partecipa WHERE ref_Partita = ? AND ref_Utente = id AND n_squadra = 1";
+        String getSquadra1 = "SELECT id, nome, cognome FROM utente, partecipa WHERE ref_Partita = ? AND ref_Utente = id AND n_squadra = 1";
         try (PreparedStatement stmt = connDBMS.prepareStatement(getSquadra1)) {
             stmt.setInt(1, partita.getId());
             var r = stmt.executeQuery();
             ArrayList<Utente> squadra1 = new ArrayList<Utente>();
             while (r.next()) {
-                squadra1.add(new Utente(r.getString(1)));
+                squadra1.add(new Utente(r.getInt(1), r.getString(2), r.getString(3)));
             }
             partitaDetails.setSquadra1(squadra1);
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
 
-        String getSquadra2 = "SELECT username FROM utente, partecipa WHERE ref_Partita = ? AND ref_Utente = id AND n_squadra = 2";
+        String getSquadra2 = "SELECT id, nome, cognome FROM utente, partecipa WHERE ref_Partita = ? AND ref_Utente = id AND n_squadra = 2";
         try (PreparedStatement stmt = connDBMS.prepareStatement(getSquadra2)) {
             stmt.setInt(1, partita.getId());
             var r = stmt.executeQuery();
             ArrayList<Utente> squadra2 = new ArrayList<Utente>();
             while (r.next()) {
-                squadra2.add(new Utente(r.getString(1)));
+                squadra2.add(new Utente(r.getInt(1), r.getString(2), r.getString(3)));
             }
             partitaDetails.setSquadra2(squadra2);
         } catch (SQLException e) {
@@ -746,13 +746,30 @@ public class DBMSView {
     }
 
     public static ArrayList<Utente> querySearchNonTesserati(String parametri) {
-        String query = "SELECT id,nome,cognome FROM utente WHERE tipo=? AND (nome LIKE ? or cognome LIKE ?)";
+        String query = "SELECT id,nome,cognome,email FROM utente WHERE tipo=? AND (nome LIKE ? or cognome LIKE ?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, "nt");
             stmt.setString(2, "%" + parametri + "%");
             stmt.setString(3, "%" + parametri + "%");
             var r = stmt.executeQuery();
             ArrayList<Utente> listanontesserati = new ArrayList<>();
+            while (r.next()) {
+                System.out.println(new Utente(r.getInt("id"), r.getString("nome"), r.getString("cognome")));
+                listanontesserati.add(new Utente(r.getInt("id"), r.getString("nome"), r.getString("cognome"),r.getString("email")));
+            }
+            return listanontesserati;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+    public static ArrayList<Utente> queryGetGiocatoriSuggeriti(Utente utente) {
+        String query = "SELECT u2.username FROM utente u1, utente u2, partecipa p1, partecipa p2 WHERE u1.id = p1.ref_Utente AND u2.id = p2.ref_Utente AND p1.ref_Partita = p2.ref_Partita AND u1.id = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, "nt");
+            var r = stmt.executeQuery();
+            ArrayList<Utente> listanontesserati = new ArrayList<Utente>();
             while (r.next()) {
                 listanontesserati.add(new Utente(r.getInt("id"), r.getString("nome"), r.getString("cognome")));
             }
@@ -762,6 +779,41 @@ public class DBMSView {
         }
         return null;
     }
+
+    public static void querySetAbbonamento(String codice,LocalDate data,int idutente){
+        String query="INSERT INTO abbonamento(codice,data_Scadenza,ref_Tesserato) values(?,?,?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, codice);
+            stmt.setDate(2, Date.valueOf(data));
+            stmt.setInt(3, idutente);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
+    public static Utente queryGetGiocatoreSconto(String codice){
+        String query="SELECT u.id,u.nome,u.cognome,s.quantita FROM sconto s,utente u WHERE s.codice=? AND s.ref_Tesserato=u.id";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, codice);
+            var r = stmt.executeQuery();
+            while (r.next()) {
+                return new Utente(r.getInt("id"),r.getString("nome"),r.getString("cognome"),r.getInt("quantita"));
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+    public static void queryScontoApplicato(int id){
+        String query="DELETE FROM sconto WHERE ref_Tesserato=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
+
 
 
 }

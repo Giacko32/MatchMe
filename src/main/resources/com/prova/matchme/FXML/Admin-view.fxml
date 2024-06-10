@@ -76,7 +76,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Pane>
-        <Pane layoutX="474.0" layoutY="157.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
+        <Pane onMouseClicked="#clickVerificaSconto" layoutX="474.0" layoutY="157.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="19.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="VERIFICA CODICE SCONTO" textAlignment="CENTER" wrapText="true">
                     <font>
