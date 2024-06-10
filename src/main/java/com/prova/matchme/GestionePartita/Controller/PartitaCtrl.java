@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class PartitaCtrl {
 
@@ -134,7 +135,9 @@ public class PartitaCtrl {
         boundary.showDetails(DBMSView.queryGetDetailsCampo(campo));
     }
 
-    public void SelectedPartita() {
+    public void SelectedPartita(Partita partita) {
+        ArrayList<Object> SedeCampo = DBMSView.queryGetCampoSedePartita(partita);
+        System.out.println(SedeCampo.get(1).toString());
 
     }
 

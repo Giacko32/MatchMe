@@ -51,8 +51,8 @@ public class AmministrazioneSedeCtrl {
 
 	public void passSearchField(String parametri) {
 		if(!parametri.equals("")){
-			ArrayList<Utente> listautenti=DBMSView.queryGetUtenti(parametri);
-			controllersuv.mostraListaTesserati(listautenti);
+			//ArrayList<Utente> listautenti=DBMSView.queryGetUtenti(parametri);
+			//controllersuv.mostraListaTesserati(listautenti);
 		}
 
 	}
@@ -68,7 +68,7 @@ public class AmministrazioneSedeCtrl {
 	}
 
 	public void confirmAbilitazione() {
-		DBMSView.queryAttivaAllenatore(utenteselected.getId());
+		//DBMSView.queryAttivaAllenatore(utenteselected.getId());
 		Utils.cambiaInterfaccia("FXML/Admin-view.fxml", s, c -> {
 			return new AdminView(new AuthCtrl(s), g,s);
 		});
