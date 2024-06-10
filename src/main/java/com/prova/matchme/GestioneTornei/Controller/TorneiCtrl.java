@@ -101,8 +101,9 @@ public class TorneiCtrl {
 	}
 
 	public boolean CheckNumeroSquadre(Torneo torneo) {
-		//fare la query per ottenere il numero di squadre e controllare se < di torneo.get_N_Squadre
-		return true;
+		//se true il numero di squadre è minore del massimo
+        return DBMSView.queryGetNumeroSquadreTorneo(torneo) < torneo.getN_Squadre();
+
 	}
 
 	public void toMain() {

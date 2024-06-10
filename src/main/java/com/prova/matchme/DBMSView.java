@@ -653,6 +653,24 @@ public class DBMSView {
         return null;
     }
 
+    public static int queryGetNumeroSquadreTorneo(Torneo torneo) {
+        String query = "SELECT COUNT(DISTINCT n_Squadra) AS NumeroDiSquadre FROM Iscrizione WHERE ref_Torneo = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            var r = stmt.executeQuery();
+            if (r.next()) {
+                int numeroSquadre = r.getInt("NumeroDiSquadre");
+                return numeroSquadre;
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return 0;
+    }
+
+
+
+
     public static PartitaDetails queryGetCampoSedePartita(Partita partita) {
         String query = "SELECT s.Id_Sede, s.Indirizzo, s.Nome_Sede, c.id, c.nome, c.sport FROM partita p, campo c, sede s WHERE p.ref_Campo = c.id AND c.ref_Sede = s.Id_Sede AND p.id = ?";
         PartitaDetails partitaDetails = new PartitaDetails();
