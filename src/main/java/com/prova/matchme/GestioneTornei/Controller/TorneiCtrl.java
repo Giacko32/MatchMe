@@ -8,10 +8,7 @@ import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Torneo;
 import com.prova.matchme.Entity.Utente;
-import com.prova.matchme.GestioneTornei.Interfacce.IscrizioneSquadraView;
-import com.prova.matchme.GestioneTornei.Interfacce.SelezioneTorneiView;
-import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaDettagliMioTorneo;
-import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaDettagliTuttiITornei;
+import com.prova.matchme.GestioneTornei.Interfacce.*;
 import com.prova.matchme.Utils;
 import javafx.stage.Stage;
 
@@ -22,6 +19,7 @@ public class TorneiCtrl {
 	private VisualizzaDettagliMioTorneo boundaryMio;
 	private VisualizzaDettagliTuttiITornei boundaryTutti;
 	private IscrizioneSquadraView boundarySquadra;
+	private SearchUserView boundarySearchUser;
 
 	public TorneiCtrl(Utente utente, Stage stage) {
 		this.utente = utente;
@@ -59,71 +57,75 @@ public class TorneiCtrl {
 	}
 
 	public void IscriviSelezionato(Torneo torneo, Stage st) {
-		if(this.CheckNumeroSquadre(torneo)){
+		if (this.CheckNumeroSquadre(torneo)) {
 			st.close();
 			Utils.cambiaInterfaccia("FXML/IscrizioneSquadraTorneo.fxml", stage, c -> {
-				boundarySquadra =  new IscrizioneSquadraView(this,utente);
+				boundarySquadra = new IscrizioneSquadraView(this, utente, stage);
 				return boundarySquadra;
 			});
-		}else{
-
+		} else {
+			Utils.creaPannelloErrore("Il torneo selezionato è pieno");
 		}
 	}
 
-	public void AggiungiPartecipanti() {
+		public void AggiungiPartecipanti (TorneiCtrl torneiCtrl, Stage st) {
+			st.close();
+			Utils.cambiaInterfaccia("FXML/SearchUserView.fxml", stage, c -> {
+				boundarySearchUser =  new SearchUserView(this);
+				return boundarySearchUser;
+			});
+		}
 
-	}
+		public void CheckSquadra () {
 
-	public void CheckSquadra() {
+		}
 
-	}
+		public void PassData () {
 
-	public void PassData() {
+		}
 
-	}
+		public void AggiungiASquadra () {
 
-	public void AggiungiASquadra() {
+		}
 
-	}
+		public void IscriviSquadraCliccato () {
 
-	public void IscriviSquadraCliccato() {
+		}
 
-	}
+		public void CheckLivello () {
 
-	public void CheckLivello() {
+		}
 
-	}
+		public void CloseWarningView () {
 
-	public void CloseWarningView() {
+		}
 
-	}
+		public void passCancellazione () {
 
-	public void passCancellazione() {
+		}
 
-	}
+		public void CloseConfirmView () {
 
-	public void CloseConfirmView() {
+		}
 
-	}
+		public boolean CheckNumeroSquadre (Torneo torneo){
+			//se true il numero di squadre è minore del massimo
+			return DBMSView.queryGetNumeroSquadreTorneo(torneo) < torneo.getN_Squadre();
 
-	public boolean CheckNumeroSquadre(Torneo torneo) {
-		//se true il numero di squadre è minore del massimo
-        return DBMSView.queryGetNumeroSquadreTorneo(torneo) < torneo.getN_Squadre();
+		}
 
-	}
-
-	public void toMain() {
-		if (utente != null) {
-			if (utente.getTipo().equals("al")) {
-				Utils.cambiaInterfaccia("FXML/Allena-view.fxml", stage, c -> {
-					return new AllenaView(new AuthCtrl(stage), utente, stage);
-				});
-			} else {
-				Utils.cambiaInterfaccia("FXML/Main-view.fxml", stage, c -> {
-					return new MainView(new AuthCtrl(stage), utente, stage);
-				});
+		public void toMain () {
+			if (utente != null) {
+				if (utente.getTipo().equals("al")) {
+					Utils.cambiaInterfaccia("FXML/Allena-view.fxml", stage, c -> {
+						return new AllenaView(new AuthCtrl(stage), utente, stage);
+					});
+				} else {
+					Utils.cambiaInterfaccia("FXML/Main-view.fxml", stage, c -> {
+						return new MainView(new AuthCtrl(stage), utente, stage);
+					});
+				}
 			}
 		}
-	}
 
-}
+	}

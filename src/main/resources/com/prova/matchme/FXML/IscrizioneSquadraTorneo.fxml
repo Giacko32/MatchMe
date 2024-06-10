@@ -50,7 +50,7 @@
          </cursor></TextField>
       <ListView layoutX="36.0" layoutY="143.0" prefHeight="329.0" prefWidth="549.0" />
       <Label layoutX="37.0" layoutY="118.0" text="Componenti:" />
-        <Button layoutX="598.0" layoutY="243.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Aggiungi giocatore" textFill="WHITE">
+        <Button onMouseClicked="#ClickAggiungiPartecipanti" layoutX="598.0" layoutY="243.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Aggiungi giocatore" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
