@@ -36,7 +36,7 @@ public class PartitaCtrl {
 
     public PartitaCtrl(Utente u, Stage stage, boolean Partite) {
         this.u = u;
-        this.s =stage;
+        this.s = stage;
         Stage stageDialog = new CustomStage("Seleziona partite");
         Utils.cambiaInterfaccia("FXML/SelezioneVisualizzaPartite.fxml", stageDialog, c -> {
             return new SelectTipoPartiteView(this, stageDialog);
@@ -74,7 +74,7 @@ public class PartitaCtrl {
         st.close();
         if (Mie) {
             Utils.cambiaInterfaccia("FXML/VisualizzaLeMiePartite.fxml", s, c -> {
-                boundary1 = new DetailsMiaPartitaView(DBMSView.queryGetPartiteUtente(u),this);
+                boundary1 = new DetailsMiaPartitaView(DBMSView.queryGetPartiteUtente(u), this);
                 return boundary1;
             });
         } else {
@@ -90,8 +90,15 @@ public class PartitaCtrl {
 
     }
 
-    public boolean checkNumeroGiocatori() {
-        return false;
+    public boolean checkNumeroGiocatori(PartitaDetails partitaDetails) {
+        return switch (partitaDetails.campo.getSport()) {
+            case "Calcio a 5" -> (partitaDetails.squadra1.size() + partitaDetails.squadra2.size()) < 10;
+            case "Tennis singolo", "Padel singolo" ->
+                    (partitaDetails.squadra1.size() + partitaDetails.squadra2.size()) < 2;
+            case "Tennis doppio", "Padel doppio" ->
+                    (partitaDetails.squadra1.size() + partitaDetails.squadra2.size()) < 4;
+            default -> false;
+        };
     }
 
     public void deleteWarning() {
@@ -139,8 +146,14 @@ public class PartitaCtrl {
         boundary1.ShowDetails(dettagli);
     }
 
-    public void AggiungiClicked() {
-
+    public void AggiungiClicked(PartitaDetails partitaDetails) {
+        if(!checkNumeroGiocatori(partitaDetails)){
+            Utils.creaPannelloErrore("La partita è piena");
+        } else {
+            Utils.cambiaInterfaccia("FXML/Aggiungigiocatori.fxml", new CustomStage("Aggiungi Giocatori"), c -> {
+                return new SuggestedPlayerView();
+            }, 500, 330);
+        }
     }
 
     public void AggiungiOspiteClicked() {

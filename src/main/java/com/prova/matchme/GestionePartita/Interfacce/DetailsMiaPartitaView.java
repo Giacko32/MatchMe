@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class DetailsMiaPartitaView {
 
 	private Partita selectedPartita;
+	private PartitaDetails selectedPartitaDetails;
 	private ArrayList<Partita> listaPartite;
 	@FXML
 	private ListView<Partita> ListaMiePartite;
@@ -64,6 +65,7 @@ public class DetailsMiaPartitaView {
 	}
 
 	public void ShowDetails(PartitaDetails partitaDetails){
+		this.selectedPartitaDetails = partitaDetails;
 		SedeField.setDisable(false);
 		CampoField.setDisable(false);
 		SportField.setDisable(false);
@@ -85,7 +87,7 @@ public class DetailsMiaPartitaView {
 	}
 
 	public void ClickAggiungiGiocatori() {
-
+		partitaCtrl.AggiungiClicked(selectedPartitaDetails);
 	}
 
 	public void ClickInvitaGiocatori() {
