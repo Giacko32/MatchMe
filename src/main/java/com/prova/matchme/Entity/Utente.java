@@ -55,6 +55,14 @@ public class Utente {
         return this.nome + " " + this.cognome;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if(o != null) {
+            return ((Utente) o).id == getId();
+        }
+        return false;
+    }
+
     public void setdati(String nome, String cognome, String email, String username) {
         this.username = username;
         this.nome = nome;

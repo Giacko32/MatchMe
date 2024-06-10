@@ -113,7 +113,7 @@ public class NotifyCtrl {
     public void squadraselected(int squadra){
         DBMSView.queryAddGiocatore(idPartita,u.getId(),squadra);
         String notifica="L'utente invitato alla partita con id: "+idPartita +" ha accettato\nvai a controllare che squadra ha scelto";
-        DBMSView.sendNotify(notifica,listapart);
+        DBMSView.sendNotify(notifica,listapart, 1);
         DBMSView.eliminaNotifica(selectednotifica);
         controller.rimuoviNotificaCancellata(selectednotifica);
     }
@@ -167,7 +167,7 @@ public class NotifyCtrl {
             DBMSView.queryAddGiocatore(idPartita,idutentedaacc,scegliSquadra());
             String notifica="L'utente con id: "+idutentedaacc+" è stato accettato nella partita: "+idPartita+" vai a\n controllare le squadre";
             listapart.add(new UtentePart(DBMSView.querygetDettagliUtente(idutentedaacc),1));
-            DBMSView.sendNotify(notifica,listapart);
+            DBMSView.sendNotify(notifica,listapart, 1);
         }
         DBMSView.eliminaNotifica(selectednotifica);
         controller.rimuoviNotificaCancellata(selectednotifica);

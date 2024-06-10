@@ -103,7 +103,7 @@ public class DetailsMiaPartitaView {
 	}
 
 	public void ShowBnd() {
-
+		partitaCtrl.SelectedPartita(selectedPartita);
 	}
 
 	@FXML

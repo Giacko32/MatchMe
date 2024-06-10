@@ -105,8 +105,22 @@ public class PartitaCtrl {
 
     }
 
-    public void passGiocatoreSquadra() {
-
+    public void passGiocatoreSquadra(Utente utente, int n_squadra, PartitaDetails partita, Stage stage) {
+        if (DBMSView.queryGiocatoreOccupato(utente.getId(), partita.campo.getOrario())) {
+            DBMSView.queryAddGiocatore(partita.partita.getId(), utente.getId(), n_squadra);
+            ArrayList<UtentePart> destNotify = new ArrayList<>();
+            for (Utente user : partita.squadra1) {
+                destNotify.add(new UtentePart(user, 1));
+            }
+            for (Utente user : partita.squadra2) {
+                destNotify.add(new UtentePart(user, 2));
+            }
+            DBMSView.sendNotify(utente.getNome() + " " + utente.getCognome() + " si è unito alla tua partita del " + partita.campo.getOrarioString() + " nella sede " + partita.sede.getNome_sede(), destNotify, 1);
+            stage.close();
+            boundary1.ShowBnd();
+        } else {
+            Utils.creaPannelloErrore("Il giocatore è impegnato\n in questa fascia oraria");
+        }
     }
 
     public void passRicercaGiocatore() {
@@ -147,13 +161,48 @@ public class PartitaCtrl {
     }
 
     public void AggiungiClicked(PartitaDetails partitaDetails) {
-        if(!checkNumeroGiocatori(partitaDetails)){
+        String squadreNonPiene = null;
+        if (!checkNumeroGiocatori(partitaDetails)) {
             Utils.creaPannelloErrore("La partita è piena");
         } else {
-            Utils.cambiaInterfaccia("FXML/Aggiungigiocatori.fxml", new CustomStage("Aggiungi Giocatori"), c -> {
-                return new SuggestedPlayerView();
+            ArrayList<Utente> listaSuggeriti = DBMSView.queryGetGiocatoriSuggeriti(u);
+            listaSuggeriti.removeAll(partitaDetails.squadra1);
+            listaSuggeriti.removeAll(partitaDetails.squadra2);
+            squadreNonPiene = "";
+            switch (partitaDetails.campo.getSport()) {
+                case "Calcio a 5" -> {
+                    if (partitaDetails.squadra1.size() == 5) {
+                        squadreNonPiene = "2";
+                    } else if (partitaDetails.squadra2.size() == 5) {
+                        squadreNonPiene = "1";
+                    } else {
+                        squadreNonPiene = "entrambe";
+                    }
+                }
+                case "Tennis singolo", "Padel singolo" -> {
+                    if (partitaDetails.squadra1.size() == 1) {
+                        squadreNonPiene = "2";
+                    } else if (partitaDetails.squadra2.size() == 1) {
+                        squadreNonPiene = "1";
+                    }
+                }
+                case "Tennis doppio", "Padel doppio" -> {
+                    if (partitaDetails.squadra1.size() == 2) {
+                        squadreNonPiene = "2";
+                    } else if (partitaDetails.squadra2.size() == 2) {
+                        squadreNonPiene = "1";
+                    } else {
+                        squadreNonPiene = "entrambe";
+                    }
+                }
+            }
+            String finalSquadreNonPiene = squadreNonPiene;
+            CustomStage cs = new CustomStage("Aggiungi Giocatori");
+            Utils.cambiaInterfaccia("FXML/Aggiungigiocatori.fxml", cs, c -> {
+                return new SuggestedPlayerView(listaSuggeriti, finalSquadreNonPiene, this, partitaDetails, cs);
             }, 500, 330);
         }
+
     }
 
     public void AggiungiOspiteClicked() {

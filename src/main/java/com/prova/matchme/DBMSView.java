@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gioele2002!";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -495,7 +495,7 @@ public class DBMSView {
     }
 
     public static boolean queryGiocatoreOccupato(int idutente, LocalDateTime dataora) {
-        String query = "SELECT p.id FROM partita p JOIN partecipa pt ON p.id = pt.ref_Partita WHERE pt.ref_Utente = ? AND p.dataOra = ? LIMIT 1";
+        String query = "SELECT p.id FROM partita p, partecipa pt WHERE p.id = pt.ref_Partita AND pt.ref_Utente = ? AND p.dataOra = ? LIMIT 1";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, idutente);
             stmt.setDate(2, Date.valueOf(dataora.toLocalDate()));
@@ -539,12 +539,12 @@ public class DBMSView {
         }
     }
 
-    public static void sendNotify(String notifica, ArrayList<UtentePart> listadest) {
+    public static void sendNotify(String notifica, ArrayList<UtentePart> listadest, int tipo) {
         String query = "INSERT INTO notifica(ref_Utente,tipo,messaggio) values (?,?,?)";
         for (int i = 0; i < listadest.size(); i++) {
             try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
                 stmt.setInt(1, listadest.get(i).getId());
-                stmt.setInt(2, 1);
+                stmt.setInt(2, tipo);
                 stmt.setString(3, notifica);
                 var r = stmt.executeUpdate();
             } catch (SQLException e) {
@@ -755,7 +755,7 @@ public class DBMSView {
             ArrayList<Utente> listanontesserati = new ArrayList<>();
             while (r.next()) {
                 System.out.println(new Utente(r.getInt("id"), r.getString("nome"), r.getString("cognome")));
-                listanontesserati.add(new Utente(r.getInt("id"), r.getString("nome"), r.getString("cognome"),r.getString("email")));
+                listanontesserati.add(new Utente(r.getInt("id"), r.getString("nome"), r.getString("cognome"), r.getString("email")));
             }
             return listanontesserati;
         } catch (SQLException e) {
@@ -765,23 +765,25 @@ public class DBMSView {
     }
 
     public static ArrayList<Utente> queryGetGiocatoriSuggeriti(Utente utente) {
-        String query = "SELECT u2.username FROM utente u1, utente u2, partecipa p1, partecipa p2 WHERE u1.id = p1.ref_Utente AND u2.id = p2.ref_Utente AND p1.ref_Partita = p2.ref_Partita AND u1.id = ?";
+        String query = "SELECT DISTINCT u2.id, u2.nome, u2.cognome FROM utente u1, utente u2, partecipa p1, partecipa p2 WHERE u1.id = p1.ref_Utente AND u2.id = p2.ref_Utente AND p1.ref_Partita = p2.ref_Partita AND u1.id = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
-            stmt.setString(1, "nt");
+            stmt.setInt(1, utente.getId());
             var r = stmt.executeQuery();
-            ArrayList<Utente> listanontesserati = new ArrayList<Utente>();
+            ArrayList<Utente> listasuggeriti = new ArrayList<Utente>();
             while (r.next()) {
-                listanontesserati.add(new Utente(r.getInt("id"), r.getString("nome"), r.getString("cognome")));
+                if (r.getInt(1) != utente.getId()) {
+                    listasuggeriti.add(new Utente(r.getInt(1), r.getString(2), r.getString(3)));
+                }
             }
-            return listanontesserati;
+            return listasuggeriti;
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
         return null;
     }
 
-    public static void querySetAbbonamento(String codice,LocalDate data,int idutente){
-        String query="INSERT INTO abbonamento(codice,data_Scadenza,ref_Tesserato) values(?,?,?)";
+    public static void querySetAbbonamento(String codice, LocalDate data, int idutente) {
+        String query = "INSERT INTO abbonamento(codice,data_Scadenza,ref_Tesserato) values(?,?,?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, codice);
             stmt.setDate(2, Date.valueOf(data));
