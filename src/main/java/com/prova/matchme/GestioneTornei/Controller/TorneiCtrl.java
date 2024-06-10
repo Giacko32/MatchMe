@@ -39,12 +39,15 @@ public class TorneiCtrl {
 	public void MieiTornei(Stage st) {
 		st.close();
 		Utils.cambiaInterfaccia("FXML/VisualizzaIMieiTornei.fxml", stage, c -> {
-			return new VisualizzaDettagliMioTorneo(DBMSView.queryGetImieiTornei(utente),this);
+			boundary =  new VisualizzaDettagliMioTorneo(DBMSView.queryGetImieiTornei(utente),this);
+			return boundary;
 		});
+
 	}
 
 	public void TorneoSelezionato(Torneo torneo) {
-		boundary.showDetails(DBMSView.queryGetDetailsCampo(torneo));
+
+		boundary.showDetails(DBMSView.queryGetTorneo(torneo));
 	}
 
 	public void IscriviSelezionato() {

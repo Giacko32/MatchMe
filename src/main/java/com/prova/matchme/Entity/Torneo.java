@@ -44,4 +44,7 @@ public class Torneo {
         }
 
 
+    public int getId() {
+        return id;
+    }
 }

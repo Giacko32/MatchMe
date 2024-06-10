@@ -10,7 +10,7 @@
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -65,8 +65,8 @@
       <Label layoutX="423.0" layoutY="199.0" text="Sport:" />
       <Label layoutX="423.0" layoutY="242.0" text="Max squadre:" />
       <Label layoutX="423.0" layoutY="285.0" text="Giocatori per squadre:" />
-      <TextField fx:id="sport"  layoutX="562.0" layoutY="194.0" />
-      <TextField fx:id="maxSquadre" layoutX="562.0" layoutY="237.0" />
-      <TextField fx:id="maxGiocatoriSquadre" layoutX="562.0" layoutY="280.0" />
+      <TextField fx:id="sport" editable="false" layoutX="562.0" layoutY="194.0" />
+      <TextField fx:id="maxSquadre" editable="false" layoutX="562.0" layoutY="237.0" />
+      <TextField fx:id="maxGiocatoriSquadre" editable="false" layoutX="562.0" layoutY="280.0" />
     </children>
 </AnchorPane>

@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gioele2002!";
 
     private static Connection connDBMS = null;
 
@@ -631,6 +631,24 @@ public class DBMSView {
                 tuttiTorneiUtente.add(new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6)));
             }
             return tuttiTorneiUtente;
+
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+    public static Torneo queryGetTorneo(Torneo torneo) {
+        String query = "SELECT id, ref_Sede, sport, n_Squadre, n_giocatori_squadra,vincoli FROM Torneo WHERE id = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            var r = stmt.executeQuery();
+            if (r.next()) {
+                Torneo torneoRisultato = new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6));
+
+                return torneoRisultato;
+            }
+
 
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
