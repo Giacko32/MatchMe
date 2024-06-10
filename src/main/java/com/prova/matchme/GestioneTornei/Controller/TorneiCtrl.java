@@ -6,9 +6,8 @@ import com.prova.matchme.Autenticazione.Interfacce.AllenaView;
 import com.prova.matchme.Autenticazione.Interfacce.MainView;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
+import com.prova.matchme.Entity.Torneo;
 import com.prova.matchme.Entity.Utente;
-import com.prova.matchme.GestionePartita.Interfacce.DetailsMiaPartitaView;
-import com.prova.matchme.GestionePartita.Interfacce.SelezionaSedeSportDataView;
 import com.prova.matchme.GestioneTornei.Interfacce.SelezioneTorneiView;
 import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaDettagliMioTorneo;
 import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaDettagliTuttiITornei;
@@ -19,6 +18,7 @@ public class TorneiCtrl {
 
 	private Utente utente;
 	private Stage stage;
+	private VisualizzaDettagliMioTorneo boundary;
 
 	public TorneiCtrl(Utente utente, Stage stage) {
 		this.utente = utente;
@@ -43,8 +43,8 @@ public class TorneiCtrl {
 		});
 	}
 
-	public void TorneoSelezionato() {
-
+	public void TorneoSelezionato(Torneo torneo) {
+		boundary.showDetails(DBMSView.queryGetDetailsCampo(torneo));
 	}
 
 	public void IscriviSelezionato() {

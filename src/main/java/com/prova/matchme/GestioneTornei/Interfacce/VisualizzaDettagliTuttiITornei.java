@@ -41,4 +41,7 @@ public class VisualizzaDettagliTuttiITornei {
 		this.controller.toMain();
 	}
 
+
+
+
 }
