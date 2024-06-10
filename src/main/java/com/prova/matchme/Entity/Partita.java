@@ -19,6 +19,10 @@ public class Partita {
         this.vincoli = vincoli;
     }
 
+    public int getId(){
+        return this.id;
+    }
+
     public int getRef_campo(){
         return this.ref_campo;
     }

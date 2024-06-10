@@ -1,6 +1,7 @@
 package com.prova.matchme;
 
 import com.prova.matchme.Entity.*;
+import javafx.util.Pair;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -538,12 +539,12 @@ public class DBMSView {
         }
     }
 
-    public static void sendNotify(String notifica,ArrayList<UtentePart> listadest){
-        String query="INSERT INTO notifica(ref_Utente,tipo,messaggio) values (?,?,?)";
-        for(int i=0;i<listadest.size();i++){
+    public static void sendNotify(String notifica, ArrayList<UtentePart> listadest) {
+        String query = "INSERT INTO notifica(ref_Utente,tipo,messaggio) values (?,?,?)";
+        for (int i = 0; i < listadest.size(); i++) {
             try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
                 stmt.setInt(1, listadest.get(i).getId());
-                stmt.setInt(2,1);
+                stmt.setInt(2, 1);
                 stmt.setString(3, notifica);
                 var r = stmt.executeUpdate();
             } catch (SQLException e) {
@@ -552,8 +553,8 @@ public class DBMSView {
         }
     }
 
-    public static void eliminaNotifica(Notifica notifica){
-        String query="DELETE FROM notifica WHERE id=?";
+    public static void eliminaNotifica(Notifica notifica) {
+        String query = "DELETE FROM notifica WHERE id=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, notifica.getId());
             var r = stmt.executeUpdate();
@@ -562,13 +563,13 @@ public class DBMSView {
         }
     }
 
-    public static Accettazione queryGetDettagliPartecipantePartita(int idpartita,int idutente){
-        String query="SELECT * FROM accettazione WHERE ref_Utente=? and ref_Partita=?";
+    public static Accettazione queryGetDettagliPartecipantePartita(int idpartita, int idutente) {
+        String query = "SELECT * FROM accettazione WHERE ref_Utente=? and ref_Partita=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, idutente);
             stmt.setInt(2, idpartita);
             var r = stmt.executeQuery();
-            while(r.next()){
+            while (r.next()) {
                 return Accettazione.createfromdb(r);
             }
         } catch (SQLException e) {
@@ -577,12 +578,12 @@ public class DBMSView {
         return null;
     }
 
-    public static Utente querygetDettagliUtente(int id){
-        String query="SELECT * FROM utente WHERE id=? ";
+    public static Utente querygetDettagliUtente(int id) {
+        String query = "SELECT * FROM utente WHERE id=? ";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, id);
             var r = stmt.executeQuery();
-            while(r.next()){
+            while (r.next()) {
                 return Utente.createFromDB(r);
             }
         } catch (SQLException e) {
@@ -591,10 +592,10 @@ public class DBMSView {
         return null;
     }
 
-    public static void setAccettazione(Accettazione accettazione){
-        String query="UPDATE accettazione SET n_Accettazioni=? WHERE ref_Partita=? and ref_Utente=?";
+    public static void setAccettazione(Accettazione accettazione) {
+        String query = "UPDATE accettazione SET n_Accettazioni=? WHERE ref_Partita=? and ref_Utente=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
-            stmt.setInt(1, accettazione.getN_accettazioni()-1);
+            stmt.setInt(1, accettazione.getN_accettazioni() - 1);
             stmt.setInt(2, accettazione.getIdpartita());
             stmt.setInt(3, accettazione.getIdutente());
             var r = stmt.executeUpdate();
@@ -637,35 +638,22 @@ public class DBMSView {
         return null;
     }
 
-    public static ArrayList<Utente> queryGetUtenti(String parametri){
-        String query="SELECT id,nome,cognome FROM utente WHERE (nome LIKE ? or cognome LIKE ?) AND (tipo<>?)";
+    public static ArrayList<Object> queryGetCampoSedePartita(Partita partita) {
+        String query = "SELECT s.Id_Sede, s.Indirizzo, s.Nome_Sede, c.id, c.nome, c.sport FROM partita p, campo c, sede s WHERE p.ref_Campo = c.id AND c.ref_Sede = s.Id_Sede AND p.id = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
-            stmt.setString(1,"%"+parametri+"%");
-            stmt.setString(2,"%"+parametri+"%");
-            stmt.setString(3,"al");
+            stmt.setInt(1, partita.getId());
             var r = stmt.executeQuery();
-            ArrayList<Utente> listautenti = new ArrayList<>();
-            while (r.next()) {
-                listautenti.add(new Utente(r.getInt("id"),r.getString("nome"),r.getString("cognome")));
+            ArrayList<Object> toreturn = new ArrayList<Object>();
+            if (r.next()) {
+                toreturn.add(new Sede(r.getInt(1), r.getString(3), r.getString(2)));
+                toreturn.add(new Campo(r.getInt(4), r.getInt(1), r.getString(5), r.getString(6), partita.getDataOra()));
             }
-            return listautenti;
+            return toreturn;
 
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
         return null;
-
-    }
-
-    public static void queryAttivaAllenatore(int id){
-        String query="UPDATE utente SET tipo=? WHERE id=?";
-        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
-            stmt.setString(1,"al" );
-            stmt.setInt(2, id);
-            var r = stmt.executeUpdate();
-        } catch (SQLException e) {
-            erroreComunicazioneDBMS(e);
-        }
     }
 
 
