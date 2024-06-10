@@ -3,11 +3,11 @@ package com.prova.matchme.Entity;
 import java.util.ArrayList;
 
 public class PartitaDetails {
-    private Partita partita;
-    private Sede sede;
-    private Campo campo;
-    private ArrayList<Utente> squadra1;
-    private ArrayList<Utente> squadra2;
+    public Partita partita;
+    public Sede sede;
+    public Campo campo;
+    public ArrayList<Utente> squadra1;
+    public ArrayList<Utente> squadra2;
 
     public void setPartita(Partita p){
         this.partita = p;
