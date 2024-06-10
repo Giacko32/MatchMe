@@ -31,6 +31,8 @@ public class DetailsMiaPartitaView {
 	@FXML
 	private TextField DataOraField;
 	@FXML
+	private TextField SportField;
+	@FXML
 	private Button AggiungiGiocatoreButton;
 	@FXML
 	private Button InvitaGiocatoreButton;
@@ -58,6 +60,18 @@ public class DetailsMiaPartitaView {
 
 	public void selectPartita(){
 		partitaCtrl.SelectedPartita(selectedPartita);
+	}
+
+	public void ShowDetails(ArrayList<Object> sedecampo){
+		SedeField.setDisable(false);
+		CampoField.setDisable(false);
+		SportField.setDisable(false);
+		DataOraField.setDisable(false);
+		AggiungiGiocatoreButton.setDisable(false);
+		AggiungiOspiteButton.setDisable(false);
+		CancellaPrenotazioneButton.setDisable(false);
+		InvitaGiocatoreButton.setDisable(false);
+
 	}
 
 	public void ClickAggiungiGiocatori() {

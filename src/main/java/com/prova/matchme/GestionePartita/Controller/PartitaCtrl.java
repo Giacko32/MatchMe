@@ -25,6 +25,7 @@ public class PartitaCtrl {
     private Utente u;
     private Stage s;
     private DettagliCampoView boundary;
+    DetailsMiaPartitaView boundary1;
     private LocalDateTime selectedDataOra;
 
     public PartitaCtrl(Utente u, Stage s) {
@@ -76,7 +77,8 @@ public class PartitaCtrl {
         st.close();
         if (Mie) {
             Utils.cambiaInterfaccia("FXML/VisualizzaLeMiePartite.fxml", s, c -> {
-                return new DetailsMiaPartitaView(DBMSView.queryGetPartiteUtente(u),this);
+                boundary1 = new DetailsMiaPartitaView(DBMSView.queryGetPartiteUtente(u),this);
+                return boundary1;
             });
         } else {
             Utils.cambiaInterfaccia("FXML/Visualizza partite.fxml", s, c -> new DetailsTuttePartiteView(this));
@@ -137,8 +139,7 @@ public class PartitaCtrl {
 
     public void SelectedPartita(Partita partita) {
         ArrayList<Object> SedeCampo = DBMSView.queryGetCampoSedePartita(partita);
-        System.out.println(SedeCampo.get(1).toString());
-
+        boundary1.ShowDetails(SedeCampo);
     }
 
     public void AggiungiClicked() {

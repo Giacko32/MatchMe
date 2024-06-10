@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gioele2002!";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -645,29 +645,25 @@ public class DBMSView {
             var r = stmt.executeQuery();
             if (r.next()) {
                 Torneo torneoRisultato = new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6));
-
                 return torneoRisultato;
             }
-
-
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
         return null;
     }
 
-    public static ArrayList<Object> queryGetCampoSedePartita(Partita partita) {
+    public static PartitaDetails queryGetCampoSedePartita(Partita partita) {
         String query = "SELECT s.Id_Sede, s.Indirizzo, s.Nome_Sede, c.id, c.nome, c.sport FROM partita p, campo c, sede s WHERE p.ref_Campo = c.id AND c.ref_Sede = s.Id_Sede AND p.id = ?";
+        PartitaDetails partitaDetails =  new PartitaDetails();
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, partita.getId());
             var r = stmt.executeQuery();
-            ArrayList<Object> toreturn = new ArrayList<Object>();
             if (r.next()) {
-                toreturn.add(new Sede(r.getInt(1), r.getString(3), r.getString(2)));
-                toreturn.add(new Campo(r.getInt(4), r.getInt(1), r.getString(5), r.getString(6), partita.getDataOra()));
+                partitaDetails.setSede(new Sede(r.getInt(1), r.getString(3), r.getString(2)));
+                partitaDetails.setCampo(new Campo(r.getInt(4), r.getInt(1), r.getString(5), r.getString(6), partita.getDataOra()));
+                partitaDetails.setPartita(partita);
             }
-            return toreturn;
-
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
