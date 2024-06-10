@@ -14,6 +14,7 @@ module com.prova.matchme {
     requires mysql.connector.j;
     requires jakarta.mail;
     requires com.fasterxml.jackson.annotation;
+    requires java.desktop;
 
     opens com.prova.matchme to javafx.fxml;
     opens com.prova.matchme.Autenticazione.Interfacce to javafx.fxml;
@@ -23,6 +24,7 @@ module com.prova.matchme {
     opens com.prova.matchme.GestioneMessaggistica.Interfacce to javafx.fxml;
     opens com.prova.matchme.GestioneNotifiche.Interfacce to javafx.fxml;
     opens com.prova.matchme.GestioneTornei.Interfacce to javafx.fxml;
+    opens com.prova.matchme.GestioneSede.Interfacce to javafx.fxml;
 
 
     exports com.prova.matchme;

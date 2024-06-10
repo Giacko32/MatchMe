@@ -84,37 +84,6 @@ public class Utils {
         });
         creaInterfaccia(loader, 400, 170, stage);
     }
-/*
-    public static void creaPannelloAvvisoScadenza(EventHandler<ActionEvent> onConfirm, EventHandler<ActionEvent> onExit) {
-        Stage stage = new Stage();
-        stage.setResizable(false);
-        if (Main.mainStage != null) {
-            try {
-                stage.initOwner(Main.mainStage);
-                stage.initModality(Modality.APPLICATION_MODAL);
-            } catch (Exception e) {
-            }
-        }
-        FXMLLoader loader = creaLoader("Pannelli/PannelloAvvisoScadenza.fxml");
-        loader.setControllerFactory(c -> new PannelloAvviso(onConfirm, onExit));
-        creaInterfaccia(loader, 600, 400, stage);
-    }
-
-    public static void creaPannelloModalitaConsegna(EventHandler<ActionEvent> stessaData, EventHandler<ActionEvent> dateDiverse) {
-        Stage stage = new Stage();
-        stage.setResizable(false);
-        if (Main.mainStage != null) {
-            try {
-                stage.initOwner(Main.mainStage);
-                stage.initModality(Modality.APPLICATION_MODAL);
-            } catch (Exception ignored) {
-            }
-        }
-        FXMLLoader loader = creaLoader("GestioneFarmaci/ModalitaConsegnaPopup.fxml");
-        loader.setControllerFactory(c -> new PannelloAvvisoDisponibilita(stessaData, dateDiverse));
-        creaInterfaccia(loader, 600, 400, stage);
-    }
-*/
 
     /**
      * Crea un nuovo pannello di conferma

@@ -3,6 +3,7 @@ package com.prova.matchme.Autenticazione.Interfacce;
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
+import com.prova.matchme.GestioneSede.Controller.AmministrazioneSedeCtrl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -58,9 +59,10 @@ public class AdminView {
 	public void clickVerificaSconto() {
 
 	}
-
+    @FXML
 	public void clickAbilitaAllenatore() {
-
+		AmministrazioneSedeCtrl a=new AmministrazioneSedeCtrl(s,g);
+		a.toabilita();
 	}
 
 	public void clickAggiungiAbbonamento() {
