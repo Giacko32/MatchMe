@@ -15,7 +15,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gioele2002!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -635,6 +635,37 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         return null;
+    }
+
+    public static ArrayList<Utente> queryGetUtenti(String parametri){
+        String query="SELECT id,nome,cognome FROM utente WHERE (nome LIKE ? or cognome LIKE ?) AND (tipo<>?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1,"%"+parametri+"%");
+            stmt.setString(2,"%"+parametri+"%");
+            stmt.setString(3,"al");
+            var r = stmt.executeQuery();
+            ArrayList<Utente> listautenti = new ArrayList<>();
+            while (r.next()) {
+                listautenti.add(new Utente(r.getInt("id"),r.getString("nome"),r.getString("cognome")));
+            }
+            return listautenti;
+
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+
+    }
+
+    public static void queryAttivaAllenatore(int id){
+        String query="UPDATE utente SET tipo=? WHERE id=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1,"al" );
+            stmt.setInt(2, id);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
     }
 
 

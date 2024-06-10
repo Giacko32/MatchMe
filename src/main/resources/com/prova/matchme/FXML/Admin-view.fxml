@@ -112,7 +112,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Pane>
-        <Pane layoutX="474.0" layoutY="259.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622 #FF9622; -fx-border-radius: 10;">
+        <Pane onMouseClicked="#clickAbilitaAllenatore" layoutX="474.0" layoutY="259.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622 #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="13.0" layoutY="12.0" prefHeight="59.0" prefWidth="82.0" text="ABILITA&#10;ALLENATORE" textAlignment="CENTER" wrapText="true">
                     <font>
