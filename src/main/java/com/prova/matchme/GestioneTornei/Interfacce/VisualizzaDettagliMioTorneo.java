@@ -46,6 +46,7 @@ public class VisualizzaDettagliMioTorneo {
 	}
 	public void ClickCancellaSquadra() {
 
+
 	}
 
 	public void SelectTorneo(){

@@ -56,8 +56,12 @@ public class TorneiCtrl {
 		boundaryTutti.showDetails(DBMSView.queryGetTorneo(torneo));
 	}
 
-	public void IscriviSelezionato() {
+	public void IscriviSelezionato(Torneo torneo) {
+		if(this.CheckNumeroSquadre(torneo)){
 
+		}else{
+
+		}
 	}
 
 	public void AggiungiPartecipanti() {
@@ -96,8 +100,9 @@ public class TorneiCtrl {
 
 	}
 
-	public void CheckNumeroSquadre() {
-
+	public boolean CheckNumeroSquadre(Torneo torneo) {
+		//fare la query per ottenere il numero di squadre e controllare se < di torneo.get_N_Squadre
+		return true;
 	}
 
 	public void toMain() {

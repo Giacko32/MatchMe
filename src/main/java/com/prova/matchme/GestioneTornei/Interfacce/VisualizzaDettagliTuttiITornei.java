@@ -45,7 +45,7 @@ public class VisualizzaDettagliTuttiITornei {
 		});
 	}
 	public void ClickIscriviSquadra() {
-
+		controller.IscriviSelezionato(selectedTorneo);
 	}
 	public void SelectTorneo(){
 		controller.TorneoSelezionatoTutti(selectedTorneo);

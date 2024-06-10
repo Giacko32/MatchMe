@@ -11,11 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4af3d7da-bc56-44b9-ace0-9872cfa66ce3" name="Changes" comment="Sono stati fatti tanti cambiamenti">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/PartitaDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/PartitaDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/Utente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Controller/PartitaCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Controller/PartitaCtrl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/DetailsMiaPartitaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/DetailsMiaPartitaView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Controller/TorneiCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Controller/TorneiCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/VisualizzaDettagliMioTorneo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/VisualizzaDettagliMioTorneo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/VisualizzaDettagliTuttiITornei.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/VisualizzaDettagliTuttiITornei.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
