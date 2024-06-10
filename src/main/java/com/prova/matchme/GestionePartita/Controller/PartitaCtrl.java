@@ -134,8 +134,10 @@ public class PartitaCtrl {
 
     }
 
-    public void passSquadraOspite() {
-
+    public void passSquadraOspite(int n_squadra, PartitaDetails partitaDetails, Stage stg) {
+        DBMSView.queryAddOspite(partitaDetails, n_squadra);
+        stg.close();
+        boundary1.ShowBnd();
     }
 
     public void passConferma() {
@@ -214,7 +216,7 @@ public class PartitaCtrl {
         } else {
             CustomStage stg = new CustomStage("Inserisci ospite");
             Utils.cambiaInterfaccia("FXML/DialogAggiungiOspite.fxml", stg, c -> {
-                return new AggiungiOspiteView();
+                return new AggiungiOspiteView(this, partitaDetails, stg);
             }, 350, 170);
         }
     }

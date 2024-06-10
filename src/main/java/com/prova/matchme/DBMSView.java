@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -711,7 +711,7 @@ public class DBMSView {
     }
 
     public static ArrayList<Utente> queryGetUtenti(String parametri) {
-        String query = "SELECT id,nome,cognome FROM utente WHERE (nome LIKE ? or cognome LIKE ?) AND (tipo<>?)";
+        String query = "SELECT id,nome,cognome FROM utente WHERE (nome LIKE ? or cognome LIKE ?) AND (tipo<>?) AND id > 0";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, "%" + parametri + "%");
             stmt.setString(2, "%" + parametri + "%");
@@ -761,7 +761,7 @@ public class DBMSView {
     }
 
     public static ArrayList<Utente> queryGetGiocatoriSuggeriti(Utente utente) {
-        String query = "SELECT DISTINCT u2.id, u2.nome, u2.cognome FROM utente u1, utente u2, partecipa p1, partecipa p2 WHERE u1.id = p1.ref_Utente AND u2.id = p2.ref_Utente AND p1.ref_Partita = p2.ref_Partita AND u1.id = ?";
+        String query = "SELECT DISTINCT u2.id, u2.nome, u2.cognome FROM utente u1, utente u2, partecipa p1, partecipa p2 WHERE u1.id = p1.ref_Utente AND u2.id = p2.ref_Utente AND p1.ref_Partita = p2.ref_Partita AND u1.id = ? AND u2.id > 0";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, utente.getId());
             var r = stmt.executeQuery();
@@ -816,7 +816,7 @@ public class DBMSView {
     }
 
     public static ArrayList<Utente> queryGetListaGiocatori(String textSearched) {
-        String query = "SELECT id, nome, cognome FROM utente WHERE nome LIKE ? OR cognome LIKE ?";
+        String query = "SELECT id, nome, cognome FROM utente WHERE nome LIKE ? OR cognome LIKE ? AND id > 0";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, "%" + textSearched + "%");
             stmt.setString(2, "%" + textSearched + "%");
@@ -876,6 +876,17 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
 
+    }
+
+    public static void queryAddOspite(PartitaDetails partitaDetails, int n_squadra){
+        String query = "INSERT INTO partecipa(ref_Utente,ref_Partita,n_squadra,n_giocatori_allenamento) values (-1,?,?,0)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, partitaDetails.partita.getId());
+            stmt.setInt(2, n_squadra);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
     }
 
 }
