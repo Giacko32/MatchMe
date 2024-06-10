@@ -225,7 +225,7 @@ public class DBMSView {
 
 
     public static int queryGetIdCode(String codice) {
-        var query = "SELECT ref_Tesserato FROM abbonamento WHERE id= ?";
+        var query = "SELECT ref_Tesserato FROM abbonamento WHERE codice= ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, codice);
             var r = stmt.executeQuery();
