@@ -8,10 +8,7 @@ import com.prova.matchme.Autenticazione.Interfacce.AllenaView;
 import com.prova.matchme.Autenticazione.Interfacce.MainView;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
-import com.prova.matchme.Entity.Campo;
-import com.prova.matchme.Entity.Partita;
-import com.prova.matchme.Entity.Sede;
-import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.Entity.*;
 import com.prova.matchme.GestionePartita.Interfacce.*;
 import com.prova.matchme.Utils;
 import javafx.stage.Stage;
@@ -138,8 +135,8 @@ public class PartitaCtrl {
     }
 
     public void SelectedPartita(Partita partita) {
-        ArrayList<Object> SedeCampo = DBMSView.queryGetCampoSedePartita(partita);
-        boundary1.ShowDetails(SedeCampo);
+        PartitaDetails dettagli = DBMSView.queryGetCampoSedePartita(partita);
+        boundary1.ShowDetails(dettagli);
     }
 
     public void AggiungiClicked() {
