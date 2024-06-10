@@ -4,6 +4,7 @@ import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import com.prova.matchme.GestioneSede.Controller.AmministrazioneSedeCtrl;
+import com.prova.matchme.Threads.ContrAbb;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -15,10 +16,16 @@ public class AdminView {
 	private AuthCtrl authCtrl;
 	private Gestore g;
 	private Stage s;
+	private static int firstTime=0;
 	public AdminView(AuthCtrl authCtrl, Gestore g,Stage s){
 		this.authCtrl=authCtrl;
 		this.g=g;
 		this.s=s;
+		if(firstTime==0){
+			firstTime++;
+			ContrAbb thread=new ContrAbb(g);
+			thread.start();
+		}
 	}
 	@FXML
 	public void ClickLogout() {

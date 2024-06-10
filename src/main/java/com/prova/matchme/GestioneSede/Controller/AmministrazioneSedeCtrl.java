@@ -6,6 +6,7 @@ import com.prova.matchme.Autenticazione.Interfacce.AdminView;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.EmailSender;
+import com.prova.matchme.Entity.Abbonamento;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestioneSede.Interfacce.*;
@@ -15,6 +16,8 @@ import com.prova.matchme.shared.WarningView;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -31,6 +34,10 @@ public class AmministrazioneSedeCtrl {
 
 	public AmministrazioneSedeCtrl(Stage s,Gestore g){
 		this.s=s;
+		this.g=g;
+	}
+
+	public AmministrazioneSedeCtrl(Gestore g){
 		this.g=g;
 	}
 
@@ -130,7 +137,7 @@ public class AmministrazioneSedeCtrl {
 		GeneraCodice();
 		CalcolaDataFine(durata);
 		InviaMail();
-		DBMSView.querySetAbbonamento(codice.toString(),date, utenteselected.getId());
+		DBMSView.querySetAbbonamento(codice.toString(),date, utenteselected.getId(),g.getId());
 		toAdmin();
 	}
 
@@ -154,8 +161,24 @@ public class AmministrazioneSedeCtrl {
 		EmailSender.sendNewAbbonamento(codice.toString(),utenteselected.getEmail(),datascadenza);
 	}
 
-	public boolean checkTime() {
-		return false;
+	public void checkTime() {
+			LocalDate currentDate = LocalDate.now();
+			ArrayList<Abbonamento> listaabb=DBMSView.getAbbonamenti(g.getId());
+			for(int i=0;i<listaabb.size();i++){
+				System.out.println("Sto controllando abbonamenti");
+				System.out.println(listaabb.get(i).getDatadiscadenza());
+				System.out.println(currentDate);
+				if(listaabb.get(i).getDatadiscadenza().isBefore(currentDate)){
+					System.out.println("Sto inviando notifica");
+					String notifica="Il tuo abbonamento è scaduto,se ti sei trovato bene rivolgiti alla tua sede di fiducia,per rinnovarlo";
+					DBMSView.sendNotify2(notifica,listaabb.get(i).getRefTesserato(),1);
+					DBMSView.queryEliminaAbbonamento(listaabb.get(i).getRefTesserato());
+				}
+				if(listaabb.get(i).getDatadiscadenza().minusDays(7).isEqual(currentDate)){
+					String notifica="Il tuo abbonamento scadrà tra 7 giorni, corri a rinnovarlo se vuoi altri sconti solo per te";
+					DBMSView.sendNotify2(notifica,listaabb.get(i).getRefTesserato(),1);
+				}
+			}
 	}
 
 	public void CheckNumeroAbbonamenti() {

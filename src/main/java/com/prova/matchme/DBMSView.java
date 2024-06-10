@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -445,8 +445,6 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
     }
-
-
     public static ArrayList<Notifica> queryGetNotifiche(int idutente) {
         String query = "SELECT * FROM notifica WHERE ref_Utente=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
@@ -780,12 +778,13 @@ public class DBMSView {
         return null;
     }
 
-    public static void querySetAbbonamento(String codice, LocalDate data, int idutente) {
-        String query = "INSERT INTO abbonamento(codice,data_Scadenza,ref_Tesserato) values(?,?,?)";
+    public static void querySetAbbonamento(String codice, LocalDate data, int idutente,int idgestore) {
+        String query = "INSERT INTO abbonamento(codice,data_Scadenza,ref_Tesserato,ref_Gestore) values(?,?,?,?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, codice);
             stmt.setDate(2, Date.valueOf(data));
             stmt.setInt(3, idutente);
+            stmt.setInt(4, idgestore);
             var r = stmt.executeUpdate();
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
@@ -831,6 +830,52 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         return null;
+    }
+    public static ArrayList<Abbonamento> getAbbonamenti(int idgestore){
+        String query="SELECT * FROM abbonamento WHERE ref_Gestore=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, idgestore);
+            var r = stmt.executeQuery();
+            ArrayList<Abbonamento> listaabb=new ArrayList<>();
+            while (r.next()) {
+                listaabb.add(new Abbonamento(r.getInt("ref_Tesserato"),r.getDate("data_Scadenza").toLocalDate(),r.getString("codice"),r.getInt("ref_Gestore")));
+            }
+            return listaabb;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+    public static void sendNotify2(String notifica,int id, int tipo) {
+        String query = "INSERT INTO notifica(ref_Utente,tipo,messaggio) values (?,?,?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            stmt.setInt(2, tipo);
+            stmt.setString(3, notifica);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
+
+    public static void queryEliminaAbbonamento(int id){
+        String query="DELETE FROM abbonamento WHERE ref_Tesserato=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        query="UPDATE utente SET tipo=? WHERE id=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(2, id);
+            stmt.setString(1, "nt");
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
     }
 
 }
