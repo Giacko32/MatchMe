@@ -47,4 +47,9 @@ public class SearchUtentiView {
 		this.amministrazioneSedeCtrl.passNewAllenatore(listautenti.getSelectionModel().getSelectedItem());
 	}
 
+	@FXML
+	public void back(){
+		amministrazioneSedeCtrl.toAdmin();
+	}
+
 }

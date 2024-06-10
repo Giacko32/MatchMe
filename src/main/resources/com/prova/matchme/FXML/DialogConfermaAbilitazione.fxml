@@ -11,7 +11,7 @@
             <font>
                 <Font name="System Bold" size="18.0" />
             </font></Label>
-        <Button layoutX="207.0" layoutY="102.0" mnemonicParsing="false" text="CONFERMA">
+        <Button onMouseClicked="#ClickConferma" layoutX="207.0" layoutY="102.0" mnemonicParsing="false" text="CONFERMA">
             <font>
                 <Font name="System Bold" size="12.800000190734863" />
             </font>
