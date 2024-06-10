@@ -669,6 +669,7 @@ public class DBMSView {
         }
         return null;
     }
+
     public static ArrayList<Utente> queryGetUtenti(String parametri){
         String query="SELECT id,nome,cognome FROM utente WHERE (nome LIKE ? or cognome LIKE ?) AND (tipo<>?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
