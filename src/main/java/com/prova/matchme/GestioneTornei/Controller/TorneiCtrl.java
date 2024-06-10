@@ -8,6 +8,7 @@ import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Torneo;
 import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.GestioneTornei.Interfacce.IscrizioneSquadraView;
 import com.prova.matchme.GestioneTornei.Interfacce.SelezioneTorneiView;
 import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaDettagliMioTorneo;
 import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaDettagliTuttiITornei;
@@ -20,6 +21,7 @@ public class TorneiCtrl {
 	private Stage stage;
 	private VisualizzaDettagliMioTorneo boundaryMio;
 	private VisualizzaDettagliTuttiITornei boundaryTutti;
+	private IscrizioneSquadraView boundarySquadra;
 
 	public TorneiCtrl(Utente utente, Stage stage) {
 		this.utente = utente;
@@ -33,7 +35,7 @@ public class TorneiCtrl {
 	public void TuttiItornei(Stage st) {
 		st.close();
 		Utils.cambiaInterfaccia("FXML/VisualizzaTornei.fxml", stage, c -> {
-			boundaryTutti = new VisualizzaDettagliTuttiITornei(DBMSView.queryGetTuttITornei(),this);
+			boundaryTutti = new VisualizzaDettagliTuttiITornei(DBMSView.queryGetTuttITornei(),this, stage);
 			return boundaryTutti;
 		});
 	}
@@ -56,9 +58,13 @@ public class TorneiCtrl {
 		boundaryTutti.showDetails(DBMSView.queryGetTorneo(torneo));
 	}
 
-	public void IscriviSelezionato(Torneo torneo) {
+	public void IscriviSelezionato(Torneo torneo, Stage st) {
 		if(this.CheckNumeroSquadre(torneo)){
-
+			st.close();
+			Utils.cambiaInterfaccia("FXML/IscrizioneSquadraTorneo.fxml", stage, c -> {
+				boundarySquadra =  new IscrizioneSquadraView(this,utente);
+				return boundarySquadra;
+			});
 		}else{
 
 		}

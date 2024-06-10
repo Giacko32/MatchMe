@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ public class VisualizzaDettagliTuttiITornei {
 	@FXML
 	private ListView<Torneo> ListaTuttiTornei;
 	private TorneiCtrl controller;
+	private Stage stage;
 
 	@FXML
 	private TextField sport;
@@ -29,10 +31,11 @@ public class VisualizzaDettagliTuttiITornei {
 	@FXML
 	private Button buttonIscriviSquadra;
 
-	public VisualizzaDettagliTuttiITornei(ArrayList<Torneo> lista, TorneiCtrl controller){
+	public VisualizzaDettagliTuttiITornei(ArrayList<Torneo> lista, TorneiCtrl controller, Stage stage){
 
 		this.listaTornei = lista;
 		this.controller = controller;
+		this.stage = stage;
 	}
 
 	@FXML
@@ -45,7 +48,7 @@ public class VisualizzaDettagliTuttiITornei {
 		});
 	}
 	public void ClickIscriviSquadra() {
-		controller.IscriviSelezionato(selectedTorneo);
+		controller.IscriviSelezionato(selectedTorneo, stage);
 	}
 	public void SelectTorneo(){
 		controller.TorneoSelezionatoTutti(selectedTorneo);

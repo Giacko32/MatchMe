@@ -55,7 +55,7 @@
             </font>
         </Label>
 
-        <Button fx:id="buttonIscriviSquadra" disable="true" layoutX="494.0" layoutY="386.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="ISCRIVI SQUADRA TORNEO">
+        <Button onMouseClicked="#ClickIscriviSquadra" fx:id="buttonIscriviSquadra" disable="true" layoutX="494.0" layoutY="386.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" text="ISCRIVI SQUADRA TORNEO">
          <font>
             <Font name="System Bold" size="12.800000190734863" />
          </font>
