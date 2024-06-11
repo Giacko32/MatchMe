@@ -2,43 +2,57 @@ package com.prova.matchme.shared;
 
 import com.prova.matchme.Entity.Notifica;
 import com.prova.matchme.GestioneNotifiche.Controller.NotifyCtrl;
+import com.prova.matchme.GestioneSede.Controller.GestionePartiteSedeCtrl;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
 public class ChoiceView {
 
 
-	private NotifyCtrl notifyCtrl;
-	private Stage s;
+    private NotifyCtrl notifyCtrl;
+    private Stage s;
+    private GestionePartiteSedeCtrl gestionePartiteSedeCtrl;
 
-	public ChoiceView(NotifyCtrl notifyCtrl,Stage s){
-		this.s=s;
-		this.notifyCtrl=notifyCtrl;
-	}
+    public ChoiceView(NotifyCtrl notifyCtrl, Stage s) {
+        this.s = s;
+        this.notifyCtrl = notifyCtrl;
+    }
+
+    public ChoiceView(GestionePartiteSedeCtrl gestionePartiteSedeCtrl, Stage s) {
+        this.s = s;
+        this.gestionePartiteSedeCtrl = gestionePartiteSedeCtrl;
+    }
 
     @FXML
-	public void clickAccetta() {
-		this.notifyCtrl.inviaEsito(true);
-		s.close();
+    public void clickAccetta() {
+        if (notifyCtrl != null) {
+            this.notifyCtrl.inviaEsito(true);
+        }
+        if(gestionePartiteSedeCtrl!=null){
+            gestionePartiteSedeCtrl.PassSquadraVincitrice(1);
+        }
+        s.close();
 
-	}
+    }
 
     @FXML
-	public void clickRifiuta() {
-		this.notifyCtrl.inviaEsito(false);
-		s.close();
-	}
+    public void clickRifiuta() {
+        if (notifyCtrl != null) {
+            this.notifyCtrl.inviaEsito(false);
+        }
+        if(gestionePartiteSedeCtrl!=null){
+            gestionePartiteSedeCtrl.PassSquadraVincitrice(2);
+        }
+        s.close();
+    }
 
-	public void SelectSquadra() {
 
-	}
+    public void ClickTuttiItornei() {
 
-	public void ClickTuttiItornei() {
+    }
 
-	}
+    public void ClickIMieiTornei() {
 
-	public void ClickIMieiTornei() {
-
-	}
+    }
 
 }

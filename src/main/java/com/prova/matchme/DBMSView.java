@@ -1067,4 +1067,44 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
     }
+
+
+    public static void querySendPunteggi(ArrayList<Integer> ids, ArrayList<Float> punteggi) {
+        String selectQuery = "SELECT livello FROM utente WHERE id=?";
+        String updateQuery = "UPDATE utente SET livello=? WHERE id=?";
+
+        try (PreparedStatement selectStmt = connDBMS.prepareStatement(selectQuery);
+             PreparedStatement updateStmt = connDBMS.prepareStatement(updateQuery)) {
+
+            for (int i = 0; i < ids.size(); i++) {
+                // Eseguire la query di selezione
+                selectStmt.setInt(1, ids.get(i));
+                try (ResultSet r = selectStmt.executeQuery()) {
+                    Float livellocorrente = 0.0F;
+                    if (r.next()) {
+                        livellocorrente = r.getFloat("livello");
+                    }
+                    livellocorrente += punteggi.get(i);
+                    // Eseguire la query di aggiornamento
+                    updateStmt.setFloat(1, livellocorrente);
+                    updateStmt.setInt(2, ids.get(i));
+                    updateStmt.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
+    public static void queryPartitaGiocata(int idpartita,String risultato,LocalDateTime dataOra){
+        String query="INSERT INTO partitestorico(id_partita_origine,data,risultato) values(?,?,?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1,idpartita);
+            stmt.setTimestamp(2, Timestamp.valueOf(dataOra));
+            stmt.setString(3,risultato);
+            var t = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+    }
 }

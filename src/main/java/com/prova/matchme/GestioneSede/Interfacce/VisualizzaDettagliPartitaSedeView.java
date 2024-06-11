@@ -89,9 +89,9 @@ public class VisualizzaDettagliPartitaSedeView {
 	public void ClickInvitaGiocatore() {
        gestionePartiteSedeCtrl.InvitaGiocatoreCliccato();
 	}
-
+    @FXML
 	public void ClickAssegnaRisultato() {
-
+   		gestionePartiteSedeCtrl.AssegnaRisultatoCliccato();
 	}
     @FXML
 	public void ClickRinviaPartita() {

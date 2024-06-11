@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="170.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.MatchMeController">
+<AnchorPane prefHeight="170.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.shared.WarningView">
     <children>
         <Label layoutX="105.0" layoutY="9.0" prefHeight="82.0" prefWidth="233.0" text="IMPOSSIBILE ASSEGNARE&#10;RISULTATO" textFill="#ff0505">
             <font>
@@ -16,7 +16,7 @@
             <image>
                 <Image url="@../images/segnale-di-avvertenza-pericolo-icona-di-attenzione-triangolo-rosso-rischio-di-errore-spam-2m69p1x.png" />
             </image></ImageView>
-        <Button layoutX="263.0" layoutY="124.0" mnemonicParsing="false" text="OK">
+        <Button onMouseClicked="#ClickOk" layoutX="263.0" layoutY="124.0" mnemonicParsing="false" text="OK">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
