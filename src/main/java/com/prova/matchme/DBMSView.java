@@ -421,18 +421,18 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         if (utente != null) {
-        String queryGetID = "SELECT id FROM partita WHERE ref_Campo = ? AND dataOra = ?";
-        int idNewPartita = 0;
-        try (PreparedStatement stmt = connDBMS.prepareStatement(queryGetID)) {
-            stmt.setInt(1, partita.getRef_campo());
-            stmt.setTimestamp(2, Timestamp.valueOf(partita.getDataOra()));
-            var r = stmt.executeQuery();
-            if (r.next()) {
-                idNewPartita = r.getInt(1);
+            String queryGetID = "SELECT id FROM partita WHERE ref_Campo = ? AND dataOra = ?";
+            int idNewPartita = 0;
+            try (PreparedStatement stmt = connDBMS.prepareStatement(queryGetID)) {
+                stmt.setInt(1, partita.getRef_campo());
+                stmt.setTimestamp(2, Timestamp.valueOf(partita.getDataOra()));
+                var r = stmt.executeQuery();
+                if (r.next()) {
+                    idNewPartita = r.getInt(1);
+                }
+            } catch (SQLException e) {
+                erroreComunicazioneDBMS(e);
             }
-        } catch (SQLException e) {
-            erroreComunicazioneDBMS(e);
-        }
 
 
             String queryInsertCreatore = "INSERT INTO partecipa(ref_Utente,ref_Partita,n_squadra,n_giocatori_allenamento) values(?,?,?,?)";
@@ -447,6 +447,7 @@ public class DBMSView {
             }
         }
     }
+
     public static ArrayList<Notifica> queryGetNotifiche(int idutente) {
         String query = "SELECT * FROM notifica WHERE ref_Utente=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
@@ -925,7 +926,7 @@ public class DBMSView {
 
     }
 
-    public static void queryAddOspite(PartitaDetails partitaDetails, int n_squadra){
+    public static void queryAddOspite(PartitaDetails partitaDetails, int n_squadra) {
         String query = "INSERT INTO partecipa(ref_Utente,ref_Partita,n_squadra,n_giocatori_allenamento) values (-1,?,?,0)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, partitaDetails.partita.getId());
@@ -953,7 +954,7 @@ public class DBMSView {
         return null;
     }
 
-    public static void queryCancellaPrenotazione(int id_partita, int id_utente){
+    public static void queryCancellaPrenotazione(int id_partita, int id_utente) {
         String query = "DELETE FROM partecipa WHERE ref_Partita = ? AND ref_Utente = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, id_partita);
@@ -1037,4 +1038,21 @@ public class DBMSView {
 
     }
 
+    public static ArrayList<Partita> queryGetTuttePartite(Sede s, String sport) {
+        String query = "SELECT p.id,p.ref_Campo,p.dataOra,p.tipo,p.vincoli FROM partita p, campo c WHERE c.id = p.ref_Campo AND c.sport = ? AND c.ref_Sede = ? AND p.tipo = ? AND p.id NOT IN (SELECT id_partita_origine FROM partitestorico)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, sport);
+            stmt.setInt(2, s.getId_sede());
+            stmt.setString(3, "ppub");
+            var r = stmt.executeQuery();
+            ArrayList<Partita> listaPartite = new ArrayList<>();
+            while (r.next()) {
+                listaPartite.add(new Partita(r.getInt(1), r.getInt(2), r.getTimestamp(3).toLocalDateTime(), r.getString(4), r.getString(5)));
+            }
+            return listaPartite;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
 }

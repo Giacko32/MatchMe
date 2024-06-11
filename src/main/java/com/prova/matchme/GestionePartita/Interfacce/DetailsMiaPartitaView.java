@@ -62,7 +62,7 @@ public class DetailsMiaPartitaView {
 	}
 
 	public void selectPartita(){
-		partitaCtrl.SelectedPartita(selectedPartita);
+		partitaCtrl.SelectedPartita(selectedPartita, true);
 	}
 
 	public void ShowDetails(PartitaDetails partitaDetails){
@@ -125,7 +125,7 @@ public class DetailsMiaPartitaView {
 	}
 
 	public void ShowBnd() {
-		partitaCtrl.SelectedPartita(selectedPartita);
+		partitaCtrl.SelectedPartita(selectedPartita, true);
 	}
 
 	public void removePartita(PartitaDetails partita){

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="170.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestionePartita.Interfacce.PartecipazionePartitaView">
+    <children>
+        <Label layoutX="101.0" layoutY="14.0" text="Scegli la squadra!" textFill="#03b53f">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font></Label>
+        <Button fx:id="buttonS1" layoutX="47.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#selectSquadra1" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: #03b53f;" text="SQUADRA 1" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="buttonS2" layoutX="218.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#selectSquadra2" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: #03b53f;" text="SQUADRA 2" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+    </children>
+</AnchorPane>

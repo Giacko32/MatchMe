@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PartitaCtrl {
 
@@ -25,6 +26,7 @@ public class PartitaCtrl {
     private Stage s;
     private DettagliCampoView boundary;
     DetailsMiaPartitaView boundary1;
+    DetailsTuttePartiteView boundary2;
     private Stage stageDialog;
     private LocalDateTime selectedDataOra;
     private PartitaDetails partitaToCancel;
@@ -82,7 +84,7 @@ public class PartitaCtrl {
                 return boundary1;
             });
         } else {
-            Utils.cambiaInterfaccia("FXML/DialogSelectSedeSport.fxml", stageDialog, c -> new SelectSedeSportView(DBMSView.queryGetSedi(), this, stageDialog), 350,170);
+            Utils.cambiaInterfaccia("FXML/DialogSelectSedeSport.fxml", stageDialog, c -> new SelectSedeSportView(DBMSView.queryGetSedi(), this, stageDialog), 350, 170);
         }
     }
 
@@ -93,7 +95,8 @@ public class PartitaCtrl {
     public void passSedeSport(Sede sede, String sport) {
         stageDialog.close();
         Utils.cambiaInterfaccia("FXML/Visualizza partite.fxml", s, c -> {
-            return new DetailsTuttePartiteView(this);
+            boundary2 = new DetailsTuttePartiteView(this, DBMSView.queryGetTuttePartite(sede, sport), u);
+            return boundary2;
         });
     }
 
@@ -108,8 +111,16 @@ public class PartitaCtrl {
         };
     }
 
-    public void deleteWarning() {
-
+    public void deleteWarning(PartitaDetails partitaDetails) {
+        ArrayList<UtentePart> destNotify = new ArrayList<>();
+        for (Utente user : partitaDetails.squadra1) {
+            destNotify.add(new UtentePart(user, 1));
+        }
+        for (Utente user : partitaDetails.squadra2) {
+            destNotify.add(new UtentePart(user, 2));
+        }
+        DBMSView.sendNotify(u.getNome() + " " + u.getCognome() + " con id " + u.getId() + " chiede di partecipare nella partita del " + partitaDetails.campo.getOrarioString() + " nella sede " + partitaDetails.sede.getNome_sede() + " di " + partitaDetails.campo.getSport() + " " + partitaDetails.partita.getId(),destNotify,2);
+        boundary2.ShowBnd(partitaDetails);
     }
 
     public void passGiocatoreSquadra(Utente utente, int n_squadra, PartitaDetails partita, Stage stage) {
@@ -140,7 +151,7 @@ public class PartitaCtrl {
     public void passInvito(Utente utente, int n_squadra, PartitaDetails partitaDetails, Stage stg) {
         ArrayList<UtentePart> destinatario = new ArrayList<>();
         destinatario.add(new UtentePart(utente, n_squadra));
-        DBMSView.sendNotify("Sei stato invitato ad una partita il " + partitaDetails.campo.getOrarioString() + " nella sede " + partitaDetails.sede.getNome_sede() +" per giocare a "+ partitaDetails.campo.getSport() + " " + partitaDetails.partita.getId(), destinatario, 0);
+        DBMSView.sendNotify("Sei stato invitato ad una partita il " + partitaDetails.campo.getOrarioString() + " nella sede " + partitaDetails.sede.getNome_sede() + " per giocare a " + partitaDetails.campo.getSport() + " " + partitaDetails.partita.getId(), destinatario, 0);
         stg.close();
         boundary1.ShowBnd();
     }
@@ -167,12 +178,29 @@ public class PartitaCtrl {
         boundary1.removePartita(partitaToCancel);
     }
 
-    public void checkVincoli() {
-
+    public boolean checkVincoli(String vincoli) {
+        String[] VincoliSplitted = vincoli.split(";");
+        if (!VincoliSplitted[0].equals(u.getSessoVincoli())) {
+            return false;
+        }
+        if (u.getLivello().intValue() < Integer.parseInt(VincoliSplitted[1]) || u.getLivello().intValue() > Integer.parseInt(VincoliSplitted[2])) {
+            return false;
+        }
+        return Integer.parseInt(u.getEta()) >= Integer.parseInt(VincoliSplitted[3]) && Integer.parseInt(u.getEta()) <= Integer.parseInt(VincoliSplitted[4]);
     }
 
-    public void passSquadra() {
-
+    public void passSquadra(int n_squadra, PartitaDetails partitaDetails, Stage stage) {
+        DBMSView.queryAddGiocatore(partitaDetails.partita.getId(), u.getId(), n_squadra);
+        ArrayList<UtentePart> destinatari = new ArrayList<>();
+        for (Utente utente : partitaDetails.squadra1) {
+            destinatari.add(new UtentePart(utente, 1));
+        }
+        for (Utente utente : partitaDetails.squadra2) {
+            destinatari.add(new UtentePart(utente, 2));
+        }
+        DBMSView.sendNotify(u.getNome() + " " + u.getCognome() + " adesso partecipa nella partita del " + partitaDetails.campo.getOrarioString() + " nella sede " + partitaDetails.sede.getNome_sede(), destinatari, 1);
+        stage.close();
+        boundary2.selectPartita();
     }
 
     public boolean VerificaDisponibilità() {
@@ -183,12 +211,21 @@ public class PartitaCtrl {
         boundary.showDetails(DBMSView.queryGetDetailsCampo(campo));
     }
 
-    public void SelectedPartita(Partita partita) {
-        if (partita != null) {
-            PartitaDetails dettagli = DBMSView.queryGetCampoSedePartita(partita);
-            boundary1.ShowDetails(dettagli);
+    public void SelectedPartita(Partita partita, boolean Mie) {
+        if (Mie) {
+            if (partita != null) {
+                PartitaDetails dettagli = DBMSView.queryGetCampoSedePartita(partita);
+                boundary1.ShowDetails(dettagli);
+            } else {
+                boundary1.ShowDetails(null);
+            }
         } else {
-            boundary1.ShowDetails(null);
+            if (partita != null) {
+                PartitaDetails dettagli = DBMSView.queryGetCampoSedePartita(partita);
+                boundary2.ShowBnd(dettagli);
+            } else {
+                boundary1.ShowDetails(null);
+            }
         }
     }
 
@@ -257,7 +294,7 @@ public class PartitaCtrl {
     }
 
     public void InvitaClicked(PartitaDetails partitaDetails) {
-        if(!checkNumeroGiocatori(partitaDetails)){
+        if (!checkNumeroGiocatori(partitaDetails)) {
             Utils.creaPannelloErrore("La partita è piena");
         } else {
             ArrayList<Utente> listaSuggeriti = DBMSView.queryGetGiocatoriSuggeriti(u);
@@ -302,11 +339,20 @@ public class PartitaCtrl {
     public void prenotaPartita(Campo campo, Sede sede) {
         Utils.cambiaInterfaccia("FXML/Prenotazione2.fxml", s, c -> {
             return new PrenotazionePartitaView(u, this, campo, sede, s);
-        });
+        }, 350, 170);
     }
 
-    public void PartecipaClicked(Campo campo, Sede sede) {
-
+    public void PartecipaClicked(PartitaDetails partitaDetails) {
+        Stage stg = new CustomStage("Squadre");
+        if (checkVincoli(partitaDetails.partita.getVincoli())) {
+            Utils.cambiaInterfaccia("FXML/DialogSelezionaSquadraPartecipazione.fxml", stg, c -> {
+                return new PartecipazionePartitaView(stg, this, partitaDetails);
+            }, 350, 170);
+        } else {
+            Utils.cambiaInterfaccia("FXML/DialogCriteriInsufficenti.fxml", stg, c -> {
+                return new ConfirmView(this, stg, partitaDetails);
+            }, 350, 170);
+        }
     }
 
     public void toMain() {

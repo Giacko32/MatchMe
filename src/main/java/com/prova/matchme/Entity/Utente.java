@@ -114,6 +114,18 @@ public class Utente {
         return this.tipo;
     }
 
+    public String getSesso(){
+        return this.sesso;
+    }
+
+    public String getSessoVincoli(){
+        if(getSesso().equals("M")){
+            return "uomo";
+        } else {
+            return "donna";
+        }
+    }
+
     public static Utente createFromDB(ResultSet row) throws SQLException {
         return new Utente(
                 row.getInt("id"),

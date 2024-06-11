@@ -1,6 +1,7 @@
 package com.prova.matchme.shared;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
+import com.prova.matchme.Entity.PartitaDetails;
 import com.prova.matchme.GestionePartita.Controller.PartitaCtrl;
 import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import com.prova.matchme.GestioneSede.Controller.AmministrazioneSedeCtrl;
@@ -14,6 +15,7 @@ public class ConfirmView {
 	private AmministrazioneSedeCtrl amministrazioneSedeCtrl;
 	private PartitaCtrl partitaCtrl;
 	private Stage s;
+	private PartitaDetails partitaDetails;
 	public ConfirmView(AuthCtrl authCtrl, Stage s){
 		this.authCtrl=authCtrl;
 		this.s=s;
@@ -33,6 +35,12 @@ public class ConfirmView {
 		this.partitaCtrl = partitaCtrl;
 		this.s = s;
 	}
+
+	public ConfirmView(PartitaCtrl partitaCtrl, Stage s, PartitaDetails partitaDetails){
+		this.partitaCtrl = partitaCtrl;
+		this.s = s;
+		this.partitaDetails = partitaDetails;
+	}
 	@FXML
 	public void ClickConferma() {
 		if(authCtrl!=null){
@@ -47,8 +55,12 @@ public class ConfirmView {
 			this.amministrazioneSedeCtrl.confirmAbilitazione();
 			s.close();
 		}
-		if(partitaCtrl != null){
+		if(partitaCtrl != null && partitaDetails == null){
 			this.partitaCtrl.passConferma();
+			s.close();
+		}
+		if(partitaCtrl != null && partitaDetails != null){
+			this.partitaCtrl.deleteWarning(partitaDetails);
 			s.close();
 		}
 
