@@ -1,8 +1,31 @@
 package com.prova.matchme.GestioneTornei.Controller;
 
 
+import com.prova.matchme.DBMSView;
+import com.prova.matchme.Entity.Gestore;
+import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaDettagliTuttiITornei;
+import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaTorneiGestori;
+import com.prova.matchme.Utils;
+import javafx.stage.Stage;
 
 public class AmministrazioneTorneiCtrl {
+
+	private Stage stage;
+	private Gestore gestore;
+	private VisualizzaTorneiGestori boundaryGestori;
+
+	public AmministrazioneTorneiCtrl(Stage stage, Gestore gestore) {
+		this.stage = stage;
+		this.gestore = gestore;
+	}
+
+	public void mostraTorneiSede(Stage stage){
+		stage.close();
+		Utils.cambiaInterfaccia("FXML/VisualizzaTorneiGestore.fxml", stage, c -> {
+			boundaryGestori = new VisualizzaTorneiGestori(DBMSView.queryGetTuttITornei(),stage, this);
+			return boundaryGestori;
+		});
+	}
 
 	public void TorneoSelezionato() {
 

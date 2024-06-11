@@ -5,6 +5,7 @@ import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import com.prova.matchme.GestioneSede.Controller.AmministrazioneSedeCtrl;
 import com.prova.matchme.GestioneSede.Controller.GestionePartiteSedeCtrl;
+import com.prova.matchme.GestioneTornei.Controller.AmministrazioneTorneiCtrl;
 import com.prova.matchme.Threads.ContrAbb;
 import com.prova.matchme.Threads.VerPartite;
 import javafx.fxml.FXML;
@@ -16,11 +17,13 @@ import javafx.stage.Stage;
 public class AdminView {
 
 	private AuthCtrl authCtrl;
+	private AmministrazioneTorneiCtrl amminCtrl;
 	private Gestore g;
 	private Stage s;
 	private static int firstTime=0;
 	private static ContrAbb thread;
 	private static VerPartite threadver;
+
 	public AdminView(AuthCtrl authCtrl, Gestore g,Stage s){
 		this.authCtrl=authCtrl;
 		this.g=g;
@@ -33,6 +36,13 @@ public class AdminView {
 			threadver.start();
 		}
 	}
+
+	public AdminView(AmministrazioneTorneiCtrl amminCtrl, Gestore g, Stage s){
+		this.amminCtrl = amminCtrl;
+		this.g = g;
+		this.s = s;
+	}
+
 	@FXML
 	public void ClickLogout() {
 		firstTime=0;
@@ -98,7 +108,9 @@ public class AdminView {
 		gs.tocreapartita();
 	}
 
+	@FXML
 	public void clickTorneiSede() {
+		AmministrazioneTorneiCtrl atc = new AmministrazioneTorneiCtrl(s,g);
 
 	}
 
