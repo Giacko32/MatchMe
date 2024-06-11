@@ -83,9 +83,13 @@ public class PrenotazionePartitaView {
         } else {
             vincoli.append("donna;");
         }
-        vincoli.append(fromLivello.getValue().toString() + ";" + toLivello.getValue().toString() + ";" + fromAge.getValue().toString() + ";" + toAge.getValue().toString());
-        Partita newPartita = new Partita(0, selectedCampo.getId_campo(), selectedCampo.getOrario(), tipo, vincoli.toString());
-        partitaCtrl.passPartita(newPartita);
+        if(fromLivello.getValue() < toLivello.getValue() && fromAge.getValue() < toAge.getValue()) {
+            vincoli.append(fromLivello.getValue().toString() + ";" + toLivello.getValue().toString() + ";" + fromAge.getValue().toString() + ";" + toAge.getValue().toString());
+            Partita newPartita = new Partita(0, selectedCampo.getId_campo(), selectedCampo.getOrario(), tipo, vincoli.toString());
+            partitaCtrl.passPartita(newPartita);
+        }else{
+            Utils.creaPannelloErrore("Età o livello errati");
+        }
     }
 
     @FXML

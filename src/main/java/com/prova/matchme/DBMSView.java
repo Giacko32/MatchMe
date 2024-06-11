@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Gioele2002!";
 
     private static Connection connDBMS = null;
 
@@ -302,7 +302,6 @@ public class DBMSView {
         return null;
     }
 
-
     public static ArrayList<Chat> queryGetChat(int id) {
         String query = "SELECT c.id, " +
                 "CASE WHEN c.ref_Utente1 = ? THEN u2.id ELSE u1.id END AS altro_id, " +
@@ -448,7 +447,6 @@ public class DBMSView {
             }
         }
     }
-
     public static ArrayList<Notifica> queryGetNotifiche(int idutente) {
         String query = "SELECT * FROM notifica WHERE ref_Utente=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
@@ -511,7 +509,7 @@ public class DBMSView {
     }
 
     public static ArrayList<Partita> queryGetPartiteUtente(Utente utente) {
-        String query = "SELECT id, ref_Campo, dataOra, tipo, vincoli FROM partita pt, partecipa pa WHERE pt.id = pa.ref_Partita AND pa.ref_Utente = ?";
+        String query = "SELECT id, ref_Campo, dataOra, tipo, vincoli FROM partita pt, partecipa pa WHERE pt.id = pa.ref_Partita AND pa.ref_Utente = ? AND pa.ref_Partita NOT IN (SELECT id_partita_origine FROM partitestorico)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, utente.getId());
             var r = stmt.executeQuery();
@@ -654,6 +652,23 @@ public class DBMSView {
         return null;
     }
 
+    public static int queryGetNumeroPartecipantiSquadreTorneo(Torneo torneo, int numeroSquadra) {
+        String query = "SELECT COUNT(ref_Utente) AS NumeroDiPartecipanti FROM Iscrizione WHERE ref_Torneo = ? AND n_Squadra = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            stmt.setInt(2, numeroSquadra);
+            var r = stmt.executeQuery();
+            if (r.next()) {
+                int numeroDiPartecipanti = r.getInt("NumeroDiPartecipanti");
+                return numeroDiPartecipanti;
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return 0;
+    }
+
+
     public static int queryGetNumeroSquadreTorneo(Torneo torneo) {
         String query = "SELECT COUNT(DISTINCT n_Squadra) AS NumeroDiSquadre FROM Iscrizione WHERE ref_Torneo = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
@@ -667,6 +682,23 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         return 0;
+    }
+
+    public static ArrayList<Utente> queryGetGiocatoriRicercati(String nome, String cognome) {
+        String query = "SELECT id, nome, cognome FROM utente WHERE (nome LIKE ? OR cognome LIKE ?) AND id > 0";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, "%" + nome + "%");
+            stmt.setString(2, "%" + cognome + "%");
+            var r = stmt.executeQuery();
+            ArrayList<Utente> lista = new ArrayList<>();
+            while (r.next()) {
+                lista.add(new Utente(r.getInt(1), r.getString(2), r.getString(3)));
+            }
+            return lista;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
     }
 
 
@@ -893,7 +925,7 @@ public class DBMSView {
 
     }
 
-    public static void queryAddOspite(PartitaDetails partitaDetails, int n_squadra) {
+    public static void queryAddOspite(PartitaDetails partitaDetails, int n_squadra){
         String query = "INSERT INTO partecipa(ref_Utente,ref_Partita,n_squadra,n_giocatori_allenamento) values (-1,?,?,0)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, partitaDetails.partita.getId());
@@ -921,7 +953,7 @@ public class DBMSView {
         return null;
     }
 
-    public static void queryCancellaPrenotazione(int id_partita, int id_utente) {
+    public static void queryCancellaPrenotazione(int id_partita, int id_utente){
         String query = "DELETE FROM partecipa WHERE ref_Partita = ? AND ref_Utente = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, id_partita);

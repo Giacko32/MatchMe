@@ -25,6 +25,7 @@ public class PartitaCtrl {
     private Stage s;
     private DettagliCampoView boundary;
     DetailsMiaPartitaView boundary1;
+    private Stage stageDialog;
     private LocalDateTime selectedDataOra;
     private PartitaDetails partitaToCancel;
 
@@ -40,7 +41,7 @@ public class PartitaCtrl {
     public PartitaCtrl(Utente u, Stage stage, boolean Partite) {
         this.u = u;
         this.s = stage;
-        Stage stageDialog = new CustomStage("Seleziona partite");
+        stageDialog = new CustomStage("Seleziona partite");
         Utils.cambiaInterfaccia("FXML/SelezioneVisualizzaPartite.fxml", stageDialog, c -> {
             return new SelectTipoPartiteView(this, stageDialog);
         }, 350, 170);
@@ -81,7 +82,7 @@ public class PartitaCtrl {
                 return boundary1;
             });
         } else {
-            Utils.cambiaInterfaccia("FXML/Visualizza partite.fxml", s, c -> new DetailsTuttePartiteView(this));
+            Utils.cambiaInterfaccia("FXML/DialogSelectSedeSport.fxml", stageDialog, c -> new SelectSedeSportView(DBMSView.queryGetSedi(), this, stageDialog), 350,170);
         }
     }
 
@@ -89,8 +90,11 @@ public class PartitaCtrl {
         return null;
     }
 
-    public void passSedeSport() {
-
+    public void passSedeSport(Sede sede, String sport) {
+        stageDialog.close();
+        Utils.cambiaInterfaccia("FXML/Visualizza partite.fxml", s, c -> {
+            return new DetailsTuttePartiteView(this);
+        });
     }
 
     public boolean checkNumeroGiocatori(PartitaDetails partitaDetails) {
