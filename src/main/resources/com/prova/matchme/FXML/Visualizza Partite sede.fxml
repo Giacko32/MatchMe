@@ -54,14 +54,14 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Button fx:id="rinvia" disable="true" layoutX="469.0" layoutY="428.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="75.0" text="RINVIA&#10;PARTITA" textAlignment="CENTER">
+        <Button fx:id="rinvia" disable="true" layoutX="469.0" layoutY="428.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="75.0" onMouseClicked="#ClickRinviaPartita" text="RINVIA&#10;PARTITA" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
             </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-        <Button fx:id="invita" disable="true" layoutX="555.0" layoutY="428.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="75.0" text="INVITA&#10;GIOCATORE" textAlignment="CENTER">
+        <Button fx:id="invita" disable="true" layoutX="555.0" layoutY="428.0" mnemonicParsing="false" onMouseClicked="#ClickInvitaGiocatore" prefHeight="46.0" prefWidth="75.0" text="INVITA&#10;GIOCATORE" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
             </font>

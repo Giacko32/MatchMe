@@ -21,6 +21,7 @@ public class VisualizzaDettagliPartitaSedeView {
 
 	private GestionePartiteSedeCtrl gestionePartiteSedeCtrl;
 	private ArrayList<Partita> listapartite;
+	private Partita partitaselected;
 	public VisualizzaDettagliPartitaSedeView(GestionePartiteSedeCtrl gestionePartiteSedeCtrl,ArrayList<Partita> listapartite){
 		this.gestionePartiteSedeCtrl=gestionePartiteSedeCtrl;
 		this.listapartite=listapartite;
@@ -73,6 +74,9 @@ public class VisualizzaDettagliPartitaSedeView {
 		Squadra1List.setItems(squadra1);
 		ObservableList<Utente> squadra2 = FXCollections.observableArrayList(partitaDetails.squadra2);
 		Squadra2List.setItems(squadra2);
+		invita.setDisable(false);
+		rinvia.setDisable(false);
+		assegna.setDisable(false);
 	}
 
 
@@ -80,16 +84,18 @@ public class VisualizzaDettagliPartitaSedeView {
 	public void back(){
 		gestionePartiteSedeCtrl.toAdmin();
 	}
-	public void ClickInvitaGiocatore() {
 
+	@FXML
+	public void ClickInvitaGiocatore() {
+       gestionePartiteSedeCtrl.InvitaGiocatoreCliccato();
 	}
 
 	public void ClickAssegnaRisultato() {
 
 	}
-
+    @FXML
 	public void ClickRinviaPartita() {
-
+        gestionePartiteSedeCtrl.rinviaClicked();
 	}
 
 

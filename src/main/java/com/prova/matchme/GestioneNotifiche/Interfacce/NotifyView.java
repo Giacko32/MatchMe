@@ -58,6 +58,7 @@ public class NotifyView {
     public void rimuoviNotificaCancellata(Notifica notifica) {
         listanotifiche.remove(notifica);
         ObservableList<Notifica> items = FXCollections.observableArrayList(listanotifiche);
+        lista.setCellFactory(param -> new NotifyListCell());
         lista.setItems(items);
         lista.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -71,17 +72,8 @@ public class NotifyView {
             }
         });
     }
-
-    public void selectNotificaAccettazione() {
-
-    }
-
     @FXML
     public void back(){
         this.notifyCtrl.toMain();
     }
-    public void ShowBnd() {
-
-    }
-
 }

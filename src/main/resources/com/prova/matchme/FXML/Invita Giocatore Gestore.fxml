@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneSede.Interfacce.InvitaGiocatoriView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView onMouseClicked="#back" fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -43,13 +43,13 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <ListView layoutX="14.0" layoutY="111.0" prefHeight="330.0" prefWidth="722.0" />
-        <TextField layoutX="281.0" layoutY="70.0" prefHeight="27.0" prefWidth="242.0" promptText="Nome,cognome o livello">
+        <ListView fx:id="listaUtenti" layoutX="14.0" layoutY="111.0" prefHeight="330.0" prefWidth="722.0" />
+        <TextField fx:id="parametro" layoutX="281.0" layoutY="70.0" prefHeight="27.0" prefWidth="242.0" promptText="Nome,cognome ">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
         <Label layoutX="127.0" layoutY="74.0" />
-        <Button layoutX="575.0" layoutY="68.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #FF9622;" text="Cerca" textFill="WHITE">
+        <Button onMouseClicked="#ClickSearch" layoutX="575.0" layoutY="68.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #FF9622;" text="Cerca" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
@@ -57,15 +57,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-        <Button layoutX="183.0" layoutY="455.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF9622;" text="Invita a squadra 1" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="12.0" />
-            </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-        </Button>
-        <Button layoutX="417.0" layoutY="455.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF9622;" text="Invita a squadra 2" textFill="WHITE">
+        <Button fx:id="squadra" layoutX="300.0" layoutY="455.0" mnemonicParsing="false" onMouseClicked="#ClickInvitaGiocatore" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF9622;" text="Invita " textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>

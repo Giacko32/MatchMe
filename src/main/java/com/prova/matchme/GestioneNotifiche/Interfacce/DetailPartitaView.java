@@ -47,14 +47,13 @@ public class DetailPartitaView {
 		}
 		SquadraA.setItems(itemsA);
 		SquadraB.setItems(itemsB);
-		if (itemsA.size()==numpart){
+		if (itemsA.size()==numpart/2){
 			buttonA.setDisable(true);
 		}
-		if (itemsB.size()==numpart){
+		if (itemsB.size()==numpart/2){
 			buttonB.setDisable(true);
 		}
 	}
-
 	@FXML
 	public void back(){
 		this.notifyCtrl.toMain();
@@ -65,7 +64,6 @@ public class DetailPartitaView {
 		this.notifyCtrl.squadraselected(1);
 		s.close();
 	}
-
 	@FXML
 	public void selectB(){
 		this.notifyCtrl.squadraselected(2);
