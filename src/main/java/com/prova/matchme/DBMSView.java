@@ -702,6 +702,38 @@ public class DBMSView {
         return null;
     }
 
+    public static void queryPutSquadraInAttesa(Torneo torneo, int numeroSquadra, ArrayList<Utente> squadra) {
+        String query = "INSERT INTO SquadreAttesa (ref_Utente, ref_Torneo, n_Squadra) VALUES (?, ?, ?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            for (Utente utente : squadra) {
+                stmt.setInt(1, utente.getId());
+                stmt.setInt(2, torneo.getId());
+                stmt.setInt(3, numeroSquadra);
+                stmt.addBatch();
+            }
+            stmt.executeBatch();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
+
+    public static void queryPutSquadraTorneo(Torneo torneo, int numeroSquadra, ArrayList<Utente> squadra) {
+        String query = "INSERT INTO iscrizione (ref_Utente, ref_Torneo, n_Squadra) VALUES (?, ?, ?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            for (Utente utente : squadra) {
+                stmt.setInt(1, utente.getId());
+                stmt.setInt(2, torneo.getId());
+                stmt.setInt(3, numeroSquadra);
+                stmt.addBatch();
+            }
+            stmt.executeBatch();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
+
+
+
 
     public static PartitaDetails queryGetCampoSedePartita(Partita partita) {
         String query = "SELECT s.Id_Sede, s.Indirizzo, s.Nome_Sede, c.id, c.nome, c.sport FROM partita p, campo c, sede s WHERE p.ref_Campo = c.id AND c.ref_Sede = s.Id_Sede AND p.id = ?";

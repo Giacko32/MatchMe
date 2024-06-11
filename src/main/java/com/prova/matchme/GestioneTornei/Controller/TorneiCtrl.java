@@ -8,6 +8,7 @@ import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Torneo;
 import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.Entity.UtentePart;
 import com.prova.matchme.GestioneTornei.Interfacce.*;
 import com.prova.matchme.Utils;
 import javafx.stage.Stage;
@@ -131,6 +132,22 @@ public class TorneiCtrl {
 		public void IscriviSquadraCliccato (Torneo torneo, float media) {
 			if(CheckLivello(torneo, media)){
 				//La squadra soddisfa i vincoli
+				DBMSView.queryPutSquadraTorneo(torneo,numeroSquadraCorrente,utentiSquadra);
+				Utils.creaPannelloErrore("Squadra iscritta");
+				//mandiamo la notifica ai componenti
+				ArrayList<UtentePart> utentiPart = new ArrayList<>();
+				for (Utente u : utentiSquadra){
+					utentiPart.add(new UtentePart(u,0));
+				}
+				String notifica = "Sei stato aggiunto al torneo" + torneo.toString() + " nella squadra" + numeroSquadraCorrente;
+				DBMSView.sendNotify(notifica, utentiPart,1);
+				numeroSquadraCorrente++;
+				this.toMain();
+			}else{
+				//la squadra non soddisfa i vincoli
+				DBMSView.queryPutSquadraInAttesa(torneo, numeroSquadraCorrente, utentiSquadra);
+				Utils.creaPannelloErrore("Non rispetta i vincoli");
+				this.toMain();
 			}
 		}
 
