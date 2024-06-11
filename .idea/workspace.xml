@@ -10,7 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4af3d7da-bc56-44b9-ace0-9872cfa66ce3" name="Changes" comment="Sono stati fatti tanti cambiamenti">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Threads/VerPartite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Controller/GestionePartiteSedeCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Controller/GestionePartiteSedeCtrl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>

@@ -1182,4 +1182,19 @@ public class DBMSView {
         }
 
     }
+    public static ArrayList<Partita> queryGetAllPartiteSede(int refSede) {
+        String query = "SELECT p.id, p.ref_Campo, p.dataOra, p.tipo, p.vincoli  FROM partita p,campo c,sede s WHERE p.ref_Campo=c.id AND c.ref_Sede=s.Id_Sede AND s.Id_Sede=? AND p.id NOT IN (SELECT id_partita_origine FROM partitestorico)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, refSede);
+            var r = stmt.executeQuery();
+            ArrayList<Partita> partiteUtente = new ArrayList<Partita>();
+            while (r.next()) {
+                partiteUtente.add(new Partita(r.getInt(1), r.getInt(2), r.getTimestamp(3).toLocalDateTime(), r.getString(4), r.getString(5)));
+            }
+            return partiteUtente;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
 }

@@ -32,6 +32,10 @@ public class GestionePartiteSedeCtrl {
         this.g = g;
     }
 
+    public GestionePartiteSedeCtrl( Gestore g) {
+        this.g = g;
+    }
+
     public void toAdmin() {
         Utils.cambiaInterfaccia("FXML/Admin-view.fxml", s, c -> {
             return new AdminView(new AuthCtrl(s), g, s);
@@ -55,7 +59,7 @@ public class GestionePartiteSedeCtrl {
 
 
     public void PassSquadraVincitrice(int squadra) {
-        int livellomedio = 0;
+        float livellomedio = 0.0F;
         for (int i = 0; i < partitaDetails.squadra1.size(); i++) {
             livellomedio += partitaDetails.squadra1.get(i).getLivello();
         }
@@ -66,21 +70,26 @@ public class GestionePartiteSedeCtrl {
         CalcolaPunteggio(livellomedio, squadra);
     }
 
-    public void CalcolaPunteggio(int livellomedio, int squadra) {
+    public void CalcolaPunteggio(float livellomedio, int squadra) {
         Float punt = 0.2F;
         ArrayList<Float> punteggio = new ArrayList<>();
         ArrayList<Integer> ids = new ArrayList<>();
         for (int i = 0; i < partitaDetails.squadra1.size(); i++) {
             ids.add(partitaDetails.squadra1.get(i).getId());
-            float temp = (partitaDetails.squadra1.get(i).getLivello() - livellomedio) * punt / livellomedio;
+            float temp = (partitaDetails.squadra1.get(i).getLivello() - (livellomedio)) * punt / (livellomedio);
             if (squadra == 1) {
                 if (!(temp > 0)) {
                     temp += 2 * temp;
                 }
-
+                if(temp==0){
+                    temp=punt;
+                }
             } else {
                 if ((temp > 0)) {
                     temp -= 2 * temp;
+                }
+                if(temp==0){
+                    temp-=punt;
                 }
             }
             punteggio.add(temp);
@@ -99,10 +108,9 @@ public class GestionePartiteSedeCtrl {
                 }
             }
             punteggio.add(temp);
-            System.out.println(punteggio.get(i));
         }
-        //DBMSView.querySendPunteggi(ids,punteggio);
-        //DBMSView.queryPartitaGiocata(partitaselected.getId(),String.valueOf(squadra),partitaselected.getDataOra());
+        DBMSView.querySendPunteggi(ids,punteggio);
+        DBMSView.queryPartitaGiocata(partitaselected.getId(),String.valueOf(squadra),partitaselected.getDataOra());
         Utils.cambiaInterfaccia("FXML/Visualizza Partite sede.fxml", s, c -> {
             controller = new VisualizzaDettagliPartitaSedeView(this, DBMSView.queryGetPartiteSede(g.getSede(), LocalDate.now()));
             return controller;
@@ -202,6 +210,12 @@ public class GestionePartiteSedeCtrl {
             return controller;
         });
 
+    }
+
+    public void verifica(){
+        LocalDateTime current=LocalDateTime.now();
+        ArrayList<Partita> listaPartita=DBMSView.queryGetAllPartiteSede(g.getSede());
+        System.out.println(listaPartita);
     }
 
 
