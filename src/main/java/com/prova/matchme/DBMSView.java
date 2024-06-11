@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gioele2002!";
 
     private static Connection connDBMS = null;
 
@@ -653,6 +653,23 @@ public class DBMSView {
         return null;
     }
 
+    public static int queryGetNumeroPartecipantiSquadreTorneo(Torneo torneo, int numeroSquadra) {
+        String query = "SELECT COUNT(ref_Utente) AS NumeroDiPartecipanti FROM Iscrizione WHERE ref_Torneo = ? AND n_Squadra = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            stmt.setInt(2, numeroSquadra);
+            var r = stmt.executeQuery();
+            if (r.next()) {
+                int numeroDiPartecipanti = r.getInt("NumeroDiPartecipanti");
+                return numeroDiPartecipanti;
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return 0;
+    }
+
+
     public static int queryGetNumeroSquadreTorneo(Torneo torneo) {
         String query = "SELECT COUNT(DISTINCT n_Squadra) AS NumeroDiSquadre FROM Iscrizione WHERE ref_Torneo = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
@@ -666,6 +683,23 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         return 0;
+    }
+
+    public static ArrayList<Utente> queryGetGiocatoriRicercati(String nome, String cognome) {
+        String query = "SELECT id, nome, cognome FROM utente WHERE (nome LIKE ? OR cognome LIKE ?) AND id > 0";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, "%" + nome + "%");
+            stmt.setString(2, "%" + cognome + "%");
+            var r = stmt.executeQuery();
+            ArrayList<Utente> lista = new ArrayList<>();
+            while (r.next()) {
+                lista.add(new Utente(r.getInt(1), r.getString(2), r.getString(3)));
+            }
+            return lista;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
     }
 
 

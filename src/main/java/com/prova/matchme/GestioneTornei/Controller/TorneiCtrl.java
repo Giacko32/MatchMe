@@ -12,6 +12,8 @@ import com.prova.matchme.GestioneTornei.Interfacce.*;
 import com.prova.matchme.Utils;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class TorneiCtrl {
 
 	private Utente utente;
@@ -20,6 +22,7 @@ public class TorneiCtrl {
 	private VisualizzaDettagliTuttiITornei boundaryTutti;
 	private IscrizioneSquadraView boundarySquadra;
 	private SearchUserView boundarySearchUser;
+	private int numeroSquadraCorrente = 1;
 
 	public TorneiCtrl(Utente utente, Stage stage) {
 		this.utente = utente;
@@ -60,7 +63,7 @@ public class TorneiCtrl {
 		if (this.CheckNumeroSquadre(torneo)) {
 			st.close();
 			Utils.cambiaInterfaccia("FXML/IscrizioneSquadraTorneo.fxml", stage, c -> {
-				boundarySquadra = new IscrizioneSquadraView(this, utente, stage);
+				boundarySquadra = new IscrizioneSquadraView(this, utente, stage, torneo);
 				return boundarySquadra;
 			});
 		} else {
@@ -68,20 +71,24 @@ public class TorneiCtrl {
 		}
 	}
 
-		public void AggiungiPartecipanti (TorneiCtrl torneiCtrl, Stage st) {
+		public void AggiungiPartecipanti (TorneiCtrl torneiCtrl, Stage st, Torneo torneo) {
 			st.close();
 			Utils.cambiaInterfaccia("FXML/SearchUserView.fxml", stage, c -> {
-				boundarySearchUser =  new SearchUserView(this);
+				boundarySearchUser =  new SearchUserView(this, torneo);
 				return boundarySearchUser;
 			});
 		}
 
-		public void CheckSquadra () {
+		public boolean CheckSquadra (Torneo torneo) {
+		//se il numero di giocatori è minore del numero massimo per squadra torna true sennò false
+		return DBMSView.queryGetNumeroPartecipantiSquadreTorneo(torneo,numeroSquadraCorrente ) < torneo.getN_Giocatori_squadra();
 
 		}
 
-		public void PassData () {
-
+		public void PassData (String nome, String cognome) {
+			ArrayList<Utente> giocatori_cercati = DBMSView.queryGetGiocatoriRicercati(nome, cognome);
+			System.out.println(giocatori_cercati);
+			boundarySearchUser.MostraLista(giocatori_cercati);
 		}
 
 		public void AggiungiASquadra () {

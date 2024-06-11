@@ -10,20 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4af3d7da-bc56-44b9-ace0-9872cfa66ce3" name="Changes" comment="Sono stati fatti tanti cambiamenti">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/DialogCreaPartitaSede.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/AdminView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Controller/AmministrazioneSedeCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Controller/AmministrazioneSedeCtrl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Controller/GestionePartiteSedeCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Controller/GestionePartiteSedeCtrl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/CampiDisponibilisedeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/CampiDisponibilisedeView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/CreaPartitaSedeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/CreaPartitaSedeView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/InsertVincoliView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/InsertVincoliView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/VisualizzaDettagliPartitaSedeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/VisualizzaDettagliPartitaSedeView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Admin-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Admin-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Crea Partita sede 1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Crea Partita sede 1.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Crea Partita sede 2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Crea Partita sede 2.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Visualizza Partite sede.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Visualizza Partite sede.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Controller/TorneiCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Controller/TorneiCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/IscrizioneSquadraView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/IscrizioneSquadraView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/SearchUserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/SearchUserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/SearchUserView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/SearchUserView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
