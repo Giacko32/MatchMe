@@ -40,7 +40,7 @@ public class AdminView {
 			threadver=new VerPartite(g);
 			threadver.start();
 			threadca=new ContrAll(g);
-			//threadca.start();
+			threadca.start();
 			threadft=new FidTess();
 			threadft.start();
 		}

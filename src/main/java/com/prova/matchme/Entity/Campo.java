@@ -17,6 +17,10 @@ public class Campo {
         this.sport = sport;
         this.orario = ora;
     }
+    public Campo(int id,LocalDateTime ora){
+        this.id_campo=id;
+        this.orario=ora;
+    }
 
     public int getId_campo() {
         return this.id_campo;

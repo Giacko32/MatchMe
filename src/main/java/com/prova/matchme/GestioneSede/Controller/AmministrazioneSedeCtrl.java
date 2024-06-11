@@ -14,7 +14,7 @@ import com.prova.matchme.GestioneSede.Interfacce.*;
 import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
 import com.prova.matchme.shared.WarningView;
-import jakarta.mail.Part;
+
 import javafx.stage.Stage;
 
 import java.time.LocalDate;

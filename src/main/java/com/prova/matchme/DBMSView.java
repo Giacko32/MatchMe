@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -788,7 +788,10 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
     }
-    
+
+
+
+
 
 
     public static PartitaDetails queryGetCampoSedePartita(Partita partita) {
@@ -1157,6 +1160,7 @@ public class DBMSView {
         }
     }
 
+
     public static void querySendPunteggi(ArrayList<Integer> ids, ArrayList<Float> punteggi) {
         String selectQuery = "SELECT livello FROM utente WHERE id=?";
         String updateQuery = "UPDATE utente SET livello=? WHERE id=?";
@@ -1346,6 +1350,49 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         return null;
+
     }
+    public static ArrayList<Campo> queryGetUsualPartite(int idutente){
+        String query="SELECT p1.ref_Campo, TIME(p1.dataOra) as ora, COUNT(*) as num_partite FROM partita p1 JOIN partecipa p2 ON p1.id = p2.ref_Partita WHERE p2.ref_Utente = ? GROUP BY p1.ref_Campo, ora HAVING num_partite >= 3";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)){
+            stmt.setInt(1,idutente);
+            var r=stmt.executeQuery();
+            ArrayList<Campo> listaUsual=new ArrayList<>();
+            while (r.next()){
+                listaUsual.add(new Campo(r.getInt(1),LocalDateTime.of(LocalDate.now(), r.getTime(2).toLocalTime())));
+            }
+            return listaUsual;
+        }catch (SQLException e){
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+    public static boolean queryCheckDisponibitaCampo(int idcampo,LocalDateTime dataOra){
+        String query="SELECT COUNT(*) as num_partite \n" +
+                "FROM partita \n" +
+                "WHERE ref_Campo = ? \n" +
+                "AND TIME(dataOra) = ? \n" +
+                "AND DATE(dataOra) = CURDATE();";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)){
+            stmt.setInt(1,idcampo);
+            stmt.setTime(2,Time.valueOf(dataOra.toLocalTime()));
+            var r=stmt.executeQuery();
+            if (r.next()){
+                if(r.getInt(1)==0){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            return false;
+        }catch (SQLException e){
+            erroreComunicazioneDBMS(e);
+        }
+        return false;
+
+    }
+
+
 
 }
