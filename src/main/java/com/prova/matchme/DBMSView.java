@@ -267,7 +267,7 @@ public class DBMSView {
     }
 
     public static ArrayList<PartitaStorico> queryPartiteGiocate(int id) {
-        var query = "SELECT pg.id_PartitaStorico, pg.id_partita_origine, pg.risultato, pg.data, c.id, c.nome, c.sport FROM partitestorico AS pg JOIN partecipa ON pg.id_PartitaStorico = partecipa.ref_Partita JOIN partita AS p ON pg.id_partita_origine = p.id JOIN campo AS c ON p.ref_Campo = c.id WHERE partecipa.ref_Utente = ? ";
+        var query = "SELECT pg.id_PartitaStorico, pg.id_partita_origine, pg.risultato, pg.data, c.id, c.nome, c.sport,p.tipo FROM partitestorico AS pg JOIN partecipa ON pg.id_PartitaStorico = partecipa.ref_Partita JOIN partita AS p ON pg.id_partita_origine = p.id JOIN campo AS c ON p.ref_Campo = c.id WHERE partecipa.ref_Utente = ? ";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, String.valueOf(id));
             var r = stmt.executeQuery();
@@ -1013,10 +1013,11 @@ public class DBMSView {
     }
 
     public static ArrayList<Partita> queryGetPartiteSede(int refSede, LocalDate data) {
-        String query = "SELECT p.id, p.ref_Campo, p.dataOra, p.tipo, p.vincoli  FROM partita p,campo c,sede s WHERE p.ref_Campo=c.id AND c.ref_Sede=s.Id_Sede AND s.Id_Sede=? AND DATE(p.dataOra)=?";
+        String query = "SELECT p.id, p.ref_Campo, p.dataOra, p.tipo, p.vincoli  FROM partita p,campo c,sede s WHERE p.ref_Campo=c.id AND c.ref_Sede=s.Id_Sede AND s.Id_Sede=? AND DATE(p.dataOra)=? AND p.tipo<>?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, refSede);
             stmt.setDate(2, Date.valueOf(data));
+            stmt.setString(3, "all");
             var r = stmt.executeQuery();
             ArrayList<Partita> partiteUtente = new ArrayList<Partita>();
             while (r.next()) {
@@ -1183,9 +1184,10 @@ public class DBMSView {
 
     }
     public static ArrayList<Partita> queryGetAllPartiteSede(int refSede) {
-        String query = "SELECT p.id, p.ref_Campo, p.dataOra, p.tipo, p.vincoli  FROM partita p,campo c,sede s WHERE p.ref_Campo=c.id AND c.ref_Sede=s.Id_Sede AND s.Id_Sede=? AND p.id NOT IN (SELECT id_partita_origine FROM partitestorico)";
+        String query = "SELECT p.id, p.ref_Campo, p.dataOra, p.tipo, p.vincoli  FROM partita p,campo c,sede s WHERE p.ref_Campo=c.id AND c.ref_Sede=s.Id_Sede AND s.Id_Sede=? AND  p.tipo<> ? AND p.id NOT IN (SELECT id_partita_origine FROM partitestorico)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, refSede);
+            stmt.setString(2,"all");
             var r = stmt.executeQuery();
             ArrayList<Partita> partiteUtente = new ArrayList<Partita>();
             while (r.next()) {
@@ -1229,6 +1231,84 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
     }
+
+
+    public static ArrayList<Partita> queryGetPreviousAllenamenti(LocalDateTime data,int idsede){
+        String query="SELECT p.id, p.ref_Campo, p.dataOra, p.tipo, p.vincoli  FROM partita p,campo c,sede s WHERE p.ref_Campo=c.id AND c.ref_Sede=s.Id_Sede AND s.Id_Sede=? AND  p.tipo=? AND p.dataOra<? AND p.id NOT IN (SELECT id_partita_origine FROM partitestorico)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)){
+            stmt.setInt(1,idsede);
+            stmt.setString(2,"all");
+            stmt.setTimestamp(3, Timestamp.valueOf(data));
+            var r=stmt.executeQuery();
+            ArrayList<Partita> listaall=new ArrayList<>();
+            while (r.next()){
+                listaall.add(new Partita(r.getInt(1), r.getInt(2), r.getTimestamp(3).toLocalDateTime(), r.getString(4), r.getString(5)));
+            }
+            return listaall;
+        }catch (SQLException e){
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+    public static void  queryAllenamentoFinito(int idallenamento,LocalDateTime data){
+        String query="INSERT INTO partitestorico(id_partita_origine,data,risultato) values(?,?,?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1,idallenamento);
+            stmt.setTimestamp(2,Timestamp.valueOf(data));
+            stmt.setString(3,"-");
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+    }
+
+    public static ArrayList<Utente> queryGetTesserati(){
+        String query="SELECT id,nome,cognome FROM utente WHERE tipo=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)){
+            stmt.setString(1,"t");
+            var r=stmt.executeQuery();
+            ArrayList<Utente> listaUtenti=new ArrayList<>();
+            while (r.next()){
+                listaUtenti.add(new Utente(r.getInt(1),r.getString(2),r.getString(3)));
+            }
+            return listaUtenti;
+        }catch (SQLException e){
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+    public static void querySendDiscountCode(String codice,int idtesserato){
+        String query="INSERT INTO sconto(ref_Tesserato,codice,quantita) values(?,?,?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1,idtesserato);
+            stmt.setString(2,codice);
+            stmt.setInt(3,30);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+    }
+
+    public static ArrayList<Utente> queryGetUtentiInattivi(){
+        String query="SELECT u.id,u.nome,u.cognome FROM utente u LEFT JOIN partecipa p ON u.id = p.ref_Utente LEFT JOIN partita pa ON p.ref_Partita = pa.id WHERE pa.dataOra IS NULL OR pa.dataOra < DATE_SUB(CURDATE(), INTERVAL 10 DAY);";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)){
+            var r=stmt.executeQuery();
+            ArrayList<Utente> listaUtenti=new ArrayList<>();
+            while (r.next()){
+                listaUtenti.add(new Utente(r.getInt(1),r.getString(2),r.getString(3)));
+            }
+            return listaUtenti;
+        }catch (SQLException e){
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+
+    }
+
 
 
 }

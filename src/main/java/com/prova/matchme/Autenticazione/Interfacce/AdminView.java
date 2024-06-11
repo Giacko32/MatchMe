@@ -6,6 +6,8 @@ import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import com.prova.matchme.GestioneSede.Controller.AmministrazioneSedeCtrl;
 import com.prova.matchme.GestioneSede.Controller.GestionePartiteSedeCtrl;
 import com.prova.matchme.Threads.ContrAbb;
+import com.prova.matchme.Threads.ContrAll;
+import com.prova.matchme.Threads.FidTess;
 import com.prova.matchme.Threads.VerPartite;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -21,6 +23,8 @@ public class AdminView {
 	private static int firstTime=0;
 	private static ContrAbb thread;
 	private static VerPartite threadver;
+	private static ContrAll threadca;
+	private static FidTess threadft;
 	public AdminView(AuthCtrl authCtrl, Gestore g,Stage s){
 		this.authCtrl=authCtrl;
 		this.g=g;
@@ -28,9 +32,13 @@ public class AdminView {
 		if(firstTime==0){
 			firstTime++;
 			thread=new ContrAbb(g);
-			thread.start();
+			//thread.start();
 			threadver=new VerPartite(g);
-			threadver.start();
+			//threadver.start();
+			threadca=new ContrAll(g);
+			//threadca.start();
+			threadft=new FidTess();
+			threadft.start();
 		}
 	}
 	@FXML
@@ -39,6 +47,8 @@ public class AdminView {
 		this.authCtrl.toConfirm();
 		thread.onstop();
 		threadver.onstop();
+		threadca.onstop();
+		threadft.onstop();
 	}
 
 	@FXML

@@ -8,14 +8,17 @@ import com.prova.matchme.DBMSView;
 import com.prova.matchme.EmailSender;
 import com.prova.matchme.Entity.Abbonamento;
 import com.prova.matchme.Entity.Gestore;
+import com.prova.matchme.Entity.Partita;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestioneSede.Interfacce.*;
 import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
 import com.prova.matchme.shared.WarningView;
+import jakarta.mail.Part;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -130,8 +133,6 @@ public class AmministrazioneSedeCtrl {
         Utils.cambiaInterfaccia("FXML/Conferma Nuovo Abbonamento.fxml", s, c -> {
             return new AbbonamentoView(this, u);
         });
-
-
     }
 
     public void PassDurata(int durata) {
@@ -178,6 +179,14 @@ public class AmministrazioneSedeCtrl {
 					DBMSView.querySetNotificato(listaabb.get(i).getRefTesserato());
                 }
             }
+        }
+    }
+
+
+    public void verificaAllenamenti(){
+        ArrayList<Partita> list=DBMSView.queryGetPreviousAllenamenti(LocalDateTime.now(),g.getSede());
+        for(Partita p:list){
+            DBMSView.queryAllenamentoFinito(p.getId(),p.getDataOra());
         }
     }
 

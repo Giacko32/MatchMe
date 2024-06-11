@@ -10,9 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4af3d7da-bc56-44b9-ace0-9872cfa66ce3" name="Changes" comment="Sono stati fatti tanti cambiamenti">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Threads/ContrAll.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Threads/FidTess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Controller/TorneiCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Controller/TorneiCtrl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/VisualizzaDettagliMioTorneo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/VisualizzaDettagliMioTorneo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Autenticazione/Interfacce/AdminView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/PartitaStorico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/PartitaStorico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneFidelizzazione/FidelizzazioneControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneFidelizzazione/FidelizzazioneControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Controller/AmministrazioneSedeCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Controller/AmministrazioneSedeCtrl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -372,7 +377,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718125937953</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Sono stati fatti tanti cambiamenti">
+      <option name="closed" value="true" />
+      <created>1718129672592</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1718129672592</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
