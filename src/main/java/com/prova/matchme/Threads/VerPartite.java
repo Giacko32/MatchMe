@@ -27,4 +27,9 @@ public class VerPartite extends Thread{
         }
 
     }
+
+    public void onstop(){
+        System.out.println("Thread verifica stoppato");
+        running=false;
+    }
 }

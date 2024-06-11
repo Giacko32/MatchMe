@@ -32,7 +32,7 @@ public class GestionePartiteSedeCtrl {
         this.g = g;
     }
 
-    public GestionePartiteSedeCtrl( Gestore g) {
+    public GestionePartiteSedeCtrl(Gestore g) {
         this.g = g;
     }
 
@@ -81,21 +81,21 @@ public class GestionePartiteSedeCtrl {
                 if (!(temp > 0)) {
                     temp += 2 * temp;
                 }
-                if(temp==0){
-                    temp=punt;
+                if (temp == 0) {
+                    temp = punt;
                 }
             } else {
                 if ((temp > 0)) {
                     temp -= 2 * temp;
                 }
-                if(temp==0){
-                    temp-=punt;
+                if (temp == 0) {
+                    temp -= punt;
                 }
             }
             punteggio.add(temp);
             System.out.println(punteggio.get(i));
         }
-        for(int i=0;i<partitaDetails.squadra2.size();i++){
+        for (int i = 0; i < partitaDetails.squadra2.size(); i++) {
             ids.add(partitaDetails.squadra2.get(i).getId());
             float temp = (partitaDetails.squadra2.get(i).getLivello() - livellomedio) * punt / livellomedio;
             if (squadra == 2) {
@@ -109,39 +109,43 @@ public class GestionePartiteSedeCtrl {
             }
             punteggio.add(temp);
         }
-        DBMSView.querySendPunteggi(ids,punteggio);
-        DBMSView.queryPartitaGiocata(partitaselected.getId(),String.valueOf(squadra),partitaselected.getDataOra());
+        DBMSView.querySendPunteggi(ids, punteggio);
+        DBMSView.queryPartitaGiocata(partitaselected.getId(), String.valueOf(squadra), partitaselected.getDataOra());
         Utils.cambiaInterfaccia("FXML/Visualizza Partite sede.fxml", s, c -> {
             controller = new VisualizzaDettagliPartitaSedeView(this, DBMSView.queryGetPartiteSede(g.getSede(), LocalDate.now()));
             return controller;
         });
     }
+
     public void AssegnaRisultatoCliccato() {
         LocalDateTime current = LocalDateTime.now();
         if (current.isAfter(partitaselected.getDataOra())) {
             CustomStage s = new CustomStage("Scegli la squadra");
             Utils.cambiaInterfaccia("FXML/DialogAssegnaRisultato.fxml", s, c -> {
                 return new ChoiceView(this, s);
-            },350,150);
-        }else{
+            }, 350, 150);
+        } else {
             CustomStage s = new CustomStage("Scegli la squadra");
             Utils.cambiaInterfaccia("FXML/Dialog PartitaNonGiocata.fxml", s, c -> {
                 return new WarningView(s);
-            },350,250);
+            }, 350, 250);
         }
     }
+
     public void PassDate(LocalDate data) {
         ArrayList<Campo> listacampi = DBMSView.queryGetCampiLiberi2(g.getSede(), data);
         Utils.cambiaInterfaccia("FXML/Crea Partita sede 1.fxml", s, c -> {
             return new CampiDisponibilisedeView(this, listacampi);
         });
     }
+
     public void PassCampo(Campo c) {
         camposelected = c;
         Utils.cambiaInterfaccia("FXML/Crea Partita sede 2.fxml", s, co -> {
             return new InsertVincoliView(this, s);
         });
     }
+
     public void PassVincoli(String vincoli) {
         Partita p = new Partita(0, camposelected.getId_campo(), camposelected.getOrario(), "ppub", vincoli);
         DBMSView.queryCreaPartita(p, null);
@@ -212,19 +216,94 @@ public class GestionePartiteSedeCtrl {
 
     }
 
-    public void verifica(){
-        LocalDateTime current=LocalDateTime.now();
-        ArrayList<Partita> listaPartita=DBMSView.queryGetAllPartiteSede(g.getSede());
-        System.out.println(listaPartita);
+    public void verifica() {
+        ArrayList<Partita> listaPartita = DBMSView.queryGetAllPartiteSede(g.getSede());
+        ArrayList<Partita> listapiu1ora = getPartitePiu1ora(listaPartita);
+        ArrayList<Partita> listameno1ora = getPartite1ora(listaPartita);
+        System.out.println(listapiu1ora);
+        System.out.println(listameno1ora);
+
+        for (Partita partita : listapiu1ora) {
+            String sport = DBMSView.queryGetSport(partita.getRef_campo());
+            int npartcurrent = DBMSView.querygetpartecipanti(partita.getId()).size();
+            ArrayList<UtentePart> utenteParts=DBMSView.querygetpartecipanti(partita.getId());
+            int numpartsport = 0;
+            switch (sport) {
+                case "Calcio a 5": {
+                    numpartsport = 10;
+                    break;
+                }
+                case "Tennis singolo", "Padel singolo": {
+                    numpartsport = 2;
+                    break;
+                }
+                case "Tennis doppio", "Padel doppio": {
+                    numpartsport = 4;
+                    break;
+                }
+            }
+            if (npartcurrent < numpartsport) {
+                System.out.println("Facendo qualcosa");
+                ArrayList<Utente> listacomp = DBMSView.queryGetGiocatoriCompatibili(partita.getVincoli());
+                listacomp.removeAll(utenteParts);
+                System.out.println(listacomp);
+                String notifica = "Sei stato invitato alla partita di " + sport + " " + partita.getId();
+                for (Utente u : listacomp) {
+                    DBMSView.sendNotify2(notifica, u.getId(), 0);
+                }
+            }
+        }
+        for(Partita partita:listameno1ora){
+            String sport = DBMSView.queryGetSport(partita.getRef_campo());
+            int npartcurrent = DBMSView.querygetpartecipanti(partita.getId()).size();
+            ArrayList<UtentePart> utenteParts=DBMSView.querygetpartecipanti(partita.getId());
+            int numpartsport = 0;
+            switch (sport) {
+                case "Calcio a 5": {
+                    numpartsport = 10;
+                    break;
+                }
+                case "Tennis singolo", "Padel singolo": {
+                    numpartsport = 2;
+                    break;
+                }
+                case "Tennis doppio", "Padel doppio": {
+                    numpartsport = 4;
+                    break;
+                }
+            }
+            if (npartcurrent < numpartsport) {
+                String notifica="Ci dispiace ma la partita di "+sport+" con id " +partita.getId()+" non ha il numero minimo di partecipanti quindi sarà eliminata";
+                assert utenteParts != null;
+                DBMSView.sendNotify(notifica,utenteParts,1);
+                DBMSView.queryCancellaPartita(partita.getId());
+            }
+        }
     }
 
 
-    public void getPartitePiu1ora() {
-
+    public ArrayList<Partita> getPartitePiu1ora(ArrayList<Partita> partite) {
+        LocalDateTime current = LocalDateTime.now();
+        ArrayList<Partita> partiterit = new ArrayList<>();
+        for (int i = 0; i < partite.size(); i++) {
+            if (partite.get(i).getDataOra().isAfter(current.plusHours(1))) {
+                partiterit.add(partite.get(i));
+            }
+        }
+        return partiterit;
     }
 
-    public void getPartite1ora() {
-
+    public ArrayList<Partita> getPartite1ora(ArrayList<Partita> partite) {
+        LocalDateTime current = LocalDateTime.now();
+        LocalDateTime oneHourLater = current.plusHours(1);
+        ArrayList<Partita> partiteEntroUnOra = new ArrayList<>();
+        for (Partita partita : partite) {
+            LocalDateTime dataOraPartita = partita.getDataOra();
+            if (dataOraPartita.isAfter(current) && dataOraPartita.isBefore(oneHourLater)) {
+                partiteEntroUnOra.add(partita);
+            }
+        }
+        return partiteEntroUnOra;
     }
 
     public void CheckNumeroPartite() {

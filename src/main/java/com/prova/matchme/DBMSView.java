@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gioele2002!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -1197,4 +1197,38 @@ public class DBMSView {
         }
         return null;
     }
+
+    public static String queryGetSport(int idcampo){
+        String query="SELECT sport FROM campo WHERE id=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, idcampo);
+            var r = stmt.executeQuery();
+            while (r.next()) {
+               return r.getString("sport");
+            }
+
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+    public static void queryCancellaPartita(int idpartita){
+        String query="DELETE FROM partecipa WHERE ref_Partita=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1,idpartita);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        String query2="DELETE FROM partita WHERE id=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query2)) {
+            stmt.setInt(1,idpartita);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
+
+
 }

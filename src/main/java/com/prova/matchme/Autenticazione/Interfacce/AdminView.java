@@ -29,7 +29,8 @@ public class AdminView {
 			firstTime++;
 			thread=new ContrAbb(g);
 			thread.start();
-
+			threadver=new VerPartite(g);
+			threadver.start();
 		}
 	}
 	@FXML
@@ -37,6 +38,7 @@ public class AdminView {
 		firstTime=0;
 		this.authCtrl.toConfirm();
 		thread.onstop();
+		threadver.onstop();
 	}
 
 	@FXML

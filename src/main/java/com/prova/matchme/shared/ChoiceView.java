@@ -27,11 +27,13 @@ public class ChoiceView {
     public void clickAccetta() {
         if (notifyCtrl != null) {
             this.notifyCtrl.inviaEsito(true);
+            s.close();
         }
         if(gestionePartiteSedeCtrl!=null){
             gestionePartiteSedeCtrl.PassSquadraVincitrice(1);
+            s.close();
         }
-        s.close();
+
 
     }
 
@@ -39,11 +41,12 @@ public class ChoiceView {
     public void clickRifiuta() {
         if (notifyCtrl != null) {
             this.notifyCtrl.inviaEsito(false);
+            s.close();
         }
         if(gestionePartiteSedeCtrl!=null){
             gestionePartiteSedeCtrl.PassSquadraVincitrice(2);
+            s.close();
         }
-        s.close();
     }
 
 
