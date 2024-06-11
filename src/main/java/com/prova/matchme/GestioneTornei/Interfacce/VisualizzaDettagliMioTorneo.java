@@ -45,8 +45,18 @@ public class VisualizzaDettagliMioTorneo {
 		});
 	}
 	public void ClickCancellaSquadra() {
+		controller.passCancellazione(selectedTorneo);
 
-
+	}
+	@FXML
+	public void rimuoviTorneo(Torneo torneo){
+		this.listaTornei.remove(torneo);
+		ObservableList<Torneo> torneolist = FXCollections.observableArrayList(listaTornei);
+		ListaMieTornei.setItems(torneolist);
+		ListaMieTornei.getSelectionModel().selectedItemProperty().addListener((observable, oldvalue, newvalue) -> {
+			selectedTorneo = newvalue;
+			this.SelectTorneo();
+		});
 	}
 
 	public void SelectTorneo(){

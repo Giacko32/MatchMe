@@ -2,9 +2,12 @@ package com.prova.matchme.shared;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Entity.PartitaDetails;
+import com.prova.matchme.Entity.Torneo;
+import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestionePartita.Controller.PartitaCtrl;
 import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import com.prova.matchme.GestioneSede.Controller.AmministrazioneSedeCtrl;
+import com.prova.matchme.GestioneTornei.Controller.TorneiCtrl;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
@@ -14,8 +17,11 @@ public class ConfirmView {
 	private ProfiloCtrl profiloCtrl;
 	private AmministrazioneSedeCtrl amministrazioneSedeCtrl;
 	private PartitaCtrl partitaCtrl;
+	private TorneiCtrl torneiCtrl;
 	private Stage s;
 	private PartitaDetails partitaDetails;
+	private Torneo torneo;
+	private Utente utente;
 	public ConfirmView(AuthCtrl authCtrl, Stage s){
 		this.authCtrl=authCtrl;
 		this.s=s;
@@ -41,6 +47,13 @@ public class ConfirmView {
 		this.s = s;
 		this.partitaDetails = partitaDetails;
 	}
+
+	public ConfirmView(TorneiCtrl torneoCtrl, Stage s, Utente utente, Torneo torneo){
+		this.torneiCtrl = torneoCtrl;
+		this.s = s;
+		this.utente = utente;
+		this.torneo = torneo;
+	}
 	@FXML
 	public void ClickConferma() {
 		if(authCtrl!=null){
@@ -61,6 +74,10 @@ public class ConfirmView {
 		}
 		if(partitaCtrl != null && partitaDetails != null){
 			this.partitaCtrl.deleteWarning(partitaDetails);
+			s.close();
+		}
+		if(torneiCtrl !=  null){
+			this.torneiCtrl.CloseConfirmView(utente, torneo);
 			s.close();
 		}
 

@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gioele2002!";
 
     private static Connection connDBMS = null;
 
@@ -731,6 +731,49 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
     }
+
+    public static int getNumeroSquadraUtenteTorneo(Torneo torneo, Utente utente) {
+        String query = "SELECT n_Squadra FROM iscrizione WHERE ref_Utente = ? AND ref_Torneo = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, utente.getId());
+            stmt.setInt(2, torneo.getId());
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("n_Squadra");
+                }
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return -1;  // Restituisce -1 se non viene trovato alcun risultato
+    }
+
+    public static void queryDeleteSquadraTorneo(Torneo torneo, Utente utente, int numeroSquadra) {
+        String query = "SELECT ref_Utente FROM iscrizione WHERE ref_Torneo = ? AND n_Squadra = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            stmt.setInt(2, numeroSquadra);
+            var r = stmt.executeQuery();
+            String notifica = "Sei stato eliminato dalla squadra " + numeroSquadra + " del torneo " + torneo.getId();
+            while(r.next()) {
+
+                DBMSView.sendNotify2(notifica, r.getInt("ref_Utente"),1);
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+        String query2 = "DELETE FROM iscrizione WHERE ref_Torneo = ? AND n_Squadra = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query2)) {
+            stmt.setInt(1, torneo.getId());
+            stmt.setInt(2, numeroSquadra);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
+
+
 
 
 

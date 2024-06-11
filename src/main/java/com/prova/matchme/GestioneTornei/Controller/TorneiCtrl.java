@@ -11,6 +11,7 @@ import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.Entity.UtentePart;
 import com.prova.matchme.GestioneTornei.Interfacce.*;
 import com.prova.matchme.Utils;
+import com.prova.matchme.shared.ConfirmView;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class TorneiCtrl {
 	private int numeroSquadraCorrente = 1;
 	private ArrayList<Utente> utentiSquadra;
 	private boolean giocatori_aggiunti = false;
+	private ConfirmView boundaryConfirm;
 
 	public TorneiCtrl(Utente utente, Stage stage) {
 		this.utente = utente;
@@ -139,7 +141,7 @@ public class TorneiCtrl {
 				for (Utente u : utentiSquadra){
 					utentiPart.add(new UtentePart(u,0));
 				}
-				String notifica = "Sei stato aggiunto al torneo" + torneo.toString() + " nella squadra" + numeroSquadraCorrente;
+				String notifica = "Sei stato aggiunto al torneo " + torneo.toString() + " nella squadra" + numeroSquadraCorrente;
 				DBMSView.sendNotify(notifica, utentiPart,1);
 				numeroSquadraCorrente++;
 				this.toMain();
@@ -166,11 +168,23 @@ public class TorneiCtrl {
 
 		}
 
-		public void passCancellazione () {
+		public void passCancellazione(Torneo torneo) {
+			CustomStage st = new CustomStage("Attenzione");
+			Utils.cambiaInterfaccia("FXML/DialogConferma.fxml", st, c -> {
+				boundaryConfirm = new ConfirmView(this, st, utente , torneo);
 
+				return boundaryConfirm;
+			});
 		}
 
-		public void CloseConfirmView () {
+		public void CloseConfirmView (Utente utente, Torneo torneo) {
+			//cancelliamo la squadra e mandiamo la notifica
+			int numeroSquadraEliminato = DBMSView.getNumeroSquadraUtenteTorneo(torneo, utente);
+			DBMSView.queryDeleteSquadraTorneo(torneo, utente, numeroSquadraEliminato);
+			//squadra eliminata
+			//rimuoviamo il torneo dalla listview
+			boundaryMio.rimuoviTorneo(torneo);
+
 
 		}
 
