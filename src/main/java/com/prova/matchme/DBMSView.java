@@ -750,26 +750,26 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
 
-        String getSquadra1 = "SELECT id, nome, cognome FROM utente, partecipa WHERE ref_Partita = ? AND ref_Utente = id AND n_squadra = 1";
+        String getSquadra1 = "SELECT id, nome, cognome, email, username, eta, passwordUtente, tipo, sesso, livello FROM utente, partecipa WHERE ref_Partita = ? AND ref_Utente = id AND n_squadra = 1";
         try (PreparedStatement stmt = connDBMS.prepareStatement(getSquadra1)) {
             stmt.setInt(1, partita.getId());
             var r = stmt.executeQuery();
             ArrayList<Utente> squadra1 = new ArrayList<Utente>();
             while (r.next()) {
-                squadra1.add(new Utente(r.getInt(1), r.getString(2), r.getString(3)));
+                squadra1.add(new Utente(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(8), r.getString(7), r.getFloat(10), r.getInt(6), r.getString(9)));
             }
             partitaDetails.setSquadra1(squadra1);
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
 
-        String getSquadra2 = "SELECT id, nome, cognome FROM utente, partecipa WHERE ref_Partita = ? AND ref_Utente = id AND n_squadra = 2";
+        String getSquadra2 = "SELECT id, nome, cognome, email, username, eta, passwordUtente, tipo, sesso, livello FROM utente, partecipa WHERE ref_Partita = ? AND ref_Utente = id AND n_squadra = 2";
         try (PreparedStatement stmt = connDBMS.prepareStatement(getSquadra2)) {
             stmt.setInt(1, partita.getId());
             var r = stmt.executeQuery();
             ArrayList<Utente> squadra2 = new ArrayList<Utente>();
             while (r.next()) {
-                squadra2.add(new Utente(r.getInt(1), r.getString(2), r.getString(3)));
+                squadra2.add(new Utente(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(8), r.getString(7), r.getFloat(10), r.getInt(6), r.getString(9)));
             }
             partitaDetails.setSquadra2(squadra2);
         } catch (SQLException e) {
