@@ -39,7 +39,7 @@ public class DetailPartitaView {
 		ObservableList<UtentePart> itemsA = FXCollections.observableArrayList();
 		ObservableList<UtentePart> itemsB = FXCollections.observableArrayList();
 		for(int i=0;i<listautenti.size();i++){
-			if(listautenti.get(i).getSquadra()==0){
+			if(listautenti.get(i).getSquadra()==1){
 				itemsA.add(listautenti.get(i));
 			}else{
 				itemsB.add(listautenti.get(i));
@@ -62,13 +62,13 @@ public class DetailPartitaView {
 
 	@FXML
 	public void selectA(){
-		this.notifyCtrl.squadraselected(0);
+		this.notifyCtrl.squadraselected(1);
 		s.close();
 	}
 
 	@FXML
 	public void selectB(){
-		this.notifyCtrl.squadraselected(1);
+		this.notifyCtrl.squadraselected(2);
 		s.close();
 	}
 

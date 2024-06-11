@@ -1,6 +1,7 @@
 package com.prova.matchme.GestionePartita.Interfacce;
 
 
+import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Campo;
 import com.prova.matchme.Entity.Partita;
 import com.prova.matchme.Entity.PartitaDetails;
@@ -66,24 +67,45 @@ public class DetailsMiaPartitaView {
 
 	public void ShowDetails(PartitaDetails partitaDetails){
 		this.selectedPartitaDetails = partitaDetails;
-		SedeField.setDisable(false);
-		CampoField.setDisable(false);
-		SportField.setDisable(false);
-		DataOraField.setDisable(false);
-		AggiungiGiocatoreButton.setDisable(false);
-		AggiungiOspiteButton.setDisable(false);
-		CancellaPrenotazioneButton.setDisable(false);
-		InvitaGiocatoreButton.setDisable(false);
-		Squadra1List.setDisable(false);
-		Squadra2List.setDisable(false);
-		SedeField.setText(partitaDetails.sede.toString());
-		CampoField.setText(partitaDetails.campo.getNomecampo());
-		SportField.setText(partitaDetails.campo.getSport());
-		DataOraField.setText(partitaDetails.campo.getOrarioString());
-		ObservableList<Utente> squadra1 = FXCollections.observableArrayList(partitaDetails.squadra1);
-		Squadra1List.setItems(squadra1);
-		ObservableList<Utente> squadra2 = FXCollections.observableArrayList(partitaDetails.squadra2);
-		Squadra2List.setItems(squadra2);
+		if(selectedPartitaDetails != null) {
+			SedeField.setDisable(false);
+			CampoField.setDisable(false);
+			SportField.setDisable(false);
+			DataOraField.setDisable(false);
+			AggiungiGiocatoreButton.setDisable(false);
+			AggiungiOspiteButton.setDisable(false);
+			CancellaPrenotazioneButton.setDisable(false);
+			InvitaGiocatoreButton.setDisable(false);
+			Squadra1List.setDisable(false);
+			Squadra2List.setDisable(false);
+			SedeField.setText(partitaDetails.sede.toString());
+			CampoField.setText(partitaDetails.campo.getNomecampo());
+			SportField.setText(partitaDetails.campo.getSport());
+			DataOraField.setText(partitaDetails.campo.getOrarioString());
+			ObservableList<Utente> squadra1 = FXCollections.observableArrayList(partitaDetails.squadra1);
+			Squadra1List.setItems(squadra1);
+			ObservableList<Utente> squadra2 = FXCollections.observableArrayList(partitaDetails.squadra2);
+			Squadra2List.setItems(squadra2);
+		} else {
+			SedeField.setDisable(true);
+			SedeField.clear();
+			CampoField.setDisable(true);
+			CampoField.clear();
+			SportField.setDisable(true);
+			SportField.clear();
+			DataOraField.setDisable(true);
+			DataOraField.clear();
+			AggiungiGiocatoreButton.setDisable(true);
+			AggiungiOspiteButton.setDisable(true);
+			CancellaPrenotazioneButton.setDisable(true);
+			InvitaGiocatoreButton.setDisable(true);
+			Squadra1List.setDisable(true);
+			Squadra2List.setDisable(true);
+			ObservableList<Utente> squadra1 = FXCollections.observableArrayList(FXCollections.emptyObservableList());
+			Squadra1List.setItems(squadra1);
+			ObservableList<Utente> squadra2 = FXCollections.observableArrayList(FXCollections.emptyObservableList());
+			Squadra2List.setItems(squadra2);
+		}
 	}
 
 	public void ClickAggiungiGiocatori() {
@@ -91,7 +113,7 @@ public class DetailsMiaPartitaView {
 	}
 
 	public void ClickInvitaGiocatori() {
-
+		partitaCtrl.InvitaClicked(selectedPartitaDetails);
 	}
 
 	public void ClickAggiungiOspite() {
@@ -99,11 +121,17 @@ public class DetailsMiaPartitaView {
 	}
 
 	public void ClickCancellaPrenotazione() {
-
+		partitaCtrl.CancelClicked(selectedPartitaDetails);
 	}
 
 	public void ShowBnd() {
 		partitaCtrl.SelectedPartita(selectedPartita);
+	}
+
+	public void removePartita(PartitaDetails partita){
+		listaPartite.remove(partita.partita);
+		ObservableList<Partita> partitelist = FXCollections.observableArrayList(listaPartite);
+		ListaMiePartite.setItems(partitelist);
 	}
 
 	@FXML

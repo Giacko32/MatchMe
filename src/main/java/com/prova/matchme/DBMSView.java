@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -916,6 +916,17 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         return null;
+    }
+
+    public static void queryCancellaPrenotazione(int id_partita, int id_utente){
+        String query = "DELETE FROM partecipa WHERE ref_Partita = ? AND ref_Utente = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, id_partita);
+            stmt.setInt(2, id_utente);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
     }
 
 }

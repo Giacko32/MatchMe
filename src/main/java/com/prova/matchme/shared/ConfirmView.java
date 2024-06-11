@@ -1,6 +1,7 @@
 package com.prova.matchme.shared;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
+import com.prova.matchme.GestionePartita.Controller.PartitaCtrl;
 import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import com.prova.matchme.GestioneSede.Controller.AmministrazioneSedeCtrl;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ public class ConfirmView {
 	private AuthCtrl authCtrl;
 	private ProfiloCtrl profiloCtrl;
 	private AmministrazioneSedeCtrl amministrazioneSedeCtrl;
+	private PartitaCtrl partitaCtrl;
 	private Stage s;
 	public ConfirmView(AuthCtrl authCtrl, Stage s){
 		this.authCtrl=authCtrl;
@@ -26,6 +28,11 @@ public class ConfirmView {
 		this.amministrazioneSedeCtrl=amministrazioneSedeCtrl;
 		this.s=s;
 	}
+
+	public ConfirmView(PartitaCtrl partitaCtrl, Stage s){
+		this.partitaCtrl = partitaCtrl;
+		this.s = s;
+	}
 	@FXML
 	public void ClickConferma() {
 		if(authCtrl!=null){
@@ -38,6 +45,10 @@ public class ConfirmView {
 		}
 		if(amministrazioneSedeCtrl!=null){
 			this.amministrazioneSedeCtrl.confirmAbilitazione();
+			s.close();
+		}
+		if(partitaCtrl != null){
+			this.partitaCtrl.passConferma();
 			s.close();
 		}
 

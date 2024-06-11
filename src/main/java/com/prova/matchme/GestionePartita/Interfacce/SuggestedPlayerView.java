@@ -23,6 +23,7 @@ public class SuggestedPlayerView {
     private PartitaCtrl partitaCtrl;
     private PartitaDetails selectedPartita;
     private Stage stage;
+    private boolean Invito;
     @FXML
     private ListView<Utente> ListaUtenti;
     @FXML
@@ -34,6 +35,10 @@ public class SuggestedPlayerView {
 
     @FXML
     public void initialize() {
+        if (Invito) {
+            buttonS1.setText("Invita a squadra 1");
+            buttonS2.setText("Invita a squadra 2");
+        }
         ObservableList<Utente> listaUtenti = FXCollections.observableArrayList(SuggestedPlayer);
         ListaUtenti.setItems(listaUtenti);
         ListaUtenti.getSelectionModel().selectedItemProperty().addListener((observable, oldvalue, newvalue) -> {
@@ -50,30 +55,31 @@ public class SuggestedPlayerView {
     }
 
 
-    public SuggestedPlayerView(ArrayList<Utente> listaSuggeriti, String buttons, PartitaCtrl partitaCtrl, PartitaDetails pd, Stage s) {
+    public SuggestedPlayerView(ArrayList<Utente> listaSuggeriti, String buttons, PartitaCtrl partitaCtrl, PartitaDetails pd, Stage s, boolean Invito) {
         this.SuggestedPlayer = listaSuggeriti;
         this.buttons = buttons;
         this.partitaCtrl = partitaCtrl;
         this.selectedPartita = pd;
         this.stage = s;
-    }
-
-    public void selectSuggestedUser() {
-
+        this.Invito = Invito;
     }
 
     public void selectSquadra1() {
-        partitaCtrl.passGiocatoreSquadra(selectedUtente, 1, selectedPartita, stage);
+        if (Invito) {
+            partitaCtrl.passInvito(selectedUtente, 1, selectedPartita, stage);
+        } else {
+            partitaCtrl.passGiocatoreSquadra(selectedUtente, 1, selectedPartita, stage);
+        }
     }
 
-    public void selectSquadra2(){
-        partitaCtrl.passGiocatoreSquadra(selectedUtente, 2, selectedPartita, stage);
+    public void selectSquadra2() {
+        if (Invito) {
+            partitaCtrl.passInvito(selectedUtente, 2, selectedPartita, stage);
+        } else {
+            partitaCtrl.passGiocatoreSquadra(selectedUtente, 2, selectedPartita, stage);
+        }
     }
 
-
-    public void insertDati() {
-
-    }
 
     public void ClickCerca() {
         partitaCtrl.passRicercaGiocatore(search.getText(), this, selectedPartita);
@@ -85,10 +91,6 @@ public class SuggestedPlayerView {
         ListaUtenti.getSelectionModel().selectedItemProperty().addListener((observable, oldvalue, newvalue) -> {
             selectedUtente = newvalue;
         });
-    }
-
-    public void ClickInvita() {
-
     }
 
 }

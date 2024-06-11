@@ -61,7 +61,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="InvitaGiocatoreButton" disable="true" layoutX="477.0" layoutY="439.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text="    INVITA &#10;GIOCATORE">
+      <Button onMouseClicked="#ClickInvitaGiocatori" fx:id="InvitaGiocatoreButton" disable="true" layoutX="477.0" layoutY="439.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text="    INVITA &#10;GIOCATORE">
          <font>
             <Font size="10.0" />
          </font>
@@ -69,7 +69,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="CancellaPrenotazioneButton" disable="true" layoutX="655.0" layoutY="439.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text="    CANCELLA&#10;PRENOTAZIONE" textFill="#ff0101">
+      <Button onMouseClicked="#ClickCancellaPrenotazione" fx:id="CancellaPrenotazioneButton" disable="true" layoutX="655.0" layoutY="439.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="68.0" text="    CANCELLA&#10;PRENOTAZIONE" textFill="#ff0101">
          <font>
             <Font name="System Bold" size="7.0" />
          </font>

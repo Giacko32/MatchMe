@@ -48,7 +48,7 @@ public class NotifyCtrl {
                 numpartsport=10;
                 break;
             }
-            case "padel", "tennis":{
+            case "singolo":{
                 numpartsport=2;
                 break;
             }

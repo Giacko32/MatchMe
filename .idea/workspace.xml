@@ -10,8 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4af3d7da-bc56-44b9-ace0-9872cfa66ce3" name="Changes" comment="Sono stati fatti tanti cambiamenti">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/VisualizzaDettagliPartitaSedeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneSede/Interfacce/VisualizzaDettagliPartitaSedeView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Visualizza Partite sede.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/Visualizza Partite sede.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneNotifiche/Controller/NotifyCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneNotifiche/Controller/NotifyCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneNotifiche/Interfacce/DetailPartitaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneNotifiche/Interfacce/DetailPartitaView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Controller/PartitaCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Controller/PartitaCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/DetailsMiaPartitaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/DetailsMiaPartitaView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/SuggestedPlayerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestionePartita/Interfacce/SuggestedPlayerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/shared/ConfirmView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/shared/ConfirmView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/InvitaGiocatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/InvitaGiocatore.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/VisualizzaLeMiePartite.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/prova/matchme/FXML/VisualizzaLeMiePartite.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

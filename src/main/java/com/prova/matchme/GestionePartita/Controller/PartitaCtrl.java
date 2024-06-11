@@ -11,6 +11,8 @@ import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.*;
 import com.prova.matchme.GestionePartita.Interfacce.*;
 import com.prova.matchme.Utils;
+import com.prova.matchme.shared.ConfirmView;
+import jakarta.mail.Part;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -24,6 +26,7 @@ public class PartitaCtrl {
     private DettagliCampoView boundary;
     DetailsMiaPartitaView boundary1;
     private LocalDateTime selectedDataOra;
+    private PartitaDetails partitaToCancel;
 
     public PartitaCtrl(Utente u, Stage s) {
         this.u = u;
@@ -130,8 +133,12 @@ public class PartitaCtrl {
         bnd.mostraLista(trovati);
     }
 
-    public void passInvito() {
-
+    public void passInvito(Utente utente, int n_squadra, PartitaDetails partitaDetails, Stage stg) {
+        ArrayList<UtentePart> destinatario = new ArrayList<>();
+        destinatario.add(new UtentePart(utente, n_squadra));
+        DBMSView.sendNotify("Sei stato invitato ad una partita il " + partitaDetails.campo.getOrarioString() + " nella sede " + partitaDetails.sede.getNome_sede() +" per giocare a "+ partitaDetails.campo.getSport() + " " + partitaDetails.partita.getId(), destinatario, 0);
+        stg.close();
+        boundary1.ShowBnd();
     }
 
     public void passSquadraOspite(int n_squadra, PartitaDetails partitaDetails, Stage stg) {
@@ -141,7 +148,19 @@ public class PartitaCtrl {
     }
 
     public void passConferma() {
-
+        DBMSView.queryCancellaPrenotazione(partitaToCancel.partita.getId(), u.getId());
+        ArrayList<UtentePart> destinatari = new ArrayList<>();
+        partitaToCancel.squadra1.remove(u);
+        partitaToCancel.squadra2.remove(u);
+        for (Utente utente : partitaToCancel.squadra1) {
+            destinatari.add(new UtentePart(u, 1));
+        }
+        for (Utente utente : partitaToCancel.squadra2) {
+            destinatari.add(new UtentePart(u, 2));
+        }
+        destinatari.remove(u);
+        DBMSView.sendNotify(u.getNome() + " " + u.getCognome() + " ha abbandonato la partita del " + partitaToCancel.campo.getOrarioString() + " nella sede " + partitaToCancel.sede.getNome_sede(), destinatari, 1);
+        boundary1.removePartita(partitaToCancel);
     }
 
     public void checkVincoli() {
@@ -161,8 +180,12 @@ public class PartitaCtrl {
     }
 
     public void SelectedPartita(Partita partita) {
-        PartitaDetails dettagli = DBMSView.queryGetCampoSedePartita(partita);
-        boundary1.ShowDetails(dettagli);
+        if (partita != null) {
+            PartitaDetails dettagli = DBMSView.queryGetCampoSedePartita(partita);
+            boundary1.ShowDetails(dettagli);
+        } else {
+            boundary1.ShowDetails(null);
+        }
     }
 
     public void AggiungiClicked(PartitaDetails partitaDetails) {
@@ -204,7 +227,7 @@ public class PartitaCtrl {
             String finalSquadreNonPiene = squadreNonPiene;
             CustomStage cs = new CustomStage("Aggiungi Giocatori");
             Utils.cambiaInterfaccia("FXML/Aggiungigiocatori.fxml", cs, c -> {
-                return new SuggestedPlayerView(listaSuggeriti, finalSquadreNonPiene, this, partitaDetails, cs);
+                return new SuggestedPlayerView(listaSuggeriti, finalSquadreNonPiene, this, partitaDetails, cs, false);
             }, 500, 330);
         }
 
@@ -221,12 +244,55 @@ public class PartitaCtrl {
         }
     }
 
-    public void CancelClicked() {
-
+    public void CancelClicked(PartitaDetails partitaDetails) {
+        this.partitaToCancel = partitaDetails;
+        Stage stg = new Stage();
+        Utils.cambiaInterfaccia("FXML/DialogConferma.fxml", stg, c -> {
+            return new ConfirmView(this, stg);
+        }, 350, 170);
     }
 
-    public void InvitaClicked() {
-
+    public void InvitaClicked(PartitaDetails partitaDetails) {
+        if(!checkNumeroGiocatori(partitaDetails)){
+            Utils.creaPannelloErrore("La partita è piena");
+        } else {
+            ArrayList<Utente> listaSuggeriti = DBMSView.queryGetGiocatoriSuggeriti(u);
+            listaSuggeriti.removeAll(partitaDetails.squadra1);
+            listaSuggeriti.removeAll(partitaDetails.squadra2);
+            String squadreNonPiene = "";
+            switch (partitaDetails.campo.getSport()) {
+                case "Calcio a 5" -> {
+                    if (partitaDetails.squadra1.size() == 5) {
+                        squadreNonPiene = "2";
+                    } else if (partitaDetails.squadra2.size() == 5) {
+                        squadreNonPiene = "1";
+                    } else {
+                        squadreNonPiene = "entrambe";
+                    }
+                }
+                case "Tennis singolo", "Padel singolo" -> {
+                    if (partitaDetails.squadra1.size() == 1) {
+                        squadreNonPiene = "2";
+                    } else if (partitaDetails.squadra2.size() == 1) {
+                        squadreNonPiene = "1";
+                    }
+                }
+                case "Tennis doppio", "Padel doppio" -> {
+                    if (partitaDetails.squadra1.size() == 2) {
+                        squadreNonPiene = "2";
+                    } else if (partitaDetails.squadra2.size() == 2) {
+                        squadreNonPiene = "1";
+                    } else {
+                        squadreNonPiene = "entrambe";
+                    }
+                }
+            }
+            String finalSquadreNonPiene = squadreNonPiene;
+            CustomStage cs = new CustomStage("Invita Giocatore");
+            Utils.cambiaInterfaccia("FXML/Aggiungigiocatori.fxml", cs, c -> {
+                return new SuggestedPlayerView(listaSuggeriti, finalSquadreNonPiene, this, partitaDetails, cs, true);
+            }, 500, 330);
+        }
     }
 
     public void prenotaPartita(Campo campo, Sede sede) {
