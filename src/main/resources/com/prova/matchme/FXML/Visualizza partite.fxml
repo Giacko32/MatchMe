@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestionePartita.Interfacce.DetailsTuttePartiteView">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestionePartita.Interfacce.DetailsTuttePartiteView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
-                <ImageView onMouseClicked="#back" fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -43,8 +43,8 @@
             </ImageView>
             </children>
         </AnchorPane>
-      <ListView fx:id="listaPartite" layoutX="14.0" layoutY="86.0" prefHeight="387.0" prefWidth="388.0" />
-      <Label layoutX="162.0" layoutY="63.0" text="Match attivi">
+      <ListView fx:id="listaPartite" layoutX="14.0" layoutY="86.0" prefHeight="403.0" prefWidth="325.0" />
+      <Label layoutX="131.0" layoutY="60.0" text="Match attivi">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -54,13 +54,47 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <ListView disable="true" layoutX="418.0" layoutY="104.0" prefHeight="322.0" prefWidth="317.0" />
-      <Button disable="true" layoutX="505.0" layoutY="445.0" mnemonicParsing="false" text="ISCRIVITI AL MATCH">
+      <Button fx:id="iscrivitiButton" disable="true" layoutX="485.0" layoutY="444.0" mnemonicParsing="false" text="ISCRIVITI AL MATCH">
          <font>
             <Font name="System Bold" size="12.800000190734863" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+        <Label layoutX="418.0" layoutY="110.0" text="Sede">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+        <TextField fx:id="SedeField" disable="true" layoutX="492.0" layoutY="107.0" prefHeight="25.0" prefWidth="187.0" />
+        <Label layoutX="418.0" layoutY="145.0" text="Campo">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="CampoField" disable="true" layoutX="492.0" layoutY="142.0" prefHeight="25.0" prefWidth="187.0" />
+        <Label layoutX="418.0" layoutY="220.0" text="Data e Ora">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="DataOraField" disable="true" layoutX="492.0" layoutY="217.0" prefHeight="25.0" prefWidth="187.0" />
+        <ListView fx:id="Squadra1List" disable="true" layoutX="366.0" layoutY="285.0" prefHeight="131.0" prefWidth="170.0" />
+        <ListView fx:id="Squadra2List" disable="true" layoutX="560.0" layoutY="285.0" prefHeight="131.0" prefWidth="170.0" />
+        <Label layoutX="364.0" layoutY="260.0" text="Squadra 1:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="560.0" layoutY="260.0" text="Squadra 2:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="418.0" layoutY="182.0" text="Sport">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="SportField" disable="true" layoutX="492.0" layoutY="179.0" prefHeight="25.0" prefWidth="187.0" />
     </children>
 </AnchorPane>
