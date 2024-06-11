@@ -164,9 +164,7 @@ public class TorneiCtrl {
 			return media >= minimo && media <= massimo;
 		}
 
-		public void CloseWarningView () {
 
-		}
 
 		public void passCancellazione(Torneo torneo) {
 			CustomStage st = new CustomStage("Attenzione");
