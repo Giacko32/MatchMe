@@ -57,7 +57,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button  fx:id="crea" disable="true" layoutX="320.0" layoutY="455.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" style="-fx-background-color: #03b53f;" text="AGGIUNGI" textFill="WHITE">
+        <Button onMouseClicked="#ClickAggiungi" fx:id="buttonAggiungi" disable="true" layoutX="320.0" layoutY="455.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" style="-fx-background-color: #03b53f;" text="AGGIUNGI" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>

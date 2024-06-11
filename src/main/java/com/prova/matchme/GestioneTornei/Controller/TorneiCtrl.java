@@ -23,10 +23,13 @@ public class TorneiCtrl {
 	private IscrizioneSquadraView boundarySquadra;
 	private SearchUserView boundarySearchUser;
 	private int numeroSquadraCorrente = 1;
+	private ArrayList<Utente> utentiSquadra;
+	private boolean giocatori_aggiunti = false;
 
 	public TorneiCtrl(Utente utente, Stage stage) {
 		this.utente = utente;
 		this.stage = stage;
+		this.utentiSquadra = new ArrayList<>();
 		Stage stageBoundary = new CustomStage("Seleziona la tipologia di tornei");
 		Utils.cambiaInterfaccia("FXML/SelezioneTornei.fxml", stageBoundary, c -> {
 			return new SelezioneTorneiView( this, stageBoundary);
@@ -63,7 +66,7 @@ public class TorneiCtrl {
 		if (this.CheckNumeroSquadre(torneo)) {
 			st.close();
 			Utils.cambiaInterfaccia("FXML/IscrizioneSquadraTorneo.fxml", stage, c -> {
-				boundarySquadra = new IscrizioneSquadraView(this, utente, stage, torneo);
+				boundarySquadra = new IscrizioneSquadraView(this, utente, stage, torneo,numeroSquadraCorrente);
 				return boundarySquadra;
 			});
 		} else {
@@ -72,12 +75,17 @@ public class TorneiCtrl {
 	}
 
 		public void AggiungiPartecipanti (TorneiCtrl torneiCtrl, Stage st, Torneo torneo) {
+		if(giocatori_aggiunti == false){
 			st.close();
 			Utils.cambiaInterfaccia("FXML/SearchUserView.fxml", stage, c -> {
-				boundarySearchUser =  new SearchUserView(this, torneo);
+				boundarySearchUser =  new SearchUserView(this, torneo,stage);
 				return boundarySearchUser;
 			});
+		}else{
+			Utils.creaPannelloErrore("Giocatori già aggiunti");
 		}
+		}
+
 
 		public boolean CheckSquadra (Torneo torneo) {
 		//se il numero di giocatori è minore del numero massimo per squadra torna true sennò false
@@ -91,16 +99,50 @@ public class TorneiCtrl {
 			boundarySearchUser.MostraLista(giocatori_cercati);
 		}
 
-		public void AggiungiASquadra () {
+		public void AggiungiASquadra (Utente utente, Torneo torneo, Stage st) {
+				if(this.CheckSquadra(torneo)){
+					// la squadra ancora non è piena
+					if(!utentiSquadra.contains(utente)){
+						utentiSquadra.add(utente);
+						System.out.println(utentiSquadra);
+						if(utentiSquadra.size() == torneo.getN_Giocatori_squadra()){
+							//la squadra è piena possiamo aggiornare la lista
+							st.close();
+							Utils.cambiaInterfaccia("FXML/IscrizioneSquadraTorneo.fxml", stage, c -> {
+								boundarySquadra = new IscrizioneSquadraView(this, utente, stage, torneo,numeroSquadraCorrente);
 
+								return boundarySquadra;
+							});
+							boundarySquadra.updateListaGiocatori(utentiSquadra);
+							giocatori_aggiunti = true;
+						}else {
+							Utils.creaPannelloErrore("Giocatore aggiunto");
+						}
+					}else{
+						Utils.creaPannelloErrore("Giocatore già aggiunto");
+					}
+
+				}else{
+					//la squadra è piena
+					Utils.creaPannelloErrore("La squadra ha raggiunto il numero massimo di partecipanti");
+				}
 		}
 
-		public void IscriviSquadraCliccato () {
-
+		public void IscriviSquadraCliccato (Torneo torneo, float media) {
+			if(CheckLivello(torneo, media)){
+				//La squadra soddisfa i vincoli
+			}
 		}
 
-		public void CheckLivello () {
+		public boolean CheckLivello (Torneo torneo,float media ) {
+			String[] parts = torneo.getVincoli().split(",");
 
+			// Estrae i valori minimo e massimo dalla stringa
+			float minimo = Float.parseFloat(parts[0].trim());
+			float massimo = Float.parseFloat(parts[1].trim());
+
+			// Confronta il valore con i valori minimo e massimo
+			return media >= minimo && media <= massimo;
 		}
 
 		public void CloseWarningView () {

@@ -10,7 +10,7 @@
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
-                <ImageView onMouseClicked="#back" fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" >
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -43,19 +43,19 @@
                 </ImageView>
             </children>
         </AnchorPane>
-      <Label layoutX="37.0" layoutY="80.0" text="Inserisci nome squadra:" />
-      <TextField layoutX="176.0" layoutY="76.0" prefHeight="26.0" prefWidth="176.0">
+      <Label layoutX="37.0" layoutY="80.0" text="Numero squadra:" />
+      <TextField fx:id="numeroSquadra" editable="false" layoutX="176.0" layoutY="76.0" prefHeight="26.0" prefWidth="176.0">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
-      <ListView layoutX="36.0" layoutY="143.0" prefHeight="329.0" prefWidth="549.0" />
+      <ListView fx:id="listaGiocatoriSquadra" layoutX="36.0" layoutY="143.0" prefHeight="329.0" prefWidth="549.0" />
       <Label layoutX="37.0" layoutY="118.0" text="Componenti:" />
-        <Button onMouseClicked="#ClickAggiungiPartecipanti" layoutX="598.0" layoutY="243.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Aggiungi giocatore" textFill="WHITE">
+        <Button layoutX="598.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#ClickAggiungiPartecipanti" style="-fx-background-color: #03b53f;" text="Aggiungi giocatore" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-      <Button layoutX="610.0" layoutY="299.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Iscrivi squadra " textFill="WHITE">
+      <Button onMouseClicked="#ClickIscriviSquadra" layoutX="610.0" layoutY="299.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Iscrivi squadra " textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -64,7 +64,7 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextField editable="false" layoutX="454.0" layoutY="77.0" prefHeight="26.0" prefWidth="70.0">
+      <TextField fx:id="livelloMedio" editable="false" layoutX="454.0" layoutY="77.0" prefHeight="26.0" prefWidth="70.0">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
