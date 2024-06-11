@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneSede.Interfacce.InsertVincoliView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image></ImageView>
@@ -40,51 +40,71 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <Spinner layoutX="390.0" layoutY="83.0" prefHeight="26.0" prefWidth="85.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Spinner>
-        <Label layoutX="288.0" layoutY="86.0" text="Seleziona livello">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-        <Spinner layoutX="331.0" layoutY="197.0" prefHeight="26.0" prefWidth="74.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Spinner>
-        <Label layoutX="213.0" layoutY="203.0" prefHeight="20.0" prefWidth="114.0" text="Seleziona età   da">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-        <Label layoutX="291.0" layoutY="143.0" text="Seleziona sesso">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-        <Label layoutX="426.0" layoutY="202.0" text="a">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-        <Button layoutX="490.0" layoutY="271.0" mnemonicParsing="false" style="-fx-background-color: #FF9622;" text="Crea partita" textFill="WHITE">
+        <Spinner fx:id="fromAge" layoutX="347.0" layoutY="250.0" prefHeight="26.0" prefWidth="74.0">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Spinner>
+        <Label layoutX="222.0" layoutY="253.0" prefHeight="20.0" prefWidth="132.0" text="Seleziona età      da">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+        <Label layoutX="222.0" layoutY="145.0" text="Seleziona sesso">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+        <Label layoutX="435.0" layoutY="253.0" text="a">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+        <Button layoutX="511.0" layoutY="322.0" mnemonicParsing="false" onMouseClicked="#ClickCreaPartita" style="-fx-background-color: #FF9602;" text="Crea partita" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-        <ChoiceBox layoutX="397.0" layoutY="140.0" prefHeight="26.0" prefWidth="73.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></ChoiceBox>
-        <Spinner layoutX="453.0" layoutY="197.0" prefHeight="26.0" prefWidth="74.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Spinner>
-        <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Button>
+        <Spinner fx:id="toAge" layoutX="455.0" layoutY="250.0" prefHeight="26.0" prefWidth="74.0">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Spinner>
+        <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/ic--baseline-arrow-back.png" />
             </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></ImageView>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></ImageView>
+        <Spinner fx:id="fromLivello" layoutX="347.0" layoutY="195.0" prefHeight="26.0" prefWidth="74.0">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Spinner>
+        <Label layoutX="222.0" layoutY="198.0" prefHeight="20.0" prefWidth="132.0" text="Seleziona livello  da">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="435.0" layoutY="198.0" text="a">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Spinner fx:id="toLivello" layoutX="455.0" layoutY="195.0" prefHeight="26.0" prefWidth="74.0">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Spinner>
+
+        <RadioButton fx:id="donnaButton" layoutX="463.0" layoutY="146.0" mnemonicParsing="false" text="Donne">
+            <toggleGroup>
+                <ToggleGroup fx:id="genderToggleGroup" />
+            </toggleGroup>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></RadioButton>
+        <RadioButton fx:id="uomoButton" layoutX="354.0" layoutY="146.0" mnemonicParsing="false" text="Uomini" toggleGroup="$genderToggleGroup">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></RadioButton>
     </children>
 </AnchorPane>

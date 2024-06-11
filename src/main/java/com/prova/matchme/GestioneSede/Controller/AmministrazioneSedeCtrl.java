@@ -58,7 +58,6 @@ public class AmministrazioneSedeCtrl {
             return controllersntv;
         });
     }
-
     public void toverificaSconto() {
         CustomStage s = new CustomStage("VERIFICA SCONTO");
         Utils.cambiaInterfaccia("FXML/Verifica Codice Sconto.fxml", s, c -> {

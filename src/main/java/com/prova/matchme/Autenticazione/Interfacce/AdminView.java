@@ -87,9 +87,10 @@ public class AdminView {
 		GestionePartiteSedeCtrl gs =new GestionePartiteSedeCtrl(s, g);
 		gs.toVisualize();
 	}
-
+    @FXML
 	public void clickCreaPartita() {
-
+		GestionePartiteSedeCtrl gs =new GestionePartiteSedeCtrl(s, g);
+		gs.tocreapartita();
 	}
 
 	public void clickTorneiSede() {

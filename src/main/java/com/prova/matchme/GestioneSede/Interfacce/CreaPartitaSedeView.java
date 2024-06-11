@@ -1,15 +1,25 @@
 package com.prova.matchme.GestioneSede.Interfacce;
 
 
+import com.prova.matchme.GestioneSede.Controller.GestionePartiteSedeCtrl;
+import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
+import javafx.stage.Stage;
 
 public class CreaPartitaSedeView {
 
-	public void InsertDate() {
-
+	private GestionePartiteSedeCtrl gestionePartiteSedeCtrl;
+	private Stage s;
+	public CreaPartitaSedeView(GestionePartiteSedeCtrl gestionePartiteSedeCtrl,Stage s){
+		this.s=s;
+		this.gestionePartiteSedeCtrl=gestionePartiteSedeCtrl;
 	}
-
+	@FXML
+	public DatePicker data;
+    @FXML
 	public void ClickCercaCampi() {
-
+		gestionePartiteSedeCtrl.PassDate(data.getValue());
+		s.close();
 	}
 
 }

@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -302,6 +302,7 @@ public class DBMSView {
         return null;
     }
 
+
     public static ArrayList<Chat> queryGetChat(int id) {
         String query = "SELECT c.id, " +
                 "CASE WHEN c.ref_Utente1 = ? THEN u2.id ELSE u1.id END AS altro_id, " +
@@ -420,7 +421,7 @@ public class DBMSView {
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
-
+        if (utente != null) {
         String queryGetID = "SELECT id FROM partita WHERE ref_Campo = ? AND dataOra = ?";
         int idNewPartita = 0;
         try (PreparedStatement stmt = connDBMS.prepareStatement(queryGetID)) {
@@ -434,17 +435,20 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
 
-        String queryInsertCreatore = "INSERT INTO partecipa(ref_Utente,ref_Partita,n_squadra,n_giocatori_allenamento) values(?,?,?,?)";
-        try (PreparedStatement stmt = connDBMS.prepareStatement(queryInsertCreatore)) {
-            stmt.setInt(1, utente.getId());
-            stmt.setInt(2, idNewPartita);
-            stmt.setInt(3, 1);
-            stmt.setInt(4, 0);
-            var r = stmt.executeUpdate();
-        } catch (SQLException e) {
-            erroreComunicazioneDBMS(e);
+
+            String queryInsertCreatore = "INSERT INTO partecipa(ref_Utente,ref_Partita,n_squadra,n_giocatori_allenamento) values(?,?,?,?)";
+            try (PreparedStatement stmt = connDBMS.prepareStatement(queryInsertCreatore)) {
+                stmt.setInt(1, utente.getId());
+                stmt.setInt(2, idNewPartita);
+                stmt.setInt(3, 1);
+                stmt.setInt(4, 0);
+                var r = stmt.executeUpdate();
+            } catch (SQLException e) {
+                erroreComunicazioneDBMS(e);
+            }
         }
     }
+
     public static ArrayList<Notifica> queryGetNotifiche(int idutente) {
         String query = "SELECT * FROM notifica WHERE ref_Utente=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
@@ -778,7 +782,7 @@ public class DBMSView {
         return null;
     }
 
-    public static void querySetAbbonamento(String codice, LocalDate data, int idutente,int idgestore) {
+    public static void querySetAbbonamento(String codice, LocalDate data, int idutente, int idgestore) {
         String query = "INSERT INTO abbonamento(codice,data_Scadenza,ref_Tesserato,ref_Gestore) values(?,?,?,?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, codice);
@@ -831,14 +835,15 @@ public class DBMSView {
         }
         return null;
     }
-    public static ArrayList<Abbonamento> getAbbonamenti(int idgestore){
-        String query="SELECT * FROM abbonamento WHERE ref_Gestore=?";
+
+    public static ArrayList<Abbonamento> getAbbonamenti(int idgestore) {
+        String query = "SELECT * FROM abbonamento WHERE ref_Gestore=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, idgestore);
             var r = stmt.executeQuery();
-            ArrayList<Abbonamento> listaabb=new ArrayList<>();
+            ArrayList<Abbonamento> listaabb = new ArrayList<>();
             while (r.next()) {
-                listaabb.add(new Abbonamento(r.getInt("ref_Tesserato"),r.getDate("data_Scadenza").toLocalDate(),r.getString("codice"),r.getInt("ref_Gestore"),r.getInt("notificato")));
+                listaabb.add(new Abbonamento(r.getInt("ref_Tesserato"), r.getDate("data_Scadenza").toLocalDate(), r.getString("codice"), r.getInt("ref_Gestore"), r.getInt("notificato")));
             }
             return listaabb;
         } catch (SQLException e) {
@@ -847,7 +852,7 @@ public class DBMSView {
         return null;
     }
 
-    public static void sendNotify2(String notifica,int id, int tipo) {
+    public static void sendNotify2(String notifica, int id, int tipo) {
         String query = "INSERT INTO notifica(ref_Utente,tipo,messaggio) values (?,?,?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, id);
@@ -859,8 +864,8 @@ public class DBMSView {
         }
     }
 
-    public static void querySetNotificato(int idutente){
-        String query="UPDATE abbonamento SET notificato=1 WHERE ref_Tesserato=?";
+    public static void querySetNotificato(int idutente) {
+        String query = "UPDATE abbonamento SET notificato=1 WHERE ref_Tesserato=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, idutente);
             var r = stmt.executeUpdate();
@@ -870,15 +875,15 @@ public class DBMSView {
     }
 
 
-    public static void queryEliminaAbbonamento(int id){
-        String query="DELETE FROM abbonamento WHERE ref_Tesserato=?";
+    public static void queryEliminaAbbonamento(int id) {
+        String query = "DELETE FROM abbonamento WHERE ref_Tesserato=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, id);
             var r = stmt.executeUpdate();
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
-        query="UPDATE utente SET tipo=? WHERE id=?";
+        query = "UPDATE utente SET tipo=? WHERE id=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(2, id);
             stmt.setString(1, "nt");
@@ -889,7 +894,7 @@ public class DBMSView {
 
     }
 
-    public static void queryAddOspite(PartitaDetails partitaDetails, int n_squadra){
+    public static void queryAddOspite(PartitaDetails partitaDetails, int n_squadra) {
         String query = "INSERT INTO partecipa(ref_Utente,ref_Partita,n_squadra,n_giocatori_allenamento) values (-1,?,?,0)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, partitaDetails.partita.getId());
@@ -900,9 +905,8 @@ public class DBMSView {
         }
     }
 
-    public static ArrayList<Partita> queryGetPartiteSede(int refSede,LocalDate data){
-        System.out.println("ciao");
-        String query="SELECT p.id, p.ref_Campo, p.dataOra, p.tipo, p.vincoli  FROM partita p,campo c,sede s WHERE p.ref_Campo=c.id AND c.ref_Sede=s.Id_Sede AND s.Id_Sede=? AND DATE(p.dataOra)=?";
+    public static ArrayList<Partita> queryGetPartiteSede(int refSede, LocalDate data) {
+        String query = "SELECT p.id, p.ref_Campo, p.dataOra, p.tipo, p.vincoli  FROM partita p,campo c,sede s WHERE p.ref_Campo=c.id AND c.ref_Sede=s.Id_Sede AND s.Id_Sede=? AND DATE(p.dataOra)=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, refSede);
             stmt.setDate(2, Date.valueOf(data));
@@ -918,7 +922,7 @@ public class DBMSView {
         return null;
     }
 
-    public static void queryCancellaPrenotazione(int id_partita, int id_utente){
+    public static void queryCancellaPrenotazione(int id_partita, int id_utente) {
         String query = "DELETE FROM partecipa WHERE ref_Partita = ? AND ref_Utente = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, id_partita);
@@ -927,6 +931,24 @@ public class DBMSView {
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
+    }
+
+    public static ArrayList<Campo> queryGetCampiLiberi2(int idsede, LocalDate data) {
+        var query = "SELECT * FROM campo cp, orari o WHERE cp.ref_Sede = ? and orario not in (SELECT TIME(p.dataOra) as orario FROM partita p, campo c WHERE DATE(p.dataOra) = ? and p.ref_Campo = c.id and c.id = cp.id) ORDER BY cp.id";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, idsede);
+            stmt.setDate(2, Date.valueOf(data));
+            var r = stmt.executeQuery();
+            ArrayList<Campo> listaCampi = new ArrayList<Campo>();
+            while (r.next()) {
+                listaCampi.add(new Campo(r.getInt("id"), r.getInt("ref_Sede"), r.getString("nome"), r.getString("sport"), LocalDateTime.of(data, r.getTime("orario").toLocalTime())));
+                System.out.println(listaCampi.getLast().toString());
+            }
+            return listaCampi;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
     }
 
 }

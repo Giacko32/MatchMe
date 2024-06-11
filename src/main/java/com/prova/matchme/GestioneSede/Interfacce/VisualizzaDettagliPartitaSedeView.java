@@ -3,6 +3,7 @@ package com.prova.matchme.GestioneSede.Interfacce;
 
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Partita;
+import com.prova.matchme.Entity.PartitaDetails;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestioneSede.Controller.GestionePartiteSedeCtrl;
 import javafx.collections.FXCollections;
@@ -33,8 +34,11 @@ public class VisualizzaDettagliPartitaSedeView {
 	public void initialize(){
 		ObservableList<Partita> items= FXCollections.observableArrayList(listapartite);
 		listaPartite.setItems(items);
-	}
+		listaPartite.getSelectionModel().selectedItemProperty().addListener((observable, oldvalue, newvalue) -> {
+			gestionePartiteSedeCtrl.PassPartita(newvalue);
+		});
 
+	}
 	@FXML
 	private ListView<Utente> Squadra1List;
 	@FXML
@@ -54,8 +58,28 @@ public class VisualizzaDettagliPartitaSedeView {
 
 
 	@FXML
+    public void showDetails(PartitaDetails partitaDetails){
+		SedeField.setDisable(false);
+		CampoField.setDisable(false);
+		SportField.setDisable(false);
+		DataOraField.setDisable(false);
+		Squadra1List.setDisable(false);
+		Squadra2List.setDisable(false);
+		SedeField.setText(partitaDetails.sede.toString());
+		CampoField.setText(partitaDetails.campo.getNomecampo());
+		SportField.setText(partitaDetails.campo.getSport());
+		DataOraField.setText(partitaDetails.campo.getOrarioString());
+		ObservableList<Utente> squadra1 = FXCollections.observableArrayList(partitaDetails.squadra1);
+		Squadra1List.setItems(squadra1);
+		ObservableList<Utente> squadra2 = FXCollections.observableArrayList(partitaDetails.squadra2);
+		Squadra2List.setItems(squadra2);
+	}
 
 
+	@FXML
+	public void back(){
+		gestionePartiteSedeCtrl.toAdmin();
+	}
 	public void ClickInvitaGiocatore() {
 
 	}
