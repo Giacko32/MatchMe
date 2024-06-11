@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -788,10 +788,7 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
     }
-
-
-
-
+    
 
 
     public static PartitaDetails queryGetCampoSedePartita(Partita partita) {
@@ -1160,7 +1157,6 @@ public class DBMSView {
         }
     }
 
-
     public static void querySendPunteggi(ArrayList<Integer> ids, ArrayList<Float> punteggi) {
         String selectQuery = "SELECT livello FROM utente WHERE id=?";
         String updateQuery = "UPDATE utente SET livello=? WHERE id=?";
@@ -1187,6 +1183,7 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
     }
+
     public static void queryPartitaGiocata(int idpartita,String risultato,LocalDateTime dataOra){
         String query="INSERT INTO partitestorico(id_partita_origine,data,risultato) values(?,?,?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
@@ -1198,6 +1195,33 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
 
+    }
+
+    public static ArrayList<Partita> queryGetPartiteAllenatore(int id_allenatore){
+        String query = "SELECT p.id, p.ref_Campo, p.dataOra, p.tipo FROM partita p, partecipa pr WHERE p.id = pr.ref_Partita AND pr.ref_Utente = ? AND p.id IN (SELECT id_partita_origine FROM partitestorico)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, id_allenatore);
+            var r = stmt.executeQuery();
+            ArrayList<Partita> allenamenti = new ArrayList<>();
+            while(r.next()){
+                allenamenti.add(new Partita(r.getInt(1), r.getInt(2), r.getTimestamp(3).toLocalDateTime(), r.getString(4), ""));
+            }
+            return allenamenti;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+    public static void queryAddBonusPlayer(Utente utente, float value){
+        String query = "UPDATE utente SET livello = livello + ? WHERE id = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setFloat(1, value);
+            stmt.setInt(2, utente.getId());
+            var t = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
     }
     public static ArrayList<Partita> queryGetAllPartiteSede(int refSede) {
         String query = "SELECT p.id, p.ref_Campo, p.dataOra, p.tipo, p.vincoli  FROM partita p,campo c,sede s WHERE p.ref_Campo=c.id AND c.ref_Sede=s.Id_Sede AND s.Id_Sede=? AND  p.tipo<> ? AND p.id NOT IN (SELECT id_partita_origine FROM partitestorico)";
@@ -1322,9 +1346,6 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         return null;
-
     }
-
-
 
 }

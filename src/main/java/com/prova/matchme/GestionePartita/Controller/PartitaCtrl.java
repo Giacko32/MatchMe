@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 public class PartitaCtrl {
 
@@ -49,13 +50,30 @@ public class PartitaCtrl {
         }, 350, 170);
     }
 
+    public PartitaCtrl(Utente u, Stage stage, int Bonus) {
+        this.u = u;
+        this.s = stage;
+        Utils.cambiaInterfaccia("FXML/Assegna Bonus.fxml", s, c -> {
+            return new BonusView(this, DBMSView.queryGetPartiteAllenatore(u.getId()));
+        });
+
+    }
+
     public void passPartita(Partita partita) {
         DBMSView.queryCreaPartita(partita, u);
         this.toMain();
     }
 
-    public void passGiocatoreBonus(int id_player, int bonusValue) {
-
+    public void passGiocatoreBonus(Utente dest, float bonusValue) {
+        if (dest.equals(u)) {
+            Utils.creaPannelloErrore("Non puoi assegnare\nun bonus a te stesso");
+        } else {
+            DBMSView.queryAddBonusPlayer(dest, bonusValue);
+            ArrayList<UtentePart> destinatario = new ArrayList<>();
+            destinatario.add(new UtentePart(dest, 1));
+            DBMSView.sendNotify("L'allenatore " + u.getNome() + " " + u.getCognome() + " ti ha assegnato un bonus", destinatario, 1);
+            Utils.creaPannelloErrore("Bonus assegnato");
+        }
     }
 
     public Object getPartite1ora() {
@@ -119,7 +137,7 @@ public class PartitaCtrl {
         for (Utente user : partitaDetails.squadra2) {
             destNotify.add(new UtentePart(user, 2));
         }
-        DBMSView.sendNotify(u.getNome() + " " + u.getCognome() + " con id " + u.getId() + " chiede di partecipare nella partita del " + partitaDetails.campo.getOrarioString() + " nella sede " + partitaDetails.sede.getNome_sede() + " di " + partitaDetails.campo.getSport() + " " + partitaDetails.partita.getId(),destNotify,2);
+        DBMSView.sendNotify(u.getNome() + " " + u.getCognome() + " con id " + u.getId() + " chiede di partecipare nella partita del " + partitaDetails.campo.getOrarioString() + " nella sede " + partitaDetails.sede.getNome_sede() + " di " + partitaDetails.campo.getSport() + " " + partitaDetails.partita.getId(), destNotify, 2);
         DBMSView.querySetRichiestaAccettazione(u.getId(), partitaDetails.partita.getId(), partitaDetails.squadra1.size() + partitaDetails.squadra2.size());
         boundary2.ShowBnd(partitaDetails);
     }
@@ -228,6 +246,10 @@ public class PartitaCtrl {
                 boundary1.ShowDetails(null);
             }
         }
+    }
+
+    public PartitaDetails passPartita(Partita partita, BonusView bonusView) {
+        return DBMSView.queryGetCampoSedePartita(partita);
     }
 
     public void AggiungiClicked(PartitaDetails partitaDetails) {

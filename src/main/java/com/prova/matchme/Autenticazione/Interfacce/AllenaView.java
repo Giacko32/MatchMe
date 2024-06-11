@@ -71,8 +71,9 @@ public class AllenaView {
     }
 
     public void ClickAssegnaBonus() {
-
+     new PartitaCtrl(u, this.s, 1);
     }
+
     @FXML
     public void ClickNotifiche() {
         new NotifyCtrl(s,u);
@@ -87,6 +88,11 @@ public class AllenaView {
     public void ClickCreaAllenamento() {
 
     }
+
+    public void ClickVisualizzaPartite(){
+        new PartitaCtrl(u, s, true);
+    }
+
 
     public void ShowBnd() {
 

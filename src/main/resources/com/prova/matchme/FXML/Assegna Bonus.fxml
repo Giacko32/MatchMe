@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestionePartita.Interfacce.BonusView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -43,18 +43,18 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <ListView layoutX="21.0" layoutY="91.0" prefHeight="387.0" prefWidth="420.0" />
-        <Label layoutX="126.0" layoutY="62.0" text="Match a cui hai partecipato:">
+        <ListView fx:id="lista" layoutX="21.0" layoutY="91.0" prefHeight="393.0" prefWidth="325.0" />
+        <Label layoutX="83.0" layoutY="59.0" text="Match a cui hai partecipato:">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <Label disable="true" layoutX="487.0" layoutY="75.0" text="Partecipanti del Match selezionato">
+        <Label layoutX="446.0" layoutY="115.0" text="Partecipanti del Match selezionato">
             <font>
                 <Font name="System Bold" size="12.800000190734863" />
             </font>
         </Label>
-        <Button disable="true" layoutX="554.0" layoutY="429.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="73.0" text="CONFERMA&#10;BONUS" textAlignment="CENTER">
+        <Button fx:id="bonusButton" onMouseClicked="#assegnaBonus" disable="true" layoutX="513.0" layoutY="337.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="73.0" text="ASSEGNA&#10;BONUS" textAlignment="CENTER">
             <font>
                 <Font name="System Bold" size="10.0" />
             </font>
@@ -62,133 +62,17 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-      <HBox layoutX="455.0" layoutY="108.0" prefHeight="310.0" prefWidth="271.0">
-         <children>
-              <ListView disable="true" prefHeight="310.0" prefWidth="290.0" />
-            <ToolBar disable="true" orientation="VERTICAL" prefHeight="211.0" prefWidth="51.0">
-              <items>
-                <Button mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="36.0" mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="61.0" mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="87.0" mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="112.0" mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="110.0" mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="130.0" mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="150.0" mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="170.0" mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="190.0" mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="210.0" mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="230.0" mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="250.0" mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="270.0" mnemonicParsing="false" text="Select">
-                     <font>
-                        <Font size="7.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-              </items>
-            </ToolBar>
-         </children></HBox>
+        <ListView fx:id="Squadra1List" disable="true" layoutX="368.0" layoutY="180.0" prefHeight="131.0" prefWidth="170.0" />
+        <ListView fx:id="Squadra2List" disable="true" layoutX="561.0" layoutY="180.0" prefHeight="131.0" prefWidth="170.0" />
+        <Label layoutX="368.0" layoutY="160.0" text="Squadra 1:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="561.0" layoutY="160.0" text="Squadra 2:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
     </children>
 </AnchorPane>

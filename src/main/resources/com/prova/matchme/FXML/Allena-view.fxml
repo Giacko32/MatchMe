@@ -78,7 +78,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-        <Pane layoutX="253.0" layoutY="158.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+        <Pane onMouseClicked="#ClickVisualizzaPartite" layoutX="253.0" layoutY="158.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="19.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="VISUALIZZA PARTITE" textAlignment="CENTER" wrapText="true">
                     <font>
@@ -141,7 +141,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Pane>
-      <Pane layoutX="528.0" layoutY="158.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
+      <Pane onMouseClicked="#ClickAssegnaBonus" layoutX="528.0" layoutY="158.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #03b53f; -fx-border-radius: 10;">
          <children>
             <Label layoutX="23.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text=" ASSEGNA&#10;BONUS" textAlignment="CENTER" wrapText="true">
                <font>
