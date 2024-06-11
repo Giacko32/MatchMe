@@ -15,6 +15,7 @@ module com.prova.matchme {
     requires jakarta.mail;
     requires com.fasterxml.jackson.annotation;
     requires java.desktop;
+    requires annotations;
 
     opens com.prova.matchme to javafx.fxml;
     opens com.prova.matchme.Autenticazione.Interfacce to javafx.fxml;

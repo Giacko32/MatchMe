@@ -4,6 +4,7 @@ import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import com.prova.matchme.GestioneSede.Controller.AmministrazioneSedeCtrl;
+import com.prova.matchme.GestioneSede.Controller.GestionePartiteSedeCtrl;
 import com.prova.matchme.Threads.ContrAbb;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -17,21 +18,23 @@ public class AdminView {
 	private Gestore g;
 	private Stage s;
 	private static int firstTime=0;
+	private static ContrAbb thread;
 	public AdminView(AuthCtrl authCtrl, Gestore g,Stage s){
 		this.authCtrl=authCtrl;
 		this.g=g;
 		this.s=s;
 		if(firstTime==0){
 			firstTime++;
-			ContrAbb thread=new ContrAbb(g);
+			thread=new ContrAbb(g);
 			thread.start();
 		}
 	}
 	@FXML
 	public void ClickLogout() {
+		firstTime=0;
 		this.authCtrl.toConfirm();
+		thread.onstop();
 	}
-
 
 	@FXML
 	private Label nome;
@@ -81,7 +84,8 @@ public class AdminView {
 	}
 	@FXML
 	public void ClickVisualizzaPartiteSede() {
-
+		GestionePartiteSedeCtrl gs =new GestionePartiteSedeCtrl(s, g);
+		gs.toVisualize();
 	}
 
 	public void clickCreaPartita() {

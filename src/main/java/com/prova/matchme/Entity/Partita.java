@@ -40,6 +40,6 @@ public class Partita {
     }
 
     public String toString(){
-        return "partita in data " + dataOra.toLocalDate().toString() + " alle ore " + dataOra.toLocalTime().toString();
+        return "Partita in data " + dataOra.toLocalDate().toString() + " alle ore " + dataOra.toLocalTime().toString();
     }
 }

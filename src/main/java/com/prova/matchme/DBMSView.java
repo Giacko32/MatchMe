@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -838,7 +838,7 @@ public class DBMSView {
             var r = stmt.executeQuery();
             ArrayList<Abbonamento> listaabb=new ArrayList<>();
             while (r.next()) {
-                listaabb.add(new Abbonamento(r.getInt("ref_Tesserato"),r.getDate("data_Scadenza").toLocalDate(),r.getString("codice"),r.getInt("ref_Gestore")));
+                listaabb.add(new Abbonamento(r.getInt("ref_Tesserato"),r.getDate("data_Scadenza").toLocalDate(),r.getString("codice"),r.getInt("ref_Gestore"),r.getInt("notificato")));
             }
             return listaabb;
         } catch (SQLException e) {
@@ -858,6 +858,17 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
     }
+
+    public static void querySetNotificato(int idutente){
+        String query="UPDATE abbonamento SET notificato=1 WHERE ref_Tesserato=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, idutente);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
+
 
     public static void queryEliminaAbbonamento(int id){
         String query="DELETE FROM abbonamento WHERE ref_Tesserato=?";
@@ -887,6 +898,24 @@ public class DBMSView {
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
+    }
+
+    public static ArrayList<Partita> queryGetPartiteSede(int refSede,LocalDate data){
+        System.out.println("ciao");
+        String query="SELECT p.id, p.ref_Campo, p.dataOra, p.tipo, p.vincoli  FROM partita p,campo c,sede s WHERE p.ref_Campo=c.id AND c.ref_Sede=s.Id_Sede AND s.Id_Sede=? AND DATE(p.dataOra)=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, refSede);
+            stmt.setDate(2, Date.valueOf(data));
+            var r = stmt.executeQuery();
+            ArrayList<Partita> partiteUtente = new ArrayList<Partita>();
+            while (r.next()) {
+                partiteUtente.add(new Partita(r.getInt(1), r.getInt(2), r.getTimestamp(3).toLocalDateTime(), r.getString(4), r.getString(5)));
+            }
+            return partiteUtente;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
     }
 
 }

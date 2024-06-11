@@ -1,9 +1,30 @@
 package com.prova.matchme.GestioneSede.Controller;
 
+import com.prova.matchme.CustomStage;
+import com.prova.matchme.DBMSView;
+import com.prova.matchme.Entity.Gestore;
+import com.prova.matchme.GestioneSede.Interfacce.SelectDataView;
+import com.prova.matchme.GestioneSede.Interfacce.VisualizzaDettagliPartitaSedeView;
+import com.prova.matchme.Utils;
+import javafx.stage.Stage;
+
+import java.time.LocalDate;
+
 public class GestionePartiteSedeCtrl {
 
-	public void GetTime() {
 
+	private Stage s;
+	private Gestore g;
+	public GestionePartiteSedeCtrl(Stage s,Gestore g){
+		this.s=s;
+		this.g=g;
+	}
+
+	public void toVisualize(){
+		CustomStage s=new CustomStage("Seleziona data");
+		Utils.cambiaInterfaccia("FXML/DialogSelezionaData.fxml",s,c->{
+			return new SelectDataView(s,this, LocalDate.now());
+		},340,180);
 	}
 
 	public boolean CheckTime() {
@@ -74,8 +95,10 @@ public class GestionePartiteSedeCtrl {
 
 	}
 
-	public void PassVerificaPartite() {
-
+	public void PassVerificaPartite(LocalDate data) {
+		Utils.cambiaInterfaccia("FXML/Visualizza Partite sede.fxml",s,c->{
+			return new VisualizzaDettagliPartitaSedeView(this,DBMSView.queryGetPartiteSede(g.getSede(),data));
+		});
 	}
 
 }

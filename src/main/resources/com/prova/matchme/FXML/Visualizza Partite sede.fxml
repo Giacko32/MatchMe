@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneSede.Interfacce.VisualizzaDettagliPartitaSedeView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -43,18 +43,17 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <ListView disable="true" layoutX="21.0" layoutY="128.0" prefHeight="347.0" prefWidth="411.0" />
-        <Label disable="true" layoutX="22.0" layoutY="106.0" text="Prenotazioni nella tua sede:">
+        <ListView fx:id="listaPartite" layoutX="21.0" layoutY="128.0" prefHeight="347.0" prefWidth="411.0" />
+        <Label layoutX="22.0" layoutY="106.0" text="Prenotazioni nella tua sede:">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Label disable="true" layoutX="482.0" layoutY="94.0" text="Dettagli prenotazione selezionata">
+        <Label disable="true" layoutX="482.0" layoutY="66.0" text="Dettagli prenotazione selezionata">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <ListView disable="true" layoutX="447.0" layoutY="117.0" prefHeight="304.0" prefWidth="290.0" />
         <Button disable="true" layoutX="469.0" layoutY="428.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="75.0" text="RINVIA&#10;PARTITA" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
@@ -78,22 +77,40 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-      <Label layoutX="36.0" layoutY="72.0" text="Seleziona una data:">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <DatePicker layoutX="178.0" layoutY="68.0" prefHeight="27.0" prefWidth="178.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></DatePicker>
-      <Button layoutX="369.0" layoutY="69.0" mnemonicParsing="false" text="Vedi Partite">
-         <font>
-            <Font size="12.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
+        <Label layoutX="462.0" layoutY="109.0" text="Sede">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+        <TextField fx:id="SedeField" disable="true" layoutX="536.0" layoutY="106.0" prefHeight="25.0" prefWidth="187.0" />
+        <Label layoutX="462.0" layoutY="144.0" text="Campo">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="CampoField" disable="true" layoutX="536.0" layoutY="141.0" prefHeight="25.0" prefWidth="187.0" />
+        <Label layoutX="462.0" layoutY="219.0" text="Data e Ora">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="DataOraField" disable="true" layoutX="536.0" layoutY="216.0" prefHeight="25.0" prefWidth="187.0" />
+        <ListView fx:id="Squadra1List" disable="true" layoutX="467.0" layoutY="284.0" prefHeight="131.0" prefWidth="93.0" />
+        <ListView fx:id="Squadra2List" disable="true" layoutX="624.0" layoutY="284.0" prefHeight="131.0" prefWidth="94.0" />
+        <Label layoutX="474.0" layoutY="259.0" text="Squadra 1:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="643.0" layoutY="259.0" text="Squadra 2:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="462.0" layoutY="181.0" text="Sport">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="SportField" disable="true" layoutX="536.0" layoutY="178.0" prefHeight="25.0" prefWidth="187.0" />
     </children>
 </AnchorPane>

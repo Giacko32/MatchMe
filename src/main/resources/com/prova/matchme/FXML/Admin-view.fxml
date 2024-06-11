@@ -100,7 +100,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Pane>
-        <Pane layoutX="325.0" layoutY="259.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
+        <Pane onMouseClicked="#ClickVisualizzaPartiteSede" layoutX="325.0" layoutY="259.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="18.0" layoutY="13.0" prefHeight="59.0" prefWidth="71.0" text="VISUALIZZA PARTITE SEDE" textAlignment="CENTER" wrapText="true">
                     <font>

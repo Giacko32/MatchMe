@@ -56,6 +56,10 @@ public class Gestore {
         return this.email;
     }
 
+    public int getSede() {
+        return sede;
+    }
+
     public static Gestore createFromDB(ResultSet row) throws SQLException {
         return new Gestore(
                 row.getInt("Id_gestore"),

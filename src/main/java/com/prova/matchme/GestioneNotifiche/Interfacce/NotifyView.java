@@ -58,11 +58,16 @@ public class NotifyView {
     public void rimuoviNotificaCancellata(Notifica notifica) {
         listanotifiche.remove(notifica);
         ObservableList<Notifica> items = FXCollections.observableArrayList(listanotifiche);
-        lista.setCellFactory(param -> new NotifyListCell());
         lista.setItems(items);
         lista.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.getTipo() == 0) {
-                this.notifyCtrl.rispostaInvito(newValue);
+            if (newValue != null) {
+                cancella.setDisable(false);
+                if (newValue.getTipo() == 0) {
+                    this.notifyCtrl.rispostaInvito(newValue);
+                }
+                if(newValue.getTipo()== 2){
+                    this.notifyCtrl.rispostaAccettazione(newValue);
+                }
             }
         });
     }
