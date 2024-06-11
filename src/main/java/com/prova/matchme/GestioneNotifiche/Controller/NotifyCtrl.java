@@ -142,7 +142,7 @@ public class NotifyCtrl {
                 break;
             }
         }
-        idutentedaacc=Integer.parseInt(parole[3]);
+        idutentedaacc=Integer.parseInt(parole[4]);
         accettazione=DBMSView.queryGetDettagliPartecipantePartita(idPartita,idutentedaacc);
         listapart=DBMSView.querygetpartecipanti(idPartita);
         CustomStage s;
@@ -180,7 +180,7 @@ public class NotifyCtrl {
     public int scegliSquadra(){
         int squadraA=0,squadraB=0;
         for(int i=0;i<listapart.size();i++){
-            if(listapart.get(i).getSquadra()==0){
+            if(listapart.get(i).getSquadra()==1){
                 squadraA++;
             }else{
                 squadraB++;

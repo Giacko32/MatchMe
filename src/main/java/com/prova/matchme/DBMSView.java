@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gioele2002!";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -1054,5 +1054,17 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         return null;
+    }
+
+    public static void querySetRichiestaAccettazione(int id_utente, int id_partita, int n){
+        String query = "INSERT INTO accettazione(ref_Utente,ref_Partita,n_accettazioni) VALUES(?,?,?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, id_utente);
+            stmt.setInt(2, id_partita);
+            stmt.setInt(3, n);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
     }
 }

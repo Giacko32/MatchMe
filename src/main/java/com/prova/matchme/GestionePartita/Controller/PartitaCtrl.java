@@ -120,6 +120,7 @@ public class PartitaCtrl {
             destNotify.add(new UtentePart(user, 2));
         }
         DBMSView.sendNotify(u.getNome() + " " + u.getCognome() + " con id " + u.getId() + " chiede di partecipare nella partita del " + partitaDetails.campo.getOrarioString() + " nella sede " + partitaDetails.sede.getNome_sede() + " di " + partitaDetails.campo.getSport() + " " + partitaDetails.partita.getId(),destNotify,2);
+        DBMSView.querySetRichiestaAccettazione(u.getId(), partitaDetails.partita.getId(), partitaDetails.squadra1.size() + partitaDetails.squadra2.size());
         boundary2.ShowBnd(partitaDetails);
     }
 
@@ -339,7 +340,7 @@ public class PartitaCtrl {
     public void prenotaPartita(Campo campo, Sede sede) {
         Utils.cambiaInterfaccia("FXML/Prenotazione2.fxml", s, c -> {
             return new PrenotazionePartitaView(u, this, campo, sede, s);
-        }, 350, 170);
+        });
     }
 
     public void PartecipaClicked(PartitaDetails partitaDetails) {
