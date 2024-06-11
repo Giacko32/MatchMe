@@ -174,7 +174,7 @@ public class TorneiCtrl {
 				boundaryConfirm = new ConfirmView(this, st, utente , torneo);
 
 				return boundaryConfirm;
-			});
+			} ,350,170);
 		}
 
 		public void CloseConfirmView (Utente utente, Torneo torneo) {
@@ -183,7 +183,7 @@ public class TorneiCtrl {
 			DBMSView.queryDeleteSquadraTorneo(torneo, utente, numeroSquadraEliminato);
 			//squadra eliminata
 			//rimuoviamo il torneo dalla listview
-			boundaryMio.rimuoviTorneo(torneo);
+			this.toMain();
 
 
 		}

@@ -48,6 +48,7 @@ public class VisualizzaDettagliMioTorneo {
 		controller.passCancellazione(selectedTorneo);
 
 	}
+	/*
 	@FXML
 	public void rimuoviTorneo(Torneo torneo){
 		this.listaTornei.remove(torneo);
@@ -58,7 +59,7 @@ public class VisualizzaDettagliMioTorneo {
 			this.SelectTorneo();
 		});
 	}
-
+*/
 	public void SelectTorneo(){
 		controller.TorneoSelezionatoMio(selectedTorneo);
 	}
