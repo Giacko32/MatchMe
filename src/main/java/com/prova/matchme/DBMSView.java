@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gioele2002!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -147,6 +147,16 @@ public class DBMSView {
 
     public static boolean queryDBMSCheckMail(String mail) {
         var query = "SELECT * FROM utente WHERE email = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setString(1, mail);
+            var r = stmt.executeQuery();
+            if (r.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        query="SELECT * FROM gestore WHERE Email=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, mail);
             var r = stmt.executeQuery();
