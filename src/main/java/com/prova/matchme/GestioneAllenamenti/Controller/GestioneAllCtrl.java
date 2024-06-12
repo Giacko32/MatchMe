@@ -2,26 +2,31 @@ package com.prova.matchme.GestioneAllenamenti.Controller;
 
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
+import com.prova.matchme.Autenticazione.Interfacce.AdminView;
 import com.prova.matchme.Autenticazione.Interfacce.AllenaView;
 import com.prova.matchme.Autenticazione.Interfacce.MainView;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Allenamento;
+import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Partita;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestioneAllenamenti.Interfacce.DettagliAllenamentiView;
 import com.prova.matchme.GestioneAllenamenti.Interfacce.DettagliMioAllenamentoView;
 import com.prova.matchme.GestioneAllenamenti.Interfacce.GestioneAllView;
 import com.prova.matchme.GestionePartita.Interfacce.SelectTipoPartiteView;
+import com.prova.matchme.GestioneSede.Interfacce.SelectDataView;
 import com.prova.matchme.Utils;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class GestioneAllCtrl {
 
 	private Utente utente;
 	private Stage stage;
+	private Gestore gestore;
 	private CustomStage stageDialog = new CustomStage("Allenamenti");
 	private DettagliMioAllenamentoView boundary;
 	private DettagliAllenamentiView boundary1;
@@ -31,6 +36,14 @@ public class GestioneAllCtrl {
 		this.stage = s;
 		Utils.cambiaInterfaccia("FXML/SelezioneAllenamento.fxml", stageDialog, c -> {
 			return new GestioneAllView(this);
+		}, 350, 170);
+	}
+
+	public GestioneAllCtrl(Gestore gestore, Stage s){
+		this.gestore = gestore;
+		this.stage = s;
+		Utils.cambiaInterfaccia("FXML/DialogSelezionaData.fxml", stageDialog, c -> {
+			return new SelectDataView(stageDialog, this, LocalDate.now());
 		}, 350, 170);
 	}
 
@@ -89,6 +102,13 @@ public class GestioneAllCtrl {
 		return utente.equals(all.allenatore);
 	}
 
+	public void passData(LocalDate data){
+		Utils.cambiaInterfaccia("FXML/AllenamentiGestore.fxml", stage,c -> {
+			boundary1 = new DettagliAllenamentiView(this, DBMSView.queryGetAllenamentiSede(gestore.getSede(), data), gestore);
+			return boundary1;
+		});
+	}
+
 	public void toMain() {
 		if (utente != null) {
 			if (utente.getTipo().equals("al")) {
@@ -100,6 +120,11 @@ public class GestioneAllCtrl {
 					return new MainView(new AuthCtrl(stage), utente, stage);
 				});
 			}
+		}
+		if(gestore != null){
+			Utils.cambiaInterfaccia("FXML/Admin-view.fxml", stage, c -> {
+				return new AdminView(new AuthCtrl(stage), gestore, stage);
+			});
 		}
 	}
 }

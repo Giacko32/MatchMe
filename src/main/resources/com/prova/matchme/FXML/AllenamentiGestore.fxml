@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneAllenamenti.Interfacce.DettagliAllenamentiView">
+    <children>
+        <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
+            <children>
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/ic--baseline-arrow-back.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor></ImageView>
+                <Label layoutX="57.0" layoutY="16.0" text="ALLENAMENTI" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="12.800000190734863" />
+                    </font></Label>
+                <ImageView fitHeight="30.0" fitWidth="192.0" layoutX="598.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/basecopertinabw.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="529.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/calcio_acw.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="556.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/padel_acW.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="57.0" fitWidth="20.0" layoutX="502.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/tennis_acw.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <ListView fx:id="listaAllenamenti" layoutX="14.0" layoutY="89.0" prefHeight="381.0" prefWidth="382.0" />
+        <Label layoutX="99.0" layoutY="62.0" text="Allenamenti disponibili">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="487.0" layoutY="65.0" text="Dettagli allenamento selezionato">
+            <font>
+                <Font name="System Bold" size="12.800000190734863" />
+            </font>
+        </Label>
+        <Label layoutX="454.0" layoutY="99.0" text="Sede">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+        <TextField fx:id="SedeField" disable="true" layoutX="528.0" layoutY="96.0" prefHeight="25.0" prefWidth="187.0" />
+        <Label layoutX="454.0" layoutY="134.0" text="Campo">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="CampoField" disable="true" layoutX="528.0" layoutY="131.0" prefHeight="25.0" prefWidth="187.0" />
+        <Label layoutX="454.0" layoutY="209.0" text="Data e Ora">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="DataOraField" disable="true" layoutX="528.0" layoutY="206.0" prefHeight="25.0" prefWidth="187.0" />
+        <ListView fx:id="PartecipantiLista" disable="true" layoutX="455.0" layoutY="322.0" prefHeight="102.0" prefWidth="170.0" />
+        <Label layoutX="460.0" layoutY="291.0" text="Partecipanti:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="454.0" layoutY="171.0" text="Sport">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="SportField" disable="true" layoutX="528.0" layoutY="168.0" prefHeight="25.0" prefWidth="187.0" />
+        <Label layoutX="455.0" layoutY="247.0" text="Allenatore">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="AllenatoreField" disable="true" layoutX="529.0" layoutY="244.0" prefHeight="25.0" prefWidth="187.0" />
+    </children>
+</AnchorPane>

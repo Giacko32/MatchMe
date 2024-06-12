@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="Ancorpane" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.Autenticazione.Interfacce.AdminView">
+<AnchorPane fx:id="Ancorpane" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.Autenticazione.Interfacce.AdminView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
-                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="701.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#ClickProfile">
+                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="701.0" layoutY="5.0" onMouseClicked="#ClickProfile" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-account-circle.png" />
                     </image>
@@ -47,7 +47,7 @@
                 </Label>
             </children>
         </AnchorPane>
-        <Pane onMouseClicked="#clickAggiungiAbbonamento" layoutX="168.0" layoutY="157.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
+        <Pane layoutX="168.0" layoutY="157.0" onMouseClicked="#clickAggiungiAbbonamento" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="6.0" layoutY="12.0" prefHeight="59.0" prefWidth="97.0" text="AGGIUNGI ABBONAMENTO" textAlignment="CENTER" wrapText="true">
                     <font>
@@ -59,12 +59,12 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Pane>
-        <Button onMouseClicked="#ClickLogout" layoutX="624.0" layoutY="439.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: red;" text="LOGOUT">
+        <Button layoutX="624.0" layoutY="439.0" mnemonicParsing="false" onMouseClicked="#ClickLogout" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: red;" text="LOGOUT">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Button>
-        <Pane onMouseClicked="#clickTorneiSede" layoutX="325.0" layoutY="157.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
+        <Pane layoutX="325.0" layoutY="157.0" onMouseClicked="#clickTorneiSede" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="19.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="TORNEI DELLA SEDE" textAlignment="CENTER" wrapText="true">
                     <font>
@@ -76,7 +76,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Pane>
-        <Pane onMouseClicked="#clickVerificaSconto" layoutX="474.0" layoutY="157.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
+        <Pane layoutX="474.0" layoutY="157.0" onMouseClicked="#clickVerificaSconto" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="19.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="VERIFICA CODICE SCONTO" textAlignment="CENTER" wrapText="true">
                     <font>
@@ -88,7 +88,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Pane>
-        <Pane onMouseClicked="#clickCreaPartita" layoutX="168.0" layoutY="259.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
+        <Pane layoutX="168.0" layoutY="259.0" onMouseClicked="#clickCreaPartita" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="29.0" layoutY="12.0" prefHeight="59.0" prefWidth="71.0" text="CREA&#10;PARTITA" textAlignment="CENTER" wrapText="true">
                     <font>
@@ -100,7 +100,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Pane>
-        <Pane onMouseClicked="#ClickVisualizzaPartiteSede" layoutX="325.0" layoutY="259.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
+        <Pane layoutX="325.0" layoutY="259.0" onMouseClicked="#ClickVisualizzaPartiteSede" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="18.0" layoutY="13.0" prefHeight="59.0" prefWidth="71.0" text="VISUALIZZA PARTITE SEDE" textAlignment="CENTER" wrapText="true">
                     <font>
@@ -112,7 +112,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Pane>
-        <Pane onMouseClicked="#clickAbilitaAllenatore" layoutX="474.0" layoutY="259.0" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622 #FF9622; -fx-border-radius: 10;">
+        <Pane layoutX="474.0" layoutY="259.0" onMouseClicked="#clickAbilitaAllenatore" prefHeight="82.0" prefWidth="108.0" style="-fx-border-color: #FF9622 #FF9622; -fx-border-radius: 10;">
             <children>
                 <Label layoutX="13.0" layoutY="12.0" prefHeight="59.0" prefWidth="82.0" text="ABILITA&#10;ALLENATORE" textAlignment="CENTER" wrapText="true">
                     <font>
@@ -124,5 +124,17 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Pane>
+      <Pane layoutX="319.0" layoutY="363.0" onMouseClicked="#clickVisualizzaAllenamenti" prefHeight="82.0" prefWidth="119.0" style="-fx-border-color: #FF9622; -fx-border-radius: 10;">
+         <children>
+            <Label layoutX="15.0" layoutY="12.0" prefHeight="59.0" prefWidth="90.0" text="VISUALIZZA ALLENAMENTI" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Pane>
     </children>
 </AnchorPane>

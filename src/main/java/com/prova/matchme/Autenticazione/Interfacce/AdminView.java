@@ -2,6 +2,7 @@ package com.prova.matchme.Autenticazione.Interfacce;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Entity.Gestore;
+import com.prova.matchme.GestioneAllenamenti.Controller.GestioneAllCtrl;
 import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import com.prova.matchme.GestioneSede.Controller.AmministrazioneSedeCtrl;
 import com.prova.matchme.GestioneSede.Controller.GestionePartiteSedeCtrl;
@@ -27,7 +28,6 @@ public class AdminView {
 	private static VerPartite threadver;
 	public static ContrAll threadca;
 	public static FidTess threadft;
-
 
 	public AdminView(AuthCtrl authCtrl, Gestore g,Stage s){
 		this.authCtrl=authCtrl;
@@ -124,6 +124,11 @@ public class AdminView {
 		AmministrazioneTorneiCtrl atc = new AmministrazioneTorneiCtrl(s,g);
 		atc.mostraTorneiSede(s);
 	}
+
+	public void clickVisualizzaAllenamenti(){
+		new GestioneAllCtrl(g, s);
+	}
+
 
 	public void ShowBnd() {
 

@@ -2,6 +2,7 @@ package com.prova.matchme.GestioneAllenamenti.Interfacce;
 
 
 import com.prova.matchme.Entity.Allenamento;
+import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Partita;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestioneAllenamenti.Controller.GestioneAllCtrl;
@@ -21,6 +22,7 @@ public class DettagliAllenamentiView {
 	private Partita selectedAllenamento;
 	private Allenamento allenamentoDetails;
 	private Utente utente;
+	private Gestore gestore;
 	@FXML
 	public ListView<Partita> listaAllenamenti;
 	@FXML
@@ -44,6 +46,12 @@ public class DettagliAllenamentiView {
 		this.utente = utente;
 	}
 
+	public DettagliAllenamentiView(GestioneAllCtrl gestioneAllCtrl, ArrayList<Partita> listaPartite, Gestore gestore){
+		this.gestioneAllCtrl = gestioneAllCtrl;
+		this.partitaArrayList = listaPartite;
+		this.gestore = gestore;
+	}
+
 	@FXML
 	public void initialize(){
 		ObservableList<Partita> lista = FXCollections.observableArrayList(partitaArrayList);
@@ -63,7 +71,9 @@ public class DettagliAllenamentiView {
 		AllenatoreField.setDisable(false);
 		PartecipantiLista.setDisable(false);
 		allenamentoDetails = gestioneAllCtrl.AllenamentoClicked(selectedAllenamento);
-        prenotaButton.setDisable(allenamentoDetails.partecipanti.contains(utente));
+		if(gestore == null) {
+			prenotaButton.setDisable(allenamentoDetails.partecipanti.contains(utente));
+		}
 		SedeField.setText(allenamentoDetails.sede.toString());
 		CampoField.setText(allenamentoDetails.campo.getNomecampo());
 		DataOraField.setText(allenamentoDetails.campo.getOrarioString());

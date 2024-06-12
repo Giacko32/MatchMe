@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gioele2002!";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -1648,6 +1648,23 @@ public class DBMSView {
         }
 
         return partecipanti < dimensione;
+    }
+
+    public static ArrayList<Partita> queryGetAllenamentiSede(int id_Sede, LocalDate data){
+        String query = "SELECT p.* FROM partita p, campo c WHERE p.ref_Campo = c.id AND c.ref_Sede = ? AND p.tipo = \"all\" AND DATE(p.dataOra) = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, id_Sede);
+            stmt.setDate(2, Date.valueOf(data));
+            var r = stmt.executeQuery();
+            ArrayList<Partita> listaAllenamenti = new ArrayList<>();
+            while (r.next()) {
+                listaAllenamenti.add(new Partita(r.getInt(1), r.getInt(2), r.getTimestamp(3).toLocalDateTime(), r.getString(4), r.getString(5)));
+            }
+            return listaAllenamenti;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
     }
 
 }
