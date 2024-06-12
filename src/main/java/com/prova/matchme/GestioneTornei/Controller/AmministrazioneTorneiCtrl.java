@@ -4,6 +4,7 @@ package com.prova.matchme.GestioneTornei.Controller;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Autenticazione.Interfacce.AdminView;
+import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Torneo;
@@ -11,6 +12,7 @@ import com.prova.matchme.GestioneTornei.Interfacce.CreaTorneoView;
 import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaDettagliTuttiITornei;
 import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaTorneiGestori;
 import com.prova.matchme.Utils;
+import com.prova.matchme.shared.ConfirmView;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public class AmministrazioneTorneiCtrl {
 	private VisualizzaTorneiGestori boundaryGestori;
 	private Torneo torneo;
 	private CreaTorneoView boundaryCreaTorneo;
+	private ConfirmView boundaryConfirm;
 
 
 
@@ -65,12 +68,20 @@ public class AmministrazioneTorneiCtrl {
 
 	}
 
-	public void CancellaTorneo() {
-
+	public void CancellaTorneo(Torneo torneo) {
+		CustomStage st = new CustomStage("Attenzione");
+		Utils.cambiaInterfaccia("FXML/DialogConferma.fxml", st, c -> {
+			boundaryConfirm = new ConfirmView(this, st,  torneo);
+			return boundaryConfirm;
+		} ,350,170);
 	}
 
-	public void CloseConfirmView() {
-
+	public void CloseConfirmView(Torneo torneo) {
+		//eliminiamo il torneo
+		DBMSView.queryDeleteTorneo(torneo);
+		//squadra eliminata
+		//rimuoviamo il torneo dalla listview
+		this.toMain();
 	}
 
 	public void SquadreInAttesa() {

@@ -7,6 +7,7 @@ import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestionePartita.Controller.PartitaCtrl;
 import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import com.prova.matchme.GestioneSede.Controller.AmministrazioneSedeCtrl;
+import com.prova.matchme.GestioneTornei.Controller.AmministrazioneTorneiCtrl;
 import com.prova.matchme.GestioneTornei.Controller.TorneiCtrl;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
@@ -18,6 +19,7 @@ public class ConfirmView {
 	private AmministrazioneSedeCtrl amministrazioneSedeCtrl;
 	private PartitaCtrl partitaCtrl;
 	private TorneiCtrl torneiCtrl;
+	private AmministrazioneTorneiCtrl amminCtrl;
 	private Stage s;
 	private PartitaDetails partitaDetails;
 	private Torneo torneo;
@@ -54,6 +56,14 @@ public class ConfirmView {
 		this.utente = utente;
 		this.torneo = torneo;
 	}
+	public ConfirmView( AmministrazioneTorneiCtrl amminCtrl, Stage s, Torneo torneo){
+		this.amminCtrl = amminCtrl;
+		this.s = s;
+		this.torneo = torneo;
+	}
+
+
+
 	@FXML
 	public void ClickConferma() {
 		if(authCtrl!=null){
@@ -78,6 +88,10 @@ public class ConfirmView {
 		}
 		if(torneiCtrl !=  null){
 			this.torneiCtrl.CloseConfirmView(utente, torneo);
+			s.close();
+		}
+		if(amminCtrl != null){
+			this.amminCtrl.CloseConfirmView(torneo);
 			s.close();
 		}
 

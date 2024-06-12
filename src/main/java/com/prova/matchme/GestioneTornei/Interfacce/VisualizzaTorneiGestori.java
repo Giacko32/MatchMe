@@ -61,7 +61,7 @@ public class VisualizzaTorneiGestori {
 	}
 
 	public void clickCancellaTorneo() {
-
+		amminCtrl.CancellaTorneo(selectedTorneo);
 	}
 
 	public void clickSquadreAttesa() {

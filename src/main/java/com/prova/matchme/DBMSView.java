@@ -832,6 +832,37 @@ public class DBMSView {
         return null;
     }
 
+    public static void queryDeleteTorneo(Torneo torneo) {
+        String query = "SELECT ref_Utente FROM iscrizione WHERE ref_Torneo = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            var r = stmt.executeQuery();
+            String notifica = "Il torneo " + torneo.getId()+ " è stato eliminato dal gestore";
+            while(r.next()) {
+
+                DBMSView.sendNotify2(notifica, r.getInt("ref_Utente"),1);
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        String query2 = "DELETE FROM iscrizione WHERE ref_Torneo = ? ";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query2)) {
+            stmt.setInt(1, torneo.getId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+        String query3 = "DELETE FROM torneo WHERE id = ? ";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query3)) {
+            stmt.setInt(1, torneo.getId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+    }
+
 
 
 
