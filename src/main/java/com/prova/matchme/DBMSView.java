@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gioele2002!";
 
     private static Connection connDBMS = null;
 
@@ -799,6 +799,23 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
     }
+
+    public static void queryCreateTorneo(String sport, int livello, int numeroSquadre, String dataInizio, String dataFine, int refSede) {
+        String query = "INSERT INTO torneo (ref_Sede, sport, n_Squadre, livello, data_inizio, data_fine) VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, refSede);
+            stmt.setString(2, sport);
+            stmt.setInt(3, numeroSquadre);
+            stmt.setInt(4, livello);
+            stmt.setDate(5, java.sql.Date.valueOf(dataInizio));
+            stmt.setDate(6, java.sql.Date.valueOf(dataFine));
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+    }
+
+
 
 
 

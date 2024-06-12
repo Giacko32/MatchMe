@@ -47,7 +47,9 @@ public class AmministrazioneTorneiCtrl {
 		});
 	}
 
-	public void PassData() {
+	public void PassData(String sport, int livello, int numeroSquadre, String dataInizio, String dataFine) {
+		//query creeazione torneo
+		DBMSView.queryCreateTorneo(sport, livello, numeroSquadre, dataInizio, dataFine, gestore.getSede());
 
 	}
 

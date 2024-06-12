@@ -10,13 +10,13 @@
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
-                <ImageView onMouseClicked="#back" fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></ImageView>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor></ImageView>
                 <Label layoutX="57.0" layoutY="16.0" text="CREA TORNEO" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.800000190734863" />
@@ -43,55 +43,69 @@
                 </ImageView>
             </children>
         </AnchorPane>
-      <Spinner layoutX="486.0" layoutY="108.0" prefHeight="26.0" prefWidth="108.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Spinner>
-      <Label layoutX="431.0" layoutY="112.0" text="Livello:">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font></Label>
-      <Spinner layoutX="484.0" layoutY="166.0" prefHeight="26.0" prefWidth="108.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Spinner>
-      <Label layoutX="158.0" layoutY="162.0" prefHeight="36.0" prefWidth="335.0" text="Numero massimo di squadre partecipanti:" wrapText="true">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font></Label>
-      <ComboBox layoutX="219.0" layoutY="108.0" prefHeight="26.0" prefWidth="144.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></ComboBox>
-      <Label layoutX="162.0" layoutY="112.0" text="Sport:">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font></Label>
-      <DatePicker layoutX="342.0" layoutY="218.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></DatePicker>
-      <DatePicker layoutX="342.0" layoutY="277.0" prefHeight="27.0" prefWidth="186.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></DatePicker>
-        <Button layoutX="542.0" layoutY="347.0" mnemonicParsing="false" style="-fx-background-color: #FF9622;" text="Conferma" textFill="WHITE">
+        <ComboBox fx:id="sportComboBox" layoutX="219.0" layoutY="108.0" prefHeight="26.0" prefWidth="144.0">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></ComboBox>
+        <Label layoutX="162.0" layoutY="112.0" text="Sport:">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font></Label>
+
+        <Label layoutX="431.0" layoutY="112.0" text="Livello Min:">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font></Label>
+        <Spinner fx:id="livelloMinSpinner" layoutX="486.0" layoutY="108.0" prefHeight="26.0" prefWidth="108.0">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Spinner>
+
+        <Label layoutX="431.0" layoutY="152.0" text="Livello Max:">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font></Label>
+        <Spinner fx:id="livelloMaxSpinner" layoutX="486.0" layoutY="148.0" prefHeight="26.0" prefWidth="108.0">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Spinner>
+
+        <Label layoutX="158.0" layoutY="202.0" prefHeight="36.0" prefWidth="335.0" text="Numero massimo di squadre partecipanti:" wrapText="true">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font></Label>
+        <Spinner fx:id="numeroSquadreSpinner" layoutX="484.0" layoutY="206.0" prefHeight="26.0" prefWidth="108.0">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Spinner>
+
+        <Label layoutX="192.0" layoutY="254.0" prefHeight="36.0" prefWidth="255.0" text="Data inizio attività:" wrapText="true">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
+        </Label>
+        <DatePicker fx:id="dataInizioPicker" layoutX="342.0" layoutY="258.0">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></DatePicker>
+
+        <Label layoutX="198.0" layoutY="313.0" prefHeight="36.0" prefWidth="255.0" text="Data fine attività:" wrapText="true">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <DatePicker fx:id="dataFinePicker" layoutX="342.0" layoutY="317.0" prefHeight="27.0" prefWidth="186.0">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></DatePicker>
+
+        <Button layoutX="542.0" layoutY="387.0" mnemonicParsing="false" onMouseClicked="#clickConferma" style="-fx-background-color: #FF9622;" text="Conferma" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
         </Button>
-      <Label layoutX="192.0" layoutY="214.0" prefHeight="36.0" prefWidth="255.0" text="Data inizio attività:" wrapText="true">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="198.0" layoutY="273.0" prefHeight="36.0" prefWidth="255.0" text="Data fine attività:" wrapText="true">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
     </children>
 </AnchorPane>
