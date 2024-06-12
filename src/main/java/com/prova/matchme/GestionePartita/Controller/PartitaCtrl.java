@@ -60,8 +60,12 @@ public class PartitaCtrl {
     }
 
     public void passPartita(Partita partita) {
-        DBMSView.queryCreaPartita(partita, u);
-        this.toMain();
+        if (partita != null) {
+            DBMSView.queryCreaPartita(partita, u);
+            this.toMain();
+        } else {
+            Utils.creaPannelloErrore("Età o livello errati");
+        }
     }
 
     public void passGiocatoreBonus(Utente dest, float bonusValue) {
@@ -84,14 +88,23 @@ public class PartitaCtrl {
         return null;
     }
 
-    public void passSedeSportData(Sede sede, String sport, LocalDateTime data, Stage stage, int ste) {
-        if (ste != 1) {
-            stage.close();
+    public void passSedeSportData(Sede sede, String sport, LocalDate data, Stage stage, int ste) {
+        if (sede == null || sport == null || data == null) {
+            Utils.creaPannelloErrore("Ci sono dei campi vuoti");
+        } else {
+            if (data.isAfter(LocalDate.now()) || data.isEqual(LocalDate.now())) {
+                if (ste != 1) {
+                    stage.close();
+                }
+                Utils.cambiaInterfaccia("FXML/VisualizzaCampiLiberi.fxml", s, c -> {
+                    boundary = new DettagliCampoView(DBMSView.queryGetCampiLiberi(sede, sport, data), this);
+                    return boundary;
+                });
+            } else {
+                Utils.creaPannelloErrore("La data non è corretta");
+            }
         }
-        Utils.cambiaInterfaccia("FXML/VisualizzaCampiLiberi.fxml", s, c -> {
-            boundary = new DettagliCampoView(DBMSView.queryGetCampiLiberi(sede, sport, data.toLocalDate()), this);
-            return boundary;
-        });
+
     }
 
     public void passTipoPartita(boolean Mie, Stage st) {

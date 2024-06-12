@@ -52,15 +52,7 @@ public class SelezionaSedeSportDataView {
     }
 
     public void ClickCerca() {
-        if (sedeSelected == null || sportSelected == null || selezionaData.getValue() == null) {
-            Utils.creaPannelloErrore("Ci sono dei campi vuoti");
-        } else{
-            if(selezionaData.getValue().isAfter(LocalDate.now()) || selezionaData.getValue().isEqual(LocalDate.now())){
-                partitaCtrl.passSedeSportData(sedeSelected, sportSelected, selezionaData.getValue().atTime(0, 0), stage,0);
-            } else {
-                Utils.creaPannelloErrore("La data non è corretta");
-            }
-        }
+        partitaCtrl.passSedeSportData(sedeSelected, sportSelected, selezionaData.getValue(), stage,0);
     }
 
 }

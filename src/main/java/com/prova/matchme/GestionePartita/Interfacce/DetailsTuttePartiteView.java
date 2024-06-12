@@ -2,7 +2,6 @@ package com.prova.matchme.GestionePartita.Interfacce;
 
 import com.prova.matchme.Entity.Partita;
 import com.prova.matchme.Entity.PartitaDetails;
-import com.prova.matchme.Entity.Sede;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestionePartita.Controller.PartitaCtrl;
 import javafx.collections.FXCollections;

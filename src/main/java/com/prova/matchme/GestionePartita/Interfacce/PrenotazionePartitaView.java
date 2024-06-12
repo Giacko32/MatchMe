@@ -25,10 +25,6 @@ public class PrenotazionePartitaView {
     @FXML
     private RadioButton uomoButton;
     @FXML
-    private RadioButton donnaButton;
-    @FXML
-    private RadioButton privataButton;
-    @FXML
     private RadioButton pubblicaButton;
     @FXML
     private ToggleGroup genderToggleGroup;
@@ -83,18 +79,18 @@ public class PrenotazionePartitaView {
         } else {
             vincoli.append("donna;");
         }
-        if(fromLivello.getValue() < toLivello.getValue() && fromAge.getValue() < toAge.getValue()) {
-            vincoli.append(fromLivello.getValue().toString() + ";" + toLivello.getValue().toString() + ";" + fromAge.getValue().toString() + ";" + toAge.getValue().toString());
+        if (fromLivello.getValue() < toLivello.getValue() && fromAge.getValue() < toAge.getValue()) {
+            vincoli.append(fromLivello.getValue().toString()).append(";").append(toLivello.getValue().toString()).append(";").append(fromAge.getValue().toString()).append(";").append(toAge.getValue().toString());
             Partita newPartita = new Partita(0, selectedCampo.getId_campo(), selectedCampo.getOrario(), tipo, vincoli.toString());
             partitaCtrl.passPartita(newPartita);
-        }else{
-            Utils.creaPannelloErrore("Età o livello errati");
+        } else {
+            partitaCtrl.passPartita(null);
         }
     }
 
     @FXML
     public void goBack() {
-        partitaCtrl.passSedeSportData(selectedSede, selectedCampo.getSport(), selectedCampo.getOrario(), stage,1);
+        partitaCtrl.passSedeSportData(selectedSede, selectedCampo.getSport(), selectedCampo.getOrario().toLocalDate(), stage, 1);
     }
 
 }
