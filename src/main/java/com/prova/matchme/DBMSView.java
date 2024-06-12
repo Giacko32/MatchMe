@@ -863,6 +863,32 @@ public class DBMSView {
 
     }
 
+    public static void queryUpdateTorneo(Torneo torneo, LocalDate dataInizio, LocalDate dataFine) {
+        String query = "SELECT ref_Utente FROM iscrizione WHERE ref_Torneo = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            var r = stmt.executeQuery();
+            String notifica = "Il torneo " + torneo.getId()+ " è stato aggiornato dal gestore";
+            while(r.next()) {
+
+                DBMSView.sendNotify2(notifica, r.getInt("ref_Utente"),1);
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+        String query3 = "UPDATE torneo SET data_inizio = ?, data_fine = ? WHERE id = ? ";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query3)) {
+            stmt.setDate(1, java.sql.Date.valueOf(dataInizio));
+            stmt.setDate(2, java.sql.Date.valueOf(dataFine));
+            stmt.setInt(3, torneo.getId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+    }
+
 
 
 
