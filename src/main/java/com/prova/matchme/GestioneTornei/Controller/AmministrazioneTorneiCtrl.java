@@ -1,8 +1,13 @@
 package com.prova.matchme.GestioneTornei.Controller;
 
 
+import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
+import com.prova.matchme.Autenticazione.Interfacce.AdminView;
+import com.prova.matchme.Autenticazione.Interfacce.AllenaView;
+import com.prova.matchme.Autenticazione.Interfacce.MainView;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Gestore;
+import com.prova.matchme.Entity.Torneo;
 import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaDettagliTuttiITornei;
 import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaTorneiGestori;
 import com.prova.matchme.Utils;
@@ -13,6 +18,7 @@ public class AmministrazioneTorneiCtrl {
 	private Stage stage;
 	private Gestore gestore;
 	private VisualizzaTorneiGestori boundaryGestori;
+	private Torneo torneo;
 
 	public AmministrazioneTorneiCtrl(Stage stage, Gestore gestore) {
 		this.stage = stage;
@@ -27,8 +33,8 @@ public class AmministrazioneTorneiCtrl {
 		});
 	}
 
-	public void TorneoSelezionato() {
-
+	public void TorneoSelezionato(Torneo torneo) {
+		boundaryGestori.showDettagliTorneo(DBMSView.queryGetTorneo(torneo));
 	}
 
 	public void NuovoTorneo() {
@@ -93,6 +99,14 @@ public class AmministrazioneTorneiCtrl {
 
 	public void checkNumeroPartite() {
 
+	}
+
+	public void toMain () {
+		if (gestore != null) {
+			Utils.cambiaInterfaccia("FXML/Admin-view.fxml", stage, c -> {
+					return new AdminView(this, gestore, stage);
+				});
+		}
 	}
 
 }
