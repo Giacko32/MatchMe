@@ -67,7 +67,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-        <Button fx:id="buttonModificaTorneo" disable="true" layoutX="552.0" layoutY="405.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="75.0" text="MODIFICA&#10;TORNEO" textAlignment="CENTER">
+        <Button onMouseClicked="#clickModificaTorneo" fx:id="buttonModificaTorneo" disable="true" layoutX="552.0" layoutY="405.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="75.0" text="MODIFICA&#10;TORNEO" textAlignment="CENTER">
             <font>
                 <Font size="10.0" />
             </font>

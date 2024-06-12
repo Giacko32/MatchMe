@@ -57,7 +57,7 @@ public class VisualizzaTorneiGestori {
 	}
 
 	public void clickModificaTorneo() {
-
+		amminCtrl.ModificaTorneo(selectedTorneo, stage);
 	}
 
 	public void clickCancellaTorneo() {

@@ -9,6 +9,7 @@ import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Torneo;
 import com.prova.matchme.GestioneTornei.Interfacce.CreaTorneoView;
+import com.prova.matchme.GestioneTornei.Interfacce.ModificaTorneoView;
 import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaDettagliTuttiITornei;
 import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaTorneiGestori;
 import com.prova.matchme.Utils;
@@ -25,6 +26,7 @@ public class AmministrazioneTorneiCtrl {
 	private Torneo torneo;
 	private CreaTorneoView boundaryCreaTorneo;
 	private ConfirmView boundaryConfirm;
+	private ModificaTorneoView boundaryModificaTorneo;
 
 
 
@@ -64,8 +66,12 @@ public class AmministrazioneTorneiCtrl {
 		}
 	}
 
-	public void ModificaTorneo() {
-
+	public void ModificaTorneo(Torneo torneo, Stage stage) {
+		stage.close();
+		Utils.cambiaInterfaccia("FXML/Modifica Torneo.fxml", stage, c -> {
+			boundaryModificaTorneo = new ModificaTorneoView(stage, this);
+			return boundaryModificaTorneo;
+		});
 	}
 
 	public void CancellaTorneo(Torneo torneo) {
