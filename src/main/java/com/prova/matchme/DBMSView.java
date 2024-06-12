@@ -800,19 +800,36 @@ public class DBMSView {
         }
     }
 
-    public static void queryCreateTorneo(String sport, int livello, int numeroSquadre, String dataInizio, String dataFine, int refSede) {
-        String query = "INSERT INTO torneo (ref_Sede, sport, n_Squadre, livello, data_inizio, data_fine) VALUES (?, ?, ?, ?, ?, ?)";
+    public static void queryCreateTorneo(String sport, int livelloMinimo, int livelloMassimo, int numeroSquadre, String dataInizio, String dataFine, int refSede, int numeroGiocatoriPerSquadra) {
+        String livello = livelloMinimo + "," + livelloMassimo;
+        String query = "INSERT INTO torneo (ref_Sede, sport, n_Squadre, n_giocatori_squadra, vincoli, data_inizio, data_fine) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, refSede);
             stmt.setString(2, sport);
             stmt.setInt(3, numeroSquadre);
-            stmt.setInt(4, livello);
-            stmt.setDate(5, java.sql.Date.valueOf(dataInizio));
-            stmt.setDate(6, java.sql.Date.valueOf(dataFine));
+            stmt.setInt(4, numeroGiocatoriPerSquadra);
+            stmt.setString(5, livello);
+            stmt.setDate(6, java.sql.Date.valueOf(dataInizio));
+            stmt.setDate(7, java.sql.Date.valueOf(dataFine));
             stmt.executeUpdate();
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
+    }
+
+    public static ArrayList<Integer> queryGetTuttiGiocatori() {
+        String query = "SELECT * FROM utente";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            var r = stmt.executeQuery();
+            ArrayList<Integer> lista = new ArrayList<>();
+            while (r.next()) {
+                lista.add(r.getInt(1));
+            }
+            return lista;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
     }
 
 

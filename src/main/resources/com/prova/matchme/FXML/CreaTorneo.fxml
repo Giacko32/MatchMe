@@ -43,16 +43,16 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <ComboBox fx:id="sportComboBox" layoutX="219.0" layoutY="108.0" prefHeight="26.0" prefWidth="144.0">
+        <ComboBox fx:id="sportComboBox" layoutX="174.0" layoutY="108.0" prefHeight="26.0" prefWidth="144.0">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></ComboBox>
-        <Label layoutX="162.0" layoutY="112.0" text="Sport:">
+        <Label layoutX="118.0" layoutY="111.0" text="Sport:">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font></Label>
 
-        <Label layoutX="431.0" layoutY="112.0" text="Livello Min:">
+        <Label layoutX="394.0" layoutY="111.0" text="Livello Min:">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font></Label>
@@ -61,7 +61,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor></Spinner>
 
-        <Label layoutX="431.0" layoutY="152.0" text="Livello Max:">
+        <Label layoutX="392.0" layoutY="151.0" text="Livello Max:">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font></Label>
@@ -70,16 +70,16 @@
                 <Cursor fx:constant="HAND" />
             </cursor></Spinner>
 
-        <Label layoutX="158.0" layoutY="202.0" prefHeight="36.0" prefWidth="335.0" text="Numero massimo di squadre partecipanti:" wrapText="true">
+        <Label layoutX="118.0" layoutY="201.0" prefHeight="36.0" prefWidth="335.0" text="Numero massimo di squadre partecipanti:" wrapText="true">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font></Label>
-        <Spinner fx:id="numeroSquadreSpinner" layoutX="484.0" layoutY="206.0" prefHeight="26.0" prefWidth="108.0">
+        <Spinner fx:id="numeroSquadreSpinner" layoutX="417.0" layoutY="206.0" prefHeight="26.0" prefWidth="108.0">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Spinner>
 
-        <Label layoutX="192.0" layoutY="254.0" prefHeight="36.0" prefWidth="255.0" text="Data inizio attività:" wrapText="true">
+        <Label layoutX="118.0" layoutY="253.0" prefHeight="36.0" prefWidth="255.0" text="Data inizio attività:" wrapText="true">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
@@ -89,7 +89,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor></DatePicker>
 
-        <Label layoutX="198.0" layoutY="313.0" prefHeight="36.0" prefWidth="255.0" text="Data fine attività:" wrapText="true">
+        <Label layoutX="118.0" layoutY="313.0" prefHeight="36.0" prefWidth="255.0" text="Data fine attività:" wrapText="true">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>

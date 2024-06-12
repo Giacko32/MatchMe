@@ -1,10 +1,9 @@
 package com.prova.matchme.GestioneTornei.Controller;
 
 
+
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Autenticazione.Interfacce.AdminView;
-import com.prova.matchme.Autenticazione.Interfacce.AllenaView;
-import com.prova.matchme.Autenticazione.Interfacce.MainView;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Torneo;
@@ -14,6 +13,8 @@ import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaTorneiGestori;
 import com.prova.matchme.Utils;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class AmministrazioneTorneiCtrl {
 
 	private Stage stage;
@@ -21,6 +22,8 @@ public class AmministrazioneTorneiCtrl {
 	private VisualizzaTorneiGestori boundaryGestori;
 	private Torneo torneo;
 	private CreaTorneoView boundaryCreaTorneo;
+
+
 
 	public AmministrazioneTorneiCtrl(Stage stage, Gestore gestore) {
 		this.stage = stage;
@@ -47,10 +50,15 @@ public class AmministrazioneTorneiCtrl {
 		});
 	}
 
-	public void PassData(String sport, int livello, int numeroSquadre, String dataInizio, String dataFine) {
+	public void PassData(String sport, int livelloMin,int livelloMax, int numeroSquadre, String dataInizio, String dataFine, int numeroGiocatoriPerSquadra) {
 		//query creeazione torneo
-		DBMSView.queryCreateTorneo(sport, livello, numeroSquadre, dataInizio, dataFine, gestore.getSede());
-
+		DBMSView.queryCreateTorneo(sport, livelloMin, livelloMax, numeroSquadre, dataInizio, dataFine, gestore.getSede(), numeroGiocatoriPerSquadra);
+		ArrayList<Integer> lista_id = DBMSView.queryGetTuttiGiocatori();
+		//notifica
+		String notifica = "E' stato creato un nuovo torneo nella sede " + gestore.getSede() + " corri a iscriverti!!";
+		for(Integer id : lista_id) {
+			DBMSView.sendNotify2(notifica,id,1);
+		}
 	}
 
 	public void ModificaTorneo() {
@@ -112,7 +120,7 @@ public class AmministrazioneTorneiCtrl {
 	public void toMain () {
 		if (gestore != null) {
 			Utils.cambiaInterfaccia("FXML/Admin-view.fxml", stage, c -> {
-					return new AdminView(this, gestore, stage);
+					return new AdminView(new AuthCtrl(stage), gestore, stage);
 				});
 		}
 	}
