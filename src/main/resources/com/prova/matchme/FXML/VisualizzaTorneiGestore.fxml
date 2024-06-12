@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneTornei.Interfacce.VisualizzaTorneiGestori">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
@@ -43,7 +43,7 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <ListView layoutX="21.0" layoutY="95.0" prefHeight="378.0" prefWidth="398.0" />
+        <ListView fx:id="listaTorneiSede" layoutX="21.0" layoutY="95.0" prefHeight="378.0" prefWidth="398.0" />
         <Label layoutX="78.0" layoutY="69.0" text="Tornei attivi nella tua sede:">
             <font>
                 <Font name="System Bold" size="14.0" />

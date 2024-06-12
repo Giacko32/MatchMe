@@ -22,7 +22,7 @@ public class AmministrazioneTorneiCtrl {
 	public void mostraTorneiSede(Stage stage){
 		stage.close();
 		Utils.cambiaInterfaccia("FXML/VisualizzaTorneiGestore.fxml", stage, c -> {
-			boundaryGestori = new VisualizzaTorneiGestori(DBMSView.queryGetTuttITornei(),stage, this);
+			boundaryGestori = new VisualizzaTorneiGestori(DBMSView.queryGetTorneiSede(gestore),stage, this);
 			return boundaryGestori;
 		});
 	}

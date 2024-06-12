@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Gioele2002!";
 
     private static Connection connDBMS = null;
 
@@ -637,17 +637,17 @@ public class DBMSView {
         }
         return null;
     }
-    //da fare
-    public static ArrayList<Torneo> queryGetTorneiSede(Gestore gestore) {
-        String query = "SELECT id, ref_Sede, sport, n_Squadre, n_giocatori_squadra,vincoli FROM Torneo. Gestore";
-        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
-            var r = stmt.executeQuery();
-            ArrayList<Torneo> tuttiTorneiUtente = new ArrayList<Torneo>();
-            while (r.next()) {
-                tuttiTorneiUtente.add(new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6)));
-            }
-            return tuttiTorneiUtente;
 
+    public static ArrayList<Torneo> queryGetTorneiSede(Gestore gestore) {
+        String query = "SELECT id, ref_Sede, sport, n_Squadre, n_giocatori_squadra, vincoli FROM Torneo WHERE ref_Sede = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, gestore.getSede());
+            var r = stmt.executeQuery();
+            ArrayList<Torneo> torneiSede = new ArrayList<Torneo>();
+            while (r.next()) {
+                torneiSede.add(new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6)));
+            }
+            return torneiSede;
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }

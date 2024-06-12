@@ -122,7 +122,7 @@ public class AdminView {
 	@FXML
 	public void clickTorneiSede() {
 		AmministrazioneTorneiCtrl atc = new AmministrazioneTorneiCtrl(s,g);
-
+		atc.mostraTorneiSede(s);
 	}
 
 	public void ShowBnd() {
