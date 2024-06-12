@@ -19,4 +19,8 @@ public class CreaTorneoView {
         this.amminCtrl.toMain();
     }
 
+    public void clickConferma(){
+
+    }
+
 }

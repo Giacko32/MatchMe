@@ -616,13 +616,13 @@ public class DBMSView {
     }
 
     public static ArrayList<Torneo> queryGetImieiTornei(Utente utente) {
-        String query = "SELECT id, ref_Sede, sport, n_Squadre, n_giocatori_squadra,vincoli FROM Iscrizione, Torneo WHERE Iscrizione.ref_Torneo = Torneo.id AND Iscrizione.ref_Utente = ?";
+        String query = "SELECT id, ref_Sede, sport, n_Squadre, n_giocatori_squadra,vincoli, data_inizio, data_fine FROM Iscrizione, Torneo WHERE Iscrizione.ref_Torneo = Torneo.id AND Iscrizione.ref_Utente = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, utente.getId());
             var r = stmt.executeQuery();
             ArrayList<Torneo> torneiUtente = new ArrayList<Torneo>();
             while (r.next()) {
-                torneiUtente.add(new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6)));
+                torneiUtente.add(new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6), r.getDate(7).toLocalDate(), r.getDate(8).toLocalDate()));
             }
             return torneiUtente;
 
@@ -632,13 +632,14 @@ public class DBMSView {
         return null;
     }
 
-    public static ArrayList<Torneo> queryGetTuttITornei() {
-        String query = "SELECT id, ref_Sede, sport, n_Squadre, n_giocatori_squadra,vincoli FROM Torneo";
+    public static ArrayList<Torneo> queryGetTuttITornei(int idUtente) {
+        String query = "SELECT id, ref_Sede, sport, n_Squadre, n_giocatori_squadra,vincoli, data_inizio, data_fine FROM Torneo  WHERE id not in (select distinct ref_Torneo from iscrizione where ref_Utente = ?) ";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, idUtente);
             var r = stmt.executeQuery();
             ArrayList<Torneo> tuttiTorneiUtente = new ArrayList<Torneo>();
             while (r.next()) {
-                tuttiTorneiUtente.add(new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6)));
+                tuttiTorneiUtente.add(new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6), r.getDate(7).toLocalDate(), r.getDate(8).toLocalDate()));
             }
             return tuttiTorneiUtente;
 
@@ -649,13 +650,13 @@ public class DBMSView {
     }
 
     public static ArrayList<Torneo> queryGetTorneiSede(Gestore gestore) {
-        String query = "SELECT id, ref_Sede, sport, n_Squadre, n_giocatori_squadra, vincoli FROM Torneo WHERE ref_Sede = ?";
+        String query = "SELECT id, ref_Sede, sport, n_Squadre, n_giocatori_squadra, vincoli, data_inizio, data_fine FROM Torneo WHERE ref_Sede = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, gestore.getSede());
             var r = stmt.executeQuery();
             ArrayList<Torneo> torneiSede = new ArrayList<Torneo>();
             while (r.next()) {
-                torneiSede.add(new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6)));
+                torneiSede.add(new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6), r.getDate(7).toLocalDate(), r.getDate(8).toLocalDate()));
             }
             return torneiSede;
         } catch (SQLException e) {
@@ -665,12 +666,12 @@ public class DBMSView {
     }
 
     public static Torneo queryGetTorneo(Torneo torneo) {
-        String query = "SELECT id, ref_Sede, sport, n_Squadre, n_giocatori_squadra,vincoli FROM Torneo WHERE id = ?";
+        String query = "SELECT id, ref_Sede, sport, n_Squadre, n_giocatori_squadra,vincoli, data_inizio, data_fine FROM Torneo WHERE id = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, torneo.getId());
             var r = stmt.executeQuery();
             if (r.next()) {
-                Torneo torneoRisultato = new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6));
+                Torneo torneoRisultato = new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6), r.getDate(7).toLocalDate(), r.getDate(8).toLocalDate());
                 return torneoRisultato;
             }
         } catch (SQLException e) {

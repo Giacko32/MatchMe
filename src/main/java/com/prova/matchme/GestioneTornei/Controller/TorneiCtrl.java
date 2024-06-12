@@ -42,7 +42,7 @@ public class TorneiCtrl {
 	public void TuttiItornei(Stage st) {
 		st.close();
 		Utils.cambiaInterfaccia("FXML/VisualizzaTornei.fxml", stage, c -> {
-			boundaryTutti = new VisualizzaDettagliTuttiITornei(DBMSView.queryGetTuttITornei(),this, stage);
+			boundaryTutti = new VisualizzaDettagliTuttiITornei(DBMSView.queryGetTuttITornei(utente.getId()),this, stage);
 			return boundaryTutti;
 		});
 	}

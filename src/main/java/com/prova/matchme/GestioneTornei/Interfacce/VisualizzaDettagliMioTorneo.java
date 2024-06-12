@@ -1,6 +1,5 @@
 package com.prova.matchme.GestioneTornei.Interfacce;
 
-import com.prova.matchme.Entity.Sede;
 import com.prova.matchme.Entity.Torneo;
 import com.prova.matchme.GestioneTornei.Controller.TorneiCtrl;
 import javafx.collections.FXCollections;
