@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gioele2002!";
+    private static final String pass = "Rtx4060ticx!";
 
     private static Connection connDBMS = null;
 
@@ -520,7 +520,7 @@ public class DBMSView {
     }
 
     public static ArrayList<Partita> queryGetPartiteUtente(Utente utente) {
-        String query = "SELECT id, ref_Campo, dataOra, tipo, vincoli FROM partita pt, partecipa pa WHERE pt.id = pa.ref_Partita AND pa.ref_Utente = ? AND pa.ref_Partita NOT IN (SELECT id_partita_origine FROM partitestorico)";
+        String query = "SELECT id, ref_Campo, dataOra, tipo, vincoli FROM partita pt, partecipa pa WHERE pt.id = pa.ref_Partita AND pt.tipo <> \"all\" AND pa.ref_Utente = ? AND pa.ref_Partita NOT IN (SELECT id_partita_origine FROM partitestorico)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, utente.getId());
             var r = stmt.executeQuery();
@@ -1401,9 +1401,82 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         return false;
-
     }
 
+    public static ArrayList<Partita> queryGetAllenamenti(){
+        String query = "SELECT * FROM partita WHERE tipo = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)){
+            stmt.setString(1, "all");
+            var r=stmt.executeQuery();
+            ArrayList<Partita> listaAllenamenti = new ArrayList<>();
+            while(r.next()){
+                listaAllenamenti.add(new Partita(r.getInt(1), r.getInt(2), r.getTimestamp(3).toLocalDateTime(), r.getString(4), r.getString(5)));
+            }
+            return listaAllenamenti;
+        }catch (SQLException e){
+            erroreComunicazioneDBMS(e);
+        }
+        return  null;
+    }
 
+    public static Allenamento queryGetDettagliAllenamento(Partita allenamento){
+        String query = "SELECT s.Id_Sede, s.Indirizzo, s.Nome_Sede, c.id, c.nome, c.sport FROM partita p, campo c, sede s WHERE p.ref_Campo = c.id AND c.ref_Sede = s.Id_Sede AND p.id = ?";
+        Allenamento allenamentoDetails = new Allenamento();
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, allenamento.getId());
+            var r = stmt.executeQuery();
+            if (r.next()) {
+                allenamentoDetails.setSede(new Sede(r.getInt(1), r.getString(3), r.getString(2)));
+                allenamentoDetails.setCampo(new Campo(r.getInt(4), r.getInt(1), r.getString(5), r.getString(6), allenamento.getDataOra()));
+                allenamentoDetails.setPartita(allenamento);
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+        String getPartecipanti = "SELECT id, nome, cognome, email, username, eta, passwordUtente, tipo, sesso, livello FROM utente, partecipa WHERE ref_Partita = ? AND ref_Utente = id AND n_squadra = 1";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(getPartecipanti)) {
+            stmt.setInt(1, allenamento.getId());
+            var r = stmt.executeQuery();
+            ArrayList<Utente> squadra1 = new ArrayList<Utente>();
+            while (r.next()) {
+                squadra1.add(new Utente(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(8), r.getString(7), r.getFloat(10), r.getInt(6), r.getString(9)));
+            }
+            allenamentoDetails.setPartecipanti(squadra1);
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+        String getAllenatore = "SELECT id, nome, cognome, email, username, eta, passwordUtente, tipo, sesso, livello FROM utente WHERE id = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(getAllenatore)) {
+            stmt.setInt(1, Integer.parseInt(allenamento.getVincoli()));
+            var r = stmt.executeQuery();
+            if (r.next()) {
+                allenamentoDetails.setAllenatore(new Utente(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(8), r.getString(7), r.getFloat(10), r.getInt(6), r.getString(9)));
+            }
+
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+        return allenamentoDetails;
+    }
+
+    public static ArrayList<Partita> queryGetMieiAllenamenti(Utente u){
+        String query = "SELECT partita.* FROM partita, partecipa WHERE tipo = ? AND ref_Partita = id AND ref_Utente = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)){
+            stmt.setString(1, "all");
+            stmt.setInt(2, u.getId());
+            var r=stmt.executeQuery();
+            ArrayList<Partita> listaAllenamenti = new ArrayList<>();
+            while(r.next()){
+                listaAllenamenti.add(new Partita(r.getInt(1), r.getInt(2), r.getTimestamp(3).toLocalDateTime(), r.getString(4), r.getString(5)));
+            }
+            return listaAllenamenti;
+        }catch (SQLException e){
+            erroreComunicazioneDBMS(e);
+        }
+        return  null;
+    }
 
 }

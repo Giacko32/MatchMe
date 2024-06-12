@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneAllenamenti.Interfacce.DettagliMioAllenamentoView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -43,19 +43,53 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <ListView layoutX="14.0" layoutY="88.0" prefHeight="393.0" prefWidth="417.0" />
-        <Label layoutX="18.0" layoutY="63.0" text="Allenamenti a cui risulti partecipare:">
+        <ListView fx:id="listaAllenamenti" layoutX="14.0" layoutY="89.0" prefHeight="381.0" prefWidth="382.0" />
+        <Label layoutX="162.0" layoutY="62.0" text="Allenamenti attivi">
             <font>
-                <Font name="System Bold" size="14.0" />
+                <Font name="System Bold" size="16.0" />
             </font>
         </Label>
-        <Label disable="true" layoutX="482.0" layoutY="78.0" text="Dettagli allenamento selezionato">
+        <Label layoutX="487.0" layoutY="65.0" text="Dettagli allenamento selezionato">
             <font>
-                <Font name="System Bold" size="14.0" />
+                <Font name="System Bold" size="12.800000190734863" />
             </font>
         </Label>
-        <ListView disable="true" layoutX="446.0" layoutY="104.0" prefHeight="314.0" prefWidth="290.0" />
-        <Button disable="true" layoutX="542.0" layoutY="426.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="119.0" text="    CANCELLA&#10;ALLENAMENTO" textFill="RED">
+        <Label layoutX="454.0" layoutY="99.0" text="Sede">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+        <TextField fx:id="SedeField" disable="true" layoutX="528.0" layoutY="96.0" prefHeight="25.0" prefWidth="187.0" />
+        <Label layoutX="454.0" layoutY="134.0" text="Campo">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="CampoField" disable="true" layoutX="528.0" layoutY="131.0" prefHeight="25.0" prefWidth="187.0" />
+        <Label layoutX="454.0" layoutY="209.0" text="Data e Ora">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="DataOraField" disable="true" layoutX="528.0" layoutY="206.0" prefHeight="25.0" prefWidth="187.0" />
+        <ListView fx:id="PartecipantiLista" disable="true" layoutX="450.0" layoutY="305.0" prefHeight="102.0" prefWidth="170.0" />
+        <Label layoutX="450.0" layoutY="286.0" text="Partecipanti:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="454.0" layoutY="171.0" text="Sport">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="SportField" disable="true" layoutX="528.0" layoutY="168.0" prefHeight="25.0" prefWidth="187.0" />
+        <Label layoutX="455.0" layoutY="247.0" text="Allenatore">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="AllenatoreField" disable="true" layoutX="529.0" layoutY="244.0" prefHeight="25.0" prefWidth="187.0" />
+        <Button fx:id="cancellaButton" onMouseClicked="#CancelClicked" disable="true" layoutX="542.0" layoutY="426.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="119.0" text="    CANCELLA&#10;ALLENAMENTO" textFill="RED">
          <font>
             <Font name="System Bold" size="12.800000190734863" />
          </font>
