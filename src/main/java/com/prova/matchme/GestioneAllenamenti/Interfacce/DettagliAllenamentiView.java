@@ -8,6 +8,7 @@ import com.prova.matchme.GestioneAllenamenti.Controller.GestioneAllCtrl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -19,6 +20,7 @@ public class DettagliAllenamentiView {
 	private ArrayList<Partita> partitaArrayList;
 	private Partita selectedAllenamento;
 	private Allenamento allenamentoDetails;
+	private Utente utente;
 	@FXML
 	public ListView<Partita> listaAllenamenti;
 	@FXML
@@ -33,11 +35,13 @@ public class DettagliAllenamentiView {
 	private TextField SportField;
 	@FXML
 	private TextField AllenatoreField;
+	@FXML
+	private Button prenotaButton;
 
-
-	public DettagliAllenamentiView(GestioneAllCtrl gestioneAllCtrl, ArrayList<Partita> listaPartite){
+	public DettagliAllenamentiView(GestioneAllCtrl gestioneAllCtrl, ArrayList<Partita> listaPartite, Utente utente){
 		this.gestioneAllCtrl = gestioneAllCtrl;
 		this.partitaArrayList = listaPartite;
+		this.utente = utente;
 	}
 
 	@FXML
@@ -59,6 +63,7 @@ public class DettagliAllenamentiView {
 		AllenatoreField.setDisable(false);
 		PartecipantiLista.setDisable(false);
 		allenamentoDetails = gestioneAllCtrl.AllenamentoClicked(selectedAllenamento);
+        prenotaButton.setDisable(allenamentoDetails.partecipanti.contains(utente));
 		SedeField.setText(allenamentoDetails.sede.toString());
 		CampoField.setText(allenamentoDetails.campo.getNomecampo());
 		DataOraField.setText(allenamentoDetails.campo.getOrarioString());
@@ -69,7 +74,7 @@ public class DettagliAllenamentiView {
 	}
 
 	public void PrenotaClicked() {
-
+		gestioneAllCtrl.PrenotaCliccato(allenamentoDetails);
 	}
 
 	public void goBack(){

@@ -54,7 +54,7 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Button onMouseClicked="#ClickPrenota" fx:id="buttonIscriviti" disable="true" layoutX="507.0" layoutY="355.0" mnemonicParsing="false" text="ISCRIVITI AL MATCH">
+        <Button fx:id="buttonIscriviti" disable="true" layoutX="507.0" layoutY="355.0" mnemonicParsing="false" onMouseClicked="#ClickPrenota" text="PRENOTA PARTITA">
             <font>
                 <Font name="System Bold" size="12.800000190734863" />
             </font>

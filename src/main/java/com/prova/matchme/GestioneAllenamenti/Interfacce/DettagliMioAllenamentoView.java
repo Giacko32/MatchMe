@@ -74,6 +74,25 @@ public class DettagliMioAllenamentoView {
 		gestioneAllCtrl.CancellaClicked(allenamentoDetails);
 	}
 
+	public void showBnd(){
+		SedeField.setDisable(true);
+		CampoField.setDisable(true);
+		DataOraField.setDisable(true);
+		SportField.setDisable(true);
+		AllenatoreField.setDisable(true);
+		PartecipantiLista.setDisable(true);
+		cancellaButton.setDisable(true);
+		SedeField.clear();
+		CampoField.clear();
+		DataOraField.clear();
+		SportField.clear();
+		AllenatoreField.clear();
+		PartecipantiLista.setItems(FXCollections.emptyObservableList());
+		partitaArrayList.remove(selectedAllenamento);
+		ObservableList<Partita> lista = FXCollections.observableArrayList(partitaArrayList);
+		listaAllenamenti.setItems(lista);
+	}
+
 	public void goBack(){
 		gestioneAllCtrl.toMain();
 	}

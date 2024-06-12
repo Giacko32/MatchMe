@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneAllenamenti.Interfacce.CreaAllenamentoView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image></ImageView>
@@ -43,7 +43,7 @@
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-        <Spinner layoutX="433.0" layoutY="148.0" prefHeight="27.0" prefWidth="186.0" />
+        <Spinner fx:id="partecipantiSpinner" layoutX="445.0" layoutY="212.0" prefHeight="27.0" prefWidth="73.0" />
         <Label layoutX="144.0" layoutY="152.0" text="Seleziona tipologia di campo desiderata:">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -52,22 +52,18 @@
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-        <Button layoutX="536.0" layoutY="211.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #03b53f;" text="VERIFICA" textFill="WHITE">
+        <Button layoutX="536.0" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#ClickVerifica" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #03b53f;" text="VERIFICA" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font></Button>
-        <ChoiceBox layoutX="433.0" layoutY="213.0" prefHeight="26.0" prefWidth="73.0" />
-        <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@images/ic--baseline-arrow-back.png" />
-            </image></ImageView>
-      <DatePicker layoutX="344.0" layoutY="88.0" prefHeight="27.0" prefWidth="275.0" />
-      <Label disable="true" layoutX="147.0" layoutY="272.0" text="Il campo è disponibile nelle seguenti fasce orarie:">
+        <ChoiceBox fx:id="sportChoice" layoutX="435.0" layoutY="149.0" prefHeight="26.0" prefWidth="186.0" />
+      <DatePicker fx:id="datePicker" layoutX="344.0" layoutY="88.0" prefHeight="27.0" prefWidth="275.0" />
+      <Label layoutX="147.0" layoutY="272.0" text="Seleziona il campo e l'orario">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <ChoiceBox disable="true" layoutX="489.0" layoutY="268.0" prefHeight="27.0" prefWidth="132.0" />
-      <Button disable="true" layoutX="509.0" layoutY="343.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="111.0" style="-fx-background-color: #03b53f;" text="CREA&#10;ALLENAMENTO" textAlignment="CENTER" textFill="WHITE">
+      <ChoiceBox fx:id="orariChoice" disable="true" layoutX="346.0" layoutY="268.0" prefHeight="27.0" prefWidth="275.0" />
+      <Button fx:id="buttonCrea" onMouseClicked="#ClickCrea" disable="true" layoutX="509.0" layoutY="343.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="111.0" style="-fx-background-color: #03b53f;" text="CREA&#10;ALLENAMENTO" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

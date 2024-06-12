@@ -2,6 +2,7 @@ package com.prova.matchme.Autenticazione.Interfacce;
 
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.GestioneAllenamenti.Controller.CreaAllCtrl;
 import com.prova.matchme.GestioneAllenamenti.Controller.GestioneAllCtrl;
 import com.prova.matchme.GestioneMessaggistica.Controller.ChatCtrl;
 import com.prova.matchme.GestioneNotifiche.Controller.NotifyCtrl;
@@ -90,7 +91,7 @@ public class AllenaView {
     }
 
     public void ClickCreaAllenamento() {
-
+        new CreaAllCtrl(this.u, this.s);
     }
 
     public void ClickVisualizzaPartite(){

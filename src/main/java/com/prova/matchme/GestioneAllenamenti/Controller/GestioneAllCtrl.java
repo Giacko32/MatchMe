@@ -16,11 +16,15 @@ import com.prova.matchme.GestionePartita.Interfacce.SelectTipoPartiteView;
 import com.prova.matchme.Utils;
 import javafx.stage.Stage;
 
+import java.time.LocalDateTime;
+
 public class GestioneAllCtrl {
 
 	private Utente utente;
 	private Stage stage;
 	private CustomStage stageDialog = new CustomStage("Allenamenti");
+	private DettagliMioAllenamentoView boundary;
+	private DettagliAllenamentiView boundary1;
 
 	public GestioneAllCtrl(Utente utente, Stage s){
 		this.utente = utente;
@@ -34,7 +38,8 @@ public class GestioneAllCtrl {
 		//DBMSView.
 		stageDialog.close();
 		Utils.cambiaInterfaccia("FXML/Allenamenti.fxml", stage , c -> {
-			return new DettagliAllenamentiView(this, DBMSView.queryGetAllenamenti());
+			boundary1 =  new DettagliAllenamentiView(this, DBMSView.queryGetAllenamenti(), utente);
+			return boundary1;
 		});
 	}
 
@@ -42,12 +47,21 @@ public class GestioneAllCtrl {
 		return DBMSView.queryGetDettagliAllenamento(allenamento);
 	}
 
-	public void PrenotaCliccato() {
-
+	public void PrenotaCliccato(Allenamento allenamento) {
+		if(!CheckOccupato(allenamento.partita.getDataOra())){//occupato
+			Utils.creaPannelloErrore("Sei già impegnato in\nquesta fascia oraria");
+		} else {
+			if(DBMSView.queryVerificaAllenamento(allenamento.partita.getId())) {
+				DBMSView.queryAddGiocatore(allenamento.partita.getId(), utente.getId(), 1);
+				boundary1.selectAllenamento();
+			} else {
+				Utils.creaPannelloErrore("Non ci sono posti\nliberi nell'allenamento");
+			}
+		}
 	}
 
-	public void CheckOccupato() {
-
+	public boolean CheckOccupato(LocalDateTime dataora) {
+		return DBMSView.queryGiocatoreOccupato(utente.getId(), dataora);
 	}
 
 	public void CloseWarningView() {
@@ -57,16 +71,18 @@ public class GestioneAllCtrl {
 	public void ClickMieiAllenamenti() {
 		stageDialog.close();
 		Utils.cambiaInterfaccia("FXML/VisualizzaMieiAllenamenti.fxml", stage , c -> {
-			return new DettagliMioAllenamentoView(this, DBMSView.queryGetMieiAllenamenti(utente));
+			boundary = new DettagliMioAllenamentoView(this, DBMSView.queryGetMieiAllenamenti(utente));
+			return boundary;
 		});
 	}
 
 	public void CancellaClicked(Allenamento all) {
 		if(this.CheckAllenatore(all)){
-			
+			DBMSView.queryCancellaAllenamento(all);
 		} else {
-
+			DBMSView.queryCancellaUtenteAllenamento(utente, all);
 		}
+		boundary.showBnd();
 	}
 
 	public boolean CheckAllenatore(Allenamento all) {

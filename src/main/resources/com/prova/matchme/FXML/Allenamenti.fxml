@@ -44,7 +44,7 @@
             </children>
         </AnchorPane>
         <ListView fx:id="listaAllenamenti" layoutX="14.0" layoutY="89.0" prefHeight="381.0" prefWidth="382.0" />
-        <Label layoutX="99.0" layoutY="62.0" text="Allenamenti a cui sei iscritto">
+        <Label layoutX="99.0" layoutY="62.0" text="Allenamenti disponibili">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
@@ -54,7 +54,7 @@
                 <Font name="System Bold" size="12.800000190734863" />
             </font>
         </Label>
-        <Button disable="true" layoutX="469.0" layoutY="434.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="219.0" text="PRENOTA ALLENAMENTO">
+        <Button fx:id="prenotaButton" onMouseClicked="#PrenotaClicked" disable="true" layoutX="469.0" layoutY="434.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="219.0" text="PRENOTA ALLENAMENTO">
          <font>
             <Font name="System Bold" size="12.800000190734863" />
          </font>
