@@ -132,25 +132,30 @@ public class TorneiCtrl {
 		}
 
 		public void IscriviSquadraCliccato (Torneo torneo, float media) {
-			if(CheckLivello(torneo, media)){
-				//La squadra soddisfa i vincoli
-				DBMSView.queryPutSquadraTorneo(torneo,numeroSquadraCorrente,utentiSquadra);
-				Utils.creaPannelloErrore("Squadra iscritta");
-				//mandiamo la notifica ai componenti
-				ArrayList<UtentePart> utentiPart = new ArrayList<>();
-				for (Utente u : utentiSquadra){
-					utentiPart.add(new UtentePart(u,0));
+			if(giocatori_aggiunti == true){
+				if(CheckLivello(torneo, media)){
+					//La squadra soddisfa i vincoli
+					DBMSView.queryPutSquadraTorneo(torneo,numeroSquadraCorrente,utentiSquadra);
+					Utils.creaPannelloErrore("Squadra iscritta");
+					//mandiamo la notifica ai componenti
+					ArrayList<UtentePart> utentiPart = new ArrayList<>();
+					for (Utente u : utentiSquadra){
+						utentiPart.add(new UtentePart(u,0));
+					}
+					String notifica = "Sei stato aggiunto al torneo " + torneo.toString() + " nella squadra" + numeroSquadraCorrente;
+					DBMSView.sendNotify(notifica, utentiPart,1);
+					numeroSquadraCorrente++;
+					this.toMain();
+				}else{
+					//la squadra non soddisfa i vincoli
+					DBMSView.queryPutSquadraInAttesa(torneo, numeroSquadraCorrente, utentiSquadra);
+					Utils.creaPannelloErrore("Non rispetta i vincoli");
+					this.toMain();
 				}
-				String notifica = "Sei stato aggiunto al torneo " + torneo.toString() + " nella squadra" + numeroSquadraCorrente;
-				DBMSView.sendNotify(notifica, utentiPart,1);
-				numeroSquadraCorrente++;
-				this.toMain();
 			}else{
-				//la squadra non soddisfa i vincoli
-				DBMSView.queryPutSquadraInAttesa(torneo, numeroSquadraCorrente, utentiSquadra);
-				Utils.creaPannelloErrore("Non rispetta i vincoli");
-				this.toMain();
+				Utils.creaPannelloErrore("Squadra incompleta");
 			}
+
 		}
 
 		public boolean CheckLivello (Torneo torneo,float media ) {
