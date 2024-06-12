@@ -52,6 +52,10 @@ public class VisualizzaTorneiGestori {
 		});
 	}
 
+	public void clickNuovoTorneo(){
+		amminCtrl.NuovoTorneo(stage);
+	}
+
 	public void clickModificaTorneo() {
 
 	}

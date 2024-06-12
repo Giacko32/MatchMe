@@ -10,7 +10,7 @@
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
-                <ImageView onMouseClicked="#back" fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView onMouseClicked="#back" fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" >
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -83,7 +83,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-      <Button layoutX="274.0" layoutY="65.0" mnemonicParsing="false" text="Crea Torneo">
+      <Button onMouseClicked="#clickNuovoTorneo" layoutX="274.0" layoutY="65.0" mnemonicParsing="false" text="Crea Torneo">
          <font>
             <Font size="13.0" />
          </font>
