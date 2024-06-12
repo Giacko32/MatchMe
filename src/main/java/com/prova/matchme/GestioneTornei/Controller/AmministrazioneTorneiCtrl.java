@@ -69,7 +69,7 @@ public class AmministrazioneTorneiCtrl {
 	public void ModificaTorneo(Torneo torneo, Stage stage) {
 		stage.close();
 		Utils.cambiaInterfaccia("FXML/Modifica Torneo.fxml", stage, c -> {
-			boundaryModificaTorneo = new ModificaTorneoView(stage, this);
+			boundaryModificaTorneo = new ModificaTorneoView(stage, this, torneo);
 			return boundaryModificaTorneo;
 		});
 	}

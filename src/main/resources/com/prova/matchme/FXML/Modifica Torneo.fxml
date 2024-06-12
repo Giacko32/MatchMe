@@ -10,7 +10,7 @@
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView onMouseClicked="#back" fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
