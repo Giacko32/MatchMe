@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Gioele2002!";
 
     private static Connection connDBMS = null;
 
@@ -729,13 +729,14 @@ public class DBMSView {
         return null;
     }
 
-    public static void queryPutSquadraInAttesa(Torneo torneo, int numeroSquadra, ArrayList<Utente> squadra) {
-        String query = "INSERT INTO SquadreAttesa (ref_Utente, ref_Torneo, n_Squadra) VALUES (?, ?, ?)";
+    public static void queryPutSquadraInAttesa(Torneo torneo, int numeroSquadra, ArrayList<Utente> squadra, String nomeSquadra) {
+        String query = "INSERT INTO SquadreAttesa (ref_Utente, ref_Torneo, n_Squadra, nomeSquadra) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             for (Utente utente : squadra) {
                 stmt.setInt(1, utente.getId());
                 stmt.setInt(2, torneo.getId());
                 stmt.setInt(3, numeroSquadra);
+                stmt.setString(4, nomeSquadra);
                 stmt.addBatch();
             }
             stmt.executeBatch();
@@ -744,13 +745,14 @@ public class DBMSView {
         }
     }
 
-    public static void queryPutSquadraTorneo(Torneo torneo, int numeroSquadra, ArrayList<Utente> squadra) {
-        String query = "INSERT INTO iscrizione (ref_Utente, ref_Torneo, n_Squadra) VALUES (?, ?, ?)";
+    public static void queryPutSquadraTorneo(Torneo torneo, int numeroSquadra, ArrayList<Utente> squadra, String nomeSquadra) {
+        String query = "INSERT INTO iscrizione (ref_Utente, ref_Torneo, n_Squadra, nomeSquadra) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             for (Utente utente : squadra) {
                 stmt.setInt(1, utente.getId());
                 stmt.setInt(2, torneo.getId());
                 stmt.setInt(3, numeroSquadra);
+                stmt.setString(4, nomeSquadra);
                 stmt.addBatch();
             }
             stmt.executeBatch();
@@ -774,14 +776,30 @@ public class DBMSView {
         }
         return -1;  // Restituisce -1 se non viene trovato alcun risultato
     }
+    public static String getNomeSquadraUtenteTorneo(Torneo torneo, Utente utente) {
+        String query = "SELECT nomeSquadra FROM iscrizione WHERE ref_Utente = ? AND ref_Torneo = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, utente.getId());
+            stmt.setInt(2, torneo.getId());
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("nomeSquadra");
+                }
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return "";  // Restituisce -1 se non viene trovato alcun risultato
+    }
 
-    public static void queryDeleteSquadraTorneo(Torneo torneo, Utente utente, int numeroSquadra) {
-        String query = "SELECT ref_Utente FROM iscrizione WHERE ref_Torneo = ? AND n_Squadra = ?";
+    public static void queryDeleteSquadraTorneo(Torneo torneo, Utente utente, int numeroSquadra, String nomeSquadra) {
+        String query = "SELECT ref_Utente FROM iscrizione WHERE ref_Torneo = ? AND n_Squadra = ? AND nomeSquadra = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, torneo.getId());
             stmt.setInt(2, numeroSquadra);
+            stmt.setString(3, nomeSquadra);
             var r = stmt.executeQuery();
-            String notifica = "Sei stato eliminato dalla squadra " + numeroSquadra + " del torneo " + torneo.getId();
+            String notifica = "Sei stato eliminato dalla squadra " + nomeSquadra + " del torneo " + torneo.getId();
             while (r.next()) {
 
                 DBMSView.sendNotify2(notifica, r.getInt("ref_Utente"), 1);
@@ -852,9 +870,16 @@ public class DBMSView {
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
-
-        String query3 = "DELETE FROM torneo WHERE id = ? ";
+        String query3 = "DELETE FROM SquadreAttesa WHERE ref_Torneo = ? ";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query3)) {
+            stmt.setInt(1, torneo.getId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+        String query4 = "DELETE FROM torneo WHERE id = ? ";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query4)) {
             stmt.setInt(1, torneo.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -888,6 +913,57 @@ public class DBMSView {
         }
 
     }
+
+    public static ArrayList<String> queryGetSquadreInAttesa(Torneo torneo) {
+        String query = "SELECT n_Squadra, nomeSquadra FROM SquadreAttesa where ref_Torneo = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            var r = stmt.executeQuery();
+            ArrayList<String> lista = new ArrayList<>();
+            while (r.next()) {
+                String risultato ="Numero squadra: " + r.getInt(1)+ " nome squadra: " + r.getString(2);
+                lista.add(risultato);
+            }
+            return lista;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+    public static ArrayList<Utente> queryGetSquadra(int nSquadra, String nomeSquadra, Torneo torneo) {
+        String query = "SELECT u.id, u.nome, u.cognome, u.email, u.username, u.sesso, u.tipo, u.passwordUtente, u.livello, u.eta " +
+                "FROM SquadreAttesa sa " +
+                "JOIN utente u ON sa.ref_Utente = u.id " +
+                "WHERE sa.ref_Torneo = ? AND sa.n_Squadra = ? AND sa.nomeSquadra = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            stmt.setInt(2, nSquadra);
+            stmt.setString(3, nomeSquadra);
+            ResultSet r = stmt.executeQuery();
+            ArrayList<Utente> lista = new ArrayList<>();
+            while (r.next()) {
+                Utente utente = new Utente(
+                        r.getInt("id"),
+                        r.getString("nome"),
+                        r.getString("cognome"),
+                        r.getString("email"),
+                        r.getString("username"),
+                        r.getString("tipo"),
+                        r.getString("passwordUtente"),
+                        r.getFloat("livello"),
+                        r.getInt("eta"),
+                        r.getString("sesso")
+                );
+                lista.add(utente);
+            }
+            return lista;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
 
 
 

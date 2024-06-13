@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneTornei.Interfacce.SquadreInAttesaView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #FF9622;">
             <children>
-                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00FF38;">
+                <ImageView onMouseClicked="#back" fitHeight="36.0" fitWidth="36.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/ic--baseline-arrow-back.png" />
                     </image>
@@ -47,13 +47,13 @@
             <font>
                 <Font name="System Bold" size="14.0" />
             </font></Label>
-        <ListView layoutX="27.0" layoutY="82.0" prefHeight="389.0" prefWidth="410.0" />
+        <ListView fx:id="listaSquadreAttesa" layoutX="27.0" layoutY="82.0" prefHeight="389.0" prefWidth="410.0" />
         <Label disable="true" layoutX="491.0" layoutY="72.0" text="DETTAGLI SQUADRA RICHIEDENTE">
          <font>
             <Font name="System Bold" size="12.800000190734863" />
          </font></Label>
-        <ListView disable="true" layoutX="458.0" layoutY="102.0" prefHeight="302.0" prefWidth="278.0" />
-        <Button disable="true" layoutX="539.0" layoutY="413.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: #03b53f;" text="Accetta squadra" textFill="WHITE">
+        <ListView fx:id="dettagliSquadra" disable="true" layoutX="458.0" layoutY="102.0" prefHeight="302.0" prefWidth="278.0" />
+        <Button fx:id="buttonAccettaSquadra" disable="true" layoutX="539.0" layoutY="413.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: #03b53f;" text="Accetta squadra" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
@@ -61,7 +61,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-        <Button disable="true" layoutX="539.0" layoutY="449.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: #e31414;" text="Rifiuta squadra" textFill="WHITE">
+        <Button fx:id="buttonRifiutaSquadra" disable="true" layoutX="539.0" layoutY="449.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: #e31414;" text="Rifiuta squadra" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>

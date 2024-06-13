@@ -65,7 +65,7 @@ public class VisualizzaTorneiGestori {
 	}
 
 	public void clickSquadreAttesa() {
-
+		amminCtrl.SquadreInAttesa(selectedTorneo, stage);
 	}
 
 	public void showDettagliTorneo(Torneo torneo) {

@@ -56,9 +56,6 @@ public class ModificaTorneoView {
 
 	}
 
-	public void ModifyData() {
-
-	}
 
 	public void clickConferma() {
 		if(torneo.getData_inizio() == dataInizioPicker.getValue() && torneo.getData_fine() == dataFinePicker.getValue()) {

@@ -24,7 +24,7 @@ public class IscrizioneSquadraView {
 	@FXML
 	private ListView<Utente> listaGiocatoriSquadra;
 	@FXML
-	private TextField numeroSquadra;
+	private TextField nomeSquadra;
 	@FXML
 	private TextField livelloMedio;
 
@@ -42,13 +42,14 @@ public class IscrizioneSquadraView {
 
 	public void ClickAggiungiPartecipanti() {
 		torneiCtrl.AggiungiPartecipanti(torneiCtrl, stage, torneo);
-
+		nomeSquadra.setDisable(false);
 	}
 
 
 
 	public void ClickIscriviSquadra() {
-		torneiCtrl.IscriviSquadraCliccato(torneo, media);
+		torneiCtrl.IscriviSquadraCliccato(torneo, media, nomeSquadra.getText());
+
 	}
 
 	@FXML
@@ -63,11 +64,12 @@ public class IscrizioneSquadraView {
 		}
 		media = current_sum/giocatori.size();
 		livelloMedio.setText(String.valueOf(media));
-		numeroSquadra.setText(String.valueOf(this.nSquadra));
+		nomeSquadra.setEditable(true);
 	}
 
 	public void back() {
 		this.torneiCtrl.toMain();
 	}
+
 
 }
