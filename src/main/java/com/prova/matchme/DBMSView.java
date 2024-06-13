@@ -931,6 +931,40 @@ public class DBMSView {
         return null;
     }
 
+    public static ArrayList<Utente> queryGetSquadra(int nSquadra, String nomeSquadra, Torneo torneo) {
+        String query = "SELECT u.id, u.nome, u.cognome, u.email, u.username, u.sesso, u.tipo, u.passwordUtente, u.livello, u.eta " +
+                "FROM SquadreAttesa sa " +
+                "JOIN utente u ON sa.ref_Utente = u.id " +
+                "WHERE sa.ref_Torneo = ? AND sa.n_Squadra = ? AND sa.nomeSquadra = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            stmt.setInt(2, nSquadra);
+            stmt.setString(3, nomeSquadra);
+            ResultSet r = stmt.executeQuery();
+            ArrayList<Utente> lista = new ArrayList<>();
+            while (r.next()) {
+                Utente utente = new Utente(
+                        r.getInt("id"),
+                        r.getString("nome"),
+                        r.getString("cognome"),
+                        r.getString("email"),
+                        r.getString("username"),
+                        r.getString("tipo"),
+                        r.getString("passwordUtente"),
+                        r.getFloat("livello"),
+                        r.getInt("eta"),
+                        r.getString("sesso")
+                );
+                lista.add(utente);
+            }
+            return lista;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+
 
 
 

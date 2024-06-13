@@ -103,8 +103,14 @@ public class AmministrazioneTorneiCtrl {
 		});
 	}
 
-	public void PassSquadra() {
+	public void PassSquadra(String squadra, Torneo torneo) {
+		String[] parts = squadra.split(" nome squadra: ");
 
+		String[] numeroSquadraPart = parts[0].split("Numero squadra: ");
+
+		int numeroSquadra = Integer.parseInt(numeroSquadraPart[1].trim());
+		String nomeSquadra = parts[1].trim();
+		boundarySquadreInAttesa.MostraSquadra(DBMSView.queryGetSquadra(numeroSquadra,nomeSquadra, torneo));
 	}
 
 	public void AccettaCliccato() {
