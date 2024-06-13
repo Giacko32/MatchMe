@@ -15,7 +15,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Gioele2002!";
 
     private static Connection connDBMS = null;
 

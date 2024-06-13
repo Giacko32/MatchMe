@@ -38,12 +38,17 @@ public class IscrizioneSquadraView {
 		this.nSquadra = nSquadra;
 	}
 
+	@FXML
+	public void initialize() {
+		ArrayList<Utente> utente = new ArrayList<>();
+		utente.add(this.utente);
+		this.updateListaGiocatori(utente);
+	}
 
 
 
 	public void ClickAggiungiPartecipanti() {
 		torneiCtrl.AggiungiPartecipanti(torneiCtrl, stage, torneo);
-		nomeSquadra.setDisable(false);
 	}
 
 
