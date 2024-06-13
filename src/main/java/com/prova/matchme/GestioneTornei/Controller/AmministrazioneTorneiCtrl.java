@@ -35,6 +35,9 @@ public class AmministrazioneTorneiCtrl {
 		this.stage = stage;
 		this.gestore = gestore;
 	}
+	public AmministrazioneTorneiCtrl(Gestore gestore) {
+		this.gestore = gestore;
+	}
 
 	public void mostraTorneiSede(Stage stage){
 		stage.close();
@@ -167,29 +170,24 @@ public class AmministrazioneTorneiCtrl {
 		return DBMSView.queryGetNumeroSquadreTorneo(torneo) < torneo.getN_Squadre();
 	}
 
-	public void CloseWarningView() {
+	public void CreaCalendario(){
+		ArrayList<Torneo> tornei = DBMSView.queryGetTorneiSede(gestore);
+		for(Torneo torneo : tornei){
+			if(torneo.getData_inizio().isEqual(LocalDate.now().plusDays(3))){
+				if(CheckSquadre(torneo)){
+					this.accoppia();
+				}else{
+
+				}
+			}
+
+		}
+	}
+
+	public void accoppia(){
 
 	}
 
-	public void checkTime() {
-
-	}
-
-	public void AccoppiaSquadre() {
-
-	}
-
-	public void MatchPartitaCampo() {
-
-	}
-
-	public void checkNumeroTornei() {
-
-	}
-
-	public void checkNumeroPartite() {
-
-	}
 
 	public void toMain () {
 		if (gestore != null) {
