@@ -8,10 +8,7 @@ import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Torneo;
-import com.prova.matchme.GestioneTornei.Interfacce.CreaTorneoView;
-import com.prova.matchme.GestioneTornei.Interfacce.ModificaTorneoView;
-import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaDettagliTuttiITornei;
-import com.prova.matchme.GestioneTornei.Interfacce.VisualizzaTorneiGestori;
+import com.prova.matchme.GestioneTornei.Interfacce.*;
 import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
 import javafx.stage.Stage;
@@ -28,6 +25,7 @@ public class AmministrazioneTorneiCtrl {
 	private CreaTorneoView boundaryCreaTorneo;
 	private ConfirmView boundaryConfirm;
 	private ModificaTorneoView boundaryModificaTorneo;
+	private SquadreInAttesaView boundarySquadreInAttesa;
 
 
 
@@ -97,8 +95,12 @@ public class AmministrazioneTorneiCtrl {
 		this.toMain();
 	}
 
-	public void SquadreInAttesa() {
-
+	public void SquadreInAttesa(Torneo torneo, Stage stage) {
+		stage.close();
+		Utils.cambiaInterfaccia("FXML/AccettazioneSquadreTorneo.fxml", stage, c -> {
+			boundarySquadreInAttesa = new SquadreInAttesaView(this, stage, torneo, DBMSView.queryGetSquadreInAttesa(torneo));
+			return boundarySquadreInAttesa;
+		});
 	}
 
 	public void PassSquadra() {
