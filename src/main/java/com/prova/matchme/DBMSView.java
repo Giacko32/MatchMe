@@ -16,7 +16,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gioele2002!";
 
     private static Connection connDBMS = null;
 
@@ -729,13 +729,14 @@ public class DBMSView {
         return null;
     }
 
-    public static void queryPutSquadraInAttesa(Torneo torneo, int numeroSquadra, ArrayList<Utente> squadra) {
-        String query = "INSERT INTO SquadreAttesa (ref_Utente, ref_Torneo, n_Squadra) VALUES (?, ?, ?)";
+    public static void queryPutSquadraInAttesa(Torneo torneo, int numeroSquadra, ArrayList<Utente> squadra, String nomeSquadra) {
+        String query = "INSERT INTO SquadreAttesa (ref_Utente, ref_Torneo, n_Squadra, nomeSquadra) VALUES (?, ?, ?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             for (Utente utente : squadra) {
                 stmt.setInt(1, utente.getId());
                 stmt.setInt(2, torneo.getId());
                 stmt.setInt(3, numeroSquadra);
+                stmt.setString(4, nomeSquadra);
                 stmt.addBatch();
             }
             stmt.executeBatch();
@@ -744,13 +745,14 @@ public class DBMSView {
         }
     }
 
-    public static void queryPutSquadraTorneo(Torneo torneo, int numeroSquadra, ArrayList<Utente> squadra) {
-        String query = "INSERT INTO iscrizione (ref_Utente, ref_Torneo, n_Squadra) VALUES (?, ?, ?)";
+    public static void queryPutSquadraTorneo(Torneo torneo, int numeroSquadra, ArrayList<Utente> squadra, String nomeSquadra) {
+        String query = "INSERT INTO iscrizione (ref_Utente, ref_Torneo, n_Squadra,nomeSquadra) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             for (Utente utente : squadra) {
                 stmt.setInt(1, utente.getId());
                 stmt.setInt(2, torneo.getId());
                 stmt.setInt(3, numeroSquadra);
+                stmt.setString(4, nomeSquadra);
                 stmt.addBatch();
             }
             stmt.executeBatch();
@@ -774,14 +776,30 @@ public class DBMSView {
         }
         return -1;  // Restituisce -1 se non viene trovato alcun risultato
     }
+    public static String getNomeSquadraUtenteTorneo(Torneo torneo, Utente utente) {
+        String query = "SELECT nomeSquadra FROM iscrizione WHERE ref_Utente = ? AND ref_Torneo = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, utente.getId());
+            stmt.setInt(2, torneo.getId());
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("nomeSquadra");
+                }
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return "";  // Restituisce -1 se non viene trovato alcun risultato
+    }
 
-    public static void queryDeleteSquadraTorneo(Torneo torneo, Utente utente, int numeroSquadra) {
-        String query = "SELECT ref_Utente FROM iscrizione WHERE ref_Torneo = ? AND n_Squadra = ?";
+    public static void queryDeleteSquadraTorneo(Torneo torneo, Utente utente, int numeroSquadra, String nomeSquadra) {
+        String query = "SELECT ref_Utente FROM iscrizione WHERE ref_Torneo = ? AND n_Squadra = ? AND nomeSquadra = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, torneo.getId());
             stmt.setInt(2, numeroSquadra);
+            stmt.setString(3, nomeSquadra);
             var r = stmt.executeQuery();
-            String notifica = "Sei stato eliminato dalla squadra " + numeroSquadra + " del torneo " + torneo.getId();
+            String notifica = "Sei stato eliminato dalla squadra " + nomeSquadra + " del torneo " + torneo.getId();
             while (r.next()) {
 
                 DBMSView.sendNotify2(notifica, r.getInt("ref_Utente"), 1);

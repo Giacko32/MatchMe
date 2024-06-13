@@ -43,8 +43,8 @@
                 </ImageView>
             </children>
         </AnchorPane>
-      <Label layoutX="37.0" layoutY="80.0" text="Numero squadra:" />
-      <TextField fx:id="numeroSquadra" editable="false" layoutX="176.0" layoutY="76.0" prefHeight="26.0" prefWidth="176.0">
+      <Label layoutX="37.0" layoutY="80.0" text="Nome squadra:" />
+      <TextField fx:id="nomeSquadra" editable="false" layoutX="176.0" layoutY="76.0" prefHeight="26.0" prefWidth="176.0">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
@@ -55,7 +55,7 @@
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-      <Button onMouseClicked="#ClickIscriviSquadra" layoutX="610.0" layoutY="299.0" mnemonicParsing="false" style="-fx-background-color: #03b53f;" text="Iscrivi squadra " textFill="WHITE">
+      <Button layoutX="610.0" layoutY="299.0" mnemonicParsing="false" onMouseClicked="#ClickIscriviSquadra" style="-fx-background-color: #03b53f;" text="Iscrivi squadra " textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

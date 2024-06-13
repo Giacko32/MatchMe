@@ -131,24 +131,24 @@ public class TorneiCtrl {
 				}
 		}
 
-		public void IscriviSquadraCliccato (Torneo torneo, float media) {
+		public void IscriviSquadraCliccato (Torneo torneo, float media, String nomeSquadra) {
 			if(giocatori_aggiunti == true){
 				if(CheckLivello(torneo, media)){
 					//La squadra soddisfa i vincoli
-					DBMSView.queryPutSquadraTorneo(torneo,numeroSquadraCorrente,utentiSquadra);
+					DBMSView.queryPutSquadraTorneo(torneo,numeroSquadraCorrente,utentiSquadra,nomeSquadra);
 					Utils.creaPannelloErrore("Squadra iscritta");
 					//mandiamo la notifica ai componenti
 					ArrayList<UtentePart> utentiPart = new ArrayList<>();
 					for (Utente u : utentiSquadra){
 						utentiPart.add(new UtentePart(u,0));
 					}
-					String notifica = "Sei stato aggiunto al torneo " + torneo.toString() + " nella squadra" + numeroSquadraCorrente;
+					String notifica = "Sei stato aggiunto al torneo " + torneo.toString() + " nella squadra" + nomeSquadra;
 					DBMSView.sendNotify(notifica, utentiPart,1);
 					numeroSquadraCorrente++;
 					this.toMain();
 				}else{
 					//la squadra non soddisfa i vincoli
-					DBMSView.queryPutSquadraInAttesa(torneo, numeroSquadraCorrente, utentiSquadra);
+					DBMSView.queryPutSquadraInAttesa(torneo, numeroSquadraCorrente, utentiSquadra, nomeSquadra);
 					Utils.creaPannelloErrore("Non rispetta i vincoli");
 					this.toMain();
 				}
@@ -183,7 +183,8 @@ public class TorneiCtrl {
 		public void CloseConfirmView (Utente utente, Torneo torneo) {
 			//cancelliamo la squadra e mandiamo la notifica
 			int numeroSquadraEliminato = DBMSView.getNumeroSquadraUtenteTorneo(torneo, utente);
-			DBMSView.queryDeleteSquadraTorneo(torneo, utente, numeroSquadraEliminato);
+			String nomeSquadraEliminata = DBMSView.getNomeSquadraUtenteTorneo(torneo, utente);
+			DBMSView.queryDeleteSquadraTorneo(torneo, utente, numeroSquadraEliminato, nomeSquadraEliminata);
 			//squadra eliminata
 			//rimuoviamo il torneo dalla listview
 			this.toMain();
