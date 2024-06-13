@@ -36,7 +36,7 @@ public class ProfiloCtrl {
         } else if (g != null) {
             Utils.cambiaInterfaccia("FXML/Gestione Profilo.fxml", stage, c -> {
                 return new ManageProfileView(this, g, stage);
-            }, 400, 250);
+            }, 400, 300);
         }
     }
 
@@ -174,7 +174,7 @@ public class ProfiloCtrl {
     public void Passcode(String codice) {
         int id=DBMSView.queryGetIdCode(codice);
         if(CheckId(id)){
-            DBMSView.querySetAbbonamento(u.getId());
+            DBMSView.queryAttivaAbbonamento(u.getId());
             u.setTipo("t");
             CustomStage s=new CustomStage("SUCCESSO");
             Utils.cambiaInterfaccia("FXML/Dialog cod abb corretto.fxml", s, c -> {
