@@ -1,7 +1,6 @@
 package com.prova.matchme;
 
 import com.prova.matchme.Entity.*;
-import javafx.util.Pair;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -16,7 +15,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gioele2002!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -27,9 +26,6 @@ public class DBMSView {
 
     }
 
-    /**
-     * @hidden
-     */
     private static String buildConnectionUrl(String dbName) {
         return "jdbc:mysql://" + baseUrl + ":" + port + "/" + dbName + "?user=" + user + "&password=" + pass;
     }
@@ -248,7 +244,7 @@ public class DBMSView {
         return 0;
     }
 
-    public static void querySetAbbonamento(int id) {
+    public static void queryAttivaAbbonamento(int id) {
         var query = "UPDATE utente SET tipo=? WHERE id=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, "t");
@@ -1093,7 +1089,7 @@ public class DBMSView {
         return null;
     }
 
-    public static void querySetAbbonamento(String codice, LocalDate data, int idutente, int idgestore) {
+    public static void queryAttivaAbbonamento(String codice, LocalDate data, int idutente, int idgestore) {
         String query = "INSERT INTO abbonamento(codice,data_Scadenza,ref_Tesserato,ref_Gestore) values(?,?,?,?)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, codice);

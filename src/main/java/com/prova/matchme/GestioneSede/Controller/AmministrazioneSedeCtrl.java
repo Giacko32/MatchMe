@@ -139,7 +139,7 @@ public class AmministrazioneSedeCtrl {
         GeneraCodice();
         CalcolaDataFine(durata);
         InviaMail();
-        DBMSView.querySetAbbonamento(codice.toString(), date, utenteselected.getId(), g.getId());
+        DBMSView.queryAttivaAbbonamento(codice.toString(), date, utenteselected.getId(), g.getId());
         toAdmin();
     }
 
