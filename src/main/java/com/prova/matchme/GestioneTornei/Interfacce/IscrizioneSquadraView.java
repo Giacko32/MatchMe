@@ -40,6 +40,7 @@ public class IscrizioneSquadraView {
 
 
 
+
 	public void ClickAggiungiPartecipanti() {
 		torneiCtrl.AggiungiPartecipanti(torneiCtrl, stage, torneo);
 		nomeSquadra.setDisable(false);
@@ -48,7 +49,9 @@ public class IscrizioneSquadraView {
 
 
 	public void ClickIscriviSquadra() {
-		torneiCtrl.IscriviSquadraCliccato(torneo, media, nomeSquadra.getText());
+		if(!nomeSquadra.getText().equals("")) {
+			torneiCtrl.IscriviSquadraCliccato(torneo, media, nomeSquadra.getText());
+		}
 
 	}
 

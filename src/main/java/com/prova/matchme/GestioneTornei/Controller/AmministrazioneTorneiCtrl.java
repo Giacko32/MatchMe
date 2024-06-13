@@ -8,6 +8,8 @@ import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.Torneo;
+import com.prova.matchme.Entity.Utente;
+import com.prova.matchme.Entity.UtentePart;
 import com.prova.matchme.GestioneTornei.Interfacce.*;
 import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
@@ -113,16 +115,56 @@ public class AmministrazioneTorneiCtrl {
 		boundarySquadreInAttesa.MostraSquadra(DBMSView.queryGetSquadra(numeroSquadra,nomeSquadra, torneo));
 	}
 
-	public void AccettaCliccato() {
+	public void AccettaCliccato(Torneo torneo, String squadra) {
+		if(CheckSquadre(torneo)){
+			//il torneo ha posti liberi
+			String[] parts = squadra.split(" nome squadra: ");
 
+			String[] numeroSquadraPart = parts[0].split("Numero squadra: ");
+
+			int numeroSquadra = Integer.parseInt(numeroSquadraPart[1].trim());
+			String nomeSquadra = parts[1].trim();
+			//squadra aggiunta nel torneo
+			ArrayList<Utente> utentiSquadra = DBMSView.queryGetSquadra(numeroSquadra,nomeSquadra,torneo);
+			DBMSView.queryPutSquadraTorneo(torneo, numeroSquadra,utentiSquadra , nomeSquadra);
+			//Mandiamo la notifica
+			Utils.creaPannelloErrore("Squadra iscritta");
+			//mandiamo la notifica ai componenti
+			ArrayList<UtentePart> utentiPart = new ArrayList<>();
+			for (Utente u : utentiSquadra){
+				utentiPart.add(new UtentePart(u,0));
+			}
+			String notifica = "Sei stato aggiunto al torneo " + torneo.toString() + " nella squadra " + nomeSquadra+ "\n tramite accettazione del gestore";
+			DBMSView.sendNotify(notifica, utentiPart,1);
+			DBMSView.queryRimuoviSquadraInAttesa(torneo,numeroSquadra,nomeSquadra);
+		}else{
+			//il torneo non ha posti liberi
+			Utils.creaPannelloErrore("Torneo pieno");
+		}
 	}
 
-	public void RifiutaCliccato() {
+	public void RifiutaCliccato(Torneo torneo, String squadra) {
+		String[] parts = squadra.split(" nome squadra: ");
 
+		String[] numeroSquadraPart = parts[0].split("Numero squadra: ");
+
+		int numeroSquadra = Integer.parseInt(numeroSquadraPart[1].trim());
+		String nomeSquadra = parts[1].trim();
+		//squadra aggiunta nel torneo
+		ArrayList<Utente> utentiSquadra = DBMSView.queryGetSquadra(numeroSquadra,nomeSquadra,torneo);
+		//mandiamo la notifica ai componenti
+		ArrayList<UtentePart> utentiPart = new ArrayList<>();
+		for (Utente u : utentiSquadra){
+			utentiPart.add(new UtentePart(u,0));
+		}
+		String notifica = "Squadra "+ nomeSquadra +  " rifiutata per il torneo " + torneo.toString();
+		DBMSView.sendNotify(notifica, utentiPart,1);
+		DBMSView.queryRimuoviSquadraInAttesa(torneo,numeroSquadra,nomeSquadra);
 	}
 
-	public void CheckSquadre() {
-
+	public boolean CheckSquadre(Torneo torneo) {
+		//se true il numero di squadre è minore del massimo
+		return DBMSView.queryGetNumeroSquadreTorneo(torneo) < torneo.getN_Squadre();
 	}
 
 	public void CloseWarningView() {

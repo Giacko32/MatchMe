@@ -964,6 +964,20 @@ public class DBMSView {
         return null;
     }
 
+    public static void queryRimuoviSquadraInAttesa(Torneo torneo, int nSquadra, String nomeSquadra) {
+        String query = "DELETE FROM SquadreAttesa WHERE ref_Torneo = ? AND n_Squadra = ? AND nomeSquadra = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            stmt.setInt(2, nSquadra);
+            stmt.setString(3, nomeSquadra);
+            var r = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+    }
+
 
 
 

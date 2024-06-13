@@ -55,13 +55,14 @@ public class SquadreInAttesaView {
 		buttonRifiutaSquadra.setDisable(false);
 		ObservableList<String> dettagliList = FXCollections.observableArrayList();
 		for (Utente utente : squadra) {
-			dettagliList.add("Nome: " + utente.getNome() + ", Cognome: " + utente.getCognome() + ", Livello: " + utente.getLivello() + ", Età: " + utente.getEta());
+			dettagliList.add("Nome: " + utente.getNome() + ", Cognome: " + utente.getCognome() + ", Livello: " + utente.getLivello());
 		}
 		dettagliSquadra.setItems(dettagliList);
 	}
 
 	public void clickAccetta() {
-
+		amminCtrl.AccettaCliccato(torneo, selectedSquadra);
+		this.back();
 	}
 
 	public void EliminaSquadra() {
@@ -69,7 +70,8 @@ public class SquadreInAttesaView {
 	}
 
 	public void clickRifiuta() {
-
+		amminCtrl.RifiutaCliccato(torneo, selectedSquadra);
+		this.back();
 	}
 
 	public void ShowBnd() {
