@@ -3,6 +3,7 @@ package com.prova.matchme.GestioneTornei.Interfacce;
 
 import com.prova.matchme.Entity.Torneo;
 import com.prova.matchme.GestioneTornei.Controller.AmministrazioneTorneiCtrl;
+import com.prova.matchme.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -60,6 +61,11 @@ public class ModificaTorneoView {
 	}
 
 	public void clickConferma() {
+		if(torneo.getData_inizio() == dataInizioPicker.getValue() && torneo.getData_fine() == dataFinePicker.getValue()) {
+			Utils.creaPannelloErrore("Non hai effettuato modifiche");
+		}else{
+			amminCtrl.PassDataModifica(torneo, dataInizioPicker.getValue(), dataFinePicker.getValue());
+		}
 
 	}
 

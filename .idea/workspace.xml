@@ -9,7 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4af3d7da-bc56-44b9-ace0-9872cfa66ce3" name="Changes" comment="Sono stati fatti tanti cambiamenti" />
+    <list default="true" id="4af3d7da-bc56-44b9-ace0-9872cfa66ce3" name="Changes" comment="Sono stati fatti tanti cambiamenti">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Controller/AmministrazioneTorneiCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Controller/AmministrazioneTorneiCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/ModificaTorneoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Interfacce/ModificaTorneoView.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -146,6 +151,7 @@
       <workItem from="1718134948138" duration="1928000" />
       <workItem from="1718203101418" duration="6330000" />
       <workItem from="1718209965882" duration="2343000" />
+      <workItem from="1718212477349" duration="1018000" />
     </task>
     <task id="LOCAL-00001" summary="Sono stati fatti tanti cambiamenti">
       <option name="closed" value="true" />
@@ -477,11 +483,11 @@
     </task>
     <task id="LOCAL-00042" summary="Sono stati fatti tanti cambiamenti">
       <option name="closed" value="true" />
-      <created>1718212973031</created>
+      <created>1718212510329</created>
       <option name="number" value="00042" />
       <option name="presentableId" value="LOCAL-00042" />
       <option name="project" value="LOCAL" />
-      <updated>1718212973031</updated>
+      <updated>1718212510329</updated>
     </task>
     <option name="localTasksCounter" value="43" />
     <servers />

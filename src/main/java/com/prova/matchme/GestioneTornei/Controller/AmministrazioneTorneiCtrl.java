@@ -16,6 +16,7 @@ import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class AmministrazioneTorneiCtrl {
@@ -87,6 +88,12 @@ public class AmministrazioneTorneiCtrl {
 		DBMSView.queryDeleteTorneo(torneo);
 		//squadra eliminata
 		//rimuoviamo il torneo dalla listview
+		this.toMain();
+	}
+
+	public void PassDataModifica(Torneo torneo, LocalDate data_inizo, LocalDate data_fine) {
+		DBMSView.queryUpdateTorneo(torneo, data_inizo, data_fine);
+		Utils.creaPannelloErrore("Torneo modificato");
 		this.toMain();
 	}
 
