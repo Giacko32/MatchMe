@@ -1079,6 +1079,38 @@ public class DBMSView {
         return false;
     }
 
+    public static ArrayList<PartiteTorneo> queryGetCalendario(Torneo torneo) {
+        String query = "SELECT p.nSquadra1 AS id1, p.nSquadra2 AS id2, " +
+                "i1.nomeSquadra AS nomeSquadra1, i2.nomeSquadra AS nomeSquadra2, p2.dataOra AS Data " +
+                "FROM partitetornei p " +
+                "JOIN iscrizione i1 ON p.nSquadra1 = i1.n_Squadra AND p.ref_Torneo = i1.ref_Torneo " +
+                "JOIN iscrizione i2 ON p.nSquadra2 = i2.n_Squadra AND p.ref_Torneo = i2.ref_Torneo " +
+                "JOIN partita p2 ON p.ref_Partita = p2.id " +
+                "WHERE p.ref_Torneo = ?";
+
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            var r = stmt.executeQuery();
+            ArrayList<PartiteTorneo> partiteTorneo = new ArrayList<>();
+            while (r.next()) {
+                PartiteTorneo partita = new PartiteTorneo(
+                        r.getInt("id1"),
+                        r.getInt("id2"),
+                        r.getString("nomeSquadra1"),
+                        r.getString("nomeSquadra2"),
+                        r.getTimestamp("Data").toLocalDateTime()
+                );
+                partiteTorneo.add(partita);
+            }
+            return partiteTorneo;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
+
+
+
 
 
 
@@ -1124,6 +1156,7 @@ public class DBMSView {
         }
         return partitaDetails;
     }
+
 
     public static ArrayList<Utente> queryGetUtenti(String parametri) {
         String query = "SELECT id,nome,cognome FROM utente WHERE (nome LIKE ? or cognome LIKE ?) AND (tipo<>?) AND id > 0";

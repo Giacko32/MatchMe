@@ -55,18 +55,19 @@
             </font>
         </Label>
 
-        <Button onMouseClicked="#ClickCancellaSquadra" fx:id="buttonCancellaSquadra" disable="true" layoutX="483.0" layoutY="432.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="178.0" text="CANCELLA ISCRIZIONE SQUADRA">
+        <Button fx:id="buttonCancellaSquadra" disable="true" layoutX="483.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#ClickCancellaSquadra" prefHeight="50.0" prefWidth="178.0" text="CANCELLA ISCRIZIONE SQUADRA">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label layoutX="423.0" layoutY="199.0" text="Sport:" />
-      <Label layoutX="423.0" layoutY="242.0" text="Max squadre:" />
-      <Label layoutX="423.0" layoutY="285.0" text="Giocatori per squadre:" />
-      <TextField fx:id="sport" editable="false" layoutX="562.0" layoutY="194.0" />
-      <TextField fx:id="maxSquadre" editable="false" layoutX="562.0" layoutY="237.0" />
-      <TextField fx:id="maxGiocatoriSquadre" editable="false" layoutX="562.0" layoutY="280.0" />
+      <Label layoutX="423.0" layoutY="113.0" text="Sport:" />
+      <Label layoutX="419.0" layoutY="151.0" text="Max squadre:" />
+      <Label layoutX="419.0" layoutY="186.0" text="Giocatori per squadre:" />
+      <TextField fx:id="sport" editable="false" layoutX="562.0" layoutY="108.0" />
+      <TextField fx:id="maxSquadre" editable="false" layoutX="562.0" layoutY="147.0" />
+      <TextField fx:id="maxGiocatoriSquadre" editable="false" layoutX="562.0" layoutY="182.0" />
+      <ListView fx:id="ListaCalendario" layoutX="427.0" layoutY="217.0" prefHeight="200.0" prefWidth="290.0" />
     </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package com.prova.matchme.GestioneTornei.Interfacce;
 
+import com.prova.matchme.Entity.PartiteTorneo;
 import com.prova.matchme.Entity.Torneo;
 import com.prova.matchme.GestioneTornei.Controller.TorneiCtrl;
 import javafx.collections.FXCollections;
@@ -26,6 +27,8 @@ public class VisualizzaDettagliMioTorneo {
 	private TextField maxGiocatoriSquadre;
 	@FXML
 	private Button buttonCancellaSquadra;
+	@FXML
+	private ListView<PartiteTorneo> ListaCalendario;
 
 
 	public VisualizzaDettagliMioTorneo(ArrayList<Torneo> lista, TorneiCtrl controller){
@@ -41,6 +44,7 @@ public class VisualizzaDettagliMioTorneo {
 		ListaMieTornei.getSelectionModel().selectedItemProperty().addListener((observable, oldvalue, newvalue) -> {
 			selectedTorneo = newvalue;
 			this.SelectTorneo();
+
 		});
 	}
 	public void ClickCancellaSquadra() {
@@ -60,6 +64,12 @@ public class VisualizzaDettagliMioTorneo {
 		maxSquadre.setText(String.valueOf(torneo.getN_Squadre()));
 		maxGiocatoriSquadre.setText(String.valueOf(torneo.getN_Giocatori_squadra()));
 		buttonCancellaSquadra.setDisable(false);
+	}
+
+	public void showCalendario(ArrayList<PartiteTorneo> lista){
+		ObservableList<PartiteTorneo> calendarioList = FXCollections.observableArrayList(lista);
+		ListaCalendario.setItems(calendarioList);
+
 	}
 
 	@FXML
