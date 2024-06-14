@@ -11,9 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4af3d7da-bc56-44b9-ace0-9872cfa66ce3" name="Changes" comment="Sono stati fatti tanti cambiamenti">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/DBMSView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneMessaggistica/Controller/ChatCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneMessaggistica/Controller/ChatCtrl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneMessaggistica/Interfacce/ChatView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneMessaggistica/Interfacce/ChatView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/PartiteTorneo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/Entity/PartiteTorneo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Controller/AmministrazioneTorneiCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Controller/AmministrazioneTorneiCtrl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +130,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -145,6 +152,7 @@
       <workItem from="1718209965882" duration="2343000" />
       <workItem from="1718212477349" duration="1033000" />
       <workItem from="1718286558371" duration="7924000" />
+      <workItem from="1718352048704" duration="7194000" />
     </task>
     <task id="LOCAL-00001" summary="Sono stati fatti tanti cambiamenti">
       <option name="closed" value="true" />
@@ -508,13 +516,37 @@
     </task>
     <task id="LOCAL-00046" summary="Sono stati fatti tanti cambiamenti">
       <option name="closed" value="true" />
-      <created>1718296528777</created>
+      <created>1718300811861</created>
       <option name="number" value="00046" />
       <option name="presentableId" value="LOCAL-00046" />
       <option name="project" value="LOCAL" />
-      <updated>1718296528777</updated>
+      <updated>1718300811861</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Sono stati fatti tanti cambiamenti">
+      <option name="closed" value="true" />
+      <created>1718301526628</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1718301526628</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Sono stati fatti tanti cambiamenti">
+      <option name="closed" value="true" />
+      <created>1718353474877</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1718353474877</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Sono stati fatti tanti cambiamenti">
+      <option name="closed" value="true" />
+      <created>1718358009530</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1718358009530</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

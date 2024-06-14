@@ -15,7 +15,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gianvito1@";
+    private static final String pass = "Gioele2002!";
 
     private static Connection connDBMS = null;
 
@@ -662,6 +662,7 @@ public class DBMSView {
             while (r.next()) {
                 torneiSede.add(new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6), r.getDate(7).toLocalDate(), r.getDate(8).toLocalDate()));
             }
+
             return torneiSede;
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
@@ -684,36 +685,22 @@ public class DBMSView {
         return null;
     }
 
-    public static int queryGetNumeroPartecipantiSquadreTorneo(Torneo torneo, int numeroSquadra) {
-        String query = "SELECT COUNT(ref_Utente) AS NumeroDiPartecipanti FROM Iscrizione WHERE ref_Torneo = ? AND n_Squadra = ?";
-        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
-            stmt.setInt(1, torneo.getId());
-            stmt.setInt(2, numeroSquadra);
-            var r = stmt.executeQuery();
-            if (r.next()) {
-                int numeroDiPartecipanti = r.getInt("NumeroDiPartecipanti");
-                return numeroDiPartecipanti;
-            }
-        } catch (SQLException e) {
-            erroreComunicazioneDBMS(e);
-        }
-        return 0;
-    }
 
 
     public static int queryGetNumeroSquadreTorneo(Torneo torneo) {
-        String query = "SELECT COUNT(DISTINCT n_Squadra) AS NumeroDiSquadre FROM Iscrizione WHERE ref_Torneo = ?";
+        String query = "SELECT COUNT(DISTINCT n_Squadra) AS NumeroDiSquadre FROM iscrizione WHERE ref_Torneo = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, torneo.getId());
             var r = stmt.executeQuery();
             if (r.next()) {
-                int numeroSquadre = r.getInt("NumeroDiSquadre");
+                int numeroSquadre = r.getInt(1);
                 return numeroSquadre;
             }
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
         return 0;
+
     }
 
     public static ArrayList<Utente> queryGetGiocatoriRicercati(String nome, String cognome) {
@@ -733,13 +720,25 @@ public class DBMSView {
         return null;
     }
 
-    public static void queryPutSquadraInAttesa(Torneo torneo, int numeroSquadra, ArrayList<Utente> squadra, String nomeSquadra) {
-        String query = "INSERT INTO SquadreAttesa (ref_Utente, ref_Torneo, n_Squadra, nomeSquadra) VALUES (?, ?, ?, ?)";
-        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+    public static void queryPutSquadraInAttesa(Torneo torneo, ArrayList<Utente> squadra, String nomeSquadra) {
+        int nSquadra = 1;
+        String query1 = "SELECT MAX(distinct n_Squadra) FROM SquadreAttesa WHERE ref_Torneo = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query1)) {
+            stmt.setInt(1, torneo.getId());
+            var r = stmt.executeQuery();
+            if(r.next()){
+                nSquadra = r.getInt("MAX(distinct n_Squadra)");
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+        String query2 = "INSERT INTO SquadreAttesa (ref_Utente, ref_Torneo, n_Squadra, nomeSquadra) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query2)) {
             for (Utente utente : squadra) {
                 stmt.setInt(1, utente.getId());
                 stmt.setInt(2, torneo.getId());
-                stmt.setInt(3, numeroSquadra);
+                stmt.setInt(3, nSquadra+1);
                 stmt.setString(4, nomeSquadra);
                 stmt.addBatch();
             }
@@ -749,13 +748,29 @@ public class DBMSView {
         }
     }
 
-    public static void queryPutSquadraTorneo(Torneo torneo, int numeroSquadra, ArrayList<Utente> squadra, String nomeSquadra) {
-        String query = "INSERT INTO iscrizione (ref_Utente, ref_Torneo, n_Squadra, nomeSquadra) VALUES (?, ?, ?, ?)";
-        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+    public static void queryPutSquadraTorneo(Torneo torneo, ArrayList<Utente> squadra, String nomeSquadra) {
+        int nSquadra = 1;
+        String query1 = "SELECT MAX(distinct n_Squadra) FROM iscrizione WHERE ref_Torneo = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query1)) {
+                stmt.setInt(1, torneo.getId());
+                var r = stmt.executeQuery();
+                if(r.next()){
+                    nSquadra = r.getInt("MAX(distinct n_Squadra)");
+                }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+
+
+
+
+        String query2 = "INSERT INTO iscrizione (ref_Utente, ref_Torneo, n_Squadra, nomeSquadra) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query2)) {
             for (Utente utente : squadra) {
                 stmt.setInt(1, utente.getId());
                 stmt.setInt(2, torneo.getId());
-                stmt.setInt(3, numeroSquadra);
+                stmt.setInt(3, nSquadra+1);
                 stmt.setString(4, nomeSquadra);
                 stmt.addBatch();
             }
@@ -968,6 +983,36 @@ public class DBMSView {
         return null;
     }
 
+    public static void queryRimuoviSquadraInAttesa(Torneo torneo, int nSquadra, String nomeSquadra) {
+        String query = "DELETE FROM SquadreAttesa WHERE ref_Torneo = ? AND n_Squadra = ? AND nomeSquadra = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            stmt.setInt(2, nSquadra);
+            stmt.setString(3, nomeSquadra);
+            var r = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+    }
+
+    public static ArrayList<String> queryGetSquadre(Torneo torneo) {
+        String query = "SELECT n_Squadra, nomeSquadra FROM iscrizione where ref_Torneo = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            var r = stmt.executeQuery();
+            ArrayList<String> lista = new ArrayList<>();
+            while (r.next()) {
+                String risultato ="Numero squadra: " + r.getInt(1)+ " nome squadra: " + r.getString(2);
+                lista.add(risultato);
+            }
+            return lista;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+    }
 
 
 

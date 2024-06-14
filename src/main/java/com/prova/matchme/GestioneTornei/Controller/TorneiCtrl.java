@@ -24,15 +24,14 @@ public class TorneiCtrl {
 	private VisualizzaDettagliTuttiITornei boundaryTutti;
 	private IscrizioneSquadraView boundarySquadra;
 	private SearchUserView boundarySearchUser;
-	private int numeroSquadraCorrente = 1;
 	private ArrayList<Utente> utentiSquadra;
-	private boolean giocatori_aggiunti = false;
 	private ConfirmView boundaryConfirm;
 
 	public TorneiCtrl(Utente utente, Stage stage) {
 		this.utente = utente;
 		this.stage = stage;
 		this.utentiSquadra = new ArrayList<>();
+		this.utentiSquadra.add(utente);
 		Stage stageBoundary = new CustomStage("Seleziona la tipologia di tornei");
 		Utils.cambiaInterfaccia("FXML/SelezioneTornei.fxml", stageBoundary, c -> {
 			return new SelezioneTorneiView( this, stageBoundary);
@@ -69,7 +68,7 @@ public class TorneiCtrl {
 		if (this.CheckNumeroSquadre(torneo)) {
 			st.close();
 			Utils.cambiaInterfaccia("FXML/IscrizioneSquadraTorneo.fxml", stage, c -> {
-				boundarySquadra = new IscrizioneSquadraView(this, utente, stage, torneo,numeroSquadraCorrente);
+				boundarySquadra = new IscrizioneSquadraView(this, utente, stage, torneo);
 				return boundarySquadra;
 			});
 		} else {
@@ -78,7 +77,7 @@ public class TorneiCtrl {
 	}
 
 		public void AggiungiPartecipanti (TorneiCtrl torneiCtrl, Stage st, Torneo torneo) {
-		if(giocatori_aggiunti == false){
+		if(utentiSquadra.size() < torneo.getN_Giocatori_squadra()){
 			st.close();
 			Utils.cambiaInterfaccia("FXML/SearchUserView.fxml", stage, c -> {
 				boundarySearchUser =  new SearchUserView(this, torneo,stage);
@@ -92,13 +91,14 @@ public class TorneiCtrl {
 
 		public boolean CheckSquadra (Torneo torneo) {
 		//se il numero di giocatori è minore del numero massimo per squadra torna true sennò false
-		return DBMSView.queryGetNumeroPartecipantiSquadreTorneo(torneo,numeroSquadraCorrente ) < torneo.getN_Giocatori_squadra();
+		return utentiSquadra.size() < torneo.getN_Giocatori_squadra();
 
 		}
 
 		public void PassData (String nome, String cognome) {
 			ArrayList<Utente> giocatori_cercati = DBMSView.queryGetGiocatoriRicercati(nome, cognome);
 			System.out.println(giocatori_cercati);
+			giocatori_cercati.removeAll(utentiSquadra);
 			boundarySearchUser.MostraLista(giocatori_cercati);
 		}
 
@@ -108,16 +108,15 @@ public class TorneiCtrl {
 					if(!utentiSquadra.contains(utente)){
 						utentiSquadra.add(utente);
 						System.out.println(utentiSquadra);
-						if(utentiSquadra.size() == torneo.getN_Giocatori_squadra()){
+						if(utentiSquadra.size() == (torneo.getN_Giocatori_squadra()-1)){
 							//la squadra è piena possiamo aggiornare la lista
 							st.close();
 							Utils.cambiaInterfaccia("FXML/IscrizioneSquadraTorneo.fxml", stage, c -> {
-								boundarySquadra = new IscrizioneSquadraView(this, utente, stage, torneo,numeroSquadraCorrente);
+								boundarySquadra = new IscrizioneSquadraView(this, utente, stage, torneo);
 
 								return boundarySquadra;
 							});
 							boundarySquadra.updateListaGiocatori(utentiSquadra);
-							giocatori_aggiunti = true;
 						}else {
 							Utils.creaPannelloErrore("Giocatore aggiunto");
 						}
@@ -132,10 +131,10 @@ public class TorneiCtrl {
 		}
 
 		public void IscriviSquadraCliccato (Torneo torneo, float media, String nomeSquadra) {
-			if(giocatori_aggiunti == true){
+			if(utentiSquadra.size() == torneo.getN_Giocatori_squadra()){
 				if(CheckLivello(torneo, media)){
 					//La squadra soddisfa i vincoli
-					DBMSView.queryPutSquadraTorneo(torneo,numeroSquadraCorrente,utentiSquadra,nomeSquadra);
+					DBMSView.queryPutSquadraTorneo(torneo,utentiSquadra,nomeSquadra);
 					Utils.creaPannelloErrore("Squadra iscritta");
 					//mandiamo la notifica ai componenti
 					ArrayList<UtentePart> utentiPart = new ArrayList<>();
@@ -144,11 +143,10 @@ public class TorneiCtrl {
 					}
 					String notifica = "Sei stato aggiunto al torneo " + torneo.toString() + " nella squadra" + nomeSquadra;
 					DBMSView.sendNotify(notifica, utentiPart,1);
-					numeroSquadraCorrente++;
 					this.toMain();
 				}else{
 					//la squadra non soddisfa i vincoli
-					DBMSView.queryPutSquadraInAttesa(torneo, numeroSquadraCorrente, utentiSquadra, nomeSquadra);
+					DBMSView.queryPutSquadraInAttesa(torneo, utentiSquadra, nomeSquadra);
 					Utils.creaPannelloErrore("Non rispetta i vincoli");
 					this.toMain();
 				}

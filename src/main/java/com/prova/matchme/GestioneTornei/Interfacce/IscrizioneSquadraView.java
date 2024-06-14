@@ -19,7 +19,6 @@ public class IscrizioneSquadraView {
 	private Utente utente;
 	private Stage stage;
 	private Torneo torneo;
-	private int nSquadra;
 	private float media;
 	@FXML
 	private ListView<Utente> listaGiocatoriSquadra;
@@ -30,25 +29,32 @@ public class IscrizioneSquadraView {
 
 
 
-	public IscrizioneSquadraView(TorneiCtrl torneiCtrl, Utente utente, Stage stage, Torneo torneo, int nSquadra) {
+	public IscrizioneSquadraView(TorneiCtrl torneiCtrl, Utente utente, Stage stage, Torneo torneo) {
 		this.torneiCtrl = torneiCtrl;
 		this.utente = utente;
 		this.stage = stage;
 		this.torneo = torneo;
-		this.nSquadra = nSquadra;
+	}
+
+	@FXML
+	public void initialize() {
+		ArrayList<Utente> utente = new ArrayList<>();
+		utente.add(this.utente);
+		this.updateListaGiocatori(utente);
 	}
 
 
 
 	public void ClickAggiungiPartecipanti() {
 		torneiCtrl.AggiungiPartecipanti(torneiCtrl, stage, torneo);
-		nomeSquadra.setDisable(false);
 	}
 
 
 
 	public void ClickIscriviSquadra() {
-		torneiCtrl.IscriviSquadraCliccato(torneo, media, nomeSquadra.getText());
+		if(!nomeSquadra.getText().equals("")) {
+			torneiCtrl.IscriviSquadraCliccato(torneo, media, nomeSquadra.getText());
+		}
 
 	}
 

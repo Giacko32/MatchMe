@@ -6,15 +6,16 @@ import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Autenticazione.Interfacce.AdminView;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
-import com.prova.matchme.Entity.Gestore;
-import com.prova.matchme.Entity.Torneo;
+import com.prova.matchme.Entity.*;
 import com.prova.matchme.GestioneTornei.Interfacce.*;
 import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
 import javafx.stage.Stage;
 
+import java.lang.classfile.constantpool.LoadableConstantEntry;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class AmministrazioneTorneiCtrl {
 
@@ -31,6 +32,9 @@ public class AmministrazioneTorneiCtrl {
 
 	public AmministrazioneTorneiCtrl(Stage stage, Gestore gestore) {
 		this.stage = stage;
+		this.gestore = gestore;
+	}
+	public AmministrazioneTorneiCtrl(Gestore gestore) {
 		this.gestore = gestore;
 	}
 
@@ -113,41 +117,134 @@ public class AmministrazioneTorneiCtrl {
 		boundarySquadreInAttesa.MostraSquadra(DBMSView.queryGetSquadra(numeroSquadra,nomeSquadra, torneo));
 	}
 
-	public void AccettaCliccato() {
+	public void AccettaCliccato(Torneo torneo, String squadra) {
+		if(CheckSquadre(torneo)){
+			//il torneo ha posti liberi
+			String[] parts = squadra.split(" nome squadra: ");
+
+			String[] numeroSquadraPart = parts[0].split("Numero squadra: ");
+
+			int numeroSquadra = Integer.parseInt(numeroSquadraPart[1].trim());
+			String nomeSquadra = parts[1].trim();
+			//squadra aggiunta nel torneo
+			ArrayList<Utente> utentiSquadra = DBMSView.queryGetSquadra(numeroSquadra,nomeSquadra,torneo);
+			DBMSView.queryPutSquadraTorneo(torneo,utentiSquadra , nomeSquadra);
+			//Mandiamo la notifica
+			Utils.creaPannelloErrore("Squadra iscritta");
+			//mandiamo la notifica ai componenti
+			ArrayList<UtentePart> utentiPart = new ArrayList<>();
+			for (Utente u : utentiSquadra){
+				utentiPart.add(new UtentePart(u,0));
+			}
+			String notifica = "Sei stato aggiunto al torneo " + torneo.toString() + " nella squadra " + nomeSquadra+ "\n tramite accettazione del gestore";
+			DBMSView.sendNotify(notifica, utentiPart,1);
+			DBMSView.queryRimuoviSquadraInAttesa(torneo,numeroSquadra,nomeSquadra);
+		}else{
+			//il torneo non ha posti liberi
+			Utils.creaPannelloErrore("Torneo pieno");
+		}
+	}
+
+	public void RifiutaCliccato(Torneo torneo, String squadra) {
+		String[] parts = squadra.split(" nome squadra: ");
+
+		String[] numeroSquadraPart = parts[0].split("Numero squadra: ");
+
+		int numeroSquadra = Integer.parseInt(numeroSquadraPart[1].trim());
+		String nomeSquadra = parts[1].trim();
+		//squadra aggiunta nel torneo
+		ArrayList<Utente> utentiSquadra = DBMSView.queryGetSquadra(numeroSquadra,nomeSquadra,torneo);
+		//mandiamo la notifica ai componenti
+		ArrayList<UtentePart> utentiPart = new ArrayList<>();
+		for (Utente u : utentiSquadra){
+			utentiPart.add(new UtentePart(u,0));
+		}
+		String notifica = "Squadra "+ nomeSquadra +  " rifiutata per il torneo " + torneo.toString();
+		DBMSView.sendNotify(notifica, utentiPart,1);
+		DBMSView.queryRimuoviSquadraInAttesa(torneo,numeroSquadra,nomeSquadra);
+	}
+
+	public boolean CheckSquadre(Torneo torneo) {
+		//se true il numero di squadre è minore del massimo
+		return DBMSView.queryGetNumeroSquadreTorneo(torneo) < torneo.getN_Squadre();
+	}
+
+	public boolean CheckSquadre2(Torneo torneo) {
+		//se true il numero di squadre è minore del massimo
+		return DBMSView.queryGetNumeroSquadreTorneo(torneo) == torneo.getN_Squadre();
+	}
+
+
+	public void CreaCalendario(){
+		ArrayList<Torneo> tornei = DBMSView.queryGetTorneiSede(gestore);
+		for(Torneo torneo : tornei){
+			if(torneo.getData_inizio().isEqual(LocalDate.now().plusDays(3))){
+				if(CheckSquadre2(torneo)){
+					ArrayList<String> squadre = DBMSView.queryGetSquadre(torneo);
+					this.AccoppiaSquadre(squadre, torneo);
+				}else{
+
+				}
+			}
+
+		}
+	}
+
+	public void AccoppiaSquadre(ArrayList<String> squadre, Torneo torneo){
+		ArrayList<Integer> id = new ArrayList<>();
+		ArrayList<String> nomi = new ArrayList<>();
+		ArrayList<PartiteTorneo> partite = new ArrayList<>();
+
+		for(String squadra : squadre){
+			String[] parts = squadra.split(" nome squadra: ");
+
+			String[] numeroSquadraPart = parts[0].split("Numero squadra: ");
+
+			int numeroSquadra = Integer.parseInt(numeroSquadraPart[1].trim());
+			id.add(numeroSquadra);
+			nomi.add(parts[1].trim());
+		}
+		Random rand  = new Random();
+		for(int i = 0; i< torneo.getN_Squadre()/2; i++){
+			int index1 = rand.nextInt(id.size());
+			int id1 = id.remove(index1);
+			int index2 = rand.nextInt(id.size());
+			int id2 = id.remove(index2);
+			String nome1 = nomi.remove(index1);
+			String nome2 = nomi.remove(index2);
+			partite.add(new PartiteTorneo(id1,id2,nome1,nome2));
+		}
+		System.out.println(partite.size());
+		int numeroPartite = partite.size();
+		int i = partite.size();
+		while(i > 1){
+			i/=2;
+			numeroPartite+=i;
+		}
+		int numeroGiornate = torneo.getData_fine().compareTo(torneo.getData_inizio());
+		System.out.println(numeroGiornate);
+		int partitePerGiornata = numeroPartite/numeroGiornate;
+		if(partitePerGiornata == 0){
+			partitePerGiornata = 1;
+		}
+		for(int j = partite.size(); j < numeroPartite; j++){
+			partite.add(new PartiteTorneo());
+		}
+
+		LocalDate data = torneo.getData_inizio();
+		while(numeroPartite > 0){
+			for(int k = 0; k < partitePerGiornata ; k++){
+				ArrayList<Campo> campi = DBMSView.queryGetCampiLiberi(new Sede(torneo.getRef_Sede()),torneo.getSport(),data);
+				Campo c = campi.remove(0);
+
+			}
+
+		}
+
+
 
 	}
 
-	public void RifiutaCliccato() {
-
-	}
-
-	public void CheckSquadre() {
-
-	}
-
-	public void CloseWarningView() {
-
-	}
-
-	public void checkTime() {
-
-	}
-
-	public void AccoppiaSquadre() {
-
-	}
-
-	public void MatchPartitaCampo() {
-
-	}
-
-	public void checkNumeroTornei() {
-
-	}
-
-	public void checkNumeroPartite() {
-
-	}
 
 	public void toMain () {
 		if (gestore != null) {

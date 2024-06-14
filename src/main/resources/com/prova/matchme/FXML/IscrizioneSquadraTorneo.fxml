@@ -44,7 +44,7 @@
             </children>
         </AnchorPane>
       <Label layoutX="37.0" layoutY="80.0" text="Nome squadra:" />
-      <TextField fx:id="nomeSquadra" editable="false" layoutX="176.0" layoutY="76.0" prefHeight="26.0" prefWidth="176.0">
+      <TextField fx:id="nomeSquadra" layoutX="176.0" layoutY="76.0" prefHeight="26.0" prefWidth="176.0">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>

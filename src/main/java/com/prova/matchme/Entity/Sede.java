@@ -10,6 +10,9 @@ public class Sede {
         this.nome_sede = nome;
         this.indirizzo = ind;
     }
+    public Sede(int Id) {
+        this.id_sede = Id;
+    }
 
     public int getId_sede() {
         return this.id_sede;
