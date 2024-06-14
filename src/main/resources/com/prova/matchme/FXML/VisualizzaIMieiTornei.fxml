@@ -68,6 +68,7 @@
       <TextField fx:id="sport" editable="false" layoutX="562.0" layoutY="108.0" />
       <TextField fx:id="maxSquadre" editable="false" layoutX="562.0" layoutY="147.0" />
       <TextField fx:id="maxGiocatoriSquadre" editable="false" layoutX="562.0" layoutY="182.0" />
-      <ListView fx:id="ListaCalendario" layoutX="427.0" layoutY="217.0" prefHeight="200.0" prefWidth="290.0" />
+      <ListView fx:id="ListaCalendario" layoutX="427.0" layoutY="241.0" prefHeight="180.0" prefWidth="290.0" />
+      <Label layoutX="426.0" layoutY="224.0" text="Calendario" />
     </children>
 </AnchorPane>
