@@ -12,6 +12,7 @@ import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
 import javafx.stage.Stage;
 
+import java.lang.classfile.constantpool.LoadableConstantEntry;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
@@ -220,10 +221,26 @@ public class AmministrazioneTorneiCtrl {
 			i/=2;
 			numeroPartite+=i;
 		}
-		System.out.println(numeroPartite);
-		for(PartiteTorneo p : partite){
-			ArrayList<Campo> campi = DBMSView.queryGetCampiLiberi(new Sede(torneo.getRef_Sede()),torneo.getSport(),torneo.getData_inizio());
+		int numeroGiornate = torneo.getData_fine().compareTo(torneo.getData_inizio());
+		System.out.println(numeroGiornate);
+		int partitePerGiornata = numeroPartite/numeroGiornate;
+		if(partitePerGiornata == 0){
+			partitePerGiornata = 1;
 		}
+		for(int j = partite.size(); j < numeroPartite; j++){
+			partite.add(new PartiteTorneo());
+		}
+
+		LocalDate data = torneo.getData_inizio();
+		while(numeroPartite > 0){
+			for(int k = 0; k < partitePerGiornata ; k++){
+				ArrayList<Campo> campi = DBMSView.queryGetCampiLiberi(new Sede(torneo.getRef_Sede()),torneo.getSport(),data);
+				Campo c = campi.remove(0);
+
+			}
+
+		}
+
 
 
 	}

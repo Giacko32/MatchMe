@@ -9,6 +9,7 @@ public class PartiteTorneo{
     private String nomeSquadra1;
     private String nomeSquadra2;
 
+    public PartiteTorneo() {}
     public PartiteTorneo(int id1, int id2, String nomeSquadra1, String nomeSquadra2) {
         this.id1 = id1;
         this.id2 = id2;
