@@ -376,15 +376,23 @@ public class DBMSView {
         return null;
     }
 
-    public static void queryCreatenewChat(int idutente1, int idutente2) {
+    public static int queryCreatenewChat(int idutente1, int idutente2) {
         String query = "INSERT INTO chat(ref_Utente1,ref_Utente2) values(?,?)";
-        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+        int id_chat=0;
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, String.valueOf(idutente1));
             stmt.setString(2, String.valueOf(idutente2));
             var r = stmt.executeUpdate();
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    id_chat = generatedKeys.getInt(1);
+                }
+                return id_chat;
+            }
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
+        return id_chat;
     }
 
     public static Sede queryGetDetailsCampo(Campo campo) {
@@ -1199,7 +1207,7 @@ public class DBMSView {
     }
 
     public static ArrayList<Partita> queryGetPartiteSede(int refSede, LocalDate data) {
-        String query = "SELECT p.id, p.ref_Campo, p.dataOra, p.tipo, p.vincoli  FROM partita p,campo c,sede s WHERE p.ref_Campo=c.id AND c.ref_Sede=s.Id_Sede AND s.Id_Sede=? AND DATE(p.dataOra)=? AND p.tipo<>?";
+        String query = "SELECT p.id, p.ref_Campo, p.dataOra, p.tipo, p.vincoli  FROM partita p,campo c,sede s WHERE p.ref_Campo=c.id AND c.ref_Sede=s.Id_Sede AND s.Id_Sede=? AND DATE(p.dataOra)=? AND p.tipo<>? AND p.id NOT IN(SELECT p.id_partita_origine FROM partitestorico p)";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, refSede);
             stmt.setDate(2, Date.valueOf(data));
@@ -1433,6 +1441,13 @@ public class DBMSView {
     public static void queryCancellaPartita(int idpartita) {
         String query = "DELETE FROM partecipa WHERE ref_Partita=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, idpartita);
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        String query3 = "DELETE FROM accettazione WHERE ref_Partita=?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query3)) {
             stmt.setInt(1, idpartita);
             var r = stmt.executeUpdate();
         } catch (SQLException e) {

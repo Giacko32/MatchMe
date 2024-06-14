@@ -43,5 +43,9 @@ public class AccettazioneView {
 		s.close();
 
 	}
+	@FXML
+	public void back(){
+		s.close();
+	}
 
 }

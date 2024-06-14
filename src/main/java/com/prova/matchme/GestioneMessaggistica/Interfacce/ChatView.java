@@ -5,7 +5,6 @@ import com.prova.matchme.Entity.Chat;
 import com.prova.matchme.Entity.Messaggio;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestioneMessaggistica.Controller.ChatCtrl;
-import com.prova.matchme.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
