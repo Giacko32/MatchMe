@@ -231,6 +231,7 @@ public class AmministrazioneTorneiCtrl {
 		}
 		int numeroGiornate = torneo.getData_fine().compareTo(torneo.getData_inizio());
 		System.out.println(numeroGiornate);
+		System.out.println(numeroPartite);
 		int partitePerGiornata = numeroPartite/numeroGiornate;
 		if(partitePerGiornata == 0){
 			partitePerGiornata = 1;
@@ -247,16 +248,22 @@ public class AmministrazioneTorneiCtrl {
 			while(numeroPartite > 0){
 				for(int k = 0; k < partitePerGiornata ; k++){
 					ArrayList<Campo> campi = DBMSView.queryGetCampiLiberi(new Sede(torneo.getRef_Sede()),torneo.getSport(),data);
-					Campo c = campi.removeFirst();
-					PartiteTorneo p = partite.removeFirst();
+					System.out.println(campi.size());
+					Campo c = campi.remove(0);
+					PartiteTorneo p = new PartiteTorneo();
+					if(partite.size() > 0){
+						 p = partite.remove(0);
+					}
+
 					p.setCampo(c);
+
 					DBMSView.queryCreaPartitaCalendario(p,torneo);
 					numeroPartite--;
 				}
 
 			}
 		}catch(Exception e){
-
+			e.printStackTrace();
 		}
 
 
