@@ -654,6 +654,7 @@ public class DBMSView {
             while (r.next()) {
                 torneiSede.add(new Torneo(r.getInt(1), r.getInt(2), r.getString(3), r.getInt(4), r.getInt(5), r.getString(6), r.getDate(7).toLocalDate(), r.getDate(8).toLocalDate()));
             }
+
             return torneiSede;
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
@@ -679,18 +680,19 @@ public class DBMSView {
 
 
     public static int queryGetNumeroSquadreTorneo(Torneo torneo) {
-        String query = "SELECT COUNT(DISTINCT n_Squadra) AS NumeroDiSquadre FROM Iscrizione WHERE ref_Torneo = ?";
+        String query = "SELECT COUNT(DISTINCT n_Squadra) AS NumeroDiSquadre FROM iscrizione WHERE ref_Torneo = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, torneo.getId());
             var r = stmt.executeQuery();
             if (r.next()) {
-                int numeroSquadre = r.getInt("NumeroDiSquadre");
+                int numeroSquadre = r.getInt(1);
                 return numeroSquadre;
             }
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
         return 0;
+
     }
 
     public static ArrayList<Utente> queryGetGiocatoriRicercati(String nome, String cognome) {
@@ -988,7 +990,7 @@ public class DBMSView {
     }
 
     public static ArrayList<String> queryGetSquadre(Torneo torneo) {
-        String query = "SELECT n_Squadra, nomeSquadra FROM isccrizione where ref_Torneo = ?";
+        String query = "SELECT n_Squadra, nomeSquadra FROM iscrizione where ref_Torneo = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, torneo.getId());
             var r = stmt.executeQuery();

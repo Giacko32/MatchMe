@@ -6,10 +6,7 @@ import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Autenticazione.Interfacce.AdminView;
 import com.prova.matchme.CustomStage;
 import com.prova.matchme.DBMSView;
-import com.prova.matchme.Entity.Gestore;
-import com.prova.matchme.Entity.Torneo;
-import com.prova.matchme.Entity.Utente;
-import com.prova.matchme.Entity.UtentePart;
+import com.prova.matchme.Entity.*;
 import com.prova.matchme.GestioneTornei.Interfacce.*;
 import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
@@ -17,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class AmministrazioneTorneiCtrl {
 
@@ -170,13 +168,19 @@ public class AmministrazioneTorneiCtrl {
 		return DBMSView.queryGetNumeroSquadreTorneo(torneo) < torneo.getN_Squadre();
 	}
 
+	public boolean CheckSquadre2(Torneo torneo) {
+		//se true il numero di squadre è minore del massimo
+		return DBMSView.queryGetNumeroSquadreTorneo(torneo) == torneo.getN_Squadre();
+	}
+
+
 	public void CreaCalendario(){
 		ArrayList<Torneo> tornei = DBMSView.queryGetTorneiSede(gestore);
 		for(Torneo torneo : tornei){
 			if(torneo.getData_inizio().isEqual(LocalDate.now().plusDays(3))){
-				if(CheckSquadre(torneo)){
+				if(CheckSquadre2(torneo)){
 					ArrayList<String> squadre = DBMSView.queryGetSquadre(torneo);
-					this.AccoppiaSquadre(squadre);
+					this.AccoppiaSquadre(squadre, torneo);
 				}else{
 
 				}
@@ -185,8 +189,11 @@ public class AmministrazioneTorneiCtrl {
 		}
 	}
 
-	public void AccoppiaSquadre(ArrayList<String> squadre){
+	public void AccoppiaSquadre(ArrayList<String> squadre, Torneo torneo){
 		ArrayList<Integer> id = new ArrayList<>();
+		ArrayList<String> nomi = new ArrayList<>();
+		ArrayList<PartiteTorneo> partite = new ArrayList<>();
+
 		for(String squadra : squadre){
 			String[] parts = squadra.split(" nome squadra: ");
 
@@ -194,8 +201,29 @@ public class AmministrazioneTorneiCtrl {
 
 			int numeroSquadra = Integer.parseInt(numeroSquadraPart[1].trim());
 			id.add(numeroSquadra);
+			nomi.add(parts[1].trim());
 		}
-
+		Random rand  = new Random();
+		for(int i = 0; i< torneo.getN_Squadre()/2; i++){
+			int index1 = rand.nextInt(id.size());
+			int id1 = id.remove(index1);
+			int index2 = rand.nextInt(id.size());
+			int id2 = id.remove(index2);
+			String nome1 = nomi.remove(index1);
+			String nome2 = nomi.remove(index2);
+			partite.add(new PartiteTorneo(id1,id2,nome1,nome2));
+		}
+		System.out.println(partite.size());
+		int numeroPartite = partite.size();
+		int i = partite.size();
+		while(i > 1){
+			i/=2;
+			numeroPartite+=i;
+		}
+		System.out.println(numeroPartite);
+		for(PartiteTorneo p : partite){
+			ArrayList<Campo> campi = DBMSView.queryGetCampiLiberi(new Sede(torneo.getRef_Sede()),torneo.getSport(),torneo.getData_inizio());
+		}
 
 
 	}
