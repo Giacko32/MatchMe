@@ -58,7 +58,7 @@ public class TorneiCtrl {
 	public void TorneoSelezionatoMio(Torneo torneo) {
 
 		boundaryMio.showDetails(DBMSView.queryGetTorneo(torneo));
-		boundaryMio.showCalendario(DBMSView.queryGetCalendario(torneo));
+		boundaryMio.showCalendario(DBMSView.queryGetCalendarioTutte(torneo));
 	}
 
 	public void TorneoSelezionatoTutti(Torneo torneo) {

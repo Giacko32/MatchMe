@@ -53,7 +53,15 @@ public class PartiteTorneo{
         return nomeSquadra1;
     }
 
+    public void setNomeSquadra1(String nomeSquadra1) {
+        this.nomeSquadra1 = nomeSquadra1;
+    }
+    public void setNomeSquadra2(String nomeSquadra2) {
+        this.nomeSquadra2 = nomeSquadra2;
+    }
+
     public String toString(){
         return nomeSquadra1+ " VS "+ nomeSquadra2 + " orario: " + data.toLocalDate().toString() + " " + data.toLocalTime().toString();
     }
+
 }

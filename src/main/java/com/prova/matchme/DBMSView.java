@@ -1079,34 +1079,51 @@ public class DBMSView {
         return false;
     }
 
-    public static ArrayList<PartiteTorneo> queryGetCalendario(Torneo torneo) {
-        String query = "SELECT p.nSquadra1 AS id1, p.nSquadra2 AS id2, " +
-                "i1.nomeSquadra AS nomeSquadra1, i2.nomeSquadra AS nomeSquadra2, p2.dataOra AS Data " +
-                "FROM partitetornei p " +
-                "JOIN iscrizione i1 ON p.nSquadra1 = i1.n_Squadra AND p.ref_Torneo = i1.ref_Torneo " +
-                "JOIN iscrizione i2 ON p.nSquadra2 = i2.n_Squadra AND p.ref_Torneo = i2.ref_Torneo " +
-                "JOIN partita p2 ON p.ref_Partita = p2.id " +
-                "WHERE p.ref_Torneo = ?";
 
+    public static ArrayList<PartiteTorneo> queryGetCalendarioTutte(Torneo torneo) {
+        String query = "SELECT p1.nSquadra1 AS id1, p1.nSquadra2 AS id2, p2.dataOra AS Data FROM partitetornei p1, partita p2 WHERE p1.ref_Torneo = ? AND p1.ref_Partita = p2.id";
+        ArrayList<PartiteTorneo> partiteTorneo = new ArrayList<>();
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, torneo.getId());
             var r = stmt.executeQuery();
-            ArrayList<PartiteTorneo> partiteTorneo = new ArrayList<>();
+
             while (r.next()) {
                 PartiteTorneo partita = new PartiteTorneo(
                         r.getInt("id1"),
                         r.getInt("id2"),
-                        r.getString("nomeSquadra1"),
-                        r.getString("nomeSquadra2"),
+                        "vincitore",
+                        "vincitore",
                         r.getTimestamp("Data").toLocalDateTime()
                 );
                 partiteTorneo.add(partita);
             }
-            return partiteTorneo;
         } catch (SQLException e) {
             erroreComunicazioneDBMS(e);
         }
-        return null;
+        String query2 = "SELECT nomeSquadra, n_Squadra FROM iscrizione where ref_Torneo = ? AND (n_Squadra = ? OR n_Squadra = ?)";
+        for(PartiteTorneo p : partiteTorneo){
+            try (PreparedStatement stmt = connDBMS.prepareStatement(query2)) {
+                stmt.setInt(1, torneo.getId());
+                stmt.setInt(2, p.getId2());
+                stmt.setInt(3, p.getId1());
+                var r = stmt.executeQuery();
+
+                while (r.next()) {
+                    if(r.getInt("n_Squadra") == p.getId1()){
+                        p.setNomeSquadra1(r.getString("nomeSquadra"));
+                    }else if (r.getInt("n_Squadra") == p.getId2()){
+                        p.setNomeSquadra2(r.getString("nomeSquadra"));
+                    }
+                }
+            } catch (SQLException e) {
+                erroreComunicazioneDBMS(e);
+            }
+
+        }
+
+
+
+        return partiteTorneo;
     }
 
 
