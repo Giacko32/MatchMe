@@ -1006,6 +1006,71 @@ public class DBMSView {
         return null;
     }
 
+    public static void queryCreaPartitaCalendario(PartiteTorneo partita, Torneo torneo) {
+        int id_partita = 0;
+        String query = "INSERT INTO partita(ref_Campo,dataOra,tipo,vincoli) values(?,?,?,?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            stmt.setInt(1, partita.getCampo().getId_campo());
+            stmt.setTimestamp(2, Timestamp.valueOf(partita.getCampo().getOrario()));
+            stmt.setString(3, "");
+            stmt.setString(4, "");
+            var r = stmt.executeUpdate();
+
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    id_partita = generatedKeys.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+
+        String query2 = "INSERT INTO partitetornei(ref_Partita, ref_Torneo,nSquadra1, nSquadra2) values(?,?,?,?)";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query2)) {
+            stmt.setInt(1, id_partita);
+            stmt.setInt(2, torneo.getId());
+            stmt.setInt(3, partita.getId1());
+            stmt.setInt(4, partita.getId2());
+            var r = stmt.executeUpdate();
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+
+    }
+    public static ArrayList<Integer> queryGetPartecipantiTorneo(Torneo torneo) {
+        String query = "SELECT ref_Utente FROM iscrizione WHERE ref_Torneo = ? ";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            var r = stmt.executeQuery();
+            ArrayList<Integer> listautenti = new ArrayList<>();
+            while (r.next()) {
+                listautenti.add(r.getInt("ref_Utente"));
+            }
+            return listautenti;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return null;
+
+    }
+
+
+    public static boolean queryCheckCalendario(Torneo torneo){
+        String query = "SELECT 1 FROM partitetornei WHERE ref_Torneo = ?";
+        try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
+            stmt.setInt(1, torneo.getId());
+            var r = stmt.executeQuery();
+             if(r.next()){
+                 return true;
+             }
+            return false;
+        } catch (SQLException e) {
+            erroreComunicazioneDBMS(e);
+        }
+        return false;
+    }
+
 
 
 
@@ -1444,10 +1509,11 @@ public class DBMSView {
     }
 
     public static ArrayList<Partita> queryGetAllPartiteSede(int refSede) {
-        String query = "SELECT p.id, p.ref_Campo, p.dataOra, p.tipo, p.vincoli  FROM partita p,campo c,sede s WHERE p.ref_Campo=c.id AND c.ref_Sede=s.Id_Sede AND s.Id_Sede=? AND  p.tipo<> ? AND p.id NOT IN (SELECT id_partita_origine FROM partitestorico)";
+        String query = "SELECT p.id, p.ref_Campo, p.dataOra, p.tipo, p.vincoli  FROM partita p,campo c,sede s WHERE p.ref_Campo=c.id AND c.ref_Sede=s.Id_Sede AND s.Id_Sede=? AND  p.tipo<> ? AND p.id NOT IN (SELECT id_partita_origine FROM partitestorico) AND p.tipo<>?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, refSede);
             stmt.setString(2, "all");
+            stmt.setString(3, "");
             var r = stmt.executeQuery();
             ArrayList<Partita> partiteUtente = new ArrayList<Partita>();
             while (r.next()) {
@@ -1458,6 +1524,8 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
         return null;
+
+
     }
 
     public static String queryGetSport(int idcampo) {
@@ -1758,6 +1826,7 @@ public class DBMSView {
             erroreComunicazioneDBMS(e);
         }
     }
+
 
     public static boolean queryVerificaAllenamento(int id) {
         String query = "SELECT vincoli FROM partita WHERE id = ?";

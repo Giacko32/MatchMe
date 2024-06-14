@@ -12,7 +12,7 @@ import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
 import javafx.stage.Stage;
 
-import java.lang.classfile.constantpool.LoadableConstantEntry;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
@@ -181,9 +181,17 @@ public class AmministrazioneTorneiCtrl {
 			if(torneo.getData_inizio().isEqual(LocalDate.now().plusDays(3))){
 				if(CheckSquadre2(torneo)){
 					ArrayList<String> squadre = DBMSView.queryGetSquadre(torneo);
-					this.AccoppiaSquadre(squadre, torneo);
-				}else{
+					if(!DBMSView.queryCheckCalendario(torneo)){
+						this.AccoppiaSquadre(squadre, torneo);
+					}
 
+				}else{
+					String notifica = "Il torneo non ha raggiunto il numero di squdare necessario";
+					ArrayList<Integer> partecipanti = DBMSView.queryGetPartecipantiTorneo(torneo);
+					for(int k : partecipanti){
+						DBMSView.sendNotify2(notifica, k, 1);
+					}
+					DBMSView.queryDeleteTorneo(torneo);
 				}
 			}
 
@@ -227,18 +235,35 @@ public class AmministrazioneTorneiCtrl {
 		if(partitePerGiornata == 0){
 			partitePerGiornata = 1;
 		}
-		for(int j = partite.size(); j < numeroPartite; j++){
-			partite.add(new PartiteTorneo());
+		int y = 1;
+		for(int j = partite.size() ; j < numeroPartite; j+=2){
+
+			partite.add(new PartiteTorneo(j*2+1,j*2+2,("vincitore: " + y), ("vincotore: " + (y+1))));
+			y++;
 		}
 
 		LocalDate data = torneo.getData_inizio();
-		while(numeroPartite > 0){
-			for(int k = 0; k < partitePerGiornata ; k++){
-				ArrayList<Campo> campi = DBMSView.queryGetCampiLiberi(new Sede(torneo.getRef_Sede()),torneo.getSport(),data);
-				Campo c = campi.remove(0);
+		try{
+			while(numeroPartite > 0){
+				for(int k = 0; k < partitePerGiornata ; k++){
+					ArrayList<Campo> campi = DBMSView.queryGetCampiLiberi(new Sede(torneo.getRef_Sede()),torneo.getSport(),data);
+					Campo c = campi.removeFirst();
+					PartiteTorneo p = partite.removeFirst();
+					p.setCampo(c);
+					DBMSView.queryCreaPartitaCalendario(p,torneo);
+					numeroPartite--;
+				}
 
 			}
+		}catch(Exception e){
 
+		}
+
+
+		ArrayList<Integer> partecipanti = DBMSView.queryGetPartecipantiTorneo(torneo);
+		String notifica = "E' stato creato il calendario per il torneo " + torneo.getId() + " per lo sport " + torneo.getSport();
+		for(int k : partecipanti){
+			DBMSView.sendNotify2(notifica, k, 1);
 		}
 
 
