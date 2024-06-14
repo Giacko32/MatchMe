@@ -129,7 +129,7 @@ public class AmministrazioneTorneiCtrl {
 			String nomeSquadra = parts[1].trim();
 			//squadra aggiunta nel torneo
 			ArrayList<Utente> utentiSquadra = DBMSView.queryGetSquadra(numeroSquadra,nomeSquadra,torneo);
-			DBMSView.queryPutSquadraTorneo(torneo, numeroSquadra,utentiSquadra , nomeSquadra);
+			DBMSView.queryPutSquadraTorneo(torneo,utentiSquadra , nomeSquadra);
 			//Mandiamo la notifica
 			Utils.creaPannelloErrore("Squadra iscritta");
 			//mandiamo la notifica ai componenti
@@ -175,7 +175,8 @@ public class AmministrazioneTorneiCtrl {
 		for(Torneo torneo : tornei){
 			if(torneo.getData_inizio().isEqual(LocalDate.now().plusDays(3))){
 				if(CheckSquadre(torneo)){
-					this.accoppia();
+					ArrayList<String> squadre = DBMSView.queryGetSquadre(torneo);
+					this.AccoppiaSquadre(squadre);
 				}else{
 
 				}
@@ -184,7 +185,18 @@ public class AmministrazioneTorneiCtrl {
 		}
 	}
 
-	public void accoppia(){
+	public void AccoppiaSquadre(ArrayList<String> squadre){
+		ArrayList<Integer> id = new ArrayList<>();
+		for(String squadra : squadre){
+			String[] parts = squadra.split(" nome squadra: ");
+
+			String[] numeroSquadraPart = parts[0].split("Numero squadra: ");
+
+			int numeroSquadra = Integer.parseInt(numeroSquadraPart[1].trim());
+			id.add(numeroSquadra);
+		}
+
+
 
 	}
 

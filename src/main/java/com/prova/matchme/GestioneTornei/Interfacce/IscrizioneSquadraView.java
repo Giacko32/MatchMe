@@ -19,7 +19,6 @@ public class IscrizioneSquadraView {
 	private Utente utente;
 	private Stage stage;
 	private Torneo torneo;
-	private int nSquadra;
 	private float media;
 	@FXML
 	private ListView<Utente> listaGiocatoriSquadra;
@@ -30,12 +29,11 @@ public class IscrizioneSquadraView {
 
 
 
-	public IscrizioneSquadraView(TorneiCtrl torneiCtrl, Utente utente, Stage stage, Torneo torneo, int nSquadra) {
+	public IscrizioneSquadraView(TorneiCtrl torneiCtrl, Utente utente, Stage stage, Torneo torneo) {
 		this.torneiCtrl = torneiCtrl;
 		this.utente = utente;
 		this.stage = stage;
 		this.torneo = torneo;
-		this.nSquadra = nSquadra;
 	}
 
 	@FXML
