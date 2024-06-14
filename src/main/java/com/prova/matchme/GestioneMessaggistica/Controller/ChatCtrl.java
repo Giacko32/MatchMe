@@ -22,13 +22,14 @@ public class ChatCtrl {
     private ChatView controller;
     private NewChatView controllernew;
     private Chat selectedchat;
+    private ArrayList<Chat> listaChat;
 
     public ChatCtrl(Stage s, Utente u) {
         this.s = s;
         this.u = u;
-        ArrayList<Chat> lista = DBMSView.queryGetChat(u.getId());
+        listaChat = DBMSView.queryGetChat(u.getId());
         Utils.cambiaInterfaccia("FXML/Chat.fxml", s, c -> {
-            controller = new ChatView(s, u, this, lista);
+            controller = new ChatView(s, u, this, listaChat);
             return controller;
         });
     }
@@ -64,10 +65,10 @@ public class ChatCtrl {
     }
     public void createNewChat(Utente utente) {
         if(utente!=null){
-            DBMSView.queryCreatenewChat(u.getId(),utente.getId());
-            ArrayList<Chat> lista = DBMSView.queryGetChat(u.getId());
+            Chat chat=new Chat(DBMSView.queryCreatenewChat(u.getId(),utente.getId()), utente.getId(), utente.toString());
+            listaChat.add(chat);
             Utils.cambiaInterfaccia("FXML/Chat.fxml", s, c -> {
-                controller = new ChatView(s, u, this, lista);
+                controller = new ChatView(s, u, this, listaChat);
                 return controller;
             });
         }else{
