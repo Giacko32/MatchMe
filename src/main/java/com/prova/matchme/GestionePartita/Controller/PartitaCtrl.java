@@ -68,7 +68,7 @@ public class PartitaCtrl {
         }
     }
 
-    public void passGiocatoreBonus(Utente dest, float bonusValue) {
+    public void passGiocatoreBonus(Utente dest, float bonusValue, BonusView bonusView) {
         if (dest.equals(u)) {
             Utils.creaPannelloErrore("Non puoi assegnare\nun bonus a te stesso");
         } else {
@@ -78,6 +78,7 @@ public class PartitaCtrl {
             DBMSView.sendNotify("L'allenatore " + u.getNome() + " " + u.getCognome() + " ti ha assegnato un bonus", destinatario, 1);
             Utils.creaPannelloErrore("Bonus assegnato");
         }
+        bonusView.ShowBnd();
     }
 
     public Object getPartite1ora() {

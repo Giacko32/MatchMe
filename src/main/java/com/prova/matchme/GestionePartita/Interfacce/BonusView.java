@@ -59,15 +59,18 @@ public class BonusView {
 			this.selectedUtente = newvalue;
 			bonusButton.setDisable(false);
 		}));
-
 	}
 
 	public void assegnaBonus(){
-		partitaCtrl.passGiocatoreBonus(selectedUtente, 0.25F);
+		partitaCtrl.passGiocatoreBonus(selectedUtente, 0.25F, this);
 	}
 
 	public void ShowBnd() {
-
+		Squadra1List.setItems(FXCollections.emptyObservableList());
+		Squadra2List.setItems(FXCollections.emptyObservableList());
+		Squadra1List.setDisable(true);
+		Squadra2List.setDisable(true);
+		bonusButton.setDisable(true);
 	}
 
 	public void goBack(){
