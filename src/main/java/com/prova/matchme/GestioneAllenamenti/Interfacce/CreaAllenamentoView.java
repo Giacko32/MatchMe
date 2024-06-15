@@ -54,12 +54,11 @@ public class CreaAllenamentoView {
 		}
 	}
 
-	public void SelectFasciaOraria() {
 
-	}
 
 	public void ClickCrea() {
 		creaAllCtrl.Creaclicked(campoSelected, partecipantiSpinner.getValue());
+		this.goBack();
 	}
 
 	public void goBack(){

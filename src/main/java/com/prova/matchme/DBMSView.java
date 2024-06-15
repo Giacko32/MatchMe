@@ -273,7 +273,7 @@ public class DBMSView {
     }
 
     public static ArrayList<PartitaStorico> queryPartiteGiocate(int id) {
-        var query = "SELECT pg.id_PartitaStorico, pg.id_partita_origine, pg.risultato, pg.data, c.id, c.nome, c.sport,p.tipo FROM partitestorico AS pg JOIN partecipa ON pg.id_PartitaStorico = partecipa.ref_Partita JOIN partita AS p ON pg.id_partita_origine = p.id JOIN campo AS c ON p.ref_Campo = c.id WHERE partecipa.ref_Utente = ? ";
+        var query = "SELECT pg.id_PartitaStorico, pg.id_partita_origine, pg.risultato, pg.data, c.id , c.nome, c.sport, p.tipo FROM partitestorico AS pg JOIN partita AS p ON pg.id_partita_origine = p.id JOIN campo AS c  ON p.ref_Campo = c.id JOIN partecipa AS pt ON p.id = pt.ref_Partita WHERE pt.ref_Utente = ?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, String.valueOf(id));
             var r = stmt.executeQuery();
