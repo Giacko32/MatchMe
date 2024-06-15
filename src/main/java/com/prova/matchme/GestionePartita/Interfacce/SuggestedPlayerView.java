@@ -39,20 +39,25 @@ public class SuggestedPlayerView {
             buttonS1.setText("Invita alla partita");
             buttonS2.setVisible(false);
             buttonS2.setDisable(false);
+            buttonS1.setDisable(false);
+
         }
         ObservableList<Utente> listaUtenti = FXCollections.observableArrayList(SuggestedPlayer);
         ListaUtenti.setItems(listaUtenti);
         ListaUtenti.getSelectionModel().selectedItemProperty().addListener((observable, oldvalue, newvalue) -> {
             selectedUtente = newvalue;
         });
-        switch (buttons) {
-            case "1" -> buttonS1.setDisable(false);
-            case "2" -> buttonS2.setDisable(false);
-            case "entrambe" -> {
-                buttonS1.setDisable(false);
-                buttonS2.setDisable(false);
+        if(!Invito){
+            switch (buttons) {
+                case "1" -> buttonS1.setDisable(false);
+                case "2" -> buttonS2.setDisable(false);
+                case "entrambe" -> {
+                    buttonS1.setDisable(false);
+                    buttonS2.setDisable(false);
+                }
             }
         }
+
     }
 
 

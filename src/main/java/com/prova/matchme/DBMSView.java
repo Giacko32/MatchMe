@@ -498,7 +498,7 @@ public class DBMSView {
             stmt.setInt(1, idPartita);
             var r = stmt.executeQuery();
             ArrayList<UtentePart> listautenti = new ArrayList<>();
-            if (r.next()) {
+            while (r.next()) {
                 listautenti.add(UtentePart.createFromDB(r));
             }
             return listautenti;

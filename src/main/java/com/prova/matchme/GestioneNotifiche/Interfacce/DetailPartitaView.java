@@ -27,6 +27,7 @@ public class DetailPartitaView {
 		this.notifyCtrl=notifyCtrl;
 		this.listautenti=list;
 		this.numpart=numpart;
+		System.out.println(listautenti);
 	}
 
 	@FXML
