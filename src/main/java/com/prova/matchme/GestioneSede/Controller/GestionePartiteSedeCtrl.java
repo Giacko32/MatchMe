@@ -203,7 +203,11 @@ public class GestionePartiteSedeCtrl {
 
     public void PassData2(LocalDate date) {
         if (date != null) {
-            controllerrv.showLista(DBMSView.queryGetDisponibilitaCampoData(partitaDetails.campo.getId_campo(), date));
+            ArrayList<Campo> campi = DBMSView.queryGetDisponibilitaCampoData(partitaDetails.campo.getId_campo(),date);
+            LocalDateTime now = LocalDateTime.now();
+            campi.removeIf(campo -> campo.getOrario().isBefore(now));
+
+            controllerrv.showLista(campi);
         }
     }
 
@@ -306,9 +310,6 @@ public class GestionePartiteSedeCtrl {
         return partiteEntroUnOra;
     }
 
-    public void CheckNumeroPartite() {
-
-    }
 
     public void PassPartita(Partita p) {
         partitaselected = p;

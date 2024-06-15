@@ -2,6 +2,7 @@ package com.prova.matchme.Entity;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class Campo {
     private int id_campo;
@@ -45,5 +46,14 @@ public class Campo {
     public String toString() {
         return this.nomecampo + " di " + this.sport + " alle ore " + this.orario.toLocalTime();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Campo campo = (Campo) o;
+        return Objects.equals(orario, campo.orario);
+    }
+
 
 }
