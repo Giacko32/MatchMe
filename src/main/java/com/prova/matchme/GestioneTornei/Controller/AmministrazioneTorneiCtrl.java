@@ -60,13 +60,18 @@ public class AmministrazioneTorneiCtrl {
 
 	public void PassData(String sport, int livelloMin,int livelloMax, int numeroSquadre, String dataInizio, String dataFine, int numeroGiocatoriPerSquadra) {
 		//query creeazione torneo
-		DBMSView.queryCreateTorneo(sport, livelloMin, livelloMax, numeroSquadre, dataInizio, dataFine, gestore.getSede(), numeroGiocatoriPerSquadra);
-		ArrayList<Integer> lista_id = DBMSView.queryGetTuttiGiocatori();
-		//notifica
-		String notifica = "E' stato creato un nuovo torneo nella sede " + gestore.getSede() + " corri a iscriverti!!";
-		for(Integer id : lista_id) {
-			DBMSView.sendNotify2(notifica,id,1);
+		if(java.sql.Date.valueOf(dataInizio).toLocalDate().isAfter(LocalDate.now().plusDays(3)) && java.sql.Date.valueOf(dataFine).toLocalDate().isAfter(java.sql.Date.valueOf(dataInizio).toLocalDate())){
+			DBMSView.queryCreateTorneo(sport, livelloMin, livelloMax, numeroSquadre, dataInizio, dataFine, gestore.getSede(), numeroGiocatoriPerSquadra);
+			ArrayList<Integer> lista_id = DBMSView.queryGetTuttiGiocatori();
+			//notifica
+			String notifica = "E' stato creato un nuovo torneo nella sede " + gestore.getSede() + " corri a iscriverti!!";
+			for(Integer id : lista_id) {
+				DBMSView.sendNotify2(notifica,id,1);
+			}
+		}else{
+			Utils.creaPannelloErrore("La data inserita è sbagliata");
 		}
+
 	}
 
 	public void ModificaTorneo(Torneo torneo, Stage stage) {
@@ -94,9 +99,14 @@ public class AmministrazioneTorneiCtrl {
 	}
 
 	public void PassDataModifica(Torneo torneo, LocalDate data_inizo, LocalDate data_fine) {
-		DBMSView.queryUpdateTorneo(torneo, data_inizo, data_fine);
-		Utils.creaPannelloErrore("Torneo modificato");
-		this.toMain();
+		if(data_inizo.isAfter(LocalDate.now().plusDays(3)) && data_fine.isAfter(data_inizo)) {
+			DBMSView.queryUpdateTorneo(torneo, data_inizo, data_fine);
+			Utils.creaPannelloErrore("Torneo modificato");
+			this.toMain();
+		}else{
+			Utils.creaPannelloErrore("Data errata");
+			this.toMain();
+		}
 	}
 
 	public void SquadreInAttesa(Torneo torneo, Stage stage) {

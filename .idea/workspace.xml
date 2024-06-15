@@ -10,8 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4af3d7da-bc56-44b9-ace0-9872cfa66ce3" name="Changes" comment="Sono stati fatti tanti cambiamenti">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneAllenamenti/Controller/CreaAllCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneAllenamenti/Controller/CreaAllCtrl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneAllenamenti/Interfacce/CreaAllenamentoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneAllenamenti/Interfacce/CreaAllenamentoView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Controller/AmministrazioneTorneiCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prova/matchme/GestioneTornei/Controller/AmministrazioneTorneiCtrl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,15 +156,7 @@
       <workItem from="1718375859330" duration="8696000" />
       <workItem from="1718443612753" duration="5033000" />
       <workItem from="1718448880753" duration="14000" />
-      <workItem from="1718461612247" duration="5079000" />
-    </task>
-    <task id="LOCAL-00013" summary="Sono stati fatti tanti cambiamenti">
-      <option name="closed" value="true" />
-      <created>1717714567035</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1717714567035</updated>
+      <workItem from="1718461612247" duration="6227000" />
     </task>
     <task id="LOCAL-00014" summary="Sono stati fatti tanti cambiamenti">
       <option name="closed" value="true" />
@@ -550,7 +542,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718466536795</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Sono stati fatti tanti cambiamenti">
+      <option name="closed" value="true" />
+      <created>1718466736952</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1718466736953</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
