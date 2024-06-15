@@ -30,7 +30,10 @@ public class CreaAllCtrl {
 
 	public ArrayList<Campo> VerificaClicked(LocalDate dateTime, String sport) {
 		if(dateTime != null && sport != null){
-			return DBMSView.queryGetOrariAllenamtento(dateTime, sport);
+			ArrayList<Campo> campi = DBMSView.queryGetOrariAllenamtento(dateTime, sport);
+			LocalDateTime now = LocalDateTime.now();
+			campi.removeIf(campo -> campo.getOrario().isBefore(now));
+			return campi;
 		} else {
 			Utils.creaPannelloErrore("Non hai inserito\ntutti i campi");
 			return null;

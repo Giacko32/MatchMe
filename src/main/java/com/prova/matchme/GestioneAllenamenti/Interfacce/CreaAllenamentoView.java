@@ -29,13 +29,10 @@ public class CreaAllenamentoView {
 	public void initialize(){
 		sportChoice.getItems().addAll("Calcio a 5", "Tennis singolo", "Tennis doppio", "Padel singolo", "Padel doppio");
 		SpinnerValueFactory<Integer> n_partecipanti =
-				new SpinnerValueFactory.IntegerSpinnerValueFactory(0,5,0);
+				new SpinnerValueFactory.IntegerSpinnerValueFactory(2,5,2);
 		partecipantiSpinner.setValueFactory(n_partecipanti);
 	}
 
-	public void SelectParametri() {
-
-	}
 
 	public void ClickVerifica() {
 		orariChoice.getItems().clear();
