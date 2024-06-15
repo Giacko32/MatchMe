@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneAllenamenti.Interfacce.DettagliAllenamentiView">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.matchme.GestioneAllenamenti.Interfacce.DettagliAllenamentiView">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: #03b53f;">
             <children>
@@ -54,7 +54,7 @@
                 <Font name="System Bold" size="12.800000190734863" />
             </font>
         </Label>
-        <Button fx:id="prenotaButton" onMouseClicked="#PrenotaClicked" disable="true" layoutX="469.0" layoutY="434.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="219.0" text="PRENOTA ALLENAMENTO">
+        <Button fx:id="prenotaButton" disable="true" layoutX="469.0" layoutY="434.0" mnemonicParsing="false" onMouseClicked="#PrenotaClicked" prefHeight="36.0" prefWidth="219.0" text="PRENOTA ALLENAMENTO">
          <font>
             <Font name="System Bold" size="12.800000190734863" />
          </font>
@@ -65,19 +65,19 @@
             <font>
                 <Font size="14.0" />
             </font></Label>
-        <TextField fx:id="SedeField" disable="true" layoutX="528.0" layoutY="96.0" prefHeight="25.0" prefWidth="187.0" />
+        <TextField fx:id="SedeField" disable="true" editable="false" layoutX="528.0" layoutY="96.0" prefHeight="25.0" prefWidth="187.0" />
         <Label layoutX="454.0" layoutY="134.0" text="Campo">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <TextField fx:id="CampoField" disable="true" layoutX="528.0" layoutY="131.0" prefHeight="25.0" prefWidth="187.0" />
+        <TextField fx:id="CampoField" disable="true" editable="false" layoutX="528.0" layoutY="131.0" prefHeight="25.0" prefWidth="187.0" />
         <Label layoutX="454.0" layoutY="209.0" text="Data e Ora">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <TextField fx:id="DataOraField" disable="true" layoutX="528.0" layoutY="206.0" prefHeight="25.0" prefWidth="187.0" />
+        <TextField fx:id="DataOraField" disable="true" editable="false" layoutX="528.0" layoutY="206.0" prefHeight="25.0" prefWidth="187.0" />
         <ListView fx:id="PartecipantiLista" disable="true" layoutX="450.0" layoutY="305.0" prefHeight="102.0" prefWidth="170.0" />
         <Label layoutX="450.0" layoutY="286.0" text="Partecipanti:">
             <font>
@@ -89,12 +89,12 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <TextField fx:id="SportField" disable="true" layoutX="528.0" layoutY="168.0" prefHeight="25.0" prefWidth="187.0" />
+        <TextField fx:id="SportField" disable="true" editable="false" layoutX="528.0" layoutY="168.0" prefHeight="25.0" prefWidth="187.0" />
       <Label layoutX="455.0" layoutY="247.0" text="Allenatore">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="AllenatoreField" disable="true" layoutX="529.0" layoutY="244.0" prefHeight="25.0" prefWidth="187.0" />
+      <TextField fx:id="AllenatoreField" disable="true" editable="false" layoutX="529.0" layoutY="244.0" prefHeight="25.0" prefWidth="187.0" />
     </children>
 </AnchorPane>

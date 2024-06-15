@@ -57,7 +57,10 @@ public class GestioneAllCtrl {
 	}
 
 	public Allenamento AllenamentoClicked(Partita allenamento) {
-		return DBMSView.queryGetDettagliAllenamento(allenamento);
+		try{
+			return DBMSView.queryGetDettagliAllenamento(allenamento);
+		}catch(Exception e){}
+		return null;
 	}
 
 	public void PrenotaCliccato(Allenamento allenamento) {

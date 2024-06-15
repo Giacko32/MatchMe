@@ -6,8 +6,12 @@ import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.util.ArrayList;
 
@@ -31,7 +35,9 @@ public class StoricoView {
             items.add(lista.get(i).torna());
         }
         listapartitegiocate.setItems(items);
-        listapartitegiocate.setDisable(true);
+
+
+
     }
 
     @FXML

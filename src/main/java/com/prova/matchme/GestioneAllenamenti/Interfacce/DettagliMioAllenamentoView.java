@@ -53,21 +53,24 @@ public class DettagliMioAllenamentoView {
 	}
 
 	public void selectAllenamento(){
-		SedeField.setDisable(false);
-		CampoField.setDisable(false);
-		DataOraField.setDisable(false);
-		SportField.setDisable(false);
-		AllenatoreField.setDisable(false);
-		PartecipantiLista.setDisable(false);
-		cancellaButton.setDisable(false);
-		allenamentoDetails = gestioneAllCtrl.AllenamentoClicked(selectedAllenamento);
-		SedeField.setText(allenamentoDetails.sede.toString());
-		CampoField.setText(allenamentoDetails.campo.getNomecampo());
-		DataOraField.setText(allenamentoDetails.campo.getOrarioString());
-		SportField.setText(allenamentoDetails.campo.getSport());
-		AllenatoreField.setText(allenamentoDetails.allenatore.toString());
-		ObservableList<Utente> listapartecipanti = FXCollections.observableArrayList(allenamentoDetails.partecipanti);
-		PartecipantiLista.setItems(listapartecipanti);
+		try{
+			SedeField.setDisable(false);
+			CampoField.setDisable(false);
+			DataOraField.setDisable(false);
+			SportField.setDisable(false);
+			AllenatoreField.setDisable(false);
+			PartecipantiLista.setDisable(false);
+			cancellaButton.setDisable(false);
+			allenamentoDetails = gestioneAllCtrl.AllenamentoClicked(selectedAllenamento);
+			SedeField.setText(allenamentoDetails.sede.toString());
+			CampoField.setText(allenamentoDetails.campo.getNomecampo());
+			DataOraField.setText(allenamentoDetails.campo.getOrarioString());
+			SportField.setText(allenamentoDetails.campo.getSport());
+			AllenatoreField.setText(allenamentoDetails.allenatore.toString());
+			ObservableList<Utente> listapartecipanti = FXCollections.observableArrayList(allenamentoDetails.partecipanti);
+			PartecipantiLista.setItems(listapartecipanti);
+		}catch(Exception e){}
+
 	}
 
 	public void CancelClicked() {
