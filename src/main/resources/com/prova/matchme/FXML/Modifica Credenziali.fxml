@@ -69,7 +69,7 @@
                 <Font name="System Bold" size="12.0" />
             </font>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
         </Button>
         <TextField fx:id="cognomeUtente" layoutX="387.0" layoutY="161.0" prefHeight="27.0" prefWidth="162.0" promptText="Cognome Utente" />
@@ -79,7 +79,7 @@
             <Image url="@../images/edit_modify_icon-icons.com_72390.png" />
          </image>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ImageView>
       <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="554.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
@@ -87,7 +87,7 @@
             <Image url="@../images/edit_modify_icon-icons.com_72390.png" />
          </image>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ImageView>
       <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="554.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
@@ -95,7 +95,7 @@
             <Image url="@../images/edit_modify_icon-icons.com_72390.png" />
          </image>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ImageView>
       <TextField fx:id="username" editable="true" layoutX="59.0" layoutY="240.0" prefHeight="27.0" prefWidth="161.0" promptText="username">
@@ -103,7 +103,7 @@
             <Font size="14.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="NONE" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </TextField>
     </children>
