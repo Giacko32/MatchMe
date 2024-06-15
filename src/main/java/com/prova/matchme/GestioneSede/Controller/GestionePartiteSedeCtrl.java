@@ -134,6 +134,8 @@ public class GestionePartiteSedeCtrl {
 
     public void PassDate(LocalDate data) {
         ArrayList<Campo> listacampi = DBMSView.queryGetCampiLiberi2(g.getSede(), data);
+        LocalDateTime now = LocalDateTime.now();
+        listacampi.removeIf(campo -> campo.getOrario().isBefore(now));
         Utils.cambiaInterfaccia("FXML/Crea Partita sede 1.fxml", s, c -> {
             return new CampiDisponibilisedeView(this, listacampi);
         });

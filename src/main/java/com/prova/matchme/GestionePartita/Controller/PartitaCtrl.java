@@ -98,7 +98,10 @@ public class PartitaCtrl {
                     stage.close();
                 }
                 Utils.cambiaInterfaccia("FXML/VisualizzaCampiLiberi.fxml", s, c -> {
-                    boundary = new DettagliCampoView(DBMSView.queryGetCampiLiberi(sede, sport, data), this);
+                    ArrayList<Campo> campi = DBMSView.queryGetCampiLiberi(sede, sport, data);
+                    LocalDateTime now = LocalDateTime.now();
+                    campi.removeIf(campo -> campo.getOrario().isBefore(now));
+                    boundary = new DettagliCampoView(campi, this);
                     return boundary;
                 });
             } else {
