@@ -36,8 +36,9 @@ public class SuggestedPlayerView {
     @FXML
     public void initialize() {
         if (Invito) {
-            buttonS1.setText("Invita a squadra 1");
-            buttonS2.setText("Invita a squadra 2");
+            buttonS1.setText("Invita alla partita");
+            buttonS2.setVisible(false);
+            buttonS2.setDisable(false);
         }
         ObservableList<Utente> listaUtenti = FXCollections.observableArrayList(SuggestedPlayer);
         ListaUtenti.setItems(listaUtenti);
@@ -66,18 +67,14 @@ public class SuggestedPlayerView {
 
     public void selectSquadra1() {
         if (Invito) {
-            partitaCtrl.passInvito(selectedUtente, 1, selectedPartita, stage);
+            partitaCtrl.passInvito(selectedUtente, selectedPartita, stage);
         } else {
             partitaCtrl.passGiocatoreSquadra(selectedUtente, 1, selectedPartita, stage);
         }
     }
 
     public void selectSquadra2() {
-        if (Invito) {
-            partitaCtrl.passInvito(selectedUtente, 2, selectedPartita, stage);
-        } else {
-            partitaCtrl.passGiocatoreSquadra(selectedUtente, 2, selectedPartita, stage);
-        }
+        partitaCtrl.passGiocatoreSquadra(selectedUtente, 2, selectedPartita, stage);
     }
 
 

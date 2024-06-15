@@ -180,9 +180,9 @@ public class PartitaCtrl {
         bnd.mostraLista(trovati);
     }
 
-    public void passInvito(Utente utente, int n_squadra, PartitaDetails partitaDetails, Stage stg) {
+    public void passInvito(Utente utente, PartitaDetails partitaDetails, Stage stg) {
         ArrayList<UtentePart> destinatario = new ArrayList<>();
-        destinatario.add(new UtentePart(utente, n_squadra));
+        destinatario.add(new UtentePart(utente, 0));
         DBMSView.sendNotify("Sei stato invitato ad una partita il " + partitaDetails.campo.getOrarioString() + " nella sede " + partitaDetails.sede.getNome_sede() + " per giocare a " + partitaDetails.campo.getSport() + " " + partitaDetails.partita.getId(), destinatario, 0);
         stg.close();
         boundary1.ShowBnd();
