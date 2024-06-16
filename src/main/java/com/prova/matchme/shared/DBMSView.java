@@ -1,7 +1,10 @@
 package com.prova.matchme.shared;
 
+import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Entity.*;
+import com.prova.matchme.Main;
 import com.prova.matchme.Utils;
+import javafx.stage.Stage;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -16,7 +19,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Gioele2002!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -24,7 +27,8 @@ public class DBMSView {
     private static void erroreComunicazioneDBMS(Exception e) {
         e.printStackTrace();
         Utils.creaPannelloErrore("C'è stato un problema \ndurante la comunicazione \ncon la base di dati, riprova");
-
+        AuthCtrl a=new AuthCtrl(Main.mainStage);
+        a.toLogin();
     }
 
     private static String buildConnectionUrl(String dbName) {
