@@ -50,12 +50,4 @@ public class ChoiceView {
     }
 
 
-    public void ClickTuttiItornei() {
-
-    }
-
-    public void ClickIMieiTornei() {
-
-    }
-
 }

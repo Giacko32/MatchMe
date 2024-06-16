@@ -31,12 +31,10 @@ public class FidelizzazioneControl {
 	public void notifica(){
 		ArrayList<Utente> lista= DBMSView.queryGetTesserati();
 		for(Utente u:lista){
-			System.out.println("Utente corrente: "+u);
 			ArrayList<Campo> usual=DBMSView.queryGetUsualPartite(u.getId());
 			if(usual!=null && !usual.isEmpty()){
 				for(Campo c:usual){
 					if(DBMSView.queryCheckDisponibitaCampo(c.getId_campo(),c.getOrario())){
-						System.out.println(usual);
 						String notifica="Abbiamo una buona notizia per te, il tuo campo preferito, quello con id: "+c.getId_campo()+" è disponibile\n nel tuo solito orario cioè: "+c.getOrario().toLocalTime()+" corri a prenotarlo";
 						DBMSView.sendNotify2(notifica,u.getId(),1);
 					}

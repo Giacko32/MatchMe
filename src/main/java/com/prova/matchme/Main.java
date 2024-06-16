@@ -1,7 +1,6 @@
 package com.prova.matchme;
 
-import com.mysql.cj.exceptions.NumberOutOfRange;
-import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
+
 import com.prova.matchme.Autenticazione.Interfacce.LoginView;
 import javafx.application.Application;
 import javafx.scene.image.Image;
@@ -9,13 +8,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static java.lang.System.exit;
 
 public class Main extends Application {
 
     public static Stage mainStage = null;
-    public static int sistema;
-
 
     @Override
     public void start(Stage stage) throws IOException {

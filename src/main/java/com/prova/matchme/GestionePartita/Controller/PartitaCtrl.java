@@ -81,13 +81,6 @@ public class PartitaCtrl {
         bonusView.ShowBnd();
     }
 
-    public Object getPartite1ora() {
-        return null;
-    }
-
-    public Object getPartitePiu1ora() {
-        return null;
-    }
 
     public void passSedeSportData(Sede sede, String sport, LocalDate data, Stage stage, int ste) {
         if (sede == null || sport == null || data == null) {
@@ -123,9 +116,6 @@ public class PartitaCtrl {
         }
     }
 
-    public Object getTime() {
-        return null;
-    }
 
     public void passSedeSport(Sede sede, String sport) {
         stageDialog.close();
@@ -239,9 +229,6 @@ public class PartitaCtrl {
         boundary2.selectPartita();
     }
 
-    public boolean VerificaDisponibilità() {
-        return false;
-    }
 
     public void SelectedCampo(Campo campo) {
         boundary.showDetails(DBMSView.queryGetDetailsCampo(campo));
@@ -384,13 +371,13 @@ public class PartitaCtrl {
 
     public void PartecipaClicked(PartitaDetails partitaDetails) {
         Stage stg = new CustomStage("Squadre");
-        if (checkVincoli(partitaDetails.partita.getVincoli())) {
-            Utils.cambiaInterfaccia("FXML/DialogSelezionaSquadraPartecipazione.fxml", stg, c -> {
-                return new PartecipazionePartitaView(stg, this, partitaDetails);
-            }, 350, 170);
-        } else {
+        if (!checkVincoli(partitaDetails.partita.getVincoli())) {
             Utils.cambiaInterfaccia("FXML/DialogCriteriInsufficenti.fxml", stg, c -> {
                 return new ConfirmView(this, stg, partitaDetails);
+            }, 350, 170);
+        } else {
+            Utils.cambiaInterfaccia("FXML/DialogSelezionaSquadraPartecipazione.fxml", stg, c -> {
+                return new PartecipazionePartitaView(stg, this, partitaDetails);
             }, 350, 170);
         }
     }

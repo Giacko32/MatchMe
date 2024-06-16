@@ -23,7 +23,7 @@ public class AmministrazioneTorneiCtrl {
 	private Gestore gestore;
 	private VisualizzaTorneiGestori boundaryGestori;
 	private Torneo torneo;
-	private CreaTorneoView boundaryCreaTorneo;
+	private CreaNuovoTorneoView boundaryCreaTorneo;
 	private ConfirmView boundaryConfirm;
 	private ModificaTorneoView boundaryModificaTorneo;
 	private SquadreInAttesaView boundarySquadreInAttesa;
@@ -53,7 +53,7 @@ public class AmministrazioneTorneiCtrl {
 	public void NuovoTorneo(Stage stage) {
 		stage.close();
 		Utils.cambiaInterfaccia("FXML/CreaTorneo.fxml", stage, c -> {
-			boundaryCreaTorneo = new CreaTorneoView(stage, this);
+			boundaryCreaTorneo = new CreaNuovoTorneoView(stage, this);
 			return boundaryCreaTorneo;
 		});
 	}
@@ -95,7 +95,7 @@ public class AmministrazioneTorneiCtrl {
 		DBMSView.queryDeleteTorneo(torneo);
 		//squadra eliminata
 		//rimuoviamo il torneo dalla listview
-		this.toMain();
+		this.mostraTorneiSede(stage);
 	}
 
 	public void PassDataModifica(Torneo torneo, LocalDate data_inizo, LocalDate data_fine) {
@@ -105,7 +105,7 @@ public class AmministrazioneTorneiCtrl {
 			this.toMain();
 		}else{
 			Utils.creaPannelloErrore("Data errata");
-			this.toMain();
+			this.mostraTorneiSede(stage);
 		}
 	}
 

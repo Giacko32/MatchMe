@@ -15,7 +15,7 @@ public class DBMSView {
 
     private static final String user = "root";
 
-    private static final String pass = "Rtx4060ticx!";
+    private static final String pass = "Gianvito1@";
 
     private static Connection connDBMS = null;
 
@@ -1897,7 +1897,6 @@ public class DBMSView {
         String query = "SELECT vincoli FROM partita WHERE id = ?";
         int dimensione = 0;
         int partecipanti = 0;
-
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setInt(1, id);
             try (ResultSet r = stmt.executeQuery()) {

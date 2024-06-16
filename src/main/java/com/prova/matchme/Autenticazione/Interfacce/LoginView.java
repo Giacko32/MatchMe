@@ -55,9 +55,7 @@ public class LoginView {
 		// Set the background to the AnchorPane
 		Ancorpane.setBackground(new Background(bgImage));
 
-		if(Main.sistema==1){
-			registerbutton.setVisible(false);
-		}
+
 	}
 
 
