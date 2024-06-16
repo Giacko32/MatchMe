@@ -102,7 +102,7 @@ public class AmministrazioneTorneiCtrl {
 		if(data_inizo.isAfter(LocalDate.now().plusDays(3)) && data_fine.isAfter(data_inizo)) {
 			DBMSView.queryUpdateTorneo(torneo, data_inizo, data_fine);
 			Utils.creaPannelloErrore("Torneo modificato");
-			this.toMain();
+			this.mostraTorneiSede(stage);
 		}else{
 			Utils.creaPannelloErrore("Data errata");
 			this.mostraTorneiSede(stage);
