@@ -1,8 +1,6 @@
 package com.prova.matchme.GestionePartita.Interfacce;
 
 
-import com.prova.matchme.DBMSView;
-import com.prova.matchme.Entity.Campo;
 import com.prova.matchme.Entity.Partita;
 import com.prova.matchme.Entity.PartitaDetails;
 import com.prova.matchme.Entity.Utente;

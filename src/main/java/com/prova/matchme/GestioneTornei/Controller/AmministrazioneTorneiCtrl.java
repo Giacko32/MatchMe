@@ -5,7 +5,7 @@ package com.prova.matchme.GestioneTornei.Controller;
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Autenticazione.Interfacce.AdminView;
 import com.prova.matchme.CustomStage;
-import com.prova.matchme.DBMSView;
+import com.prova.matchme.shared.DBMSView;
 import com.prova.matchme.Entity.*;
 import com.prova.matchme.GestioneTornei.Interfacce.*;
 import com.prova.matchme.Utils;
@@ -131,9 +131,7 @@ public class AmministrazioneTorneiCtrl {
 		if(CheckSquadre(torneo)){
 			//il torneo ha posti liberi
 			String[] parts = squadra.split(" nome squadra: ");
-
 			String[] numeroSquadraPart = parts[0].split("Numero squadra: ");
-
 			int numeroSquadra = Integer.parseInt(numeroSquadraPart[1].trim());
 			String nomeSquadra = parts[1].trim();
 			//squadra aggiunta nel torneo

@@ -46,9 +46,7 @@ public class SquadreInAttesaView {
 		});
 	}
 
-	public void SelectSquadra() {
 
-	}
 	public void MostraSquadra(ArrayList<Utente> squadra) {
 		dettagliSquadra.setDisable(false);
 		buttonAccettaSquadra.setDisable(false);
@@ -65,17 +63,9 @@ public class SquadreInAttesaView {
 		this.back();
 	}
 
-	public void EliminaSquadra() {
-
-	}
-
 	public void clickRifiuta() {
 		amminCtrl.RifiutaCliccato(torneo, selectedSquadra);
 		this.back();
-	}
-
-	public void ShowBnd() {
-
 	}
 
 	@FXML

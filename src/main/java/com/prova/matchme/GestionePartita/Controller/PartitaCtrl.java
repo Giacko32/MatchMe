@@ -1,25 +1,20 @@
 package com.prova.matchme.GestionePartita.Controller;
 
 
-import com.mysql.cj.util.Util;
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
-import com.prova.matchme.Autenticazione.Interfacce.AdminView;
 import com.prova.matchme.Autenticazione.Interfacce.AllenaView;
 import com.prova.matchme.Autenticazione.Interfacce.MainView;
 import com.prova.matchme.CustomStage;
-import com.prova.matchme.DBMSView;
+import com.prova.matchme.shared.DBMSView;
 import com.prova.matchme.Entity.*;
 import com.prova.matchme.GestionePartita.Interfacce.*;
 import com.prova.matchme.Utils;
 import com.prova.matchme.shared.ConfirmView;
-import jakarta.mail.Part;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 
 public class PartitaCtrl {
 

@@ -4,7 +4,7 @@ package com.prova.matchme.GestioneSede.Controller;
 import com.prova.matchme.Autenticazione.Controller.AuthCtrl;
 import com.prova.matchme.Autenticazione.Interfacce.AdminView;
 import com.prova.matchme.CustomStage;
-import com.prova.matchme.DBMSView;
+import com.prova.matchme.shared.DBMSView;
 import com.prova.matchme.EmailSender;
 import com.prova.matchme.Entity.Abbonamento;
 import com.prova.matchme.Entity.Gestore;

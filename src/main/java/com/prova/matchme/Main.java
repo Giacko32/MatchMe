@@ -2,6 +2,7 @@ package com.prova.matchme;
 
 
 import com.prova.matchme.Autenticazione.Interfacce.LoginView;
+import com.prova.matchme.shared.DBMSView;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;

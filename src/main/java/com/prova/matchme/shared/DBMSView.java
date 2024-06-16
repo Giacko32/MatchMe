@@ -1,6 +1,7 @@
-package com.prova.matchme;
+package com.prova.matchme.shared;
 
 import com.prova.matchme.Entity.*;
+import com.prova.matchme.Utils;
 
 import java.sql.*;
 import java.time.LocalDate;

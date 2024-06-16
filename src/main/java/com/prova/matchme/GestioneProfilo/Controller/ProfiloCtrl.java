@@ -6,7 +6,7 @@ import com.prova.matchme.Autenticazione.Interfacce.AdminView;
 import com.prova.matchme.Autenticazione.Interfacce.AllenaView;
 import com.prova.matchme.Autenticazione.Interfacce.MainView;
 import com.prova.matchme.CustomStage;
-import com.prova.matchme.DBMSView;
+import com.prova.matchme.shared.DBMSView;
 import com.prova.matchme.Entity.Gestore;
 import com.prova.matchme.Entity.PartitaStorico;
 import com.prova.matchme.Entity.Utente;

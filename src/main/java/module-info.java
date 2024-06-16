@@ -30,4 +30,5 @@ module com.prova.matchme {
 
 
     exports com.prova.matchme;
+    exports com.prova.matchme.shared;
 }
