@@ -8,6 +8,7 @@ import com.prova.matchme.GestioneMessaggistica.Controller.ChatCtrl;
 import com.prova.matchme.GestioneNotifiche.Controller.NotifyCtrl;
 import com.prova.matchme.GestionePartita.Controller.PartitaCtrl;
 import com.prova.matchme.GestioneProfilo.Controller.ProfiloCtrl;
+import com.prova.matchme.GestioneTornei.Controller.TorneiCtrl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -98,6 +99,7 @@ public class AllenaView {
         new PartitaCtrl(u, s, true);
     }
 
+    public void ClickTornei(){new TorneiCtrl(u,s);}
 
     public void ShowBnd() {
 

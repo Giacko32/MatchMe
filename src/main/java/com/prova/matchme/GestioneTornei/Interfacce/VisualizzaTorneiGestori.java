@@ -53,11 +53,11 @@ public class VisualizzaTorneiGestori {
 	}
 
 	public void clickNuovoTorneo(){
-		amminCtrl.NuovoTorneo(stage);
+		amminCtrl.NuovoTorneo();
 	}
 
 	public void clickModificaTorneo() {
-		amminCtrl.ModificaTorneo(selectedTorneo, stage);
+		amminCtrl.ModificaTorneo(selectedTorneo);
 	}
 
 	public void clickCancellaTorneo() {
@@ -65,7 +65,7 @@ public class VisualizzaTorneiGestori {
 	}
 
 	public void clickSquadreAttesa() {
-		amminCtrl.SquadreInAttesa(selectedTorneo, stage);
+		amminCtrl.SquadreInAttesa(selectedTorneo);
 	}
 
 	public void showDettagliTorneo(Torneo torneo) {

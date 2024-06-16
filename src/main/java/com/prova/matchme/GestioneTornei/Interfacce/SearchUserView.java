@@ -69,7 +69,7 @@ public class SearchUserView {
 	}
 
 	public void ClickAggiungi() {
-		torneiCtrl.AggiungiASquadra(selectedUtente, torneo,stage);
+		torneiCtrl.AggiungiASquadra(selectedUtente, torneo);
 	}
 
 	public void back() {

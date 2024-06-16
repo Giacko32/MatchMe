@@ -46,7 +46,7 @@ public class IscrizioneSquadraView {
 
 
 	public void ClickAggiungiPartecipanti() {
-		torneiCtrl.AggiungiPartecipanti(torneiCtrl, stage, torneo);
+		torneiCtrl.AggiungiPartecipanti(torneiCtrl, torneo);
 	}
 
 

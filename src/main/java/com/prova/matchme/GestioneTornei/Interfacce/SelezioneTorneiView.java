@@ -14,11 +14,13 @@ public class SelezioneTorneiView {
     }
 
     public void ClickIMieiTornei() {
-        torneiCtrl.MieiTornei(stage);
+        torneiCtrl.MieiTornei();
+        stage.close();
     }
 
     public void ClickTuttiITornei() {
-        torneiCtrl.TuttiItornei(stage);
+        torneiCtrl.TuttiItornei();
+        stage.close();
     }
 
 

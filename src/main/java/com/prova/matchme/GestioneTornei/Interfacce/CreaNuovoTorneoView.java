@@ -135,7 +135,7 @@ public class CreaNuovoTorneoView {
             Utils.creaPannelloErrore("Campi incompleti");
         } else {
             amminCtrl.PassData(sport, livelloMin, livelloMax, numeroSquadre, dataInizio, dataFine, numeroGiocatoriPerSquadra);
-            amminCtrl.mostraTorneiSede(stage);
+            amminCtrl.mostraTorneiSede();
         }
 
     }

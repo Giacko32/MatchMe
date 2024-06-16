@@ -38,16 +38,14 @@ public class TorneiCtrl {
 		}, 350, 170);
 	}
 
-	public void TuttiItornei(Stage st) {
-		st.close();
+	public void TuttiItornei() {
 		Utils.cambiaInterfaccia("FXML/VisualizzaTornei.fxml", stage, c -> {
 			boundaryTutti = new VisualizzaDettagliTuttiITornei(DBMSView.queryGetTuttITornei(utente.getId()),this, stage);
 			return boundaryTutti;
 		});
 	}
 
-	public void MieiTornei(Stage st) {
-		st.close();
+	public void MieiTornei() {
 		Utils.cambiaInterfaccia("FXML/VisualizzaIMieiTornei.fxml", stage, c -> {
 			boundaryMio =  new VisualizzaDettagliMioTorneo(DBMSView.queryGetImieiTornei(utente),this);
 			return boundaryMio;
@@ -56,19 +54,16 @@ public class TorneiCtrl {
 	}
 
 	public void TorneoSelezionatoMio(Torneo torneo) {
-
 		boundaryMio.showDetails(DBMSView.queryGetTorneo(torneo));
 		boundaryMio.showCalendario(DBMSView.queryGetCalendarioTutte(torneo));
 	}
 
 	public void TorneoSelezionatoTutti(Torneo torneo) {
-
 		boundaryTutti.showDetails(DBMSView.queryGetTorneo(torneo));
 	}
 
-	public void IscriviSelezionato(Torneo torneo, Stage st) {
+	public void IscriviSelezionato(Torneo torneo) {
 		if (this.CheckNumeroSquadre(torneo)) {
-			st.close();
 			Utils.cambiaInterfaccia("FXML/IscrizioneSquadraTorneo.fxml", stage, c -> {
 				boundarySquadra = new IscrizioneSquadraView(this, utente, stage, torneo);
 				return boundarySquadra;
@@ -78,9 +73,8 @@ public class TorneiCtrl {
 		}
 	}
 
-		public void AggiungiPartecipanti (TorneiCtrl torneiCtrl, Stage st, Torneo torneo) {
+		public void AggiungiPartecipanti (TorneiCtrl torneiCtrl, Torneo torneo) {
 		if(utentiSquadra.size() < torneo.getN_Giocatori_squadra()){
-			st.close();
 			Utils.cambiaInterfaccia("FXML/SearchUserView.fxml", stage, c -> {
 				boundarySearchUser =  new SearchUserView(this, torneo,stage);
 				return boundarySearchUser;
@@ -99,20 +93,17 @@ public class TorneiCtrl {
 
 		public void PassData (String nome, String cognome) {
 			ArrayList<Utente> giocatori_cercati = DBMSView.queryGetGiocatoriRicercati(nome, cognome);
-			System.out.println(giocatori_cercati);
 			giocatori_cercati.removeAll(utentiSquadra);
 			boundarySearchUser.MostraLista(giocatori_cercati);
 		}
 
-		public void AggiungiASquadra (Utente utente, Torneo torneo, Stage st) {
+		public void AggiungiASquadra (Utente utente, Torneo torneo) {
 				if(this.CheckSquadra(torneo)){
 					// la squadra ancora non è piena
 					if(!utentiSquadra.contains(utente)){
 						utentiSquadra.add(utente);
-						System.out.println(utentiSquadra);
 						if(utentiSquadra.size() == (torneo.getN_Giocatori_squadra()-1)){
 							//la squadra è piena possiamo aggiornare la lista
-							st.close();
 							Utils.cambiaInterfaccia("FXML/IscrizioneSquadraTorneo.fxml", stage, c -> {
 								boundarySquadra = new IscrizioneSquadraView(this, utente, stage, torneo);
 

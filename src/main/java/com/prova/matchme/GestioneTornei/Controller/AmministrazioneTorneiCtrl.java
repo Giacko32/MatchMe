@@ -38,8 +38,7 @@ public class AmministrazioneTorneiCtrl {
 		this.gestore = gestore;
 	}
 
-	public void mostraTorneiSede(Stage stage){
-		stage.close();
+	public void mostraTorneiSede(){
 		Utils.cambiaInterfaccia("FXML/VisualizzaTorneiGestore.fxml", stage, c -> {
 			boundaryGestori = new VisualizzaTorneiGestori(DBMSView.queryGetTorneiSede(gestore),stage, this);
 			return boundaryGestori;
@@ -50,8 +49,7 @@ public class AmministrazioneTorneiCtrl {
 		boundaryGestori.showDettagliTorneo(DBMSView.queryGetTorneo(torneo));
 	}
 
-	public void NuovoTorneo(Stage stage) {
-		stage.close();
+	public void NuovoTorneo() {
 		Utils.cambiaInterfaccia("FXML/CreaTorneo.fxml", stage, c -> {
 			boundaryCreaTorneo = new CreaNuovoTorneoView(stage, this);
 			return boundaryCreaTorneo;
@@ -74,8 +72,7 @@ public class AmministrazioneTorneiCtrl {
 
 	}
 
-	public void ModificaTorneo(Torneo torneo, Stage stage) {
-		stage.close();
+	public void ModificaTorneo(Torneo torneo) {
 		Utils.cambiaInterfaccia("FXML/Modifica Torneo.fxml", stage, c -> {
 			boundaryModificaTorneo = new ModificaTorneoView(stage, this, torneo);
 			return boundaryModificaTorneo;
@@ -95,22 +92,21 @@ public class AmministrazioneTorneiCtrl {
 		DBMSView.queryDeleteTorneo(torneo);
 		//squadra eliminata
 		//rimuoviamo il torneo dalla listview
-		this.mostraTorneiSede(stage);
+		this.mostraTorneiSede();
 	}
 
 	public void PassDataModifica(Torneo torneo, LocalDate data_inizo, LocalDate data_fine) {
 		if(data_inizo.isAfter(LocalDate.now().plusDays(3)) && data_fine.isAfter(data_inizo)) {
 			DBMSView.queryUpdateTorneo(torneo, data_inizo, data_fine);
 			Utils.creaPannelloErrore("Torneo modificato");
-			this.mostraTorneiSede(stage);
+			this.mostraTorneiSede();
 		}else{
 			Utils.creaPannelloErrore("Data errata");
-			this.mostraTorneiSede(stage);
+			this.mostraTorneiSede();
 		}
 	}
 
-	public void SquadreInAttesa(Torneo torneo, Stage stage) {
-		stage.close();
+	public void SquadreInAttesa(Torneo torneo) {
 		Utils.cambiaInterfaccia("FXML/AccettazioneSquadreTorneo.fxml", stage, c -> {
 			boundarySquadreInAttesa = new SquadreInAttesaView(this, stage, torneo, DBMSView.queryGetSquadreInAttesa(torneo));
 			return boundarySquadreInAttesa;

@@ -124,7 +124,7 @@ public class AdminView {
 	@FXML
 	public void clickTorneiSede() {
 		AmministrazioneTorneiCtrl atc = new AmministrazioneTorneiCtrl(s,g);
-		atc.mostraTorneiSede(s);
+		atc.mostraTorneiSede();
 	}
 
 	public void clickVisualizzaAllenamenti(){
