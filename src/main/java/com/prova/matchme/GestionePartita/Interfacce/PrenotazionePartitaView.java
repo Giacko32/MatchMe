@@ -1,14 +1,12 @@
 package com.prova.matchme.GestionePartita.Interfacce;
 
 
-import com.prova.matchme.DBMSView;
+
 import com.prova.matchme.Entity.Campo;
 import com.prova.matchme.Entity.Partita;
 import com.prova.matchme.Entity.Sede;
 import com.prova.matchme.Entity.Utente;
 import com.prova.matchme.GestionePartita.Controller.PartitaCtrl;
-import com.prova.matchme.Utils;
-import jakarta.mail.Part;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
