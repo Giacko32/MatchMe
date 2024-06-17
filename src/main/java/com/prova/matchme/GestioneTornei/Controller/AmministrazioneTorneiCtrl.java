@@ -21,7 +21,7 @@ public class AmministrazioneTorneiCtrl {
 
 	private Stage stage;
 	private Gestore gestore;
-	private VisualizzaTorneiGestori boundaryGestori;
+	private VisualizzaDettagliTorneoSedeView boundaryGestori;
 	private Torneo torneo;
 	private CreaNuovoTorneoView boundaryCreaTorneo;
 	private ConfirmView boundaryConfirm;
@@ -40,7 +40,7 @@ public class AmministrazioneTorneiCtrl {
 
 	public void mostraTorneiSede(){
 		Utils.cambiaInterfaccia("FXML/VisualizzaTorneiGestore.fxml", stage, c -> {
-			boundaryGestori = new VisualizzaTorneiGestori(DBMSView.queryGetTorneiSede(gestore),stage, this);
+			boundaryGestori = new VisualizzaDettagliTorneoSedeView(DBMSView.queryGetTorneiSede(gestore),stage, this);
 			return boundaryGestori;
 		});
 	}

@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class VisualizzaTorneiGestori {
+public class VisualizzaDettagliTorneoSedeView {
 
 	private ArrayList<Torneo> tornei;
 	private Stage stage;
@@ -36,7 +36,7 @@ public class VisualizzaTorneiGestori {
 	@FXML
 	private Button buttonModificaTorneo;
 
-	public VisualizzaTorneiGestori(ArrayList<Torneo> tornei, Stage stage, AmministrazioneTorneiCtrl amminCtrl){
+	public VisualizzaDettagliTorneoSedeView(ArrayList<Torneo> tornei, Stage stage, AmministrazioneTorneiCtrl amminCtrl){
 		this.tornei = tornei;
 		this.stage = stage;
 		this.amminCtrl = amminCtrl;
