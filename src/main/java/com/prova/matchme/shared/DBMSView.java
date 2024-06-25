@@ -249,7 +249,7 @@ public class DBMSView {
         return 0;
     }
 
-    public static void queryAttivaAbbonamento(int id) {
+    public static void querySetAbbonamento(int id) {
         var query = "UPDATE utente SET tipo=? WHERE id=?";
         try (PreparedStatement stmt = connDBMS.prepareStatement(query)) {
             stmt.setString(1, "t");

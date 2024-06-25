@@ -21,7 +21,7 @@ public class ContrAbb extends Thread{
             LocalTime currentTime = LocalTime.now();
             if (currentTime.isAfter(LocalTime.MIDNIGHT.minusSeconds(100)) && currentTime.isBefore(LocalTime.MIDNIGHT.plusSeconds(100))) {
                 amministrazioneSedeCtrl.checkTime();
-           }
+             }
             try {
                 // Attende un minuto prima di controllare di nuovo
                 Thread.sleep(60000); // 60000 millisecondi = 1 minuto
@@ -32,7 +32,7 @@ public class ContrAbb extends Thread{
     }
     public void onstop(){
         System.out.println("Thread stoppato");
-        running=false;
+        this.running=false;
     }
 
 }

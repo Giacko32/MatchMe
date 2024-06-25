@@ -19,28 +19,6 @@ import java.util.function.UnaryOperator;
 
 public class Utils {
 
-    public static UnaryOperator<TextFormatter.Change> integerFilter = change -> {
-        String newText = change.getControlNewText();
-        if (newText.matches("-?([0-9]*)?")) {
-            return change;
-        }
-        return null;
-    };
-    public static UnaryOperator<TextFormatter.Change> positiveIntegerFilter = change -> {
-        String newText = change.getControlNewText();
-        if (newText.matches("([0-9]*)?")) {
-            return change;
-        }
-        return null;
-    };
-
-    public static UnaryOperator<TextFormatter.Change> nonZeroPositiveIntegerFilter = change -> {
-        String newText = change.getControlNewText();
-        if (newText.matches("([1-9][0-9]*)?")) {
-            return change;
-        }
-        return null;
-    };
     public static FXMLLoader creaLoader(String path) {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource(path));
         return loader;
@@ -85,20 +63,6 @@ public class Utils {
         creaInterfaccia(loader, 400, 170, stage);
     }
 
-    /**
-     * Crea un nuovo pannello di conferma
-     *
-     * @param messaggio il messaggio da mostrare
-     */
-
-    /**
-     * Cambia l'interfaccia sullo stage passato come paramentro (eventualmente creato)
-     *
-     * @param interfaccia percorso dell'FXML
-     * @param stage
-     * @param c           Callback chiamata quando viene creata l'interfaccia
-     * @return L'oggetto
-     */
     public static Object cambiaInterfaccia(String interfaccia, Stage stage, Callback c) {
         FXMLLoader loader = creaLoader(interfaccia);
         loader.setControllerFactory(c);

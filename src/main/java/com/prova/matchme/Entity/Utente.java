@@ -119,7 +119,7 @@ public class Utente {
     }
 
     public String getSessoVincoli(){
-        if(getSesso().equals("M")){
+        if(getSesso().equals("u")){
             return "uomo";
         } else {
             return "donna";

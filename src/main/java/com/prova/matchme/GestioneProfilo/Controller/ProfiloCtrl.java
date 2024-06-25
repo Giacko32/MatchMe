@@ -174,7 +174,7 @@ public class ProfiloCtrl {
     public void Passcode(String codice) {
         int id=DBMSView.queryGetIdCode(codice);
         if(CheckId(id)){
-            DBMSView.queryAttivaAbbonamento(u.getId());
+            DBMSView.querySetAbbonamento(u.getId());
             u.setTipo("t");
             CustomStage s=new CustomStage("SUCCESSO");
             Utils.cambiaInterfaccia("FXML/Dialog cod abb corretto.fxml", s, c -> {
